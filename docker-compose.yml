@@ -3,13 +3,13 @@ services:
     front:
         stdin_open: true
         build: 
-            context: .
+            context: ./polystage-app
             dockerfile: Dockerfile
         ports:
             - "3000:3000"
         volumes: 
             - "app/node_modules"
-            - "./:/app"
+            - "./polystage-app:/app"
         networks:
             - net
 
