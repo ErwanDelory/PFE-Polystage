@@ -1,24 +1,30 @@
+const path = require("path");
 const express = require("express");
-
 const app = express();
+const bodyParser = require("body-parser");
 
-var mysql = require("mysql");
-var connection = mysql.createConnection({
-	host: "db", // notez comment on utilise le config que l'on a requiré
-	user: "root",
-	password: "root",
-	database: "db",
-	multipleStatements: true,
+const config = require("./config");
+const db = require("./mysqlConnect");
+
+app.use(express.static("."));
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+app.use(function (req, res, next) {
+	res.header("Access-Control-Allow-Origin", "http://localhost");
+	res.header(
+		"Access-Control-Allow-Headers",
+		"Origin, X-Requested-With, Content-Type, Accept"
+	);
+	next();
 });
 
-connection.connect();
-
-app.get("/test", (req, res, next) => {
-	connection.connect(function (err) {
-		connection.query("SELECT * FROM eleves", function (err, result) {
-			res.status(200).json({ data: result });
-		});
-	});
+app.get("/", function (req, res) {
+	res.sendFile(__dirname + "/index.html");
 });
 
-app.listen(5000); // start Node + Express server on port 5000
+var routes = require("./api/routes/route"); //importing route
+routes(app); //register the route
+
+app.listen(config.node.port, function () {
+	console.log("Serveur up on " + config.node.port);
+});

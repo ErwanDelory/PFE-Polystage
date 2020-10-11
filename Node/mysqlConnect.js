@@ -1,14 +1,19 @@
 const config = require("./config");
 const mysql = require("mysql");
 
-const db = mysql.createConnection({
-	host: config.mysqlHost,
-	port: config.mysqlPort,
-	user: config.mysqlLogin,
-	password: config.mysqlPassword,
-	database: config.mysqlDatabase,
+var db = mysql.createConnection({
+	host: config.mysql.host, // notez comment on utilise le config que l'on a requiré
+	user: config.mysql.user,
+	password: config.mysql.password,
+	database: config.mysql.database,
 	multipleStatements: true,
 });
-db.connect();
+db.connect((err) => {
+	if (err) {
+		throw err;
+	}
+	console.log("Connected to database");
+});
+global.db = db;
 
 module.exports = db;
