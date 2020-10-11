@@ -11,7 +11,6 @@ ENV PATH /app/node_modules/.bin:$PATH
 COPY package.json /app
 RUN npm install
 RUN npm install -g react
-RUN npm install typescript
 
 # add app
 COPY . /app
