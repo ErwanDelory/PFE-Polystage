@@ -1,7 +1,6 @@
 import React from "react";
 import img from "./../img/404.jpg";
-import "./../styles/bootstrap.min.css";
-import "./../styles/custom.css";
+
 
 function Error() {
     return (
