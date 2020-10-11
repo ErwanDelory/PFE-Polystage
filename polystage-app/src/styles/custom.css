@@ -1,0 +1,149 @@
+/* ACCUEIL */
+.preloader{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ffffff;
+    z-index: 9998;
+    height: 100%;
+    width: 100%;
+}
+.img-preloader{
+    max-width: 40%;
+}
+.bar-preloader{
+    max-width: 40%;
+}
+.polystage{
+    border-bottom: 1px solid rgba(153,153,153,.3);
+}
+.fixed-sn main {
+    padding-top: 4rem;
+    padding-bottom: 3rem;
+    margin-bottom: 3rem;
+}
+.side-nav .collapsible a{
+    font-size: 1.2rem;
+}
+.white-skin .side-nav .sidenav-bg.mask-light:after {
+    background: rgba(255,255,255,.9);
+}
+
+/* LOGIN */
+.home-fullpage{
+    min-height: calc(100vh - 48px);
+}
+
+/* HOME */
+.cursor-pointer{
+    cursor: pointer;
+}
+.mh-card{
+    min-height: 20rem;
+}
+.card-ajouter-stage{
+    background-image: url('/img/ajout.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.mouse-cursor{
+    cursor: pointer;
+}
+.card-disabled{
+    pointer-events: none;
+    opacity: 0.5;
+    background: #CCC;
+}
+.card-disabled .btn-outline-primary {
+    border: 2px solid #949494 !important;
+    background-color: transparent !important;
+    color: #949494 !important;
+}
+.card-disabled .primary-color{
+    background-color: #949494 !important;
+}
+.uploadRapport input:disabled{
+    pointer-events: none;
+    background: #CCC;
+}
+.uploadPres input:disabled{
+    pointer-events: none;
+    background: #CCC;
+}
+.white-skin .disabled-btn{
+    border: 2px solid #c7c7c7!important;
+    background-color: transparent!important;
+    color: #afafaf!important;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+.white-skin .disabled-btn:hover{
+    border: 2px solid #c7c7c7!important;
+    background-color: transparent!important;
+    color: #afafaf!important;
+    cursor: not-allowed;
+}
+.white-skin .disabled-btn span{
+    cursor: not-allowed;
+}
+.custom-color-card{
+    background-color: rgba(0, 0, 0, 0.03) !important;
+}
+
+/* FORM */
+.md-form>input[type=date]+label.label-custom{
+    transform: translateY(-14px) scale(.8);
+    transform-origin: 0 100%;
+}
+.picker__nav--next{
+    display: none;
+}
+.picker__nav--prev{
+    display: none;
+}
+.select-ent input.select-dropdown{
+    margin-bottom: 0;
+}
+
+/* EVAL */
+.mt--10{
+    margin-top: -10px;
+}
+.mb-0-i{
+    margin-bottom: 0px !important;
+}
+.title-form{
+    padding-left: .5rem;
+    border-left: 2px solid #4285F4;  
+    color: #4285F4;
+    text-transform: uppercase;
+}
+
+/* 404 */
+.img-404{
+    max-width: 50%;
+}
+.div-404{
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+}
+
+/* MEDIA QUERIES */
+@media (max-width: 768px) {
+    .img-404{
+        max-width: 100%;
+    }
+}
+
+@media (min-width: 34em) {
+    .card-columns {
+        -webkit-column-count:2;
+        -moz-column-count:2;
+        column-count:2;
+    }
+}
