@@ -11,7 +11,6 @@ ENV PATH /app/node_modules/.bin:$PATH
 COPY package.json /app
 RUN npm install
 
-
 # add app
 COPY . /app
 
