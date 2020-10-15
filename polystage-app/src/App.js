@@ -4,6 +4,7 @@ import Login from "./pages/login";
 import Error from "./pages/error";
 import "./styles/bootstrap.min.css";
 import "./styles/custom.css";
+import Register from "./pages/register";
 
 function App() {
 	return (
@@ -12,6 +13,7 @@ function App() {
 				<p>Ici c'est la navbar</p>
 				<Switch>
 					<Route exact path="/login" component={Login} />
+					<Route path="/register" component={Register} />
 					<Route exact path="/error" component={Error} />
 				</Switch>
 			</div>
