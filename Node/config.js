@@ -4,10 +4,11 @@ const config = {
 	},
 	mysql: {
 		// paramètres de connexion à la base de données
-		host: "db",
+		host: "localhost",
 		user: "root",
 		password: "root",
-		database: "db",
+		port: 3308,
+		database: "polystage",
 		charset: "utf8",
 	},
 	gmail: {

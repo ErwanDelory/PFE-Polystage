@@ -1,29 +1,58 @@
-const path = require("path");
 const express = require("express");
-const app = express();
 const bodyParser = require("body-parser");
+const mysql = require('mysql');
 
+const HttpError = require("./api/models/http-error");
+
+const routes = require("./api/routes/route.js");
+//const db = require("./mysqlConnect");
 const config = require("./config");
-const db = require("./mysqlConnect");
 
-app.use(express.static("."));
-app.use(bodyParser.urlencoded({ extended: true }));
+const app = express();
+
 app.use(bodyParser.json());
-app.use(function (req, res, next) {
-	res.header("Access-Control-Allow-Origin", "http://localhost");
-	res.header(
+app.use((req, res, next) => {
+	// CORS POLICY
+	res.setHeader("Access-Control-Allow-Origin", "*");
+	res.setHeader(
 		"Access-Control-Allow-Headers",
-		"Origin, X-Requested-With, Content-Type, Accept"
+		"Origin, X-Requested-With, Content-Type, Accept, Authorization"
 	);
+	res.setHeader("Access-Control-Allow-Methods", "GET, POST, PATCH, DELETE");
+
 	next();
 });
 
-app.get("/", function (req, res) {
-	res.sendFile(__dirname + "/index.html");
+app.use("/api", routes);
+
+app.use((res, req, next) => {
+  const error = new HttpError("Could not find this route", 404);
+  return next(error);
 });
 
-var routes = require("./api/routes/route"); //importing route
-routes(app); //register the route
+app.use((error, req, res, next) => {
+  if (res.headerSent) {
+    return next(error);
+  }
+  res.status(error.code || 500);
+  res.json({ message: error.message || "An unknown error occured!" });
+});
+
+const db = mysql.createConnection({
+   host: config.mysql.host,
+   user: config.mysql.user,
+   password: config.mysql.password,
+   database: config.mysql.database,
+   port: config.mysql.port,
+   multipleStatements: true,
+ });
+
+db.connect(error => {
+   if (error) throw error;
+   console.log("Successfully connected to the database.");
+ });
+
+ global.db = db;
 
 app.listen(config.node.port, function () {
 	console.log("Serveur up on " + config.node.port);

@@ -1,95 +1,105 @@
-'use strict';
-module.exports = function (app) {
-  var EntrepriseControlleur = require('../controllers/entrepriseController');
-  var EnseignantControlleur = require('../controllers/enseignantController');
-  var EleveControlleur = require('../controllers/eleveController');
-  var TuteurControlleur = require('../controllers/tuteurController');
-  var StageControlleur = require('../controllers/stageController');
-  var Authentification = require('../controllers/authentificationController');
-  var FileControlleur = require('../controllers/fileController');
-  var QuestionControlleur = require('../controllers/questionController');
-  var FormControlleur = require('../controllers/formController');
-  var MailControlleur = require('../controllers/mailController')
+const express = require("express");
+//const { check } = require("express-validator");
 
-  app.route('/entreprises')
-    .get(EntrepriseControlleur.list_all_entreprises)
-    .post(EntrepriseControlleur.create_entreprise);
+const EntrepriseControlleur = require('../controllers/entrepriseController');
+const EnseignantControlleur = require('../controllers/enseignantController');
+const EleveControlleur = require('../controllers/eleveController');
+const TuteurControlleur = require('../controllers/tuteurController');
+const StageControlleur = require('../controllers/stageController');
+const Authentification = require('../controllers/authentificationController');
+const FileControlleur = require('../controllers/fileController');
+const QuestionControlleur = require('../controllers/questionController');
+const FormControlleur = require('../controllers/formController');
+const MailControlleur = require('../controllers/mailController')
 
-  app.route('/enseignants')
-    .get(EnseignantControlleur.list_all_enseignants);
+const app = express();
 
-  app.route('/eleves')
-    .get(EleveControlleur.list_all_eleve);
+const router = express.Router();
 
-  app.route('/eleves/retard')
-    .get(MailControlleur.list_all_retard_eleve);
+router.get("/pid",EnseignantControlleur.list_all_enseignants);
 
-  app.route('/eleves/:eleveId')
-    .get(EleveControlleur.get_eleve_infos);
+router.get("/uid", EleveControlleur.list_all_eleve);
 
-  app.route('/tuteurs')
-    .get(TuteurControlleur.list_all_tuteurs);
+/*
+router.route('/entreprises')
+.get(EntrepriseControlleur.list_all_entreprises)
+.post(EntrepriseControlleur.create_entreprise);
 
-  app.route('/tuteurs/retard')
-    .get(MailControlleur.list_all_retard_tuteur);
+router.route('/enseignants')
+.get(EnseignantControlleur.list_all_enseignants);
 
-  app.route('/stages')
-    .get(StageControlleur.list_all_stages);
+router.route('/eleves')
+.get(EleveControlleur.list_all_eleve);
 
-  app.route('/stages/update')
-    .get(MailControlleur.verif_dates_stage);
+router.route('/eleves/retard')
+.get(MailControlleur.list_all_retard_eleve);
 
-  app.route('/stages/:idstage')
-    .get(StageControlleur.list_stage_byId)
-    .put(FormControlleur.update_stage_byId);
+router.route('/eleves/:eleveId')
+.get(EleveControlleur.get_eleve_infos);
 
-  app.route('/stages/eval/:idstage')
-    .get(StageControlleur.list_stage_byIdForEval)
-    .post(FormControlleur.FormEval);
+router.route('/tuteurs')
+.get(TuteurControlleur.list_all_tuteurs);
 
-  app.route('/stages/evalcompetences/:idstage')
-    .post(FormControlleur.FormComp);
+router.route('/tuteurs/retard')
+.get(MailControlleur.list_all_retard_tuteur);
 
-  app.route('/current/eleve/stage')
-    .get(StageControlleur.current_stage);
+router.route('/stages')
+.get(StageControlleur.list_all_stages);
 
-  app.route('/current/tuteur/stage')
-    .get(StageControlleur.current_tuteur_stage);
+router.route('/stages/update')
+.get(MailControlleur.verif_dates_stage);
 
-  app.route('/current/ens/stage')
-    .get(StageControlleur.current_ens_stage);
+router.route('/stages/:idstage')
+.get(StageControlleur.list_stage_byId)
+.put(FormControlleur.update_stage_byId);
 
-  app.route('/stages/eleves/:eleveId')
-    .get(StageControlleur.list_stage_byeleveId);
+router.route('/stages/eval/:idstage')
+.get(StageControlleur.list_stage_byIdForEval)
+.post(FormControlleur.FormEval);
 
-  app.route('/stages/tuteurs/:tuteurId')
-    .get(StageControlleur.list_stage_bytuteurId);
+router.route('/stages/evalcompetences/:idstage')
+.post(FormControlleur.FormComp);
 
-  app.route('/stages/ens/:ensId')
-    .get(StageControlleur.list_stage_byensId);
+router.route('/current/eleve/stage')
+.get(StageControlleur.current_stage);
 
-  app.route('/authentification')
-    .get(Authentification.authentification);
+router.route('/current/tuteur/stage')
+.get(StageControlleur.current_tuteur_stage);
 
-  app.route('/upload')
-    .post(FileControlleur.uploadFile);
+router.route('/current/ens/stage')
+.get(StageControlleur.current_ens_stage);
 
-  app.route('/questionsByCat/:id')
-    .get(QuestionControlleur.getQuestionsByCat);
+router.route('/stages/eleves/:eleveId')
+.get(StageControlleur.list_stage_byeleveId);
 
-  app.route('/competences')
-    .get(QuestionControlleur.list_AllCompetences);
+router.route('/stages/tuteurs/:tuteurId')
+.get(StageControlleur.list_stage_bytuteurId);
 
-  app.route('/competences/:idcompetence')
-    .get(QuestionControlleur.list_AllChoixByIdcomp);
+router.route('/stages/ens/:ensId')
+.get(StageControlleur.list_stage_byensId);
 
-  app.route('/forms/eleve')
-    .post(FormControlleur.FormEleve);
+router.route('/authentification')
+.post(Authentification.authentification);
 
-  app.route('/mail/evaluation')
-    .post(MailControlleur.proced_eval)
+router.route('/upload')
+.post(FileControlleur.uploadFile);
 
-  app.route('/mail/rappel')
-    .post(MailControlleur.send_rappels)
+router.route('/questionsByCat/:id')
+.get(QuestionControlleur.getQuestionsByCat);
 
-};
+router.route('/competences')
+.get(QuestionControlleur.list_AllCompetences);
+
+router.route('/competences/:idcompetence')
+.get(QuestionControlleur.list_AllChoixByIdcomp);
+
+router.route('/forms/eleve')
+.post(FormControlleur.FormEleve);
+
+router.route('/mail/evaluation')
+.post(MailControlleur.proced_eval)
+
+router.route('/mail/rappel')
+.post(MailControlleur.send_rappels)
+*/
+module.exports = router;
