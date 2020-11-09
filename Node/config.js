@@ -7,8 +7,8 @@ const config = {
 		host: "localhost",
 		user: "root",
 		password: "root",
-		port: 3308,
-		database: "polystage",
+		port: 8889,
+		database: "db",
 		charset: "utf8",
 	},
 	gmail: {

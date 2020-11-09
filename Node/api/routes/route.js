@@ -16,11 +16,6 @@ const app = express();
 
 const router = express.Router();
 
-router.get("/pid",EnseignantControlleur.list_all_enseignants);
-
-router.get("/uid", EleveControlleur.list_all_eleve);
-
-/*
 router.route('/entreprises')
 .get(EntrepriseControlleur.list_all_entreprises)
 .post(EntrepriseControlleur.create_entreprise);
@@ -79,7 +74,10 @@ router.route('/stages/ens/:ensId')
 .get(StageControlleur.list_stage_byensId);
 
 router.route('/authentification')
-.post(Authentification.authentification);
+.get(Authentification.authentification);
+
+router.route('/authentification2')
+.post(Authentification.authentificationdeux);
 
 router.route('/upload')
 .post(FileControlleur.uploadFile);
@@ -101,5 +99,5 @@ router.route('/mail/evaluation')
 
 router.route('/mail/rappel')
 .post(MailControlleur.send_rappels)
-*/
+
 module.exports = router;

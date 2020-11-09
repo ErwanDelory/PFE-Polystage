@@ -4,6 +4,8 @@ var Eleve = require('../models/EleveModel.js');
 var Enseignant = require('../models/EnseignantModel.js')
 var Tuteur = require('../models/TuteurModel.js');
 
+const HttpError = require('../models/http-error');
+
 exports.authentification = function (req, res) {
   Eleve.getEleveAuth(req.query.username, req.query.password, function (err, result) {
     if (err)
@@ -35,4 +37,16 @@ exports.authentification = function (req, res) {
       })
     };
   });
+}
+
+exports.authentificationdeux = async function (req, res, next) {
+  const username = req.body.username;
+  const password = req.body.password;
+  const users = await Eleve.getEleveAuth(username, password);
+  if(users.username === username && users.password === password) {
+    sendMessage(req, true)
+  } else {
+    sendMessage(req, false);
+  }
+
 }
