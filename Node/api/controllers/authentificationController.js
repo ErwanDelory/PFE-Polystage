@@ -40,13 +40,13 @@ exports.authentification = function (req, res) {
 }
 
 exports.authentificationdeux = async function (req, res, next) {
-  const username = req.body.username;
+  const email = req.body.email;
   const password = req.body.password;
-  const users = await Eleve.getEleveAuth(username, password);
-  if(users.username === username && users.password === password) {
-    sendMessage(req, true)
+  const users = await Eleve.getEleveAuth(email, password);
+  if(users.username === email && users.password === password) {
+    sendMessage(res, true)
   } else {
-    sendMessage(req, false);
+    sendMessage(res, false);
   }
 
 }

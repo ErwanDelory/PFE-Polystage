@@ -52,7 +52,7 @@ db.connect(error => {
    console.log("Successfully connected to the database.");
  });
 
- global.db = db;
+global.db = db;
 
 app.listen(config.node.port, function () {
 	console.log("Serveur up on " + config.node.port);
