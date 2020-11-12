@@ -7,9 +7,12 @@ const config = {
 		host: "localhost",
 		user: "root",
 		password: "root",
-		port: 8889,
+		port: 3308,
 		database: "db",
 		charset: "utf8",
+		table: {
+			Users: "eleves",
+		},
 	},
 	gmail: {
 		user: "polystage.alert@gmail.com",

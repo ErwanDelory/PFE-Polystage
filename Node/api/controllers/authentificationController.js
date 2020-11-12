@@ -1,52 +1,32 @@
-'use strict';
+const db = require("../../mysqlConnect");
+var sha256 = require("js-sha256");
+const { sendError, sendMessage } = require("./message");
 
-var Eleve = require('../models/EleveModel.js');
-var Enseignant = require('../models/EnseignantModel.js')
-var Tuteur = require('../models/TuteurModel.js');
+async function auth(req, res, next) {
+	if (typeof req.body.email === "undefined")
+		return sendError(res, "Vous n'avez pas envoyé la donnée username");
 
-const HttpError = require('../models/http-error');
+	if (typeof req.body.password === "undefined")
+		return sendError(res, "Vous n'avez pas envoyé la donnée password");
 
-exports.authentification = function (req, res) {
-  Eleve.getEleveAuth(req.query.username, req.query.password, function (err, result) {
-    if (err)
-      res.status(500).send(err);
-    if (result && result.length) {
-      Eleve.getEleveById(result[0].ideleve, function (err, eleve) {
-        eleve[0].role = "eleve";
-        res.status(200).send(eleve);
-      })
-    } else {
-      Enseignant.getEnsAuth(req.query.username, req.query.password, function (err, resEns) {
-        if (err)
-          res.status(500).send(err);
-        if (resEns && resEns.length) {
-          resEns[0].role = "enseignant";
-          res.status(200).send(resEns);
-        } else {
-          Tuteur.getTuteurAuth(req.query.username, req.query.password, function (err, resTuteur) {
-            if (err)
-              res.status(500).send(err);
-            if (resTuteur && resTuteur.length) {
-              resTuteur[0].role = "tuteur";
-              res.status(200).send(resTuteur);
-            } else {
-              res.status(401).send("Authentification Failed");
-            }
-          })
-        }
-      })
-    };
-  });
+	let query = `SELECT email,mdp FROM eleves WHERE email = "${req.body.email}"`;
+
+	db.query(query, (err, result) => {
+		if (err) throw err;
+
+		if (
+			req.body.email === result[0].email &&
+			sha256(req.body.password) === result[0].mdp
+		) {
+			res.status(200).json({
+				message: "Auth Ok.",
+			});
+		} else {
+			res.status(403).json({
+				message: "Auth Fail.",
+			});
+		}
+	});
 }
 
-exports.authentificationdeux = async function (req, res, next) {
-  const username = req.body.username;
-  const password = req.body.password;
-  const users = await Eleve.getEleveAuth(username, password);
-  if(users.username === username && users.password === password) {
-    sendMessage(req, true)
-  } else {
-    sendMessage(req, false);
-  }
-
-}
+exports.auth = auth;
