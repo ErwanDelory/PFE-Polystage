@@ -7,5 +7,6 @@ router.get("/test", testControllers.testfunct);
 router.post("/test1", testControllers.testPost);
 
 router.post("/auth", authentificationControllers.auth);
+router.post("/tt", authentificationControllers.test);
 
 module.exports = router;

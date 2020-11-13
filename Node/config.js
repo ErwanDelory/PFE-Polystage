@@ -18,6 +18,7 @@ const config = {
 		user: "polystage.alert@gmail.com",
 		mdp: "...",
 	},
+	secret: "",
 };
 
 module.exports = config;

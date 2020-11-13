@@ -1,23 +1,17 @@
 const db = require("../../mysqlConnect");
 var sha256 = require("js-sha256");
-const { sendError, sendMessage } = require("./message");
+const jwt = require("jsonwebtoken");
+const config = require("../config.json");
 
 async function auth(req, res, next) {
-	if (typeof req.body.email === "undefined")
-		return sendError(res, "Vous n'avez pas envoyé la donnée username");
-
-	if (typeof req.body.password === "undefined")
-		return sendError(res, "Vous n'avez pas envoyé la donnée password");
-
-	let query = `SELECT email,mdp FROM eleves WHERE email = "${req.body.email}"`;
+	let query = `SELECT email,mdp FROM eleves WHERE email = "${
+		req.body.email
+	}" AND mdp = "${sha256(req.body.password)}"`;
 
 	db.query(query, (err, result) => {
 		if (err) throw err;
 
-		if (
-			req.body.email === result[0].email &&
-			sha256(req.body.password) === result[0].mdp
-		) {
+		if (result.length > 0) {
 			res.status(200).json({
 				message: "Auth Ok.",
 			});
@@ -28,5 +22,31 @@ async function auth(req, res, next) {
 		}
 	});
 }
+
+async function test(req, res, next) {
+	const users = [
+		{
+			id: 1,
+			username: "test",
+			password: "test",
+			firstName: "Test",
+			lastName: "User",
+		},
+	];
+
+	const user = users.find(
+		(u) => u.username === "test" && u.password === "test"
+	);
+
+	const token = jwt.sign({ sub: 6 }, config.secret, { expiresIn: "7d" });
+
+	console.log(token);
+	res.status(200).json({
+		message: "Auth Ok.",
+		data: token,
+	});
+}
+
+exports.test = test;
 
 exports.auth = auth;

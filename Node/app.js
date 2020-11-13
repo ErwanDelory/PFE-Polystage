@@ -1,5 +1,6 @@
-const express = require("express");
+﻿const express = require("express");
 const app = express();
+const jwt = require("./api/jwt");
 
 const routes = require("./api/routes/route.js");
 const config = require("./config");
@@ -8,8 +9,8 @@ const HttpError = require("./api/model/http-error");
 
 // body-parser permet de récupérer facilement les données passées en POST
 const bodyParser = require("body-parser");
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-
 app.use((req, res, next) => {
 	// CORS POLICY
 	res.setHeader("Access-Control-Allow-Origin", "*");
@@ -21,10 +22,9 @@ app.use((req, res, next) => {
 
 	next();
 });
-
 const cookieParser = require("cookie-parser");
 app.use(cookieParser());
-
+//app.use(jwt());
 app.use("/api", routes);
 
 app.use((res, req, next) => {
