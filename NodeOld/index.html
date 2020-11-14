@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html ng-app="SimpleApp">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/mdb.min.css">
+    <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="css/custom.css">
+    <title>Projet S9</title>
+</head>
+
+<body ng-controller="mainController" class="fixed-sn white-skin">
+    <div class="flex-center flex-column preloader">
+        <img src="img/polytech.png" class="img-preloader mb-1">
+        <div class="progress md-progress blue-gradient bar-preloader mt-1">
+            <div class="indeterminate"></div>
+        </div>
+    </div>
+    <header>
+        <div id="slide-out" class="side-nav sn-bg-4 fixed">
+            <ul class="custom-scrollbar">
+                <li>
+                    <div class="logo-wrapper waves-effect">
+                        <a href="#!/" class="logo-polytech"><img src="img/polytech.png"
+                                class="img-fluid flex-center"></a>
+                    </div>
+                </li>
+                <li ng-if="$root.isConnected" class="menu">
+                    <ul class="collapsible collapsible-accordion mt-0">
+                        <li>
+                            <a class="collapsible-header waves-effect arrow-r" href="#!/home">
+                                <i class="fa fa-home text-primary"></i> &nbsp; Accueil
+                            </a>
+                        </li>
+                        <li ng-if="$root.admin == 1">
+                            <a class="collapsible-header waves-effect arrow-r" href="#!/admin">
+                                <i class="fa fa-cogs text-primary"></i> &nbsp; Administration
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <div class="sidenav-bg mask-light"></div>
+        </div>
+        <nav class="navbar fixed-top navbar-toggleable-md navbar-expand-lg scrolling-navbar double-nav">
+            <div class="float-left">
+                <a data-activates="slide-out" class="button-collapse black-text"><i class="fa fa-bars"></i></a>
+            </div>
+            <div class="breadcrumb-dn mr-auto text-uppercase">
+                <p>Polystage</p>
+            </div>
+            <ul class="nav navbar-nav nav-flex-icons ml-auto" ng-if="$root.isConnected">
+                <li class="nav-item text-muted">
+                    <span class="badge badge-danger"
+                        ng-if="$root.admin == 1">Admin</span>&nbsp;&nbsp;{{ $root.prenom + ' ' + $root.nom }}&nbsp;|&nbsp;
+                </li>
+                <li class="nav-item cursor-pointer" ng-click="$root.deconnexion()">
+                    Déconnexion <i class="fa fa-power-off" aria-hidden="true"></i>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <div class="container-fluid">
+            <div ng-view></div>
+        </div>
+    </main>
+
+    <script src="js/jquery.js"></script>
+    <script src="js/angular.js"></script>
+    <script src="js/angular-route.js"></script>
+    <script src="node_modules/ng-file-upload/dist/ng-file-upload-all.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/mdb.min.js"></script>
+    <script src="js/hammer.min.js"></script>
+    <script src="js/angular.hammer.min.js"></script>
+    <script src="js/moment.js"></script>
+    <script src="js/fr.js"></script>
+    <script src="js/angular-moment.min.js"></script>
+    <script src="js/sha512.min.js"></script>
+
+    <script type="text/javascript" src="app/app.js"></script>
+    <script type="text/javascript" src="app/controllers/mainController.js"></script>
+    <script type="text/javascript" src="app/controllers/loginController.js"></script>
+    <script type="text/javascript" src="app/controllers/registerController.js"></script>
+    <script type="text/javascript" src="app/controllers/formController.js"></script>
+    <script type="text/javascript" src="app/controllers/modifierStageController.js"></script>
+    <script type="text/javascript" src="app/controllers/homeController.js"></script>
+    <script type="text/javascript" src="app/controllers/evalController.js"></script>
+    <script type="text/javascript" src="app/controllers/evalcompetencesController.js"></script>
+    <script type="text/javascript" src="app/controllers/adminController.js"></script>
+    <script type="text/javascript" src="app/controllers/404Controller.js"></script>
+
+    <script type="text/javascript" src="app/factories/userFactory.js"></script>
+    <script type="text/javascript" src="app/factories/questionsFactory.js"></script>
+    <script type="text/javascript" src="app/factories/entreprisesFactory.js"></script>
+    <script type="text/javascript" src="app/factories/enseignantsFactory.js"></script>
+    <script type="text/javascript" src="app/factories/stageFactory.js"></script>
+    <script type="text/javascript" src="app/factories/evalFactory.js"></script>
+    <script type="text/javascript" src="app/factories/retardsFactory.js"></script>
+    <script type="text/javascript" src="app/factories/mailsFactory.js"></script>
+</body>
+
+</html>

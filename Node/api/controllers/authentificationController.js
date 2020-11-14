@@ -1,52 +1,41 @@
-'use strict';
+const db = require("../../mysqlConnect");
+var sha256 = require("js-sha256");
+const jwt = require("jsonwebtoken");
+const config = require("../config.json");
 
-var Eleve = require('../models/EleveModel.js');
-var Enseignant = require('../models/EnseignantModel.js')
-var Tuteur = require('../models/TuteurModel.js');
+async function auth(req, res, next) {
+	if (!req.body.email || !req.body.password) {
+		return res.status(403).json({
+			message: "Invalid Email/Password",
+		});
+	}
 
-const HttpError = require('../models/http-error');
+	let query = `SELECT * FROM eleves WHERE email = "${
+		req.body.email
+	}" AND mdp = "${sha256(req.body.password)}"`;
 
-exports.authentification = function (req, res) {
-  Eleve.getEleveAuth(req.query.username, req.query.password, function (err, result) {
-    if (err)
-      res.status(500).send(err);
-    if (result && result.length) {
-      Eleve.getEleveById(result[0].ideleve, function (err, eleve) {
-        eleve[0].role = "eleve";
-        res.status(200).send(eleve);
-      })
-    } else {
-      Enseignant.getEnsAuth(req.query.username, req.query.password, function (err, resEns) {
-        if (err)
-          res.status(500).send(err);
-        if (resEns && resEns.length) {
-          resEns[0].role = "enseignant";
-          res.status(200).send(resEns);
-        } else {
-          Tuteur.getTuteurAuth(req.query.username, req.query.password, function (err, resTuteur) {
-            if (err)
-              res.status(500).send(err);
-            if (resTuteur && resTuteur.length) {
-              resTuteur[0].role = "tuteur";
-              res.status(200).send(resTuteur);
-            } else {
-              res.status(401).send("Authentification Failed");
-            }
-          })
-        }
-      })
-    };
-  });
+	db.query(query, (err, result) => {
+		if (err) throw err;
+
+		if (result.length > 0) {
+			const token = jwt.sign(
+				{
+					id: result[0].id,
+					username: result[0].email,
+				},
+				config.secret,
+				{ expiresIn: "3 hours" }
+			);
+			return res.status(200).json({
+				message: "Auth Ok.",
+				token: token,
+			});
+		} else {
+			return res.status(403).json({
+				message: "Auth Fail.",
+			});
+		}
+	});
 }
 
-exports.authentificationdeux = async function (req, res, next) {
-  const email = req.body.email;
-  const password = req.body.password;
-  const users = await Eleve.getEleveAuth(email, password);
-  if(users.username === email && users.password === password) {
-    sendMessage(res, true)
-  } else {
-    sendMessage(res, false);
-  }
-
-}
+exports.auth = auth;

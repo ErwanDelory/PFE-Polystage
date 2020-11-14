@@ -1,15 +1,14 @@
 const express = require("express");
-const bodyParser = require("body-parser");
-const mysql = require('mysql');
-
-const HttpError = require("./api/models/http-error");
-
-const routes = require("./api/routes/route.js");
-//const db = require("./mysqlConnect");
-const config = require("./config");
-
 const app = express();
+const jwt = require("./api/jwt");
+const errorHandler = require("./api/controllers/errorHandler");
+const routes = require("./api/routes/route.js");
+const config = require("./config");
+const HttpError = require("./api/model/http-error");
 
+// body-parser permet de récupérer facilement les données passées en POST
+const bodyParser = require("body-parser");
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use((req, res, next) => {
 	// CORS POLICY
@@ -22,37 +21,22 @@ app.use((req, res, next) => {
 
 	next();
 });
-
+app.use(jwt());
 app.use("/api", routes);
+app.use(errorHandler);
 
 app.use((res, req, next) => {
-  const error = new HttpError("Could not find this route", 404);
-  return next(error);
+	const error = new HttpError("Could not find this route", 404);
+	return next(error);
 });
 
 app.use((error, req, res, next) => {
-  if (res.headerSent) {
-    return next(error);
-  }
-  res.status(error.code || 500);
-  res.json({ message: error.message || "An unknown error occured!" });
+	if (res.headerSent) {
+		return next(error);
+	}
+	res.status(error.code || 500);
+	res.json({ message: error.message || "An unknown error occured!" });
 });
-
-const db = mysql.createConnection({
-   host: config.mysql.host,
-   user: config.mysql.user,
-   password: config.mysql.password,
-   database: config.mysql.database,
-   port: config.mysql.port,
-   multipleStatements: true,
- });
-
-db.connect(error => {
-   if (error) throw error;
-   console.log("Successfully connected to the database.");
- });
-
-global.db = db;
 
 app.listen(config.node.port, function () {
 	console.log("Serveur up on " + config.node.port);
