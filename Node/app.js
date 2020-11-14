@@ -24,8 +24,21 @@ app.use((req, res, next) => {
 });
 app.use(jwt());
 app.use("/api", routes);
-
 app.use(errorHandler);
+
+app.use((res, req, next) => {
+	const error = new HttpError("Could not find this route", 404);
+	return next(error);
+});
+
+app.use((error, req, res, next) => {
+	if (res.headerSent) {
+		return next(error);
+	}
+	res.status(error.code || 500);
+	res.json({ message: error.message || "An unknown error occured!" });
+});
+
 app.listen(config.node.port, function () {
 	console.log("Serveur up on " + config.node.port);
 });
