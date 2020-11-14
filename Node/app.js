@@ -1,10 +1,10 @@
 ﻿const express = require("express");
 const app = express();
 const jwt = require("./api/jwt");
-
+const errorHandler = require("./api/controllers/errorHandler");
 const routes = require("./api/routes/route.js");
 const config = require("./config");
-
+const configToken = require("./api/config.json");
 const HttpError = require("./api/model/http-error");
 
 // body-parser permet de récupérer facilement les données passées en POST
@@ -22,24 +22,10 @@ app.use((req, res, next) => {
 
 	next();
 });
-const cookieParser = require("cookie-parser");
-app.use(cookieParser());
-//app.use(jwt());
+app.use(jwt());
 app.use("/api", routes);
 
-app.use((res, req, next) => {
-	const error = new HttpError("Could not find this route", 404);
-	return next(error);
-});
-
-app.use((error, req, res, next) => {
-	if (res.headerSent) {
-		return next(error);
-	}
-	res.status(error.code || 500);
-	res.json({ message: error.message || "An unknown error occured!" });
-});
-
+app.use(errorHandler);
 app.listen(config.node.port, function () {
 	console.log("Serveur up on " + config.node.port);
 });

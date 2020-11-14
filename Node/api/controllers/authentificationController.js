@@ -4,7 +4,13 @@ const jwt = require("jsonwebtoken");
 const config = require("../config.json");
 
 async function auth(req, res, next) {
-	let query = `SELECT email,mdp FROM eleves WHERE email = "${
+	if (!req.body.email || !req.body.password) {
+		return res.status(403).json({
+			message: "Invalid Email/Password",
+		});
+	}
+
+	let query = `SELECT * FROM eleves WHERE email = "${
 		req.body.email
 	}" AND mdp = "${sha256(req.body.password)}"`;
 
@@ -12,11 +18,20 @@ async function auth(req, res, next) {
 		if (err) throw err;
 
 		if (result.length > 0) {
-			res.status(200).json({
+			const token = jwt.sign(
+				{
+					id: result[0].id,
+					username: result[0].email,
+				},
+				config.secret,
+				{ expiresIn: "3 hours" }
+			);
+			return res.status(200).json({
 				message: "Auth Ok.",
+				token: token,
 			});
 		} else {
-			res.status(403).json({
+			return res.status(403).json({
 				message: "Auth Fail.",
 			});
 		}
