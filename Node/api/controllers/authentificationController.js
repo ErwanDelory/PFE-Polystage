@@ -38,30 +38,4 @@ async function auth(req, res, next) {
 	});
 }
 
-async function test(req, res, next) {
-	const users = [
-		{
-			id: 1,
-			username: "test",
-			password: "test",
-			firstName: "Test",
-			lastName: "User",
-		},
-	];
-
-	const user = users.find(
-		(u) => u.username === "test" && u.password === "test"
-	);
-
-	const token = jwt.sign({ sub: 6 }, config.secret, { expiresIn: "7d" });
-
-	console.log(token);
-	res.status(200).json({
-		message: "Auth Ok.",
-		data: token,
-	});
-}
-
-exports.test = test;
-
 exports.auth = auth;
