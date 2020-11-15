@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from "react";
-import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
+import React, { Component } from "react";
+import { BrowserRouter as Switch, Route } from 'react-router-dom';
+import withAuth from './withAuth';
 import Login from "./pages/login";
 import Error from "./pages/error";
 import "./styles/bootstrap.min.css";
@@ -7,7 +8,24 @@ import "./styles/custom.css";
 import Register from "./pages/register";
 import Home from "./pages/home";
 
-function App() {
+class App extends Component {
+	render() {
+		return (
+			<div>
+				<p>ici c'est la navbar</p>
+				<Switch>
+					<Route path="/" component={withAuth(Home)} />
+					<Route path="/login" component={Login} />
+					<Route path="/register" component={Register} />
+					<Route path="/error" component={Error} />
+				</Switch>
+			</div>
+		);
+	}
+}
+export default App;
+
+/*function App() {
 	const [isLoggedIn, setIsLoggedIn] = useState(false);
 	useEffect(() => {
 		setIsLoggedIn(isLoggedIn => isLoggedIn = false);
@@ -31,6 +49,8 @@ function App() {
 		)
 	}
 
+	//if(Login.isAu)
+
 	return (
 		<Router>
 			<div>
@@ -41,4 +61,4 @@ function App() {
 	)
 }
 
-export default App;
+export default App;*/
