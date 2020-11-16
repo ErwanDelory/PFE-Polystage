@@ -1,4 +1,5 @@
 import React, { /*useState,*/ Component } from "react";
+import AuthenticationService from '../services/authentication-service';
 import { Button, Container, Form } from "react-bootstrap";
 import './../styles/login.css'
 
@@ -28,18 +29,33 @@ export default class Login extends Component {
       },
       body: JSON.stringify(this.state)
     })
-    .then(res => {
+    .then(res => res.json())
+    .then((data) => {
+      /*if (data.token) {
+        sessionStorage.setItem('token', data.token);
+        this.props.history.push('/');
+      }*/
+      sessionStorage.setItem('token', data.token);
+      AuthenticationService.login(data.token).then(isAuthenticated => {
+        if (!isAuthenticated) {
+          alert('Identifiant ou mot de passe incorrect');
+          return;
+        }
+        this.props.history.push('/');
+      })
+    })
+    /*.then(res => {
       if (res.status === 200) {
         this.props.history.push('/');
       } else {
         const error = new Error(res.error);
         throw error;
       }
-    })
-    .catch(err => {
+    })*/ 
+    /*.catch(err => {
       console.error(err);
       alert('Identifiant ou mot de passe incorrect');
-    })
+    })*/
   }
 
   validateForm() {

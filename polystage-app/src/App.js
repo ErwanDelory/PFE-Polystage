@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { BrowserRouter as Switch, Route } from 'react-router-dom';
+import PrivateRoute from './privateRoute';
 import Login from "./pages/login";
 import Error from "./pages/error";
 import "./styles/bootstrap.min.css";
@@ -13,10 +14,10 @@ class App extends Component {
 			<div>
 				<p>ici c'est la navbar</p>
 				<Switch>
-					<Route path="/" component={Home} />
+					<PrivateRoute path="/" component={Home} />
 					<Route path="/login" component={Login} />
-					<Route path="/register" component={Register} />
-					<Route path="/error" component={Error} />
+					<PrivateRoute path="/register" component={Register} />
+					<PrivateRoute path="/error" component={Error} />
 				</Switch>
 			</div>
 		);
