@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import AuthenticationService from '../services/authentication-service';
-import { Button, Container, Form } from "react-bootstrap";
+import { Button, Container, Form } from 'react-bootstrap';
 import './../styles/login.css';
-import { useAuth } from "../context/auth";
-import { useHistory } from "react-router";
+import { useAuth } from '../context/auth';
+import { useHistory } from 'react-router';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -14,153 +14,73 @@ const Login = () => {
   const handleInputEmailChange = (event) => {
     const { value } = event.target;
     setEmail(value);
-  }
+  };
 
   const handleInputPasswordChange = (event) => {
     const { value } = event.target;
     setPassword(value);
-  }
+  };
 
   const onSubmit = (event) => {
     event.preventDefault();
     fetch('http://localhost:5000/api/auth', {
       method: 'POST',
       headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
       },
-      body: JSON.stringify({email, password})
+      body: JSON.stringify({ email, password }),
     })
-    .then(res => res.json())
-    .then((data) => {
-      /*if (data.token) {
+      .then((res) => res.json())
+      .then((data) => {
         sessionStorage.setItem('token', data.token);
-        this.props.history.push('/');
-      }*/
-      sessionStorage.setItem('token', data.token);
-      sessionStorage.setItem('nom', data.nom);
-      sessionStorage.setItem('prenom', data.prenom);
-      AuthenticationService.login(data.token).then(isAuthenticated => {
-        if (!isAuthenticated) {
-          alert('Identifiant ou mot de passe incorrect');
-          return;
-        }
-        sessionStorage.setItem('isAuthenticated', isAuthenticated);
-        //this.props.history.push('/');
-        setAuthTokens(data);
-        history.push("/");
-      })
-    })
-    /*.then(res => {
-      if (res.status === 200) {
-        this.props.history.push('/');
-      } else {
-        const error = new Error(res.error);
-        throw error;
-      }
-    })*/ 
-    /*.catch(err => {
-      console.error(err);
-      alert('Identifiant ou mot de passe incorrect');
-    })*/
-  }
+        sessionStorage.setItem('nom', data.nom);
+        sessionStorage.setItem('prenom', data.prenom);
+        AuthenticationService.login(data.token).then((isAuthenticated) => {
+          if (!isAuthenticated) {
+            alert('Identifiant ou mot de passe incorrect');
+            return;
+          }
+          sessionStorage.setItem('isAuthenticated', isAuthenticated);
+          setAuthTokens(data);
+          history.push('/');
+        });
+      });
+  };
 
-  const validateForm = () => {
-    return this.state.email.length > 0 && this.state.password.length > 0;
-  }
-
-    return (
-      <div className="Login">
-        <Container>
-          <Form onSubmit={onSubmit}>
-            <Form.Group controlId="email">
-              <Form.Label>Identifiant</Form.Label>
-              <Form.Control
-                type="email"
-                name="email"
-                placeholder="Saisir votre identifiant"
-                autoFocus
-                value={email}
-                onChange={handleInputEmailChange}
-              />
-            </Form.Group>
-
-            <Form.Group controlId="password">
-              <Form.Label>Mot de passe</Form.Label>
-              <Form.Control
-                type="password"
-                name="password"
-                placeholder="Saisir votre mot de passe"
-                value={password}
-                onChange={handleInputPasswordChange}
-              />
-            </Form.Group>
-            <Button variant="primary" type="submit" disabled={!validateForm}>
-              Se connecter
-            </Button>
-          </Form>
-        </Container>
-      </div>
-    );
-}
-
-export default Login;
-
-/*function Login() {
-  var isAuthenticated = false;
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  function validateForm() {
-    return email.length > 0 && password.length > 0;
-  }
-  function handleSubmit(e) {
-    e.preventDefault();
-    const paylod = {
-      email: email,
-      password: password
-    }
-    fetch('http://localhost:5000/api/auth', {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(paylod)
-    })
-    .then(res => res.json())
-    .then((data) => {
-      isAuthenticated = true;
-    })
-  }
   return (
     <div className="Login">
       <Container>
-        <Form onSubmit={handleSubmit}>
+        <Form onSubmit={onSubmit}>
           <Form.Group controlId="email">
             <Form.Label>Identifiant</Form.Label>
             <Form.Control
               type="email"
+              name="email"
               placeholder="Saisir votre identifiant"
               autoFocus
               value={email}
-              onChange={e => setEmail(e.target.value)}
+              onChange={handleInputEmailChange}
             />
           </Form.Group>
+
           <Form.Group controlId="password">
             <Form.Label>Mot de passe</Form.Label>
             <Form.Control
               type="password"
+              name="password"
               placeholder="Saisir votre mot de passe"
               value={password}
-              onChange={e => setPassword(e.target.value)}
+              onChange={handleInputPasswordChange}
             />
           </Form.Group>
-          <Button variant="primary" type="submit" disabled={!validateForm()}>
+          <Button variant="primary" type="submit">
             Se connecter
           </Button>
         </Form>
       </Container>
     </div>
   );
-}
-export default Login;*/
+};
+
+export default Login;
