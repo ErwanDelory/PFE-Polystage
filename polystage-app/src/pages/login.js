@@ -1,25 +1,27 @@
-import React, { /*useState,*/ Component } from "react";
+import React, { useState } from "react";
 import AuthenticationService from '../services/authentication-service';
 import { Button, Container, Form } from "react-bootstrap";
-import './../styles/login.css'
+import './../styles/login.css';
+import { useAuth } from "../context/auth";
+import { useHistory } from "react-router";
 
-export default class Login extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      email: '',
-      password: ''
-    };
+const Login = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const { setAuthTokens } = useAuth();
+  const history = useHistory();
+
+  const handleInputEmailChange = (event) => {
+    const { value } = event.target;
+    setEmail(value);
   }
 
-  handleInputChange = (event) => {
-    const { value, name } = event.target;
-    this.setState({
-      [name]: value
-    });
+  const handleInputPasswordChange = (event) => {
+    const { value } = event.target;
+    setPassword(value);
   }
 
-  onSubmit = (event) => {
+  const onSubmit = (event) => {
     event.preventDefault();
     fetch('http://localhost:5000/api/auth', {
       method: 'POST',
@@ -27,7 +29,7 @@ export default class Login extends Component {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(this.state)
+      body: JSON.stringify({email, password})
     })
     .then(res => res.json())
     .then((data) => {
@@ -44,7 +46,9 @@ export default class Login extends Component {
           return;
         }
         sessionStorage.setItem('isAuthenticated', isAuthenticated);
-        this.props.history.push('/');
+        //this.props.history.push('/');
+        setAuthTokens(data);
+        history.push("/");
       })
     })
     /*.then(res => {
@@ -61,15 +65,14 @@ export default class Login extends Component {
     })*/
   }
 
-  validateForm() {
+  const validateForm = () => {
     return this.state.email.length > 0 && this.state.password.length > 0;
   }
 
-  render() {
     return (
       <div className="Login">
         <Container>
-          <Form onSubmit={this.onSubmit}>
+          <Form onSubmit={onSubmit}>
             <Form.Group controlId="email">
               <Form.Label>Identifiant</Form.Label>
               <Form.Control
@@ -77,8 +80,8 @@ export default class Login extends Component {
                 name="email"
                 placeholder="Saisir votre identifiant"
                 autoFocus
-                value={this.state.email}
-                onChange={this.handleInputChange}
+                value={email}
+                onChange={handleInputEmailChange}
               />
             </Form.Group>
 
@@ -88,38 +91,34 @@ export default class Login extends Component {
                 type="password"
                 name="password"
                 placeholder="Saisir votre mot de passe"
-                value={this.state.password}
-                onChange={this.handleInputChange}
+                value={password}
+                onChange={handleInputPasswordChange}
               />
             </Form.Group>
-            <Button variant="primary" type="submit" disabled={!this.validateForm}>
+            <Button variant="primary" type="submit" disabled={!validateForm}>
               Se connecter
             </Button>
           </Form>
         </Container>
       </div>
     );
-  }
 }
 
+export default Login;
+
 /*function Login() {
-
   var isAuthenticated = false;
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
   function validateForm() {
     return email.length > 0 && password.length > 0;
   }
-
   function handleSubmit(e) {
     e.preventDefault();
     const paylod = {
       email: email,
       password: password
     }
-
     fetch('http://localhost:5000/api/auth', {
       method: 'POST',
       headers: {
@@ -133,7 +132,6 @@ export default class Login extends Component {
       isAuthenticated = true;
     })
   }
-
   return (
     <div className="Login">
       <Container>
@@ -148,7 +146,6 @@ export default class Login extends Component {
               onChange={e => setEmail(e.target.value)}
             />
           </Form.Group>
-
           <Form.Group controlId="password">
             <Form.Label>Mot de passe</Form.Label>
             <Form.Control
@@ -167,5 +164,3 @@ export default class Login extends Component {
   );
 }
 export default Login;*/
-
-
