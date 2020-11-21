@@ -36,11 +36,14 @@ export default class Login extends Component {
         this.props.history.push('/');
       }*/
       sessionStorage.setItem('token', data.token);
+      sessionStorage.setItem('nom', data.nom);
+      sessionStorage.setItem('prenom', data.prenom);
       AuthenticationService.login(data.token).then(isAuthenticated => {
         if (!isAuthenticated) {
           alert('Identifiant ou mot de passe incorrect');
           return;
         }
+        sessionStorage.setItem('isAuthenticated', isAuthenticated);
         this.props.history.push('/');
       })
     })

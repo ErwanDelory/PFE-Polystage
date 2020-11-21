@@ -3,14 +3,20 @@ export default class AuthenticationService {
 
     static login(token: string): Promise<boolean> {
         const isAuthenticated = (token === sessionStorage.getItem("token"));
-        console.log(isAuthenticated);
-        console.log(token);
-        console.log(sessionStorage.getItem('token'));
         return new Promise(resolve => {
             setTimeout(() => {
                 this.isAuthenticated = isAuthenticated;
                 resolve(isAuthenticated);
             }, 10);
+        });
+    }
+
+    static logout(): Promise<boolean> {
+        return new Promise(resolve => {
+            setTimeout(() => {
+                this.isAuthenticated = false;
+                resolve(this.isAuthenticated);
+            }, 1);
         });
     }
 }

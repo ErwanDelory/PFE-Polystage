@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { BrowserRouter as Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import PrivateRoute from './privateRoute';
 import Login from "./pages/login";
 import Error from "./pages/error";
@@ -7,19 +7,20 @@ import "./styles/bootstrap.min.css";
 import "./styles/custom.css";
 import Register from "./pages/register";
 import Home from "./pages/home";
+import NavbarPolystage from "./pages/navbar";
 
 class App extends Component {
 	render() {
 		return (
-			<div>
-				<p>ici c'est la navbar</p>
-				<Switch>
-					<PrivateRoute path="/" component={Home} />
-					<Route path="/login" component={Login} />
-					<PrivateRoute path="/register" component={Register} />
-					<PrivateRoute path="/error" component={Error} />
-				</Switch>
-			</div>
+			<Router>				
+        <NavbarPolystage />
+        <Switch>
+          <PrivateRoute exact path="/" component={Home} />
+          <Route exact path="/login" component={Login} />
+          <PrivateRoute exact path="/register" component={Register} />
+          <PrivateRoute exact path="/error" component={Error} />
+        </Switch>
+			</Router>
 		);
 	}
 }

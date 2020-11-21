@@ -26,9 +26,12 @@ async function auth(req, res, next) {
 				config.secret,
 				{ expiresIn: "3 hours" }
 			);
+			console.log(result);
 			return res.status(200).json({
 				message: "Auth Ok.",
 				token: token,
+				nom: result[0].nom,
+				prenom: result[0].prenom
 			});
 		} else {
 			return res.status(403).json({
