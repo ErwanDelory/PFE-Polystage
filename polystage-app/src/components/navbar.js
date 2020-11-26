@@ -3,6 +3,8 @@ import AuthenticationService from '../services/authentication-service';
 import './../styles/navbar.css';
 import Navbar from 'react-bootstrap/Navbar';
 import img from './../img/polytech.png';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 
 class NavbarLogout extends Component {
   render() {
@@ -27,12 +29,14 @@ class NavbarLogin extends Component {
   render() {
     return (
       <Navbar.Collapse className="justify-content-end">
-        <Navbar.Text>L'utilisateur connecté est:&nbsp;</Navbar.Text>
         <Navbar.Text style={{ color: 'black' }}>
           {this.state.nom} {this.state.prenom} |&nbsp;
         </Navbar.Text>
         <Navbar.Text onClick={this.logout}>
-          <a href="/login">Déconnexion</a>
+          <a href="/login">
+            <FontAwesomeIcon className="bckg-icon" icon={faSignOutAlt} />{' '}
+            Déconnexion
+          </a>
         </Navbar.Text>
       </Navbar.Collapse>
     );

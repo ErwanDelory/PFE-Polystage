@@ -4,6 +4,10 @@ import { Button, Container, Form } from 'react-bootstrap';
 import './../styles/login.css';
 import { useAuth } from '../context/auth';
 import { useHistory } from 'react-router';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSignInAlt } from '@fortawesome/free-solid-svg-icons';
+import { faLock } from '@fortawesome/free-solid-svg-icons';
+import { faPortrait } from '@fortawesome/free-solid-svg-icons';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -50,10 +54,14 @@ const Login = () => {
 
   return (
     <div className="Login">
+      <br />
       <Container>
         <Form onSubmit={onSubmit}>
           <Form.Group controlId="email">
-            <Form.Label>Identifiant</Form.Label>
+            <Form.Label>
+              <FontAwesomeIcon className="bckg-icon" icon={faPortrait} />{' '}
+              Identifiant
+            </Form.Label>
             <Form.Control
               type="email"
               name="email"
@@ -65,7 +73,10 @@ const Login = () => {
           </Form.Group>
 
           <Form.Group controlId="password">
-            <Form.Label>Mot de passe</Form.Label>
+            <Form.Label>
+              <FontAwesomeIcon className="bckg-icon" icon={faLock} /> Mot de
+              passe
+            </Form.Label>
             <Form.Control
               type="password"
               name="password"
@@ -75,7 +86,8 @@ const Login = () => {
             />
           </Form.Group>
           <Button variant="primary" type="submit">
-            Se connecter
+            <FontAwesomeIcon className="bckg-icon" icon={faSignInAlt} /> Se
+            connecter
           </Button>
         </Form>
       </Container>

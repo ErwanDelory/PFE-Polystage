@@ -5,6 +5,7 @@ import Login from './pages/login';
 import Error from './pages/error';
 import './styles/bootstrap.min.css';
 import './styles/custom.css';
+import './styles/app.css';
 import Register from './pages/register';
 import Home from './pages/home';
 import NavbarPolystage from './components/navbar';
