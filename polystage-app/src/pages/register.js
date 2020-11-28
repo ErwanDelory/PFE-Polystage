@@ -38,7 +38,10 @@ const Register = () => {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({ email, password, lastname, firstname }),
-    }).then();
+    }).then((res) => {
+      res.json();
+      history.push('/login');
+    });
   };
 
   return (
@@ -47,11 +50,11 @@ const Register = () => {
       <Container>
         <Form onSubmit={onSubmit}>
           <Form.Group controlId="email">
-            <Form.Label>Identifiant</Form.Label>
+            <Form.Label>Mail</Form.Label>
             <Form.Control
               type="email"
               name="email"
-              placeholder="Saisir votre identifiant"
+              placeholder="Saisir votre adresse mail"
               autoFocus
               value={email}
               onChange={handleInputEmailChange}
