@@ -15,7 +15,7 @@ const config = {
 	//Liste des tables avec leurs noms de colonnes
 	table: {
 		utilisateur: {
-			nom: "utilisateur",
+			tablename: "utilisateur",
 			id: "id",
 			nom: "nom",
 			prenom: "prenom",
@@ -24,7 +24,7 @@ const config = {
 			role: "role",
 		},
 		stage: {
-			nom: "stage",
+			tablename: "stage",
 			idstage: "idstage ",
 			ideleve: "ideleve",
 			niveau: "niveau",
@@ -53,17 +53,17 @@ const config = {
 			chemincomp: "chemincomp",
 		},
 		souscategorie: {
-			nom: "souscategorie",
+			tablename: "souscategorie",
 			id: "idsouscat",
 			name: "nom",
 		},
 		retardtuteur: {
-			nom: "retardtuteur",
+			tablename: "retardtuteur",
 			id: "iduti ",
 			mailenvoye: "mailenvoye",
 		},
 		retardeleve: {
-			nom: "retardeleve",
+			tablename: "retardeleve",
 			id: "iduti",
 			mailenvoye: "mailenvoye",
 			rapport: "rapport",
@@ -71,7 +71,7 @@ const config = {
 			autoeval: "autoeval",
 		},
 		question: {
-			nom: "question",
+			tablename: "question",
 			id: "idquest",
 			question: "question",
 			cat: "cat",
@@ -83,32 +83,32 @@ const config = {
 			niveau: "niveau",
 		},
 		niveauxcompetences: {
-			nom: "niveauxcompetences",
+			tablename: "niveauxcompetences",
 			id: "idniveauxcompetences ",
 			libelle: "libelle",
 			idcompetence: "idcompetence ",
 		},
 		infoetu: {
-			nom: "infoetu",
+			tablename: "infoetu",
 			id: "id",
 			numetudiant: "numetudiant",
 			annee: "annee",
 			niveau: "niveau",
 		},
 		entreprise: {
-			nom: "entreprise",
+			tablename: "entreprise",
 			id: "identreprise",
 			sigle: "sigle",
 			nomcomplet: "nomcomplet",
 		},
 		competence: {
-			nom: "competence",
+			tablename: "competence",
 			id: "idcompetence",
 			sigle: "sigle",
 			libelle: "libelle",
 		},
 		categorie: {
-			nom: "categorie",
+			tablename: "categorie",
 			id: "idcat",
 			name: "name",
 		},
