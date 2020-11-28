@@ -8,6 +8,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSignInAlt } from '@fortawesome/free-solid-svg-icons';
 import { faLock } from '@fortawesome/free-solid-svg-icons';
 import { faPortrait } from '@fortawesome/free-solid-svg-icons';
+import { faClipboard } from '@fortawesome/free-solid-svg-icons';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -71,7 +72,6 @@ const Login = () => {
               onChange={handleInputEmailChange}
             />
           </Form.Group>
-
           <Form.Group controlId="password">
             <Form.Label>
               <FontAwesomeIcon className="bckg-icon" icon={faLock} /> Mot de
@@ -88,6 +88,10 @@ const Login = () => {
           <Button variant="primary" type="submit">
             <FontAwesomeIcon className="bckg-icon" icon={faSignInAlt} /> Se
             connecter
+          </Button>{' '}
+          <Button variant="primary" href="/register">
+            <FontAwesomeIcon className="bckg-icon" icon={faClipboard} />{' '}
+            S'inscire
           </Button>
         </Form>
       </Container>
