@@ -10,7 +10,7 @@ async function auth(req, res, next) {
     });
   }
 
-  let query = `SELECT * FROM eleves WHERE email = "${
+  let query = `SELECT * FROM utilisateur WHERE email = "${
     req.body.email
   }" AND mdp = "${sha256(req.body.password)}"`;
 

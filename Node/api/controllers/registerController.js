@@ -14,10 +14,10 @@ function register(req, res) {
   }
 
   let query = `
-    INSERT INTO eleves (nom, prenom, email, numetudiant, mdp)
+    INSERT INTO utilisateur (nom, prenom, email, mdp)
     VALUES ("${req.body.lastname}", "${req.body.firstname}", "${
     req.body.email
-  }", "", "${sha256(req.body.password)}")`;
+  }", "${sha256(req.body.password)}")`;
 
   db.query(query, (err, result) => {
     if (err) {
