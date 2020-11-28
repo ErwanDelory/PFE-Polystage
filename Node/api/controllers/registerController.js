@@ -6,7 +6,8 @@ function register(req, res) {
     !req.body.lastname ||
     !req.body.firstname ||
     !req.body.email ||
-    !req.body.password
+    !req.body.password ||
+    !req.body.role
   ) {
     return res.status(403).json({
       message: 'Error, argument is missing',
@@ -14,10 +15,10 @@ function register(req, res) {
   }
 
   let query = `
-    INSERT INTO utilisateur (nom, prenom, email, mdp)
+    INSERT INTO utilisateur (nom, prenom, email, mdp, role)
     VALUES ("${req.body.lastname}", "${req.body.firstname}", "${
     req.body.email
-  }", "${sha256(req.body.password)}")`;
+  }", "${sha256(req.body.password)}", "${req.body.role}")`;
 
   db.query(query, (err, result) => {
     if (err) {

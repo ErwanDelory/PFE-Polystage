@@ -7,6 +7,7 @@ const Register = () => {
   const [password, setPassword] = useState('');
   const [lastname, setLastName] = useState('');
   const [firstname, setFirstName] = useState('');
+  const [role, setRole] = useState('Enseignant');
   const history = useHistory();
 
   const handleInputEmailChange = (event) => {
@@ -29,6 +30,11 @@ const Register = () => {
     setFirstName(value);
   };
 
+  const handleInputRoleChange = (event) => {
+    const { value } = event.target;
+    setRole(value);
+  };
+
   const onSubmit = (event) => {
     event.preventDefault();
     fetch('http://localhost:5000/api/register', {
@@ -37,7 +43,7 @@ const Register = () => {
         Accept: 'application/json',
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ email, password, lastname, firstname }),
+      body: JSON.stringify({ email, password, lastname, firstname, role }),
     }).then((res) => {
       res.json();
       history.push('/login');
@@ -89,6 +95,19 @@ const Register = () => {
               value={firstname}
               onChange={handleInputFirstNameChange}
             />
+          </Form.Group>
+          <Form.Group controlId="role">
+            <Form.Label>Rôle</Form.Label>
+            <Form.Control
+              as="select"
+              name="role"
+              value={role}
+              onChange={handleInputRoleChange}
+            >
+              <option>Enseignant</option>
+              <option>Etudiant</option>
+              <option>Tuteur</option>
+            </Form.Control>
           </Form.Group>
           <Button variant="primary" type="submit">
             S'inscire
