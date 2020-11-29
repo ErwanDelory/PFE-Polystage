@@ -4,10 +4,10 @@ const config = {
 	},
 	mysql: {
 		// paramètres de connexion à la base de données
-		host: "db", //localhost en local, db en docker
+		host: "localhost", //localhost en local, db en docker
 		user: "root",
 		password: "root",
-		//port: 8889, //enlever en docker
+		port: 3308, //enlever en docker
 		database: "db",
 		charset: "utf8",
 	},
@@ -90,7 +90,7 @@ const config = {
 		},
 		infoetu: {
 			tablename: "infoetu",
-			id: "id",
+			id: "idinfo",
 			numetudiant: "numetudiant",
 			annee: "annee",
 			niveau: "niveau",

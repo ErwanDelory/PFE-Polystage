@@ -1,13 +1,14 @@
-const express = require('express');
-const authentificationControllers = require('../controllers/authentificationController');
-const registerController = require('../controllers/registerController');
-const testControllers = require('../controllers/testController');
+const express = require("express");
+const authentificationControllers = require("../controllers/authentificationController");
+const registerController = require("../controllers/registerController");
+const userControllers = require("../controllers/userController");
 
 const router = express.Router();
-router.get('/test', testControllers.testfunct);
-router.post('/test1', testControllers.testPost);
+router.post("/auth", authentificationControllers.auth);
+router.post("/register", registerController.register);
 
-router.post('/auth', authentificationControllers.auth);
-router.post('/register', registerController.register);
+router.get("/eleves", userControllers.getEleves);
+router.get("/enseignants", userControllers.getEnseignants);
+router.get("/tuteurs", userControllers.getTuteurs);
 
 module.exports = router;
