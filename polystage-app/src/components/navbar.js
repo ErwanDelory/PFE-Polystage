@@ -5,6 +5,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import img from './../img/polytech.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
+import { Badge } from 'react-bootstrap';
 
 class NavbarLogout extends Component {
   render() {
@@ -18,6 +19,7 @@ class NavbarLogin extends Component {
     this.state = {
       nom: sessionStorage.getItem('nom'),
       prenom: sessionStorage.getItem('prenom'),
+      role: sessionStorage.getItem('role'),
     };
   }
 
@@ -30,7 +32,8 @@ class NavbarLogin extends Component {
     return (
       <Navbar.Collapse className="justify-content-end">
         <Navbar.Text style={{ color: 'black' }}>
-          {this.state.nom} {this.state.prenom} |&nbsp;
+          {this.state.nom} {this.state.prenom}{' '}
+          <Badge variant="info">{this.state.role}</Badge> |&nbsp;
         </Navbar.Text>
         <Navbar.Text onClick={this.logout}>
           <a href="/login">
