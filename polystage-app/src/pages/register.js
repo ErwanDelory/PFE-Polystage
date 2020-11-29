@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router';
-import { Button, Container, Form } from 'react-bootstrap';
+import { Alert, Button, Container, Form } from 'react-bootstrap';
 
 const Register = () => {
   const [email, setEmail] = useState('');
@@ -8,6 +8,9 @@ const Register = () => {
   const [lastname, setLastName] = useState('');
   const [firstname, setFirstName] = useState('');
   const [role, setRole] = useState('Enseignant');
+  const [message, setMessage] = useState('');
+  const [stateError, setStateError] = useState(false);
+  const [stateSuccess, setStateSucces] = useState(false);
   const history = useHistory();
 
   const handleInputEmailChange = (event) => {
@@ -35,6 +38,10 @@ const Register = () => {
     setRole(value);
   };
 
+  const redirect = () => {
+    history.push('/login');
+  };
+
   const onSubmit = (event) => {
     event.preventDefault();
     fetch('http://localhost:5000/api/register', {
@@ -45,8 +52,17 @@ const Register = () => {
       },
       body: JSON.stringify({ email, password, lastname, firstname, role }),
     }).then((res) => {
+      if (!email || !password || !lastname || !firstname) {
+        setMessage('Information incorrecte.');
+        setStateError(true);
+        setStateSucces(false);
+        return;
+      }
       res.json();
-      history.push('/login');
+      setMessage('Inscription réussie !');
+      setStateSucces(true);
+      setStateError(false);
+      setTimeout(redirect, 3000);
     });
   };
 
@@ -113,6 +129,17 @@ const Register = () => {
             S'inscire
           </Button>
         </Form>
+        <br />
+        {message && stateError ? (
+          <Alert variant="danger">{message}</Alert>
+        ) : (
+          <p></p>
+        )}
+        {message && stateSuccess ? (
+          <Alert variant="success">{message}</Alert>
+        ) : (
+          <p></p>
+        )}
       </Container>
     </div>
   );

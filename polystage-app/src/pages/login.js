@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import AuthenticationService from '../services/authentication-service';
-import { Button, Container, Form } from 'react-bootstrap';
+import { Alert, Button, Container, Form } from 'react-bootstrap';
 import './../styles/login.css';
 import { useAuth } from '../context/auth';
 import { useHistory } from 'react-router';
@@ -13,6 +13,7 @@ import { faClipboard } from '@fortawesome/free-solid-svg-icons';
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [message, setMessage] = useState('');
   const { setAuthTokens } = useAuth();
   const history = useHistory();
 
@@ -38,14 +39,16 @@ const Login = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        sessionStorage.setItem('token', data.token);
-        sessionStorage.setItem('nom', data.nom);
-        sessionStorage.setItem('prenom', data.prenom);
         AuthenticationService.login(data.token).then((isAuthenticated) => {
           if (!isAuthenticated) {
-            alert('Identifiant ou mot de passe incorrect');
+            setMessage('Identifiant ou mot de passe incorrect.');
+            setEmail('');
+            setPassword('');
             return;
           }
+          sessionStorage.setItem('token', data.token);
+          sessionStorage.setItem('nom', data.nom);
+          sessionStorage.setItem('prenom', data.prenom);
           sessionStorage.setItem('isAuthenticated', isAuthenticated);
           setAuthTokens(data);
           history.push('/');
@@ -94,6 +97,8 @@ const Login = () => {
             S'inscire
           </Button>
         </Form>
+        <br />
+        {!message ? <p></p> : <Alert variant="danger">{message}</Alert>}
       </Container>
     </div>
   );
