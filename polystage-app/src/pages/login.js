@@ -39,14 +39,15 @@ const Login = () => {
     })
       .then((res) => res.json())
       .then((data) => {
+        sessionStorage.setItem('token', data.token);
         AuthenticationService.login(data.token).then((isAuthenticated) => {
           if (!isAuthenticated) {
             setMessage('Identifiant ou mot de passe incorrect.');
             setEmail('');
             setPassword('');
+            sessionStorage.clear();
             return;
           }
-          sessionStorage.setItem('token', data.token);
           sessionStorage.setItem('nom', data.nom);
           sessionStorage.setItem('prenom', data.prenom);
           sessionStorage.setItem('isAuthenticated', isAuthenticated);
