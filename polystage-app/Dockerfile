@@ -1,5 +1,5 @@
 # Create image based on the official Node 10 image from dockerhub
-FROM node:latest
+FROM node:12
 
 # set working directory
 WORKDIR /app

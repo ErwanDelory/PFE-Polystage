@@ -12,7 +12,7 @@ export default class Home extends Component {
   }
 
   componentDidMount() {
-    fetch('http://localhost:5000/api/test', {
+    /*fetch('http://localhost:5000/api/test', {
       method: 'GET',
       headers: {
         Accept: 'application/json',
@@ -24,14 +24,13 @@ export default class Home extends Component {
       .then((data) => {
         console.log(data.data[4]);
         this.setState({ name: data.data[4].nom });
-      });
+      });*/
   }
 
   render() {
     return (
       <div>
         <p>Home page</p>
-        <p>{this.state.name}</p>
         <Link to="/error">Retourner à erreur</Link>
       </div>
     );
