@@ -1,8 +1,6 @@
 const db = require("../../mysqlConnect");
 const config = require("../../config");
 
-function success() {}
-
 function getEleves(req, res, next) {
 	let query = `SELECT ${config.table.utilisateur.id},${config.table.utilisateur.nom},${config.table.utilisateur.prenom},${config.table.utilisateur.email},${config.table.infoetu.numetudiant},${config.table.infoetu.niveau},${config.table.infoetu.annee}
     from ${config.table.utilisateur.tablename} LEFT JOIN ${config.table.infoetu.tablename} ON ${config.table.utilisateur.id} = ${config.table.infoetu.id}
@@ -61,27 +59,6 @@ function getUserById(req, res, next) {
 	});
 }
 
-function getStage(req, res, next) {
-	let query = `SELECT *
-	from ${config.table.stage.tablename}`;
-	db.query(query, (err, result) => {
-		if (err) throw err;
-		success(result);
-		res.status(200).json({ message: "Ok .", data: result });
-	});
-}
-
-function getStageById(req, res, next) {
-	let query = `SELECT *
-	from ${config.table.stage.tablename}
-	WHERE ${config.table.stage.idstage} = ${req.params.id}`;
-	db.query(query, (err, result) => {
-		if (err) throw err;
-		success(result);
-		res.status(200).json({ message: "Ok .", data: result });
-	});
-}
-
 exports.getEleves = getEleves;
 exports.getEleveById = getEleveById;
 
@@ -90,6 +67,3 @@ exports.getTuteurs = getTuteurs;
 
 exports.getUsers = getUsers;
 exports.getUserById = getUserById;
-
-exports.getStage = getStage;
-exports.getStageById = getStageById;
