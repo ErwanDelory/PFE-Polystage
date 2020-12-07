@@ -26,7 +26,7 @@ const App = () => {
           <Route exact path="/login" component={Login} />
           <Route exact path="/register" component={Register} />
           <PrivateRoute exact path="/register" component={Register} />
-          <PrivateRoute exact path="/error" component={Error} />
+          <Route exact path="/error" component={Error} />
         </Switch>
       </Router>
     </AuthContext.Provider>
