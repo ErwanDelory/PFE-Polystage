@@ -30,7 +30,7 @@ export default class Home extends Component {
   render() {
     return (
       <div>
-        <p>Home page</p>
+        <p>Liste des stages</p>
         <Link to="/error">Retourner à erreur</Link>
       </div>
     );
