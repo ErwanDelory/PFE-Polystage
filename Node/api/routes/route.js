@@ -25,6 +25,8 @@ router.get("/user/:id", userControllers.getUserById);
 router.post("/newstage", stageControllers.createStage);
 router.get("/stages", stageControllers.getStage);
 router.get("/stage/:id", stageControllers.getStageById);
+router.get("/rapport/:id", stageControllers.getRapportStageById);
+router.get("/dlrapport/:id", stageControllers.dlRapportStageById);
 
 //Entreprise Controller
 router.get("/entreprise/:id", entrepriseControllers.getEntrepriseById);
