@@ -4,6 +4,7 @@ const registerController = require("../controllers/registerController");
 const userControllers = require("../controllers/userController");
 const stageControllers = require("../controllers/stageController");
 const entrepriseControllers = require("../controllers/entrepriseController");
+const test = require("../controllers/test");
 
 const router = express.Router();
 
@@ -27,5 +28,8 @@ router.get("/stage/:id", stageControllers.getStageById);
 
 //Entreprise Controller
 router.get("/entreprise/:id", entrepriseControllers.getEntrepriseById);
+
+//Test
+router.get("/test", test.example2);
 
 module.exports = router;
