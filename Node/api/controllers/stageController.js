@@ -52,7 +52,10 @@ async function dlRapportStageById(req, res, next) {
 		var stat = fs.statSync(result[0].cheminrapport);
 		res.setHeader("Content-Length", stat.size);
 		res.setHeader("Content-Type", "application/pdf");
-		res.setHeader("Content-Disposition", "attachment; filename=quote.pdf");
+		res.setHeader(
+			"Content-Disposition",
+			"attachment; filename=rapport.pdf"
+		);
 		file.pipe(res);
 	} catch (err) {
 		console.log("une erreur", err);

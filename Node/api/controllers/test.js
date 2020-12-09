@@ -15,17 +15,26 @@ async function example1(req, res, next) {
 //dl file
 function example2(req, res, next) {
 	let x = 0;
-	if (x === 1) {
+	if (x === 0) {
 		//DL PDF
-		var file = fs.createReadStream("test.pdf");
-		var stat = fs.statSync("test.pdf");
+		var file = fs.createReadStream(
+			"public/2020/5A/2020_5A_BECHARI_Bilal_rapport.pdf"
+		);
+		var stat = fs.statSync(
+			"public/2020/5A/2020_5A_BECHARI_Bilal_rapport.pdf"
+		);
 		res.setHeader("Content-Length", stat.size);
 		res.setHeader("Content-Type", "application/pdf");
-		res.setHeader("Content-Disposition", "attachment; filename=quote.pdf");
+		res.setHeader(
+			"Content-Disposition",
+			"attachment; filename=rapport.pdf"
+		);
 		file.pipe(res);
 	} else {
 		// AFFICHER PDF
-		var data = fs.readFileSync("test.pdf");
+		var data = fs.readFileSync(
+			"public/2020/5A/2020_5A_BECHARI_Bilal_rapport.pdf"
+		);
 		res.contentType("application/pdf");
 		res.send(data);
 	}
