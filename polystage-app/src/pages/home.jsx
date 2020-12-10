@@ -37,8 +37,26 @@ const Home = () => {
   }, []);
 
   function modify(id) {
-    sessionStorage.setItem('idstage', id);
-    history.push('/edit');
+    fetch('http://localhost:5000/api/stage/' + id, {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + sessionStorage.getItem('token'),
+      },
+    })
+      .then((res) => res.json())
+      .then((mes) => {
+        console.log(mes.data);
+        sessionStorage.setItem('titrestage', mes.data[0].titrestage);
+        sessionStorage.setItem('description', mes.data[0].description);
+        sessionStorage.setItem('entreprise', mes.data[0].nomentreprise);
+        sessionStorage.setItem('niveau', mes.data[0].niveau);
+        sessionStorage.setItem('annee', mes.data[0].annee);
+        sessionStorage.setItem('datedebut', mes.data[0].datedebut);
+        sessionStorage.setItem('datefin', mes.data[0].datefin);
+        history.push('/edit');
+      });
   }
 
   const annee = [];
@@ -78,7 +96,11 @@ const Home = () => {
                       variant="danger"
                       onClick={() => modify(stage.idstage)}
                     >
-                      <FontAwesomeIcon className="bckg-icon" icon={faEdit} />
+                      <FontAwesomeIcon
+                        className="bckg-icon"
+                        icon={faEdit}
+                        size="xs"
+                      />
                     </Button>
                   </Card.Title>
                   <Card.Text>

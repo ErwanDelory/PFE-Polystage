@@ -2,15 +2,22 @@ import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router';
 import { Alert, Button, Container, Form } from 'react-bootstrap';
 
-const Edit = (id) => {
-  const [data, setData] = useState('');
-  const [stageTitle, setStageTitle] = useState('CGO');
-  const [description, setDescription] = useState('gjiro');
-  const [entreprise, setEntreprise] = useState('');
-  const [niveau, setNiveau] = useState('');
-  const [annee, setAnnee] = useState('');
-  const [dateDebut, setDateDebut] = useState('');
-  const [dateFin, setDateFin] = useState('');
+const Edit = () => {
+  const [stageTitle, setStageTitle] = useState(
+    sessionStorage.getItem('titrestage')
+  );
+  const [description, setDescription] = useState(
+    sessionStorage.getItem('description')
+  );
+  const [entreprise, setEntreprise] = useState(
+    sessionStorage.getItem('entreprise')
+  );
+  const [niveau, setNiveau] = useState(sessionStorage.getItem('niveau'));
+  const [annee, setAnnee] = useState(sessionStorage.getItem('annee'));
+  const [dateDebut, setDateDebut] = useState(
+    sessionStorage.getItem('datedebut')
+  );
+  const [dateFin, setDateFin] = useState(sessionStorage.getItem('datefin'));
   const [message, setMessage] = useState('');
   const [stateError, setStateError] = useState(false);
   const [stateSuccess, setStateSucces] = useState(false);
@@ -51,33 +58,21 @@ const Edit = (id) => {
     setDateFin(value);
   };
 
-  useEffect(() => {
-    const id = sessionStorage.getItem('idstage');
-    fetch('http://localhost:5000/api/stage/' + id, {
-      method: 'GET',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-        Authorization: 'Bearer ' + sessionStorage.getItem('token'),
-      },
-    })
-      .then((res) => {
-        return res.json();
-      })
-      .then((mes) => {
-        return setData(mes.data);
-      });
-  }, []);
-
   const redirect = () => {
+    sessionStorage.removeItem('titrestage');
+    sessionStorage.removeItem('description');
+    sessionStorage.removeItem('entreprise');
+    sessionStorage.removeItem('niveau');
+    sessionStorage.removeItem('annee');
+    sessionStorage.removeItem('datedebut');
+    sessionStorage.removeItem('datefin');
     history.push('/');
   };
 
   const onSubmit = (event) => {
     event.preventDefault();
   };
-  console.log(data[0]?.idstage);
-  //setEntreprise(data[0]?.entreprise);
+
   return (
     <div>
       <br />
@@ -156,7 +151,7 @@ const Edit = (id) => {
           </Form.Group>
 
           <Button variant="primary" type="submit">
-            S'inscire
+            Mettre à jour
           </Button>
         </Form>
         <br />
