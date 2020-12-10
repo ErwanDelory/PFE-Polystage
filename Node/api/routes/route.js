@@ -23,6 +23,7 @@ router.get("/user/:id", userControllers.getUserById);
 
 //Stage Controller
 router.post("/newstage", stageControllers.createStage);
+router.put("/editstage", stageControllers.editStage);
 router.get("/stages", stageControllers.getStage);
 router.get("/stage/:id", stageControllers.getStageById);
 router.get("/rapport/:id", stageControllers.getRapportStageById);
