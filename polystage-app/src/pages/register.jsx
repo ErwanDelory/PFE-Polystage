@@ -67,7 +67,7 @@ const Register = () => {
   };
 
   return (
-    <div className="Login">
+    <div className="register">
       <br />
       <Container>
         <Form onSubmit={onSubmit}>

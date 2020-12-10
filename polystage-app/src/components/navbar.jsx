@@ -47,10 +47,14 @@ class NavbarLogin extends Component {
 }
 
 const NavbarPolystage = ({ isConnected }) => {
+  function clear() {
+    sessionStorage.removeItem('idstage');
+  }
+
   return (
     <nav>
       <Navbar bg="light" variant="light">
-        <Navbar.Brand href="/">
+        <Navbar.Brand href="/" onClick={clear}>
           <img
             alt=""
             src={img}
