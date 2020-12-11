@@ -30,11 +30,24 @@ function createStage(req, res, next) {
 }
 
 async function editStage(req, res, next) {
-  let q = `UPDATE ${config.table.stage.tablename} SET ${config.table.stage.titrestage} = "${req.body.titrestage}",  ${config.table.stage.description} = "${req.body.description}", ${config.table.stage.niveau} = "${req.body.niveau}", ${config.table.stage.annee} = "${req.body.annee}", ${config.table.stage.datedebut} = "${req.body.datedebut}", ${config.table.stage.datefin} = "${req.body.datefin}", ${config.table.stage.nomentreprise} = "${req.body.nomentreprise}"
-	WHERE ${config.table.stage.idstage}= ${req.body.idstage}`;
-  const result = await query(q);
-  console.log(result);
-  res.status(200).json({ message: 'Ok .' });
+  if (
+    req.body.titrestage &&
+    req.body.description &&
+    req.body.description &&
+    req.body.niveau &&
+    req.body.annee &&
+    req.body.datedebut &&
+    req.body.datefin &&
+    req.body.nomentreprise
+  ) {
+    let q = `UPDATE ${config.table.stage.tablename} SET ${config.table.stage.titrestage} = "${req.body.titrestage}",  ${config.table.stage.description} = "${req.body.description}", ${config.table.stage.niveau} = "${req.body.niveau}", ${config.table.stage.annee} = "${req.body.annee}", ${config.table.stage.datedebut} = "${req.body.datedebut}", ${config.table.stage.datefin} = "${req.body.datefin}", ${config.table.stage.nomentreprise} = "${req.body.nomentreprise}"
+    WHERE ${config.table.stage.idstage}= ${req.body.idstage}`;
+    const result = await query(q);
+    console.log(result);
+    res.status(200).json({ message: 'Ok .' });
+  } else {
+    res.status(400).json({ message: 'Missing data' });
+  }
 }
 
 async function getRapportStageById(req, res, next) {
