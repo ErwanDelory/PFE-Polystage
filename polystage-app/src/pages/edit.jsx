@@ -72,6 +72,11 @@ const Edit = () => {
 
   const onSubmit = (event) => {
     event.preventDefault();
+    const dateD = dateDebut.split('-');
+    const dateF = dateFin.split('-');
+    const debut = dateD[2] + '-' + dateD[1] + '-' + dateD[0];
+    const fin = dateF[2] + '-' + dateF[1] + '-' + dateF[0];
+
     const id = sessionStorage.getItem('idstage');
     fetch('http://localhost:5000/api/editstage', {
       method: 'PUT',
@@ -86,12 +91,11 @@ const Edit = () => {
         description: description,
         niveau: niveau,
         annee: annee,
-        datedebut: dateDebut,
-        datefin: dateFin,
+        datedebut: debut,
+        datefin: fin,
         nomentreprise: entreprise,
       }),
     }).then((res) => {
-      console.log('Salut');
       if (
         !stageTitle ||
         !description ||
