@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3308
--- Généré le :  jeu. 10 déc. 2020 à 21:40
+-- Généré le :  ven. 11 déc. 2020 à 17:30
 -- Version du serveur :  8.0.18
 -- Version de PHP :  7.3.12
 
@@ -82,74 +82,6 @@ INSERT INTO `competences` (`idcompetence`, `sigle`, `libelle`) VALUES
 (15, 'C12', 'Capacite à innover, à avoir une ouverture d\'esprit et à s\'engager.'),
 (16, 'C13', 'Capacité à travailler en contexte international.'),
 (17, 'C14', 'Capacité à se connaître, s\'autoévaluer (Analyse SWOT) et définir son projet professionel.');
-
--- --------------------------------------------------------
-
---
--- Structure de la table `entreprise`
---
-
-DROP TABLE IF EXISTS `entreprise`;
-CREATE TABLE IF NOT EXISTS `entreprise` (
-  `identreprise` mediumint(9) NOT NULL AUTO_INCREMENT,
-  `sigleentreprise` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `nomentreprise` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  PRIMARY KEY (`identreprise`)
-) ENGINE=InnoDB AUTO_INCREMENT=79 DEFAULT CHARSET=utf8;
-
---
--- Déchargement des données de la table `entreprise`
---
-
-INSERT INTO `entreprise` (`identreprise`, `sigleentreprise`, `nomentreprise`) VALUES
-(1, 'ALT', 'ALTEN'),
-(2, 'ATO', 'ATOS'),
-(3, 'CGI', 'CGI'),
-(4, 'SCA', 'SCALIAN'),
-(5, 'SII', 'SII'),
-(6, 'SMI', 'SMILE'),
-(7, 'SOG', 'SOGETI'),
-(8, 'SOP', 'SOPRA STERIA'),
-(9, 'AMA', 'AMARIS'),
-(10, 'ST ', 'ST MICROELECTRONICS'),
-(11, 'CAP', 'CAPGEMINI'),
-(12, 'GEM', 'GEMALTO'),
-(13, 'THA', 'THALES'),
-(14, 'AIR', 'AIRBUS'),
-(15, 'DAS', 'DASSAULT'),
-(16, 'BUL', 'BULL'),
-(17, 'DIG', 'DIGINEXT'),
-(18, 'MON', 'MONEXT'),
-(19, 'RTM', 'RTM'),
-(20, 'IBM', 'IBM'),
-(21, 'SOM', 'SOMEI'),
-(22, 'EXC', 'EXCILYS'),
-(23, 'DEE', 'DEEZER'),
-(24, 'WYP', 'WYPLAY'),
-(25, 'E2V', 'E2VR'),
-(26, 'EEW', 'EEWORX'),
-(27, 'EXK', 'EXKEE'),
-(28, 'CAN', 'GROUPE CANAL+'),
-(29, 'INS', 'INSERM'),
-(30, 'NES', 'NESIS'),
-(31, 'OLE', 'OLEA MEDICAL'),
-(32, 'ONT', 'ONTRACKS'),
-(33, 'QWA', 'QWANT'),
-(35, 'UNI', 'UNISTELLAR'),
-(36, 'SYN', 'SYNTELL'),
-(37, 'HAL', 'HALIODX'),
-(38, 'SOF', 'SOFTWAY MEDICAL'),
-(39, 'CNR', 'CNRS'),
-(40, 'KEE', 'KEEEX'),
-(42, 'ERD', 'ERDF'),
-(43, 'BNP', 'BNP PARIBAS'),
-(44, 'BUS', 'BUSINESS&DECISION'),
-(45, 'ALS', 'ALSTOM'),
-(46, 'ORA', 'ORANGE'),
-(47, 'FDJ', 'FRANCAISE DES JEUX'),
-(53, 'ZEN', 'ZENIKA'),
-(75, 'MAI', 'MAIF'),
-(78, 'POL', 'POLYTECH');
 
 -- --------------------------------------------------------
 
@@ -425,9 +357,9 @@ CREATE TABLE IF NOT EXISTS `stage` (
   `idens` int(9) DEFAULT NULL,
   `datedebut` date DEFAULT NULL,
   `datefin` date DEFAULT NULL,
-  `identreprise` mediumint(9) DEFAULT NULL,
   `titrestage` varchar(45) DEFAULT NULL,
   `description` mediumtext COMMENT 'quelques phrases expliquant le contenu du stage',
+  `nomentreprise` varchar(100) NOT NULL,
   `adressestage` mediumtext COMMENT 'adresse ou le stage a lieu',
   `adremailstage` varchar(255) DEFAULT NULL COMMENT 'adresse mail du stagiaire durant le stage (email entreprise)',
   `cheminrapport` varchar(150) DEFAULT NULL COMMENT 'chemin vers le fichier du rapport de stage',
@@ -448,17 +380,16 @@ CREATE TABLE IF NOT EXISTS `stage` (
   UNIQUE KEY `adremailstage` (`adremailstage`),
   KEY `fk_stage_1_idx` (`ideleve`),
   KEY `fk_stage_2_idx` (`idtuteur`),
-  KEY `fk_stage_4_idx` (`idens`),
-  KEY `identreprise` (`identreprise`)
+  KEY `fk_stage_4_idx` (`idens`)
 ) ENGINE=InnoDB AUTO_INCREMENT=97 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `stage`
 --
 
-INSERT INTO `stage` (`idstage`, `ideleve`, `niveau`, `annee`, `idtuteur`, `idens`, `datedebut`, `datefin`, `identreprise`, `titrestage`, `description`, `adressestage`, `adremailstage`, `cheminrapport`, `daterapport`, `cheminpres`, `datepres`, `chemineval`, `dateeval`, `evallancee`, `confidentiel`, `datelimiterendu`, `datelimiteeval`, `datesoutenance`, `datecomp`, `chemincomp`) VALUES
-(1, 3, '4', 2018, 5, 4, '2019-04-07', '2019-05-07', 3, 'Chef de projet junior', 'Description d\'un stage de quatrième année en tant que chef de projet', NULL, NULL, './public/2020/5A/2020_5A_BECHARI_Bilal_rapport.pdf', '2019-04-06 20:00:00', './public/2020/5A/2020_5A_BECHARI_Bilal_presentation.pdf', NULL, NULL, NULL, NULL, 0, '2018-01-01', '2018-01-01', '2018-01-01', NULL, NULL),
-(95, 14, '5', 2021, 5, 4, '2020-12-15', '2020-12-30', 14, 'Super Stage', 'Un stage de defe', 'ededfede', 'dddd', 'chemin', '2020-12-08 22:00:00', 'chemin', '2020-12-08 22:00:00', 'fefe', '2020-12-08 22:00:00', '2020-11-30 23:00:00', 0, '2020-12-30', '2020-12-30', '2020-12-30', '2020-12-30 22:00:00', 'chemin');
+INSERT INTO `stage` (`idstage`, `ideleve`, `niveau`, `annee`, `idtuteur`, `idens`, `datedebut`, `datefin`, `titrestage`, `description`, `nomentreprise`, `adressestage`, `adremailstage`, `cheminrapport`, `daterapport`, `cheminpres`, `datepres`, `chemineval`, `dateeval`, `evallancee`, `confidentiel`, `datelimiterendu`, `datelimiteeval`, `datesoutenance`, `datecomp`, `chemincomp`) VALUES
+(1, 3, '5', 2019, 5, 4, '2077-04-06', '2078-05-06', 'Super Stage up', 'Un stage de Kalitey up', 'AIRBUS', NULL, NULL, './public/2020/5A/2020_5A_BECHARI_Bilal_rapport.pdf', '2019-04-06 20:00:00', './public/2020/5A/2020_5A_BECHARI_Bilal_presentation.pdf', NULL, NULL, NULL, NULL, 0, '2018-01-01', '2018-01-01', '2018-01-01', NULL, NULL),
+(95, 14, '5', 2021, 5, 4, '2020-12-15', '2020-12-30', 'Super Stage', 'Un stage de defe', '', 'ededfede', 'dddd', 'chemin', '2020-12-08 22:00:00', 'chemin', '2020-12-08 22:00:00', 'fefe', '2020-12-08 22:00:00', '2020-11-30 23:00:00', 0, '2020-12-30', '2020-12-30', '2020-12-30', '2020-12-30 22:00:00', 'chemin');
 
 -- --------------------------------------------------------
 
@@ -531,8 +462,7 @@ ALTER TABLE `retardtuteur`
 ALTER TABLE `stage`
   ADD CONSTRAINT `fk_stage_1` FOREIGN KEY (`ideleve`) REFERENCES `utilisateur` (`id`),
   ADD CONSTRAINT `fk_stage_2` FOREIGN KEY (`idtuteur`) REFERENCES `utilisateur` (`id`),
-  ADD CONSTRAINT `fk_stage_4` FOREIGN KEY (`idens`) REFERENCES `utilisateur` (`id`),
-  ADD CONSTRAINT `stage_ibfk_1` FOREIGN KEY (`identreprise`) REFERENCES `entreprise` (`identreprise`);
+  ADD CONSTRAINT `fk_stage_4` FOREIGN KEY (`idens`) REFERENCES `utilisateur` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

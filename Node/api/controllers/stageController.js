@@ -13,23 +13,12 @@ function getStage(req, res, next) {
 }
 
 function getStageById(req, res, next) {
-<<<<<<< HEAD
 	let query = `SELECT *
 	from ${config.table.stage.tablename} WHERE ${config.table.stage.tablename}.${config.table.stage.idstage} = ${req.params.id}`;
 	conn.query(query, (err, result) => {
 		if (err) throw err;
 		res.status(200).json({ message: "Ok .", data: result });
 	});
-=======
-  let query = `SELECT *
-	from ${config.table.stage.tablename}
-	LEFT JOIN ${config.table.entreprise.tablename} ON ${config.table.stage.tablename}.${config.table.stage.identreprise} = ${config.table.entreprise.tablename}.${config.table.entreprise.id}
-	WHERE ${config.table.stage.tablename}.${config.table.stage.idstage} = ${req.params.id}`;
-  conn.query(query, (err, result) => {
-    if (err) throw err;
-    res.status(200).json({ message: 'Ok .', data: result });
-  });
->>>>>>> f797c88a7cf350e1cbf5a4a0c2e0a141d7e69788
 }
 
 function createStage(req, res, next) {
@@ -41,22 +30,12 @@ function createStage(req, res, next) {
   });
 }
 
-<<<<<<< HEAD
 async function editStage(req, res, next) {
 	let q = `UPDATE ${config.table.stage.tablename} SET ${config.table.stage.titrestage} = "${req.body.titrestage}",  ${config.table.stage.description} = "${req.body.description}", ${config.table.stage.niveau} = "${req.body.niveau}", ${config.table.stage.annee} = "${req.body.annee}", ${config.table.stage.datedebut} = "${req.body.datedebut}", ${config.table.stage.datefin} = "${req.body.datefin}", ${config.table.stage.nomentreprise} = "${req.body.nomentreprise}"
 	WHERE ${config.table.stage.idstage}= ${req.body.idstage}`;
 	const result = await query(q);
 	console.log(result);
 	res.status(200).json({ message: "Ok ." });
-=======
-function editStage(req, res, next) {
-  let query = `UPDATE ${config.table.stage.tablename} SET (${config.table.stage.ideleve}, ${config.table.stage.niveau}, ${config.table.stage.annee}, ${config.table.stage.idtuteur}, ${config.table.stage.idens}, ${config.table.stage.datedebut}, ${config.table.stage.datefin}, ${config.table.stage.identreprise}, ${config.table.stage.titrestage}, ${config.table.stage.description}, ${config.table.stage.adressestage}, ${config.table.stage.adremailstage}, ${config.table.stage.cheminrapport}, ${config.table.stage.daterapport}, ${config.table.stage.cheminpres}, ${config.table.stage.datepres}, ${config.table.stage.chemineval}, ${config.table.stage.dateeval}, ${config.table.stage.evallancee}, ${config.table.stage.confidentiel}, ${config.table.stage.datelimiterendu}, ${config.table.stage.datelimiteeval}, ${config.table.stage.datesoutenance}, ${config.table.stage.datecomp}, ${config.table.stage.chemincomp})
-    VALUES ("${req.body.ideleve}", "${req.body.niveau}", "${req.body.annee}", "${req.body.idtuteur}", "${req.body.idens}", "${req.body.datedebut}", "${req.body.datefin}", "${req.body.identreprise}", "${req.body.titrestage}", "${req.body.description}", "${req.body.adressestage}", "${req.body.adremailstage}", "${req.body.cheminrapport}", "${req.body.daterapport}", "${req.body.cheminpres}", "${req.body.datepres}", "${req.body.chemineval}", "${req.body.dateeval}", "${req.body.evallancee}", "${req.body.confidentiel}", "${req.body.datelimiterendu}", "${req.body.datelimiteeval}", "${req.body.datesoutenance}", "${req.body.datecomp}", "${req.body.chemincomp}")`;
-  conn.query(query, (err, result) => {
-    if (err) throw err;
-    res.status(200).json({ message: 'Ok .', data: result });
-  });
->>>>>>> f797c88a7cf350e1cbf5a4a0c2e0a141d7e69788
 }
 
 async function getRapportStageById(req, res, next) {
