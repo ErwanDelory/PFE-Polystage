@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useHistory } from 'react-router';
 import { Alert, Button, Container, Form } from 'react-bootstrap';
 
@@ -59,6 +59,7 @@ const Edit = () => {
   };
 
   const redirect = () => {
+    sessionStorage.removeItem('idstage');
     sessionStorage.removeItem('titrestage');
     sessionStorage.removeItem('description');
     sessionStorage.removeItem('entreprise');
@@ -71,6 +72,46 @@ const Edit = () => {
 
   const onSubmit = (event) => {
     event.preventDefault();
+    const id = sessionStorage.getItem('idstage');
+    fetch('http://localhost:5000/api/editstage', {
+      method: 'PUT',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + sessionStorage.getItem('token'),
+      },
+      body: JSON.stringify({
+        idstage: id,
+        titrestage: stageTitle,
+        description: description,
+        niveau: niveau,
+        annee: annee,
+        datedebut: dateDebut,
+        datefin: dateFin,
+        nomentreprise: entreprise,
+      }),
+    }).then((res) => {
+      console.log('Salut');
+      if (
+        !stageTitle ||
+        !description ||
+        !niveau ||
+        !annee ||
+        !dateDebut ||
+        !dateFin ||
+        !entreprise
+      ) {
+        setMessage('Information incorrecte.');
+        setStateError(true);
+        setStateSucces(false);
+        return;
+      }
+      res.json();
+      setMessage('Modification réussie !');
+      setStateSucces(true);
+      setStateError(false);
+      setTimeout(redirect, 3000);
+    });
   };
 
   return (

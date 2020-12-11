@@ -4,8 +4,7 @@ const fs = require('fs');
 
 function getStage(req, res, next) {
   let query = `SELECT *
-	from ${config.table.stage.tablename}
-	LEFT JOIN ${config.table.entreprise.tablename} ON ${config.table.stage.tablename}.${config.table.stage.identreprise} = ${config.table.entreprise.tablename}.${config.table.entreprise.id};`;
+	from ${config.table.stage.tablename}`;
   conn.query(query, (err, result) => {
     if (err) throw err;
     res.status(200).json({ message: 'Ok .', data: result });
@@ -13,12 +12,12 @@ function getStage(req, res, next) {
 }
 
 function getStageById(req, res, next) {
-	let query = `SELECT *
+  let query = `SELECT *
 	from ${config.table.stage.tablename} WHERE ${config.table.stage.tablename}.${config.table.stage.idstage} = ${req.params.id}`;
-	conn.query(query, (err, result) => {
-		if (err) throw err;
-		res.status(200).json({ message: "Ok .", data: result });
-	});
+  conn.query(query, (err, result) => {
+    if (err) throw err;
+    res.status(200).json({ message: 'Ok .', data: result });
+  });
 }
 
 function createStage(req, res, next) {
@@ -31,11 +30,11 @@ function createStage(req, res, next) {
 }
 
 async function editStage(req, res, next) {
-	let q = `UPDATE ${config.table.stage.tablename} SET ${config.table.stage.titrestage} = "${req.body.titrestage}",  ${config.table.stage.description} = "${req.body.description}", ${config.table.stage.niveau} = "${req.body.niveau}", ${config.table.stage.annee} = "${req.body.annee}", ${config.table.stage.datedebut} = "${req.body.datedebut}", ${config.table.stage.datefin} = "${req.body.datefin}", ${config.table.stage.nomentreprise} = "${req.body.nomentreprise}"
+  let q = `UPDATE ${config.table.stage.tablename} SET ${config.table.stage.titrestage} = "${req.body.titrestage}",  ${config.table.stage.description} = "${req.body.description}", ${config.table.stage.niveau} = "${req.body.niveau}", ${config.table.stage.annee} = "${req.body.annee}", ${config.table.stage.datedebut} = "${req.body.datedebut}", ${config.table.stage.datefin} = "${req.body.datefin}", ${config.table.stage.nomentreprise} = "${req.body.nomentreprise}"
 	WHERE ${config.table.stage.idstage}= ${req.body.idstage}`;
-	const result = await query(q);
-	console.log(result);
-	res.status(200).json({ message: "Ok ." });
+  const result = await query(q);
+  console.log(result);
+  res.status(200).json({ message: 'Ok .' });
 }
 
 async function getRapportStageById(req, res, next) {

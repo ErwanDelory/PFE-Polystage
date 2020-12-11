@@ -48,13 +48,28 @@ const Home = () => {
       .then((res) => res.json())
       .then((mes) => {
         console.log(mes.data);
+        sessionStorage.setItem('idstage', id);
         sessionStorage.setItem('titrestage', mes.data[0].titrestage);
         sessionStorage.setItem('description', mes.data[0].description);
         sessionStorage.setItem('entreprise', mes.data[0].nomentreprise);
         sessionStorage.setItem('niveau', mes.data[0].niveau);
         sessionStorage.setItem('annee', mes.data[0].annee);
-        sessionStorage.setItem('datedebut', mes.data[0].datedebut);
-        sessionStorage.setItem('datefin', mes.data[0].datefin);
+        // Modifier l'affichage de la date ici
+        let datedebut =
+          new Date(mes.data[0].datedebut).getDate() +
+          '-' +
+          new Date(mes.data[0].datedebut).getMonth() +
+          '-' +
+          new Date(mes.data[0].datedebut).getFullYear();
+        let datefin =
+          new Date(mes.data[0].datefin).getDate() +
+          '-' +
+          new Date(mes.data[0].datefin).getMonth() +
+          '-' +
+          new Date(mes.data[0].datefin).getFullYear();
+        console.log(datedebut);
+        sessionStorage.setItem('datedebut', datedebut);
+        sessionStorage.setItem('datefin', datefin);
         history.push('/edit');
       });
   }
