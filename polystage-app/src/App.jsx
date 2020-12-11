@@ -6,6 +6,7 @@ import Error from './pages/error';
 import './styles/app.css';
 import Register from './pages/register';
 import Home from './pages/home';
+import Edit from './pages/edit';
 import NavbarPolystage from './components/navbar';
 import { AuthContext } from './context/auth';
 
@@ -26,6 +27,7 @@ const App = () => {
           <Route exact path="/login" component={Login} />
           <Route exact path="/register" component={Register} />
           <PrivateRoute exact path="/register" component={Register} />
+          <PrivateRoute exact path="/edit" component={Edit} />
           <Route exact path="/error" component={Error} />
         </Switch>
       </Router>

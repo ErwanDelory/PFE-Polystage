@@ -47,10 +47,20 @@ class NavbarLogin extends Component {
 }
 
 const NavbarPolystage = ({ isConnected }) => {
+  function clear() {
+    sessionStorage.removeItem('titrestage');
+    sessionStorage.removeItem('description');
+    sessionStorage.removeItem('entreprise');
+    sessionStorage.removeItem('niveau');
+    sessionStorage.removeItem('annee');
+    sessionStorage.removeItem('datedebut');
+    sessionStorage.removeItem('datefin');
+  }
+
   return (
     <nav>
       <Navbar bg="light" variant="light">
-        <Navbar.Brand href="/">
+        <Navbar.Brand href="/" onClick={clear}>
           <img
             alt=""
             src={img}

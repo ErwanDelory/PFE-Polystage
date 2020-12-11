@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from 'react';
+import { useHistory } from 'react-router';
 import { Button, Card, Col, Container, Row } from 'react-bootstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEdit } from '@fortawesome/free-solid-svg-icons';
 import img0 from './../img/stage-0.jpg';
 import img1 from './../img/stage-1.jpg';
 import img2 from './../img/stage-2.jpg';
@@ -13,6 +16,7 @@ import img9 from './../img/stage-9.jpg';
 
 const Home = () => {
   const [data, setData] = useState([]);
+  const history = useHistory();
 
   useEffect(() => {
     fetch('http://localhost:5000/api/stages', {
@@ -27,9 +31,33 @@ const Home = () => {
         return res.json();
       })
       .then((mes) => {
+        console.log(mes.data);
         return setData(mes.data);
       });
   }, []);
+
+  function modify(id) {
+    fetch('http://localhost:5000/api/stage/' + id, {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + sessionStorage.getItem('token'),
+      },
+    })
+      .then((res) => res.json())
+      .then((mes) => {
+        console.log(mes.data);
+        sessionStorage.setItem('titrestage', mes.data[0].titrestage);
+        sessionStorage.setItem('description', mes.data[0].description);
+        sessionStorage.setItem('entreprise', mes.data[0].nomentreprise);
+        sessionStorage.setItem('niveau', mes.data[0].niveau);
+        sessionStorage.setItem('annee', mes.data[0].annee);
+        sessionStorage.setItem('datedebut', mes.data[0].datedebut);
+        sessionStorage.setItem('datefin', mes.data[0].datefin);
+        history.push('/edit');
+      });
+  }
 
   const annee = [];
   let img = [img0, img1, img2, img3, img4, img5, img6, img7, img8, img9];
@@ -62,9 +90,21 @@ const Home = () => {
                   Année {stage.annee} - {stage.niveau}A
                 </Card.Header>
                 <Card.Body>
-                  <Card.Title>{stage.titrestage}</Card.Title>
+                  <Card.Title>
+                    {stage.titrestage}{' '}
+                    <Button
+                      variant="danger"
+                      onClick={() => modify(stage.idstage)}
+                    >
+                      <FontAwesomeIcon
+                        className="bckg-icon"
+                        icon={faEdit}
+                        size="xs"
+                      />
+                    </Button>
+                  </Card.Title>
                   <Card.Text>
-                    <small className="text-muted">{stage.entreprise}</small>
+                    <small className="text-muted">{stage.nomentreprise}</small>
                     <br />
                     {stage.description}
                   </Card.Text>
@@ -83,6 +123,7 @@ const Home = () => {
                   {annee[stage.idstage - 1]}
                 </Card.Footer>
               </Card>
+              <br />
             </Col>
           ))}
         </Row>
