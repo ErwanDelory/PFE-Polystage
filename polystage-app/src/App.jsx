@@ -9,6 +9,7 @@ import Home from './pages/home';
 import Edit from './pages/edit';
 import NavbarPolystage from './components/navbar';
 import { AuthContext } from './context/auth';
+import NewStage from './pages/newStage';
 
 const App = () => {
   //Ici il faut faire passer le sessionStorage token dans une fonction check token pour voir si il est encore valide (expiré et qu'il appartient au bon utilisateur)
@@ -28,6 +29,7 @@ const App = () => {
           <Route exact path="/register" component={Register} />
           <PrivateRoute exact path="/register" component={Register} />
           <PrivateRoute exact path="/edit" component={Edit} />
+          <PrivateRoute exact path="/newstage" component={NewStage} />
           <Route exact path="/error" component={Error} />
         </Switch>
       </Router>

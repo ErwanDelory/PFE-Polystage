@@ -72,6 +72,10 @@ const Home = () => {
       });
   }
 
+  function addStage() {
+    history.push('/newstage');
+  }
+
   const annee = [];
   let img = [img0, img1, img2, img3, img4, img5, img6, img7, img8, img9];
   const options = {
@@ -139,6 +143,43 @@ const Home = () => {
               <br />
             </Col>
           ))}
+          <Col>
+            <Card
+              style={{ width: '35rem' }}
+              onClick={addStage}
+              className="addStage"
+            >
+              <Card.Img variant="top" src={img9} />
+              <Card.Header className="text-center">Année ???? - ?A</Card.Header>
+              <Card.Body>
+                <Card.Title>
+                  Ajouter un stage{' '}
+                  <Button variant="danger" disabled>
+                    <FontAwesomeIcon
+                      className="bckg-icon"
+                      icon={faEdit}
+                      size="xs"
+                    />
+                  </Button>
+                </Card.Title>
+                <Card.Text>
+                  <small className="text-muted">Entreprise</small>
+                  <br />
+                  ...
+                </Card.Text>
+                <Button variant="warning" disabled>
+                  Voir le rapport
+                </Button>{' '}
+                <Button variant="info" disabled>
+                  Télécharger le rapport
+                </Button>
+              </Card.Body>
+              <Card.Footer className="text-center">
+                <p>25/12/2020 - 25/12/2021</p>
+              </Card.Footer>
+            </Card>
+            <br />
+          </Col>
         </Row>
       </Container>
     </div>

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import AuthenticationService from '../services/authentication-service';
-import './../styles/navbar.css';
 import Navbar from 'react-bootstrap/Navbar';
 import img from './../img/polytech.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';

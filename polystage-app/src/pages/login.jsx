@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import AuthenticationService from '../services/authentication-service';
 import { Alert, Button, Container, Form } from 'react-bootstrap';
-import './../styles/login.css';
 import { useAuth } from '../context/auth';
 import { useHistory } from 'react-router';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';

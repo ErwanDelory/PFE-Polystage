@@ -2,41 +2,19 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router';
 import { Alert, Button, Container, Form } from 'react-bootstrap';
 
-const Edit = () => {
-  const [stageTitle, setStageTitle] = useState(
-    sessionStorage.getItem('titrestage')
-  );
-  const [description, setDescription] = useState(
-    sessionStorage.getItem('description')
-  );
-  const [entreprise, setEntreprise] = useState(
-    sessionStorage.getItem('entreprise')
-  );
-  const [niveau, setNiveau] = useState(sessionStorage.getItem('niveau'));
-  const [annee, setAnnee] = useState(sessionStorage.getItem('annee'));
-  const [dateDebut, setDateDebut] = useState(
-    sessionStorage.getItem('datedebut')
-  );
-  const [dateFin, setDateFin] = useState(sessionStorage.getItem('datefin'));
+const NewStage = () => {
+  const [niveau, setNiveau] = useState('');
+  const [annee, setAnnee] = useState('');
+  const [dateDebut, setDateDebut] = useState('');
+  const [dateFin, setDateFin] = useState('');
+  const [titre, setTitre] = useState('');
+  const [description, setDescription] = useState('');
+  const [entreprise, setEntreprise] = useState('');
+  const [confidentiel, setConfidentiel] = useState('');
   const [message, setMessage] = useState('');
   const [stateError, setStateError] = useState(false);
   const [stateSuccess, setStateSucces] = useState(false);
   const history = useHistory();
-
-  const handleInputStageTitleChange = (event) => {
-    const { value } = event.target;
-    setStageTitle(value);
-  };
-
-  const handleInputDescriptionChange = (event) => {
-    const { value } = event.target;
-    setDescription(value);
-  };
-
-  const handleInputEntrepriseChange = (event) => {
-    const { value } = event.target;
-    setEntreprise(value);
-  };
 
   const handleInputNiveauChange = (event) => {
     const { value } = event.target;
@@ -57,64 +35,38 @@ const Edit = () => {
     const { value } = event.target;
     setDateFin(value);
   };
+  const handleInputTitreChange = (event) => {
+    const { value } = event.target;
+    setTitre(value);
+  };
 
-  const redirect = () => {
-    sessionStorage.removeItem('idstage');
-    sessionStorage.removeItem('titrestage');
-    sessionStorage.removeItem('description');
-    sessionStorage.removeItem('entreprise');
-    sessionStorage.removeItem('niveau');
-    sessionStorage.removeItem('annee');
-    sessionStorage.removeItem('datedebut');
-    sessionStorage.removeItem('datefin');
-    history.push('/');
+  const handleInputDescriptionChange = (event) => {
+    const { value } = event.target;
+    setDescription(value);
+  };
+
+  const handleInputEntrepriseChange = (event) => {
+    const { value } = event.target;
+    setEntreprise(value);
+  };
+
+  const handleInputConfidentielChange = (event) => {
+    const { value } = event.target;
+    setConfidentiel(value);
   };
 
   const onSubmit = (event) => {
     event.preventDefault();
-    const dateD = dateDebut.split('-');
-    const dateF = dateFin.split('-');
-    const debut = dateD[2] + '-' + dateD[1] + '-' + dateD[0];
-    const fin = dateF[2] + '-' + dateF[1] + '-' + dateF[0];
-
-    const id = sessionStorage.getItem('idstage');
-    fetch('http://localhost:5000/api/editstage', {
-      method: 'PUT',
+    fetch('http://localhost:5000/api/newstage', {
+      method: 'POST',
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
         Authorization: 'Bearer ' + sessionStorage.getItem('token'),
       },
       body: JSON.stringify({
-        idstage: id,
-        titrestage: stageTitle,
-        description: description,
-        niveau: niveau,
-        annee: annee,
-        datedebut: debut,
-        datefin: fin,
-        nomentreprise: entreprise,
+        ideleve: null,
       }),
-    }).then((res) => {
-      if (
-        !stageTitle ||
-        !description ||
-        !niveau ||
-        !annee ||
-        !dateDebut ||
-        !dateFin ||
-        !entreprise
-      ) {
-        setMessage('Information incorrecte.');
-        setStateError(true);
-        setStateSucces(false);
-        return;
-      }
-      res.json();
-      setMessage('Modification réussie !');
-      setStateSucces(true);
-      setStateError(false);
-      setTimeout(redirect, 3000);
     });
   };
 
@@ -130,8 +82,8 @@ const Edit = () => {
               name="stageTitle"
               placeholder="Saisir le titre du stage"
               autoFocus
-              value={stageTitle}
-              onChange={handleInputStageTitleChange}
+              value={titre}
+              onChange={handleInputTitreChange}
             />
           </Form.Group>
           <Form.Group controlId="description">
@@ -194,6 +146,16 @@ const Edit = () => {
               onChange={handleInputDateFinChange}
             />
           </Form.Group>
+          <Form.Group controlId="dateFin">
+            <Form.Label>Confidentiel</Form.Label>
+            <Form.Control
+              type="text"
+              name="confidentiel"
+              placeholder="Saisir 1 si le projet est confidentiel, sinon 0"
+              value={confidentiel}
+              onChange={handleInputConfidentielChange}
+            />
+          </Form.Group>
 
           <Button variant="primary" type="submit">
             Mettre à jour
@@ -214,4 +176,4 @@ const Edit = () => {
     </div>
   );
 };
-export default Edit;
+export default NewStage;

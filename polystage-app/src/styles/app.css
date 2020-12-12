@@ -1,12 +1,16 @@
 body:not(nav) {
   background-color: #faf3dd;
 }
-
+  
 * {
   list-style: none;
 }
-
+  
 h3 {
   font-variant: small-caps;
   text-align: center;
+}
+
+.addStage {
+  opacity: 0.6;
 }
