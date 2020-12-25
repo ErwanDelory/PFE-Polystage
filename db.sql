@@ -1,42 +1,32 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.2
+-- version 4.9.3
 -- https://www.phpmyadmin.net/
 --
--- Hôte : 127.0.0.1:3308
--- Généré le :  ven. 11 déc. 2020 à 17:30
--- Version du serveur :  8.0.18
--- Version de PHP :  7.3.12
+-- Host: localhost:8889
+-- Generation Time: Dec 25, 2020 at 09:10 PM
+-- Server version: 5.7.26
+-- PHP Version: 7.4.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
 SET time_zone = "+00:00";
 
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
-
 --
--- Base de données :  `db`
+-- Database: `db`
 --
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `categorie`
+-- Table structure for table `categorie`
 --
 
-DROP TABLE IF EXISTS `categorie`;
-CREATE TABLE IF NOT EXISTS `categorie` (
-  `idcat` tinyint(11) NOT NULL AUTO_INCREMENT,
-  `name` mediumtext NOT NULL,
-  PRIMARY KEY (`idcat`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+CREATE TABLE `categorie` (
+  `idcat` tinyint(11) NOT NULL,
+  `name` mediumtext NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Déchargement des données de la table `categorie`
+-- Dumping data for table `categorie`
 --
 
 INSERT INTO `categorie` (`idcat`, `name`) VALUES
@@ -49,19 +39,17 @@ INSERT INTO `categorie` (`idcat`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `competences`
+-- Table structure for table `competences`
 --
 
-DROP TABLE IF EXISTS `competences`;
-CREATE TABLE IF NOT EXISTS `competences` (
-  `idcompetence` tinyint(4) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `competences` (
+  `idcompetence` tinyint(4) NOT NULL,
   `sigle` char(6) NOT NULL,
-  `libelle` mediumtext NOT NULL,
-  PRIMARY KEY (`idcompetence`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
+  `libelle` mediumtext NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Déchargement des données de la table `competences`
+-- Dumping data for table `competences`
 --
 
 INSERT INTO `competences` (`idcompetence`, `sigle`, `libelle`) VALUES
@@ -86,23 +74,18 @@ INSERT INTO `competences` (`idcompetence`, `sigle`, `libelle`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `infoetu`
+-- Table structure for table `infoetu`
 --
 
-DROP TABLE IF EXISTS `infoetu`;
-CREATE TABLE IF NOT EXISTS `infoetu` (
+CREATE TABLE `infoetu` (
   `idinfo` int(10) NOT NULL,
   `numetudiant` int(20) DEFAULT NULL,
   `annee` int(5) DEFAULT NULL,
-  `niveau` enum('3','4','5') CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
-  PRIMARY KEY (`idinfo`),
-  UNIQUE KEY `idinfo` (`idinfo`),
-  UNIQUE KEY `numetudiant` (`numetudiant`),
-  KEY `ide` (`idinfo`)
+  `niveau` enum('3','4','5') DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Déchargement des données de la table `infoetu`
+-- Dumping data for table `infoetu`
 --
 
 INSERT INTO `infoetu` (`idinfo`, `numetudiant`, `annee`, `niveau`) VALUES
@@ -111,20 +94,17 @@ INSERT INTO `infoetu` (`idinfo`, `numetudiant`, `annee`, `niveau`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `niveauxcompetences`
+-- Table structure for table `niveauxcompetences`
 --
 
-DROP TABLE IF EXISTS `niveauxcompetences`;
-CREATE TABLE IF NOT EXISTS `niveauxcompetences` (
-  `idniveauxcompetences` tinyint(4) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `niveauxcompetences` (
+  `idniveauxcompetences` tinyint(4) NOT NULL,
   `libelle` mediumtext NOT NULL,
-  `idcompetence` tinyint(4) NOT NULL,
-  PRIMARY KEY (`idniveauxcompetences`),
-  KEY `idcompetence` (`idcompetence`)
-) ENGINE=InnoDB AUTO_INCREMENT=86 DEFAULT CHARSET=utf8;
+  `idcompetence` tinyint(4) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Déchargement des données de la table `niveauxcompetences`
+-- Dumping data for table `niveauxcompetences`
 --
 
 INSERT INTO `niveauxcompetences` (`idniveauxcompetences`, `libelle`, `idcompetence`) VALUES
@@ -217,12 +197,11 @@ INSERT INTO `niveauxcompetences` (`idniveauxcompetences`, `libelle`, `idcompeten
 -- --------------------------------------------------------
 
 --
--- Structure de la table `questions`
+-- Table structure for table `questions`
 --
 
-DROP TABLE IF EXISTS `questions`;
-CREATE TABLE IF NOT EXISTS `questions` (
-  `idquest` smallint(6) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `questions` (
+  `idquest` smallint(6) NOT NULL,
   `question` mediumtext NOT NULL,
   `cat` tinyint(4) NOT NULL,
   `souscat` tinyint(4) DEFAULT NULL,
@@ -230,14 +209,11 @@ CREATE TABLE IF NOT EXISTS `questions` (
   `is4a` tinyint(1) NOT NULL,
   `is5a` tinyint(1) NOT NULL,
   `choix` varchar(50) DEFAULT NULL,
-  `niveau` int(11) DEFAULT NULL,
-  PRIMARY KEY (`idquest`),
-  KEY `cat` (`cat`),
-  KEY `souscat` (`souscat`)
-) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=utf8;
+  `niveau` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Déchargement des données de la table `questions`
+-- Dumping data for table `questions`
 --
 
 INSERT INTO `questions` (`idquest`, `question`, `cat`, `souscat`, `type`, `is4a`, `is5a`, `choix`, `niveau`) VALUES
@@ -284,21 +260,19 @@ INSERT INTO `questions` (`idquest`, `question`, `cat`, `souscat`, `type`, `is4a`
 -- --------------------------------------------------------
 
 --
--- Structure de la table `retardeleve`
+-- Table structure for table `retardeleve`
 --
 
-DROP TABLE IF EXISTS `retardeleve`;
-CREATE TABLE IF NOT EXISTS `retardeleve` (
+CREATE TABLE `retardeleve` (
   `iduti` int(9) NOT NULL,
   `mailenvoye` tinyint(1) NOT NULL,
   `rapport` tinyint(1) NOT NULL,
   `presentation` tinyint(1) NOT NULL,
-  `autoeval` tinyint(1) NOT NULL,
-  PRIMARY KEY (`iduti`)
+  `autoeval` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Déchargement des données de la table `retardeleve`
+-- Dumping data for table `retardeleve`
 --
 
 INSERT INTO `retardeleve` (`iduti`, `mailenvoye`, `rapport`, `presentation`, `autoeval`) VALUES
@@ -307,31 +281,27 @@ INSERT INTO `retardeleve` (`iduti`, `mailenvoye`, `rapport`, `presentation`, `au
 -- --------------------------------------------------------
 
 --
--- Structure de la table `retardtuteur`
+-- Table structure for table `retardtuteur`
 --
 
-DROP TABLE IF EXISTS `retardtuteur`;
-CREATE TABLE IF NOT EXISTS `retardtuteur` (
+CREATE TABLE `retardtuteur` (
   `iduti` int(9) NOT NULL,
-  `mailenvoye` tinyint(1) NOT NULL,
-  PRIMARY KEY (`iduti`)
+  `mailenvoye` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `souscategorie`
+-- Table structure for table `souscategorie`
 --
 
-DROP TABLE IF EXISTS `souscategorie`;
-CREATE TABLE IF NOT EXISTS `souscategorie` (
-  `idsouscat` tinyint(11) NOT NULL AUTO_INCREMENT,
-  `name` mediumtext NOT NULL,
-  PRIMARY KEY (`idsouscat`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+CREATE TABLE `souscategorie` (
+  `idsouscat` tinyint(11) NOT NULL,
+  `name` mediumtext NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Déchargement des données de la table `souscategorie`
+-- Dumping data for table `souscategorie`
 --
 
 INSERT INTO `souscategorie` (`idsouscat`, `name`) VALUES
@@ -344,12 +314,11 @@ INSERT INTO `souscategorie` (`idsouscat`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `stage`
+-- Table structure for table `stage`
 --
 
-DROP TABLE IF EXISTS `stage`;
-CREATE TABLE IF NOT EXISTS `stage` (
-  `idstage` int(9) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `stage` (
+  `idstage` int(9) NOT NULL,
   `ideleve` int(9) DEFAULT NULL,
   `niveau` enum('3','4','5') DEFAULT NULL,
   `annee` year(4) DEFAULT NULL,
@@ -374,44 +343,36 @@ CREATE TABLE IF NOT EXISTS `stage` (
   `datelimiteeval` date DEFAULT NULL,
   `datesoutenance` date DEFAULT NULL COMMENT 'Date de la soutenance',
   `datecomp` timestamp NULL DEFAULT NULL,
-  `chemincomp` varchar(150) DEFAULT NULL,
-  PRIMARY KEY (`idstage`),
-  UNIQUE KEY `idstage` (`idstage`),
-  UNIQUE KEY `adremailstage` (`adremailstage`),
-  KEY `fk_stage_1_idx` (`ideleve`),
-  KEY `fk_stage_2_idx` (`idtuteur`),
-  KEY `fk_stage_4_idx` (`idens`)
-) ENGINE=InnoDB AUTO_INCREMENT=97 DEFAULT CHARSET=utf8;
+  `chemincomp` varchar(150) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Déchargement des données de la table `stage`
+-- Dumping data for table `stage`
 --
 
 INSERT INTO `stage` (`idstage`, `ideleve`, `niveau`, `annee`, `idtuteur`, `idens`, `datedebut`, `datefin`, `titrestage`, `description`, `nomentreprise`, `adressestage`, `adremailstage`, `cheminrapport`, `daterapport`, `cheminpres`, `datepres`, `chemineval`, `dateeval`, `evallancee`, `confidentiel`, `datelimiterendu`, `datelimiteeval`, `datesoutenance`, `datecomp`, `chemincomp`) VALUES
-(1, 3, '5', 2019, 5, 4, '2077-04-06', '2078-05-06', 'Super Stage up', 'Un stage de Kalitey up', 'AIRBUS', NULL, NULL, './public/2020/5A/2020_5A_BECHARI_Bilal_rapport.pdf', '2019-04-06 20:00:00', './public/2020/5A/2020_5A_BECHARI_Bilal_presentation.pdf', NULL, NULL, NULL, NULL, 0, '2018-01-01', '2018-01-01', '2018-01-01', NULL, NULL),
-(95, 14, '5', 2021, 5, 4, '2020-12-15', '2020-12-30', 'Super Stage', 'Un stage de defe', '', 'ededfede', 'dddd', 'chemin', '2020-12-08 22:00:00', 'chemin', '2020-12-08 22:00:00', 'fefe', '2020-12-08 22:00:00', '2020-11-30 23:00:00', 0, '2020-12-30', '2020-12-30', '2020-12-30', '2020-12-30 22:00:00', 'chemin');
+(1, 3, '5', 2019, 5, 4, '2077-04-06', '2077-04-06', 'Super Stage 13', 'Un stage de Kalitey up', 'AIRBUS', NULL, NULL, './public/2020/5A/2020_5A_BECHARI_Bilal_rapport.pdf', '2019-04-06 20:00:00', './public/2020/5A/2020_5A_BECHARI_Bilal_presentation.pdf', NULL, NULL, NULL, NULL, 0, '2018-01-01', '2018-01-01', '2018-01-01', NULL, NULL),
+(2, 14, '5', 2021, 5, 4, '2020-12-15', '2020-12-30', 'Super Stage Erwan', 'Un stage de defe', 'CGI', 'ededfede', 'dddd', 'chemin', '2020-12-08 22:00:00', 'chemin', '2020-12-08 22:00:00', 'fefe', '2020-12-08 22:00:00', '2020-11-30 23:00:00', 0, '2020-12-30', '2020-12-30', '2020-12-30', '2020-12-30 22:00:00', 'chemin'),
+(3, 15, '5', 2021, 5, 4, '2020-12-01', '2022-12-31', 'Ingénieur DevOps', 'Réalisation d\'un stage d\'ingénieur DevOps', 'Thalès', 'blablabla', 'fiorehuguif', 'hirueghi', '2020-12-02 20:37:37', 'vktuiehrg', '2020-12-10 20:37:37', 'serdtj', '2020-12-26 20:37:37', '2020-12-26 21:37:37', 0, '2020-12-31', '2020-12-31', '2020-12-31', '2020-12-31 20:37:37', 'ertdfyguhi'),
+(4, 15, '5', 2021, 5, 4, '2020-11-05', '2021-10-31', 'Ingénieur DevOps', 'En attente ....', 'Pytheas Navigation', '', '', '', '2020-10-09 22:00:00', '', '2020-10-09 22:00:00', '', '2020-10-09 22:00:00', '2020-10-10 00:00:00', 0, '2020-10-10', '2020-10-10', '2020-10-10', '2020-10-09 22:00:00', '');
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `utilisateur`
+-- Table structure for table `utilisateur`
 --
 
-DROP TABLE IF EXISTS `utilisateur`;
-CREATE TABLE IF NOT EXISTS `utilisateur` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `utilisateur` (
+  `id` int(10) NOT NULL,
   `nom` varchar(30) NOT NULL,
   `prenom` varchar(30) NOT NULL,
   `email` varchar(60) NOT NULL,
-  `mdp` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `role` enum('Etudiant','Enseignant','Tuteur','Admin') CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT 'Etudiant',
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `id` (`id`),
-  UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
+  `mdp` varchar(255) NOT NULL,
+  `role` enum('Etudiant','Enseignant','Tuteur','Admin') NOT NULL DEFAULT 'Etudiant'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Déchargement des données de la table `utilisateur`
+-- Dumping data for table `utilisateur`
 --
 
 INSERT INTO `utilisateur` (`id`, `nom`, `prenom`, `email`, `mdp`, `role`) VALUES
@@ -419,52 +380,171 @@ INSERT INTO `utilisateur` (`id`, `nom`, `prenom`, `email`, `mdp`, `role`) VALUES
 (3, 'etu', 'etu', 'etu@etu.fr', '4813494d137e1631bba301d5acab6e7bb7aa74ce1185d456565ef51d737677b2', 'Etudiant'),
 (4, 'ens', 'ens', 'ens@ens.fr', '4813494d137e1631bba301d5acab6e7bb7aa74ce1185d456565ef51d737677b2', 'Enseignant'),
 (5, 'tut', 'tut', 'tut@tut.fr', '4813494d137e1631bba301d5acab6e7bb7aa74ce1185d456565ef51d737677b2', 'Tuteur'),
-(14, 'etu2', 'etu2', 'etu2@etu2.fr', '4813494d137e1631bba301d5acab6e7bb7aa74ce1185d456565ef51d737677b2', 'Etudiant');
+(14, 'etu2', 'etu2', 'etu2@etu2.fr', '4813494d137e1631bba301d5acab6e7bb7aa74ce1185d456565ef51d737677b2', 'Etudiant'),
+(15, 'Delory', 'Erwan', 'erwan.delory@gmail.com', '4813494d137e1631bba301d5acab6e7bb7aa74ce1185d456565ef51d737677b2', 'Etudiant'),
+(16, 'El Kourdi', 'Maha', 'maha@elkourdi.fr', '4813494d137e1631bba301d5acab6e7bb7aa74ce1185d456565ef51d737677b2', 'Tuteur');
 
 --
--- Contraintes pour les tables déchargées
+-- Indexes for dumped tables
 --
 
 --
--- Contraintes pour la table `infoetu`
+-- Indexes for table `categorie`
+--
+ALTER TABLE `categorie`
+  ADD PRIMARY KEY (`idcat`);
+
+--
+-- Indexes for table `competences`
+--
+ALTER TABLE `competences`
+  ADD PRIMARY KEY (`idcompetence`);
+
+--
+-- Indexes for table `infoetu`
+--
+ALTER TABLE `infoetu`
+  ADD PRIMARY KEY (`idinfo`),
+  ADD UNIQUE KEY `idinfo` (`idinfo`),
+  ADD UNIQUE KEY `numetudiant` (`numetudiant`),
+  ADD KEY `ide` (`idinfo`);
+
+--
+-- Indexes for table `niveauxcompetences`
+--
+ALTER TABLE `niveauxcompetences`
+  ADD PRIMARY KEY (`idniveauxcompetences`),
+  ADD KEY `idcompetence` (`idcompetence`);
+
+--
+-- Indexes for table `questions`
+--
+ALTER TABLE `questions`
+  ADD PRIMARY KEY (`idquest`),
+  ADD KEY `cat` (`cat`),
+  ADD KEY `souscat` (`souscat`);
+
+--
+-- Indexes for table `retardeleve`
+--
+ALTER TABLE `retardeleve`
+  ADD PRIMARY KEY (`iduti`);
+
+--
+-- Indexes for table `retardtuteur`
+--
+ALTER TABLE `retardtuteur`
+  ADD PRIMARY KEY (`iduti`);
+
+--
+-- Indexes for table `souscategorie`
+--
+ALTER TABLE `souscategorie`
+  ADD PRIMARY KEY (`idsouscat`);
+
+--
+-- Indexes for table `stage`
+--
+ALTER TABLE `stage`
+  ADD PRIMARY KEY (`idstage`),
+  ADD UNIQUE KEY `idstage` (`idstage`),
+  ADD KEY `fk_stage_1_idx` (`ideleve`),
+  ADD KEY `fk_stage_2_idx` (`idtuteur`),
+  ADD KEY `fk_stage_4_idx` (`idens`);
+
+--
+-- Indexes for table `utilisateur`
+--
+ALTER TABLE `utilisateur`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `id` (`id`),
+  ADD UNIQUE KEY `email` (`email`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `categorie`
+--
+ALTER TABLE `categorie`
+  MODIFY `idcat` tinyint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `competences`
+--
+ALTER TABLE `competences`
+  MODIFY `idcompetence` tinyint(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+
+--
+-- AUTO_INCREMENT for table `niveauxcompetences`
+--
+ALTER TABLE `niveauxcompetences`
+  MODIFY `idniveauxcompetences` tinyint(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=86;
+
+--
+-- AUTO_INCREMENT for table `questions`
+--
+ALTER TABLE `questions`
+  MODIFY `idquest` smallint(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+
+--
+-- AUTO_INCREMENT for table `souscategorie`
+--
+ALTER TABLE `souscategorie`
+  MODIFY `idsouscat` tinyint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `stage`
+--
+ALTER TABLE `stage`
+  MODIFY `idstage` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `utilisateur`
+--
+ALTER TABLE `utilisateur`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `infoetu`
 --
 ALTER TABLE `infoetu`
   ADD CONSTRAINT `Fkinfoetu` FOREIGN KEY (`idinfo`) REFERENCES `utilisateur` (`id`) ON DELETE CASCADE;
 
 --
--- Contraintes pour la table `niveauxcompetences`
+-- Constraints for table `niveauxcompetences`
 --
 ALTER TABLE `niveauxcompetences`
   ADD CONSTRAINT `niveauxcompetences_ibfk_1` FOREIGN KEY (`idcompetence`) REFERENCES `competences` (`idcompetence`);
 
 --
--- Contraintes pour la table `questions`
+-- Constraints for table `questions`
 --
 ALTER TABLE `questions`
   ADD CONSTRAINT `questions_ibfk_1` FOREIGN KEY (`cat`) REFERENCES `categorie` (`idcat`),
   ADD CONSTRAINT `questions_ibfk_2` FOREIGN KEY (`souscat`) REFERENCES `souscategorie` (`idsouscat`);
 
 --
--- Contraintes pour la table `retardeleve`
+-- Constraints for table `retardeleve`
 --
 ALTER TABLE `retardeleve`
   ADD CONSTRAINT `fk1re` FOREIGN KEY (`iduti`) REFERENCES `utilisateur` (`id`) ON DELETE CASCADE;
 
 --
--- Contraintes pour la table `retardtuteur`
+-- Constraints for table `retardtuteur`
 --
 ALTER TABLE `retardtuteur`
   ADD CONSTRAINT `fk1rt` FOREIGN KEY (`iduti`) REFERENCES `utilisateur` (`id`) ON DELETE CASCADE;
 
 --
--- Contraintes pour la table `stage`
+-- Constraints for table `stage`
 --
 ALTER TABLE `stage`
   ADD CONSTRAINT `fk_stage_1` FOREIGN KEY (`ideleve`) REFERENCES `utilisateur` (`id`),
   ADD CONSTRAINT `fk_stage_2` FOREIGN KEY (`idtuteur`) REFERENCES `utilisateur` (`id`),
   ADD CONSTRAINT `fk_stage_4` FOREIGN KEY (`idens`) REFERENCES `utilisateur` (`id`);
-COMMIT;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

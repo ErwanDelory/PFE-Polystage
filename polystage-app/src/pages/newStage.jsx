@@ -184,7 +184,7 @@ const NewStage = () => {
             <Form.Control
               type="text"
               name="dateDebut"
-              placeholder="Saisir la date de début du stage"
+              placeholder="Saisir la date de début du stage (format: JJ-MM-AAAA)"
               value={dateDebut}
               onChange={handleInputDateDebutChange}
             />
@@ -194,7 +194,7 @@ const NewStage = () => {
             <Form.Control
               type="text"
               name="dateFin"
-              placeholder="Saisir la date de fin du stage"
+              placeholder="Saisir la date de fin du stage (format: JJ-MM-AAAA)"
               value={dateFin}
               onChange={handleInputDateFinChange}
             />
