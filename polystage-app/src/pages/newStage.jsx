@@ -55,7 +55,15 @@ const NewStage = () => {
     setConfidentiel(value);
   };
 
+  const redirect = () => {
+    history.push('/');
+  };
+
   const onSubmit = (event) => {
+    const dateD = dateDebut.split('-');
+    const dateF = dateFin.split('-');
+    const debut = dateD[2] + '-' + dateD[1] + '-' + dateD[0];
+    const fin = dateF[2] + '-' + dateF[1] + '-' + dateF[0];
     event.preventDefault();
     fetch('http://localhost:5000/api/newstage', {
       method: 'POST',
@@ -65,8 +73,53 @@ const NewStage = () => {
         Authorization: 'Bearer ' + sessionStorage.getItem('token'),
       },
       body: JSON.stringify({
-        ideleve: null,
+        ideleve: sessionStorage.getItem('ideleve'),
+        niveau: niveau,
+        annee: annee,
+        idtuteur: 5,
+        idens: 4,
+        datedebut: debut,
+        datefin: fin,
+        titrestage: titre,
+        description: description,
+        nomentreprise: entreprise,
+        adressestage: '',
+        adremailstage: '',
+        cheminrapport: '',
+        daterapport: '2020-10-10',
+        cheminpres: '',
+        datepres: '2020-10-10',
+        chemineval: '',
+        dateeval: '2020-10-10',
+        evallancee: '2020-10-10',
+        datelimiteeval: '2020-10-10',
+        datesoutenance: '2020-10-10',
+        datecomp: '2020-10-10',
+        chemincomp: '',
+        datelimiterendu: '2020-10-10',
+        confidentiel: confidentiel,
       }),
+    }).then((res) => {
+      if (
+        !niveau ||
+        !annee ||
+        !dateDebut ||
+        !dateFin ||
+        !titre ||
+        !description ||
+        !entreprise ||
+        !confidentiel
+      ) {
+        setMessage('Information incorrecte.');
+        setStateError(true);
+        setStateSucces(false);
+        return;
+      }
+      res.json();
+      setMessage('Inscription réussie !');
+      setStateSucces(true);
+      setStateError(false);
+      setTimeout(redirect, 3000);
     });
   };
 
@@ -158,7 +211,7 @@ const NewStage = () => {
           </Form.Group>
 
           <Button variant="primary" type="submit">
-            Mettre à jour
+            Ajouter le stage
           </Button>
         </Form>
         <br />
