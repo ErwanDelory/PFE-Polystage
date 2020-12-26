@@ -74,7 +74,9 @@ const HomeProf = () => {
           {data?.map((stage) => (
             <Col key={stage.idstage}>
               <Card style={{ width: '35rem' }} className="text-center">
-                <Card.Header>Nom de l'élève et prénom</Card.Header>
+                <Card.Header>
+                  {stage.nom} {stage.prenom}
+                </Card.Header>
                 <Card.Body>
                   <Card.Title>{stage.titrestage}</Card.Title>
                   <Card.Text>
@@ -159,7 +161,9 @@ const HomeAdmin = () => {
           {data?.map((stage) => (
             <Col key={stage.idstage}>
               <Card style={{ width: '35rem' }} className="text-center">
-                <Card.Header>Nom de l'élève et prénom</Card.Header>
+                <Card.Header>
+                  {stage.nom} {stage.prenom}
+                </Card.Header>
                 <Card.Body>
                   <Card.Title>{stage.titrestage}</Card.Title>
                   <Card.Text>

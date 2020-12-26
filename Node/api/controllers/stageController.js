@@ -3,8 +3,8 @@ const config = require('../../config');
 const fs = require('fs');
 
 function getStage(req, res, next) {
-  let query = `SELECT *
-	from ${config.table.stage.tablename}`;
+  let query = `SELECT ${config.table.stage.ideleve}, ${config.table.stage.niveau}, ${config.table.stage.annee}, ${config.table.stage.idtuteur}, ${config.table.stage.idens}, ${config.table.stage.datedebut}, ${config.table.stage.datefin}, ${config.table.stage.nomentreprise}, ${config.table.stage.titrestage}, ${config.table.stage.description}, ${config.table.stage.adressestage}, ${config.table.stage.adremailstage}, ${config.table.stage.cheminrapport}, ${config.table.stage.daterapport}, ${config.table.stage.cheminpres}, ${config.table.stage.datepres}, ${config.table.stage.chemineval}, ${config.table.stage.dateeval}, ${config.table.stage.evallancee}, ${config.table.stage.confidentiel}, ${config.table.stage.datelimiterendu}, ${config.table.stage.datelimiteeval}, ${config.table.stage.datesoutenance}, ${config.table.stage.datecomp}, ${config.table.stage.chemincomp}, ${config.table.utilisateur.nom}, ${config.table.utilisateur.prenom}
+	from ${config.table.stage.tablename} LEFT JOIN ${config.table.utilisateur.tablename} ON ${config.table.stage.ideleve} = ${config.table.utilisateur.id}`;
   conn.query(query, (err, result) => {
     if (err) throw err;
     res.status(200).json({ message: 'Ok .', data: result });
