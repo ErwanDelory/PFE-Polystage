@@ -31,7 +31,6 @@ const Home = () => {
         return res.json();
       })
       .then((mes) => {
-        console.log(mes.data);
         return setData(mes.data);
       });
   }, []);
@@ -47,7 +46,6 @@ const Home = () => {
     })
       .then((res) => res.json())
       .then((mes) => {
-        console.log(mes.data);
         sessionStorage.setItem('idstage', id);
         sessionStorage.setItem('titrestage', mes.data[0].titrestage);
         sessionStorage.setItem('description', mes.data[0].description);
@@ -93,6 +91,8 @@ const Home = () => {
     );
   }
 
+  console.log(data);
+
   return (
     <div>
       <Container>
@@ -109,16 +109,33 @@ const Home = () => {
                 <Card.Body>
                   <Card.Title>
                     {stage.titrestage}{' '}
-                    <Button
-                      variant="danger"
-                      onClick={() => modify(stage.idstage)}
-                    >
-                      <FontAwesomeIcon
-                        className="bckg-icon"
-                        icon={faEdit}
-                        size="xs"
-                      />
-                    </Button>
+                    {
+                      // eslint-disable-next-line
+                      stage.ideleve == sessionStorage.getItem('ideleve') ? (
+                        <Button
+                          variant="danger"
+                          onClick={() => modify(stage.idstage)}
+                        >
+                          <FontAwesomeIcon
+                            className="bckg-icon"
+                            icon={faEdit}
+                            size="xs"
+                          />
+                        </Button>
+                      ) : (
+                        <Button
+                          disabled
+                          variant="danger"
+                          onClick={() => modify(stage.idstage)}
+                        >
+                          <FontAwesomeIcon
+                            className="bckg-icon"
+                            icon={faEdit}
+                            size="xs"
+                          />
+                        </Button>
+                      )
+                    }
                   </Card.Title>
                   <Card.Text>
                     <small className="text-muted">{stage.nomentreprise}</small>
