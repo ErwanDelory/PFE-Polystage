@@ -15,6 +15,202 @@ import img8 from './../img/stage-8.jpg';
 import img9 from './../img/stage-9.jpg';
 
 const Home = () => {
+  return (
+    <div>
+      {sessionStorage.getItem('role') === 'Etudiant' ? <HomeEtu /> : <p></p>}
+
+      {sessionStorage.getItem('role') === 'Enseignant' ? <HomeProf /> : <p></p>}
+
+      {sessionStorage.getItem('role') === 'Admin' ? <HomeAdmin /> : <p></p>}
+
+      {sessionStorage.getItem('role') === 'Tuteur' ? <HomeTuteur /> : <p></p>}
+    </div>
+  );
+};
+export default Home;
+
+const HomeProf = () => {
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    fetch('http://localhost:5000/api/stages', {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + sessionStorage.getItem('token'),
+      },
+    })
+      .then((res) => {
+        return res.json();
+      })
+      .then((mes) => {
+        return setData(mes.data);
+      });
+  }, []);
+
+  const annee = [];
+  const options = {
+    year: 'numeric',
+    month: 'numeric',
+    day: 'numeric',
+  };
+  for (let i = 0; i < data.length; i++) {
+    var a = new Date(data[i].datedebut).toLocaleDateString(undefined, options);
+    var b = new Date(data[i].datefin).toLocaleDateString(undefined, options);
+    annee.push(
+      <p>
+        {a} - {b}
+      </p>
+    );
+  }
+
+  return (
+    <div>
+      <Container>
+        <br />
+        <h3>Liste des stages des étudiants</h3>
+        <Row xs={1} md={2}>
+          {data?.map((stage) => (
+            <Col key={stage.idstage}>
+              <Card style={{ width: '35rem' }} className="text-center">
+                <Card.Header>Nom de l'élève et prénom</Card.Header>
+                <Card.Body>
+                  <Card.Title>{stage.titrestage}</Card.Title>
+                  <Card.Text>
+                    <small className="text-muted">{stage.nomentreprise}</small>
+                    <br />
+                    {stage.description}
+                  </Card.Text>
+                  {
+                    // eslint-disable-next-line
+                    stage.idens == sessionStorage.getItem('id') ? (
+                      <div>
+                        <Button variant="warning">Lancer l'évaluation</Button>{' '}
+                        <Button variant="info">Visualiser l'évaluation</Button>
+                      </div>
+                    ) : (
+                      <div>
+                        <Button disabled variant="warning">
+                          Lancer l'évaluation
+                        </Button>{' '}
+                        <Button disabled variant="info">
+                          Visualiser l'évaluation
+                        </Button>
+                      </div>
+                    )
+                  }
+                </Card.Body>
+                <Card.Footer className="text-center">
+                  {annee[stage.idstage - 1]}
+                </Card.Footer>
+              </Card>
+              <br />
+            </Col>
+          ))}
+        </Row>
+      </Container>
+    </div>
+  );
+};
+
+const HomeAdmin = () => {
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    fetch('http://localhost:5000/api/stages', {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + sessionStorage.getItem('token'),
+      },
+    })
+      .then((res) => {
+        return res.json();
+      })
+      .then((mes) => {
+        return setData(mes.data);
+      });
+  }, []);
+
+  const annee = [];
+  const options = {
+    year: 'numeric',
+    month: 'numeric',
+    day: 'numeric',
+  };
+  for (let i = 0; i < data.length; i++) {
+    var a = new Date(data[i].datedebut).toLocaleDateString(undefined, options);
+    var b = new Date(data[i].datefin).toLocaleDateString(undefined, options);
+    annee.push(
+      <p>
+        {a} - {b}
+      </p>
+    );
+  }
+
+  return (
+    <div>
+      <Container>
+        <br />
+        <h3>Liste des stages des étudiants</h3>
+        <Row xs={1} md={2}>
+          {data?.map((stage) => (
+            <Col key={stage.idstage}>
+              <Card style={{ width: '35rem' }} className="text-center">
+                <Card.Header>Nom de l'élève et prénom</Card.Header>
+                <Card.Body>
+                  <Card.Title>{stage.titrestage}</Card.Title>
+                  <Card.Text>
+                    <small className="text-muted">{stage.nomentreprise}</small>
+                    <br />
+                    {stage.description}
+                  </Card.Text>
+                  {
+                    // eslint-disable-next-line
+                    stage.idens == sessionStorage.getItem('id') ? (
+                      <div>
+                        <Button variant="warning">Lancer l'évaluation</Button>{' '}
+                        <Button variant="info">Visualiser l'évaluation</Button>
+                      </div>
+                    ) : (
+                      <div>
+                        <Button disabled variant="warning">
+                          Lancer l'évaluation
+                        </Button>{' '}
+                        <Button disabled variant="info">
+                          Visualiser l'évaluation
+                        </Button>
+                      </div>
+                    )
+                  }
+                </Card.Body>
+                <Card.Footer className="text-center">
+                  {annee[stage.idstage - 1]}
+                </Card.Footer>
+              </Card>
+              <br />
+            </Col>
+          ))}
+        </Row>
+      </Container>
+    </div>
+  );
+};
+
+const HomeTuteur = () => {
+  return (
+    <div>
+      <p>Salut Tuteur</p>
+      <p>
+        Récupérer la liste des stages du tuteur entreprise (en théorie, juste 1)
+      </p>
+    </div>
+  );
+};
+
+const HomeEtu = () => {
   const [data, setData] = useState([]);
   const history = useHistory();
 
@@ -91,16 +287,14 @@ const Home = () => {
     );
   }
 
-  console.log(data);
-
   return (
     <div>
       <Container>
         <br />
-        <h3>Liste des stages</h3>
+        <h3>Liste des stages des étudiants</h3>
         <Row xs={1} md={2}>
           {data?.map((stage) => (
-            <Col>
+            <Col key={stage.idstage}>
               <Card style={{ width: '35rem' }}>
                 <Card.Img variant="top" src={img[stage.idstage - 1]} />
                 <Card.Header className="text-center">
@@ -111,7 +305,7 @@ const Home = () => {
                     {stage.titrestage}{' '}
                     {
                       // eslint-disable-next-line
-                      stage.ideleve == sessionStorage.getItem('ideleve') ? (
+                      stage.ideleve == sessionStorage.getItem('id') ? (
                         <Button
                           variant="danger"
                           onClick={() => modify(stage.idstage)}
@@ -202,4 +396,3 @@ const Home = () => {
     </div>
   );
 };
-export default Home;
