@@ -49,6 +49,10 @@ const HomeProf = () => {
       });
   }, []);
 
+  const startEval = () => {};
+
+  const openEval = () => {};
+
   const annee = [];
   const options = {
     year: 'numeric',
@@ -88,8 +92,12 @@ const HomeProf = () => {
                     // eslint-disable-next-line
                     stage.idens == sessionStorage.getItem('id') ? (
                       <div>
-                        <Button variant="warning">Lancer l'évaluation</Button>{' '}
-                        <Button variant="info">Visualiser l'évaluation</Button>
+                        <Button variant="warning" onClick={startEval}>
+                          Lancer l'évaluation
+                        </Button>{' '}
+                        <Button variant="info" onClick={openEval}>
+                          Visualiser l'évaluation
+                        </Button>
                       </div>
                     ) : (
                       <div>
@@ -290,7 +298,7 @@ const HomeEtu = () => {
       </p>
     );
   }
-
+  console.log(data);
   return (
     <div>
       <Container>
