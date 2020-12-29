@@ -69,7 +69,7 @@ const HomeTuteur = () => {
                     Lancer l'évaluation de l'élève
                   </Button>{' '}
                   <Button variant="info">
-                    Lancer l'évalution des compétances
+                    Lancer l'évalution des compétences
                   </Button>
                   <br />
                   <br />
@@ -77,7 +77,7 @@ const HomeTuteur = () => {
                     Visualiser l'évaluation de l'élève
                   </Button>{' '}
                   <Button variant="info">
-                    Visualiser l'évaluation des compétances
+                    Visualiser l'évaluation des compétences
                   </Button>
                 </Card.Body>
                 <Card.Footer className="text-center">
