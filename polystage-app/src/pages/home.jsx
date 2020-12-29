@@ -45,29 +45,33 @@ const HomeProf = () => {
         return res.json();
       })
       .then((mes) => {
-        return setData(mes.data);
+        let stages = [];
+        const options = {
+          year: 'numeric',
+          month: 'numeric',
+          day: 'numeric',
+        };
+        for (let i = 0; i < mes.data.length; i++) {
+          var a = new Date(mes.data[i].datedebut).toLocaleDateString(
+            undefined,
+            options
+          );
+          var b = new Date(mes.data[i].datefin).toLocaleDateString(
+            undefined,
+            options
+          );
+          stages[i] = mes.data[i];
+          stages[i].datedebut = a;
+          stages[i].datefin = b;
+        }
+        console.log(stages);
+        return setData(stages);
       });
   }, []);
 
   const startEval = () => {};
 
   const openEval = () => {};
-
-  const annee = [];
-  const options = {
-    year: 'numeric',
-    month: 'numeric',
-    day: 'numeric',
-  };
-  for (let i = 0; i < data.length; i++) {
-    var a = new Date(data[i].datedebut).toLocaleDateString(undefined, options);
-    var b = new Date(data[i].datefin).toLocaleDateString(undefined, options);
-    annee.push(
-      <p>
-        {a} - {b}
-      </p>
-    );
-  }
 
   return (
     <div>
@@ -112,7 +116,7 @@ const HomeProf = () => {
                   }
                 </Card.Body>
                 <Card.Footer className="text-center">
-                  {annee[stage.idstage - 1]}
+                  {stage.datedebut} - {stage.datefin}
                 </Card.Footer>
               </Card>
               <br />
@@ -140,25 +144,29 @@ const HomeAdmin = () => {
         return res.json();
       })
       .then((mes) => {
-        return setData(mes.data);
+        let stages = [];
+        const options = {
+          year: 'numeric',
+          month: 'numeric',
+          day: 'numeric',
+        };
+        for (let i = 0; i < mes.data.length; i++) {
+          var a = new Date(mes.data[i].datedebut).toLocaleDateString(
+            undefined,
+            options
+          );
+          var b = new Date(mes.data[i].datefin).toLocaleDateString(
+            undefined,
+            options
+          );
+          stages[i] = mes.data[i];
+          stages[i].datedebut = a;
+          stages[i].datefin = b;
+        }
+        console.log(stages);
+        return setData(stages);
       });
   }, []);
-
-  const annee = [];
-  const options = {
-    year: 'numeric',
-    month: 'numeric',
-    day: 'numeric',
-  };
-  for (let i = 0; i < data.length; i++) {
-    var a = new Date(data[i].datedebut).toLocaleDateString(undefined, options);
-    var b = new Date(data[i].datefin).toLocaleDateString(undefined, options);
-    annee.push(
-      <p>
-        {a} - {b}
-      </p>
-    );
-  }
 
   return (
     <div>
@@ -199,7 +207,7 @@ const HomeAdmin = () => {
                   }
                 </Card.Body>
                 <Card.Footer className="text-center">
-                  {annee[stage.idstage - 1]}
+                  {stage.datedebut} - {stage.datefin}
                 </Card.Footer>
               </Card>
               <br />
@@ -212,12 +220,81 @@ const HomeAdmin = () => {
 };
 
 const HomeTuteur = () => {
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    fetch('http://localhost:5000/api/stages', {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + sessionStorage.getItem('token'),
+      },
+    })
+      .then((res) => {
+        return res.json();
+      })
+      .then((mes) => {
+        let stages = [];
+        let j = 0;
+        const options = {
+          year: 'numeric',
+          month: 'numeric',
+          day: 'numeric',
+        };
+        for (let i = 0; i < mes.data.length; i++) {
+          // eslint-disable-next-line
+          if (mes.data[i].idtuteur == sessionStorage.getItem('id')) {
+            var a = new Date(mes.data[i].datedebut).toLocaleDateString(
+              undefined,
+              options
+            );
+            var b = new Date(mes.data[i].datefin).toLocaleDateString(
+              undefined,
+              options
+            );
+            stages[j] = mes.data[i];
+            stages[j].datedebut = a;
+            stages[j].datefin = b;
+            j++;
+          }
+        }
+        console.log(stages);
+        return setData(stages);
+      });
+  }, []);
+
   return (
     <div>
-      <p>Salut Tuteur</p>
-      <p>
-        Récupérer la liste des stages du tuteur entreprise (en théorie, juste 1)
-      </p>
+      <Container>
+        <br />
+        <h3>Stage effectué</h3>
+        <Row xs={1} md={1}>
+          {data?.map((stage) => (
+            <Col key={stage.idstage}>
+              <Card style={{ width: '50vw' }} className="text-center center">
+                <Card.Header>
+                  {stage.nom} {stage.prenom}
+                </Card.Header>
+                <Card.Body>
+                  <Card.Title>{stage.titrestage}</Card.Title>
+                  <Card.Text>
+                    <small className="text-muted">{stage.nomentreprise}</small>
+                    <br />
+                    {stage.description}
+                  </Card.Text>
+                  <Button variant="warning">Lancer l'évaluation</Button>{' '}
+                  <Button variant="info">Visualiser l'évaluation</Button>
+                </Card.Body>
+                <Card.Footer className="text-center">
+                  {stage.datedebut} - {stage.datefin}
+                </Card.Footer>
+              </Card>
+              <br />
+            </Col>
+          ))}
+        </Row>
+      </Container>
     </div>
   );
 };
@@ -239,7 +316,27 @@ const HomeEtu = () => {
         return res.json();
       })
       .then((mes) => {
-        return setData(mes.data);
+        let stages = [];
+        const options = {
+          year: 'numeric',
+          month: 'numeric',
+          day: 'numeric',
+        };
+        for (let i = 0; i < mes.data.length; i++) {
+          var a = new Date(mes.data[i].datedebut).toLocaleDateString(
+            undefined,
+            options
+          );
+          var b = new Date(mes.data[i].datefin).toLocaleDateString(
+            undefined,
+            options
+          );
+          stages[i] = mes.data[i];
+          stages[i].datedebut = a;
+          stages[i].datefin = b;
+        }
+        console.log(stages);
+        return setData(stages);
       });
   }, []);
 
@@ -282,23 +379,8 @@ const HomeEtu = () => {
     history.push('/newstage');
   }
 
-  const annee = [];
   let img = [img0, img1, img2, img3, img4, img5, img6, img7, img8, img9];
-  const options = {
-    year: 'numeric',
-    month: 'numeric',
-    day: 'numeric',
-  };
-  for (let i = 0; i < data.length; i++) {
-    var a = new Date(data[i].datedebut).toLocaleDateString(undefined, options);
-    var b = new Date(data[i].datefin).toLocaleDateString(undefined, options);
-    annee.push(
-      <p>
-        {a} - {b}
-      </p>
-    );
-  }
-  console.log(data);
+
   return (
     <div>
       <Container>
@@ -360,7 +442,7 @@ const HomeEtu = () => {
                   </a>
                 </Card.Body>
                 <Card.Footer className="text-center">
-                  {annee[stage.idstage - 1]}
+                  {stage.datedebut} - {stage.datefin}
                 </Card.Footer>
               </Card>
               <br />
@@ -398,7 +480,7 @@ const HomeEtu = () => {
                 </Button>
               </Card.Body>
               <Card.Footer className="text-center">
-                <p>25/12/2020 - 25/12/2021</p>
+                25/12/2020 - 25/12/2021
               </Card.Footer>
             </Card>
             <br />

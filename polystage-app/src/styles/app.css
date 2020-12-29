@@ -14,3 +14,7 @@ h3 {
 .addStage {
   opacity: 0.6;
 }
+
+.center {
+  margin: 0 auto;
+}

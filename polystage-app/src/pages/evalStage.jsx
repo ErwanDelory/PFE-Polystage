@@ -1,9 +1,14 @@
 import React from 'react';
+import { Container } from 'react-bootstrap';
 
 const EvalStage = () => {
   return (
     <div>
-      <p>Salut</p>
+      <Container>
+        <p>J'ai besoin de:</p>
+        <p>GET Catégories</p>
+        <p>GET Questions</p>
+      </Container>
     </div>
   );
 };
