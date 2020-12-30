@@ -1,0 +1,1540 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Free bootstrap documentation template">
+    <title>Polystage</title>
+    <!-- using online links -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://malihu.github.io/custom-scrollbar/jquery.mCustomScrollbar.min.css">
+    <!-- using local links -->
+    <link rel="stylesheet" href="css/main.min.css">
+    <link rel="stylesheet" href="css/sidebar-themes.min.css">
+    <link rel="stylesheet" href="css/bootstrap-treeview.min.css">
+    <link rel="stylesheet" href="css/postman.min.css">
+
+    <link rel="shortcut icon" type="image/png" href="img/favicon.png" /> </head>
+
+<body>
+    <div class="page-wrapper toggled light-theme">
+        <div class="modal dark-background" id="snippetModal" tabindex="-1" role="dialog" aria-labelledby="documentation-response-modal" style="display: none;">
+        <div class="modal-dialog" role="document">
+          <div class="modal-header">
+            <div class="title">Example Response</div>
+            <button type="button" class="close btn-circle" data-dismiss="modal" aria-label="Close">
+              <div>
+              <span id="closeModal" aria-hidden="true">×</span>
+              </div>
+            </button>
+          </div>
+          <div class="modal-content">
+            <div class="modal-body" style="width: 540.5px;">
+              <pre class="  language-javascript">
+                  <code class=" language-javascript"></code>
+              </pre>
+            </div>
+          </div>
+        </div>
+      </div>
+        <nav id="sidebar" class="sidebar-wrapper">
+            <div class="sidebar-content">
+                <!-- sidebar-brand  -->
+                <div class="sidebar-item sidebar-brand text-white font-weight-bold">API Documentation</div>
+                <!-- sidebar-header  -->
+                <!-- sidebar-menu  -->
+                <div class=" sidebar-item sidebar-menu">
+                    <div id="tree"></div>
+                </div>
+                <!-- sidebar-menu  -->
+            </div>
+        </nav>
+        <!-- page-content  -->
+        <main class="page-content">
+            <div id="overlay" class="overlay"></div>
+            <div class="container-fluid">
+                <div class="row d-flex align-items-center p-3 border-bottom">
+                    <div class="col-md-1">
+                        <a id="toggle-sidebar" class="btn rounded-0 p-3" href="#"> <i class="fas fa-bars"></i> </a>
+                    </div>
+                    <div class="col-md-9"></div>
+                    <div class="col-md-2 text-left">
+                    </div>
+                </div>
+                <div class="row p-lg-4">
+                    <article class="main-content col-md-12 pr-lg-9" id="doc-body">
+                        <div class="row row-no-padding row-eq-height">
+                            <div class="col-md-6 col-xs-12">
+                                <div class="api-information">
+                                    <div class="collection-name">
+                                        <p>Polystage</p>
+                                    </div>
+                                    <div class="collection-description">
+                                        <p>Api polystage</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row row-no-padding row-eq-height">
+                            <div class="col-md-6 col-xs-12 section">
+                                <div class="api-information" id="1">
+                                     <div class="heading">
+                                        <div class="name">
+                                            <span class="POST method" >POST</span>
+                                            http://localhost:5000/api/auth <span class="lock-icon"></span>
+                                        </div>
+                                     </div>
+                                    <div class="url">http://localhost:5000/api/auth</div>
+                                    
+                                    <div class="description request-description">
+                                        <p>Login request</p>
+                                    </div>
+                                    
+                                    <div class="request-body">
+                                        <div class="body-heading">BODY <span class="body-type">raw</span></div>
+                                        <hr>
+                                            <div class="raw-body code-snippet">
+                                              <pre class="body-block click-to-expand-wrapper is-snippet-wrapper " data-title="http://localhost:5000/api/auth">
+                                                  <code>
+                                                    
+{
+    "email": "root@root.fr",
+    "password": "root"
+}
+                                                  </code>
+                                              </pre>
+                                            </div>
+                                        
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-xs-12 examples">
+                                <div class="sample-request">
+                                    <div class="heading">
+                                        <span>Example Request</span>
+                                    </div>
+                                    <div class="responses-index">
+                                        <div class="dropdown response-name">
+                                            <button class="btn   responses-dropdown truncate" type="button" id="f678f251-1750-4e3a-b5d8-05b4c6b0fb37_dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                              <span id="selected" class="response-name-label">http://localhost:5000/api/auth</span>
+                                                <span class="caret"></span>
+
+                                            </button>
+
+                                            <ul class="dropdown-menu" aria-labelledby="f678f251-1750-4e3a-b5d8-05b4c6b0fb37_dropdown">
+                                                <li class="truncate" data-request-info="1" data-response-info="response_1">http://localhost:5000/api/auth</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="formatted-requests " data-request-id="1"  data-id="response_1">
+                                    <div class="request code-snippet">
+                                        <div>
+                                            <pre class="click-to-expand-wrapper is-snippet-wrapper " data-title="http://localhost:5000/api/auth">
+                                                <code class="is-highlighted">
+POST http://localhost:5000/api/auth
+
+{
+    "email": "root@root.fr",
+    "password": "root"
+}</code>
+                                            </pre>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <div class="row row-no-padding row-eq-height">
+                            <div class="col-md-6 col-xs-12 section">
+                                <div class="api-information" id="2">
+                                     <div class="heading">
+                                        <div class="name">
+                                            <span class="POST method" >POST</span>
+                                            http://localhost:5000/api/register <span class="lock-icon"></span>
+                                        </div>
+                                     </div>
+                                    <div class="url">http://localhost:5000/api/register</div>
+                                    
+                                    <div class="description request-description">
+                                        <p>Register request</p>
+                                    </div>
+                                    
+                                    <div class="request-body">
+                                        <div class="body-heading">BODY <span class="body-type">raw</span></div>
+                                        <hr>
+                                            <div class="raw-body code-snippet">
+                                              <pre class="body-block click-to-expand-wrapper is-snippet-wrapper is-expandable" data-title="http://localhost:5000/api/register">
+                                                  <code>
+                                                    
+{
+    "lastname": "Jean",
+    "firstname": "Claude",
+    "email": "jean.claude@jc.fr",
+    "password": "root",
+    "role": "Etudiant"
+}
+                                                  </code>
+                                              </pre>
+                                            </div>
+                                        
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-xs-12 examples">
+                                <div class="sample-request">
+                                    <div class="heading">
+                                        <span>Example Request</span>
+                                    </div>
+                                    <div class="responses-index">
+                                        <div class="dropdown response-name">
+                                            <button class="btn   responses-dropdown truncate" type="button" id="f678f251-1750-4e3a-b5d8-05b4c6b0fb37_dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                              <span id="selected" class="response-name-label">http://localhost:5000/api/register</span>
+                                                <span class="caret"></span>
+
+                                            </button>
+
+                                            <ul class="dropdown-menu" aria-labelledby="f678f251-1750-4e3a-b5d8-05b4c6b0fb37_dropdown">
+                                                <li class="truncate" data-request-info="2" data-response-info="response_2">http://localhost:5000/api/register</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="formatted-requests " data-request-id="2"  data-id="response_2">
+                                    <div class="request code-snippet">
+                                        <div>
+                                            <pre class="click-to-expand-wrapper is-snippet-wrapper " data-title="http://localhost:5000/api/register">
+                                                <code class="is-highlighted">
+POST http://localhost:5000/api/register
+
+{
+    "lastname": "Jean",
+    "firstname": "Claude",
+    "email": "jean.claude@jc.fr",
+    "password": "root",
+    "role": "Etudiant"
+}</code>
+                                            </pre>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <div class="row row-no-padding row-eq-height">
+                            <div class="col-md-6 col-xs-12 section">
+                                <div class="api-information" id="3">
+                                     <div class="heading">
+                                        <div class="name">
+                                            <span class="GET method" >GET</span>
+                                            http://localhost:5000/api/eleves <span class="lock-icon"></span>
+                                        </div>
+                                     </div>
+                                    <div class="url">http://localhost:5000/api/eleves</div>
+                                    
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-xs-12 examples">
+                                <div class="sample-request">
+                                    <div class="heading">
+                                        <span>Example Request</span>
+                                    </div>
+                                    <div class="responses-index">
+                                        <div class="dropdown response-name">
+                                            <button class="btn   responses-dropdown truncate" type="button" id="f678f251-1750-4e3a-b5d8-05b4c6b0fb37_dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                              <span id="selected" class="response-name-label">http://localhost:5000/api/eleves</span>
+                                                <span class="caret"></span>
+
+                                            </button>
+
+                                            <ul class="dropdown-menu" aria-labelledby="f678f251-1750-4e3a-b5d8-05b4c6b0fb37_dropdown">
+                                                <li class="truncate" data-request-info="3" data-response-info="response_3">http://localhost:5000/api/eleves</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="formatted-requests " data-request-id="3"  data-id="response_3">
+                                    <div class="request code-snippet">
+                                        <div>
+                                            <pre class="click-to-expand-wrapper is-snippet-wrapper " data-title="http://localhost:5000/api/eleves">
+                                                <code class="is-highlighted">
+GET http://localhost:5000/api/eleves</code>
+                                            </pre>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <div class="row row-no-padding row-eq-height">
+                            <div class="col-md-6 col-xs-12 section">
+                                <div class="api-information" id="4">
+                                     <div class="heading">
+                                        <div class="name">
+                                            <span class="GET method" >GET</span>
+                                            http://localhost:5000/api/eleve/{{eleveId}} <span class="lock-icon"></span>
+                                        </div>
+                                     </div>
+                                    <div class="url">http://localhost:5000/api/eleve/{{eleveId}}</div>
+                                    
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-xs-12 examples">
+                                <div class="sample-request">
+                                    <div class="heading">
+                                        <span>Example Request</span>
+                                    </div>
+                                    <div class="responses-index">
+                                        <div class="dropdown response-name">
+                                            <button class="btn   responses-dropdown truncate" type="button" id="f678f251-1750-4e3a-b5d8-05b4c6b0fb37_dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                              <span id="selected" class="response-name-label">http://localhost:5000/api/eleve/{{eleveId}}</span>
+                                                <span class="caret"></span>
+
+                                            </button>
+
+                                            <ul class="dropdown-menu" aria-labelledby="f678f251-1750-4e3a-b5d8-05b4c6b0fb37_dropdown">
+                                                <li class="truncate" data-request-info="4" data-response-info="response_4">http://localhost:5000/api/eleve/{{eleveId}}</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="formatted-requests " data-request-id="4"  data-id="response_4">
+                                    <div class="request code-snippet">
+                                        <div>
+                                            <pre class="click-to-expand-wrapper is-snippet-wrapper " data-title="http://localhost:5000/api/eleve/{{eleveId}}">
+                                                <code class="is-highlighted">
+GET http://localhost:5000/api/eleve/{{eleveId}}</code>
+                                            </pre>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <div class="row row-no-padding row-eq-height">
+                            <div class="col-md-6 col-xs-12 section">
+                                <div class="api-information" id="5">
+                                     <div class="heading">
+                                        <div class="name">
+                                            <span class="GET method" >GET</span>
+                                            http://localhost:5000/api/enseignants <span class="lock-icon"></span>
+                                        </div>
+                                     </div>
+                                    <div class="url">http://localhost:5000/api/enseignants</div>
+                                    
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-xs-12 examples">
+                                <div class="sample-request">
+                                    <div class="heading">
+                                        <span>Example Request</span>
+                                    </div>
+                                    <div class="responses-index">
+                                        <div class="dropdown response-name">
+                                            <button class="btn   responses-dropdown truncate" type="button" id="f678f251-1750-4e3a-b5d8-05b4c6b0fb37_dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                              <span id="selected" class="response-name-label">http://localhost:5000/api/enseignants</span>
+                                                <span class="caret"></span>
+
+                                            </button>
+
+                                            <ul class="dropdown-menu" aria-labelledby="f678f251-1750-4e3a-b5d8-05b4c6b0fb37_dropdown">
+                                                <li class="truncate" data-request-info="5" data-response-info="response_5">http://localhost:5000/api/enseignants</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="formatted-requests " data-request-id="5"  data-id="response_5">
+                                    <div class="request code-snippet">
+                                        <div>
+                                            <pre class="click-to-expand-wrapper is-snippet-wrapper " data-title="http://localhost:5000/api/enseignants">
+                                                <code class="is-highlighted">
+GET http://localhost:5000/api/enseignants</code>
+                                            </pre>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <div class="row row-no-padding row-eq-height">
+                            <div class="col-md-6 col-xs-12 section">
+                                <div class="api-information" id="6">
+                                     <div class="heading">
+                                        <div class="name">
+                                            <span class="GET method" >GET</span>
+                                            http://localhost:5000/api/tuteurs <span class="lock-icon"></span>
+                                        </div>
+                                     </div>
+                                    <div class="url">http://localhost:5000/api/tuteurs</div>
+                                    
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-xs-12 examples">
+                                <div class="sample-request">
+                                    <div class="heading">
+                                        <span>Example Request</span>
+                                    </div>
+                                    <div class="responses-index">
+                                        <div class="dropdown response-name">
+                                            <button class="btn   responses-dropdown truncate" type="button" id="f678f251-1750-4e3a-b5d8-05b4c6b0fb37_dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                              <span id="selected" class="response-name-label">http://localhost:5000/api/tuteurs</span>
+                                                <span class="caret"></span>
+
+                                            </button>
+
+                                            <ul class="dropdown-menu" aria-labelledby="f678f251-1750-4e3a-b5d8-05b4c6b0fb37_dropdown">
+                                                <li class="truncate" data-request-info="6" data-response-info="response_6">http://localhost:5000/api/tuteurs</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="formatted-requests " data-request-id="6"  data-id="response_6">
+                                    <div class="request code-snippet">
+                                        <div>
+                                            <pre class="click-to-expand-wrapper is-snippet-wrapper " data-title="http://localhost:5000/api/tuteurs">
+                                                <code class="is-highlighted">
+GET http://localhost:5000/api/tuteurs</code>
+                                            </pre>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <div class="row row-no-padding row-eq-height">
+                            <div class="col-md-6 col-xs-12 section">
+                                <div class="api-information" id="7">
+                                     <div class="heading">
+                                        <div class="name">
+                                            <span class="GET method" >GET</span>
+                                            http://localhost:5000/api/users <span class="lock-icon"></span>
+                                        </div>
+                                     </div>
+                                    <div class="url">http://localhost:5000/api/users</div>
+                                    
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-xs-12 examples">
+                                <div class="sample-request">
+                                    <div class="heading">
+                                        <span>Example Request</span>
+                                    </div>
+                                    <div class="responses-index">
+                                        <div class="dropdown response-name">
+                                            <button class="btn   responses-dropdown truncate" type="button" id="f678f251-1750-4e3a-b5d8-05b4c6b0fb37_dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                              <span id="selected" class="response-name-label">http://localhost:5000/api/users</span>
+                                                <span class="caret"></span>
+
+                                            </button>
+
+                                            <ul class="dropdown-menu" aria-labelledby="f678f251-1750-4e3a-b5d8-05b4c6b0fb37_dropdown">
+                                                <li class="truncate" data-request-info="7" data-response-info="response_7">http://localhost:5000/api/users</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="formatted-requests " data-request-id="7"  data-id="response_7">
+                                    <div class="request code-snippet">
+                                        <div>
+                                            <pre class="click-to-expand-wrapper is-snippet-wrapper " data-title="http://localhost:5000/api/users">
+                                                <code class="is-highlighted">
+GET http://localhost:5000/api/users</code>
+                                            </pre>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <div class="row row-no-padding row-eq-height">
+                            <div class="col-md-6 col-xs-12 section">
+                                <div class="api-information" id="8">
+                                     <div class="heading">
+                                        <div class="name">
+                                            <span class="GET method" >GET</span>
+                                            http://localhost:5000/api/user/{{userId}} <span class="lock-icon"></span>
+                                        </div>
+                                     </div>
+                                    <div class="url">http://localhost:5000/api/user/14</div>
+                                    
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-xs-12 examples">
+                                <div class="sample-request">
+                                    <div class="heading">
+                                        <span>Example Request</span>
+                                    </div>
+                                    <div class="responses-index">
+                                        <div class="dropdown response-name">
+                                            <button class="btn   responses-dropdown truncate" type="button" id="f678f251-1750-4e3a-b5d8-05b4c6b0fb37_dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                              <span id="selected" class="response-name-label">http://localhost:5000/api/user/{{userId}}</span>
+                                                <span class="caret"></span>
+
+                                            </button>
+
+                                            <ul class="dropdown-menu" aria-labelledby="f678f251-1750-4e3a-b5d8-05b4c6b0fb37_dropdown">
+                                                <li class="truncate" data-request-info="8" data-response-info="response_8">http://localhost:5000/api/user/{{userId}}</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="formatted-requests " data-request-id="8"  data-id="response_8">
+                                    <div class="request code-snippet">
+                                        <div>
+                                            <pre class="click-to-expand-wrapper is-snippet-wrapper " data-title="http://localhost:5000/api/user/{{userId}}">
+                                                <code class="is-highlighted">
+GET http://localhost:5000/api/user/14</code>
+                                            </pre>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <div class="row row-no-padding row-eq-height">
+                            <div class="col-md-6 col-xs-12 section">
+                                <div class="api-information" id="9">
+                                     <div class="heading">
+                                        <div class="name">
+                                            <span class="DELETE method" >DELETE</span>
+                                            http://localhost:5000/api/user/{{newUserId}} <span class="lock-icon"></span>
+                                        </div>
+                                     </div>
+                                    <div class="url">http://localhost:5000/api/user/{{newUserId}}</div>
+                                    
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-xs-12 examples">
+                                <div class="sample-request">
+                                    <div class="heading">
+                                        <span>Example Request</span>
+                                    </div>
+                                    <div class="responses-index">
+                                        <div class="dropdown response-name">
+                                            <button class="btn   responses-dropdown truncate" type="button" id="f678f251-1750-4e3a-b5d8-05b4c6b0fb37_dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                              <span id="selected" class="response-name-label">http://localhost:5000/api/user/{{newUserId}}</span>
+                                                <span class="caret"></span>
+
+                                            </button>
+
+                                            <ul class="dropdown-menu" aria-labelledby="f678f251-1750-4e3a-b5d8-05b4c6b0fb37_dropdown">
+                                                <li class="truncate" data-request-info="9" data-response-info="response_9">http://localhost:5000/api/user/{{newUserId}}</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="formatted-requests " data-request-id="9"  data-id="response_9">
+                                    <div class="request code-snippet">
+                                        <div>
+                                            <pre class="click-to-expand-wrapper is-snippet-wrapper " data-title="http://localhost:5000/api/user/{{newUserId}}">
+                                                <code class="is-highlighted">
+DELETE http://localhost:5000/api/user/{{newUserId}}</code>
+                                            </pre>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <div class="row row-no-padding row-eq-height">
+                            <div class="col-md-6 col-xs-12 section">
+                                <div class="api-information" id="10">
+                                     <div class="heading">
+                                        <div class="name">
+                                            <span class="GET method" >GET</span>
+                                            http://localhost:5000/api/stages <span class="lock-icon"></span>
+                                        </div>
+                                     </div>
+                                    <div class="url">http://localhost:5000/api/stages</div>
+                                    
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-xs-12 examples">
+                                <div class="sample-request">
+                                    <div class="heading">
+                                        <span>Example Request</span>
+                                    </div>
+                                    <div class="responses-index">
+                                        <div class="dropdown response-name">
+                                            <button class="btn   responses-dropdown truncate" type="button" id="f678f251-1750-4e3a-b5d8-05b4c6b0fb37_dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                              <span id="selected" class="response-name-label">http://localhost:5000/api/stages</span>
+                                                <span class="caret"></span>
+
+                                            </button>
+
+                                            <ul class="dropdown-menu" aria-labelledby="f678f251-1750-4e3a-b5d8-05b4c6b0fb37_dropdown">
+                                                <li class="truncate" data-request-info="10" data-response-info="response_10">http://localhost:5000/api/stages</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="formatted-requests " data-request-id="10"  data-id="response_10">
+                                    <div class="request code-snippet">
+                                        <div>
+                                            <pre class="click-to-expand-wrapper is-snippet-wrapper " data-title="http://localhost:5000/api/stages">
+                                                <code class="is-highlighted">
+GET http://localhost:5000/api/stages</code>
+                                            </pre>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <div class="row row-no-padding row-eq-height">
+                            <div class="col-md-6 col-xs-12 section">
+                                <div class="api-information" id="11">
+                                     <div class="heading">
+                                        <div class="name">
+                                            <span class="GET method" >GET</span>
+                                            http://localhost:5000/api/stage/{{stageId}} <span class="lock-icon"></span>
+                                        </div>
+                                     </div>
+                                    <div class="url">http://localhost:5000/api/stage/1</div>
+                                    
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-xs-12 examples">
+                                <div class="sample-request">
+                                    <div class="heading">
+                                        <span>Example Request</span>
+                                    </div>
+                                    <div class="responses-index">
+                                        <div class="dropdown response-name">
+                                            <button class="btn   responses-dropdown truncate" type="button" id="f678f251-1750-4e3a-b5d8-05b4c6b0fb37_dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                              <span id="selected" class="response-name-label">http://localhost:5000/api/stage/{{stageId}}</span>
+                                                <span class="caret"></span>
+
+                                            </button>
+
+                                            <ul class="dropdown-menu" aria-labelledby="f678f251-1750-4e3a-b5d8-05b4c6b0fb37_dropdown">
+                                                <li class="truncate" data-request-info="11" data-response-info="response_11">http://localhost:5000/api/stage/{{stageId}}</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="formatted-requests " data-request-id="11"  data-id="response_11">
+                                    <div class="request code-snippet">
+                                        <div>
+                                            <pre class="click-to-expand-wrapper is-snippet-wrapper " data-title="http://localhost:5000/api/stage/{{stageId}}">
+                                                <code class="is-highlighted">
+GET http://localhost:5000/api/stage/1</code>
+                                            </pre>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <div class="row row-no-padding row-eq-height">
+                            <div class="col-md-6 col-xs-12 section">
+                                <div class="api-information" id="12">
+                                     <div class="heading">
+                                        <div class="name">
+                                            <span class="GET method" >GET</span>
+                                            http://localhost:5000/api/rapport/{{stageId}} <span class="lock-icon"></span>
+                                        </div>
+                                     </div>
+                                    <div class="url">http://localhost:5000/api/rapport/{{stageId}}</div>
+                                    
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-xs-12 examples">
+                                <div class="sample-request">
+                                    <div class="heading">
+                                        <span>Example Request</span>
+                                    </div>
+                                    <div class="responses-index">
+                                        <div class="dropdown response-name">
+                                            <button class="btn   responses-dropdown truncate" type="button" id="f678f251-1750-4e3a-b5d8-05b4c6b0fb37_dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                              <span id="selected" class="response-name-label">http://localhost:5000/api/rapport/{{stageId}}</span>
+                                                <span class="caret"></span>
+
+                                            </button>
+
+                                            <ul class="dropdown-menu" aria-labelledby="f678f251-1750-4e3a-b5d8-05b4c6b0fb37_dropdown">
+                                                <li class="truncate" data-request-info="12" data-response-info="response_12">http://localhost:5000/api/rapport/{{stageId}}</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="formatted-requests " data-request-id="12"  data-id="response_12">
+                                    <div class="request code-snippet">
+                                        <div>
+                                            <pre class="click-to-expand-wrapper is-snippet-wrapper " data-title="http://localhost:5000/api/rapport/{{stageId}}">
+                                                <code class="is-highlighted">
+GET http://localhost:5000/api/rapport/{{stageId}}</code>
+                                            </pre>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <div class="row row-no-padding row-eq-height">
+                            <div class="col-md-6 col-xs-12 section">
+                                <div class="api-information" id="13">
+                                     <div class="heading">
+                                        <div class="name">
+                                            <span class="GET method" >GET</span>
+                                            http://localhost:5000/api/dlrapport/{{stageId}} <span class="lock-icon"></span>
+                                        </div>
+                                     </div>
+                                    <div class="url">http://localhost:5000/api/dlrapport/{{stageId}}</div>
+                                    
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-xs-12 examples">
+                                <div class="sample-request">
+                                    <div class="heading">
+                                        <span>Example Request</span>
+                                    </div>
+                                    <div class="responses-index">
+                                        <div class="dropdown response-name">
+                                            <button class="btn   responses-dropdown truncate" type="button" id="f678f251-1750-4e3a-b5d8-05b4c6b0fb37_dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                              <span id="selected" class="response-name-label">http://localhost:5000/api/dlrapport/{{stageId}}</span>
+                                                <span class="caret"></span>
+
+                                            </button>
+
+                                            <ul class="dropdown-menu" aria-labelledby="f678f251-1750-4e3a-b5d8-05b4c6b0fb37_dropdown">
+                                                <li class="truncate" data-request-info="13" data-response-info="response_13">http://localhost:5000/api/dlrapport/{{stageId}}</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="formatted-requests " data-request-id="13"  data-id="response_13">
+                                    <div class="request code-snippet">
+                                        <div>
+                                            <pre class="click-to-expand-wrapper is-snippet-wrapper " data-title="http://localhost:5000/api/dlrapport/{{stageId}}">
+                                                <code class="is-highlighted">
+GET http://localhost:5000/api/dlrapport/{{stageId}}</code>
+                                            </pre>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <div class="row row-no-padding row-eq-height">
+                            <div class="col-md-6 col-xs-12 section">
+                                <div class="api-information" id="14">
+                                     <div class="heading">
+                                        <div class="name">
+                                            <span class="PUT method" >PUT</span>
+                                            http://localhost:5000/api/editstage <span class="lock-icon"></span>
+                                        </div>
+                                     </div>
+                                    <div class="url">http://localhost:5000/api/editstage</div>
+                                    
+                                    <div class="request-body">
+                                        <div class="body-heading">BODY <span class="body-type">raw</span></div>
+                                        <hr>
+                                            <div class="raw-body code-snippet">
+                                              <pre class="body-block click-to-expand-wrapper is-snippet-wrapper is-expandable" data-title="http://localhost:5000/api/editstage">
+                                                  <code>
+                                                    
+{
+    "idstage": 1,
+    "titrestage": "Super Stage up",
+    "description": "Un stage de Kalitey up",
+    "niveau": "5",
+    "annee": 2019,
+    "datedebut": "2077-04-06T22:00:00.000Z",
+    "datefin": "2078-05-06T22:00:00.000Z",
+    "nomentreprise": "AIRBUS"
+}
+                                                  </code>
+                                              </pre>
+                                            </div>
+                                        
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-xs-12 examples">
+                                <div class="sample-request">
+                                    <div class="heading">
+                                        <span>Example Request</span>
+                                    </div>
+                                    <div class="responses-index">
+                                        <div class="dropdown response-name">
+                                            <button class="btn   responses-dropdown truncate" type="button" id="f678f251-1750-4e3a-b5d8-05b4c6b0fb37_dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                              <span id="selected" class="response-name-label">http://localhost:5000/api/editstage</span>
+                                                <span class="caret"></span>
+
+                                            </button>
+
+                                            <ul class="dropdown-menu" aria-labelledby="f678f251-1750-4e3a-b5d8-05b4c6b0fb37_dropdown">
+                                                <li class="truncate" data-request-info="14" data-response-info="response_14">http://localhost:5000/api/editstage</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="formatted-requests " data-request-id="14"  data-id="response_14">
+                                    <div class="request code-snippet">
+                                        <div>
+                                            <pre class="click-to-expand-wrapper is-snippet-wrapper is-expandable" data-title="http://localhost:5000/api/editstage">
+                                                <code class="is-highlighted">
+PUT http://localhost:5000/api/editstage
+
+{
+    "idstage": 1,
+    "titrestage": "Super Stage up",
+    "description": "Un stage de Kalitey up",
+    "niveau": "5",
+    "annee": 2019,
+    "datedebut": "2077-04-06T22:00:00.000Z",
+    "datefin": "2078-05-06T22:00:00.000Z",
+    "nomentreprise": "AIRBUS"
+}</code>
+                                            </pre>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <div class="row row-no-padding row-eq-height">
+                            <div class="col-md-6 col-xs-12 section">
+                                <div class="api-information" id="15">
+                                     <div class="heading">
+                                        <div class="name">
+                                            <span class="POST method" >POST</span>
+                                            http://localhost:5000/api/newstage <span class="lock-icon"></span>
+                                        </div>
+                                     </div>
+                                    <div class="url">http://localhost:5000/api/newstage</div>
+                                    
+                                    <div class="request-body">
+                                        <div class="body-heading">BODY <span class="body-type">raw</span></div>
+                                        <hr>
+                                            <div class="raw-body code-snippet">
+                                              <pre class="body-block click-to-expand-wrapper is-snippet-wrapper is-expandable" data-title="http://localhost:5000/api/newstage">
+                                                  <code>
+                                                    
+{
+    "ideleve": "3",
+    "niveau": "5",
+    "annee": "2021",
+    "idtuteur": "5",
+    "idens": "4",
+    "datedebut": "2020-12-31",
+    "datefin": "2021-01-13",
+    "titrestage": "Stage de Kalitey",
+    "description": "Un Stage de test",
+    "nomentreprise": "CGI",
+    "adressestage": "3 rue du test",
+    "adremailstage": "test@test.fr",
+    "cheminrapport": "cheminrapport",
+    "daterapport": "2021-01-30 00:00:00",
+    "cheminpres": "cheminpres",
+    "datepres": "2021-02-12 00:00:00",
+    "chemineval": "chemineval",
+    "dateeval": "2021-03-11 00:00:00",
+    "evallancee": "2021-02-01 00:00:00",
+    "confidentiel": "1",
+    "datelimiterendu": "2021-04-16",
+    "datelimiteeval": "2021-05-14",
+    "datesoutenance": "2021-10-16",
+    "datecomp": "2021-09-16",
+    "chemincomp": "chemincomp"
+
+}
+                                                  </code>
+                                              </pre>
+                                            </div>
+                                        
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-xs-12 examples">
+                                <div class="sample-request">
+                                    <div class="heading">
+                                        <span>Example Request</span>
+                                    </div>
+                                    <div class="responses-index">
+                                        <div class="dropdown response-name">
+                                            <button class="btn   responses-dropdown truncate" type="button" id="f678f251-1750-4e3a-b5d8-05b4c6b0fb37_dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                              <span id="selected" class="response-name-label">http://localhost:5000/api/newstage</span>
+                                                <span class="caret"></span>
+
+                                            </button>
+
+                                            <ul class="dropdown-menu" aria-labelledby="f678f251-1750-4e3a-b5d8-05b4c6b0fb37_dropdown">
+                                                <li class="truncate" data-request-info="15" data-response-info="response_15">http://localhost:5000/api/newstage</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="formatted-requests " data-request-id="15"  data-id="response_15">
+                                    <div class="request code-snippet">
+                                        <div>
+                                            <pre class="click-to-expand-wrapper is-snippet-wrapper is-expandable" data-title="http://localhost:5000/api/newstage">
+                                                <code class="is-highlighted">
+POST http://localhost:5000/api/newstage
+
+{
+    "ideleve": "3",
+    "niveau": "5",
+    "annee": "2021",
+    "idtuteur": "5",
+    "idens": "4",
+    "datedebut": "2020-12-31",
+    "datefin": "2021-01-13",
+    "titrestage": "Stage de Kalitey",
+    "description": "Un Stage de test",
+    "nomentreprise": "CGI",
+    "adressestage": "3 rue du test",
+    "adremailstage": "test@test.fr",
+    "cheminrapport": "cheminrapport",
+    "daterapport": "2021-01-30 00:00:00",
+    "cheminpres": "cheminpres",
+    "datepres": "2021-02-12 00:00:00",
+    "chemineval": "chemineval",
+    "dateeval": "2021-03-11 00:00:00",
+    "evallancee": "2021-02-01 00:00:00",
+    "confidentiel": "1",
+    "datelimiterendu": "2021-04-16",
+    "datelimiteeval": "2021-05-14",
+    "datesoutenance": "2021-10-16",
+    "datecomp": "2021-09-16",
+    "chemincomp": "chemincomp"
+
+}</code>
+                                            </pre>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <div class="row row-no-padding row-eq-height">
+                            <div class="col-md-6 col-xs-12 section">
+                                <div class="api-information" id="16">
+                                     <div class="heading">
+                                        <div class="name">
+                                            <span class="DELETE method" >DELETE</span>
+                                            http://localhost:5000/api/stage/{{newStageId}} <span class="lock-icon"></span>
+                                        </div>
+                                     </div>
+                                    <div class="url">http://localhost:5000/api/stage/{{newStageId}}</div>
+                                    
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-xs-12 examples">
+                                <div class="sample-request">
+                                    <div class="heading">
+                                        <span>Example Request</span>
+                                    </div>
+                                    <div class="responses-index">
+                                        <div class="dropdown response-name">
+                                            <button class="btn   responses-dropdown truncate" type="button" id="f678f251-1750-4e3a-b5d8-05b4c6b0fb37_dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                              <span id="selected" class="response-name-label">http://localhost:5000/api/stage/{{newStageId}}</span>
+                                                <span class="caret"></span>
+
+                                            </button>
+
+                                            <ul class="dropdown-menu" aria-labelledby="f678f251-1750-4e3a-b5d8-05b4c6b0fb37_dropdown">
+                                                <li class="truncate" data-request-info="16" data-response-info="response_16">http://localhost:5000/api/stage/{{newStageId}}</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="formatted-requests " data-request-id="16"  data-id="response_16">
+                                    <div class="request code-snippet">
+                                        <div>
+                                            <pre class="click-to-expand-wrapper is-snippet-wrapper " data-title="http://localhost:5000/api/stage/{{newStageId}}">
+                                                <code class="is-highlighted">
+DELETE http://localhost:5000/api/stage/{{newStageId}}</code>
+                                            </pre>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <div class="row row-no-padding row-eq-height">
+                            <div class="col-md-6 col-xs-12 section">
+                                <div class="api-information" id="17">
+                                     <div class="heading">
+                                        <div class="name">
+                                            <span class="GET method" >GET</span>
+                                            http://localhost:5000/api/questions <span class="lock-icon"></span>
+                                        </div>
+                                     </div>
+                                    <div class="url">http://localhost:5000/api//questions</div>
+                                    
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-xs-12 examples">
+                                <div class="sample-request">
+                                    <div class="heading">
+                                        <span>Example Request</span>
+                                    </div>
+                                    <div class="responses-index">
+                                        <div class="dropdown response-name">
+                                            <button class="btn   responses-dropdown truncate" type="button" id="f678f251-1750-4e3a-b5d8-05b4c6b0fb37_dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                              <span id="selected" class="response-name-label">http://localhost:5000/api/questions</span>
+                                                <span class="caret"></span>
+
+                                            </button>
+
+                                            <ul class="dropdown-menu" aria-labelledby="f678f251-1750-4e3a-b5d8-05b4c6b0fb37_dropdown">
+                                                <li class="truncate" data-request-info="17" data-response-info="response_17">http://localhost:5000/api/questions</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="formatted-requests " data-request-id="17"  data-id="response_17">
+                                    <div class="request code-snippet">
+                                        <div>
+                                            <pre class="click-to-expand-wrapper is-snippet-wrapper " data-title="http://localhost:5000/api/questions">
+                                                <code class="is-highlighted">
+GET http://localhost:5000/api//questions</code>
+                                            </pre>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <div class="row row-no-padding row-eq-height">
+                            <div class="col-md-6 col-xs-12 section">
+                                <div class="api-information" id="18">
+                                     <div class="heading">
+                                        <div class="name">
+                                            <span class="GET method" >GET</span>
+                                            http://localhost:5000/api/competences <span class="lock-icon"></span>
+                                        </div>
+                                     </div>
+                                    <div class="url">http://localhost:5000/api/competences</div>
+                                    
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-xs-12 examples">
+                                <div class="sample-request">
+                                    <div class="heading">
+                                        <span>Example Request</span>
+                                    </div>
+                                    <div class="responses-index">
+                                        <div class="dropdown response-name">
+                                            <button class="btn   responses-dropdown truncate" type="button" id="f678f251-1750-4e3a-b5d8-05b4c6b0fb37_dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                              <span id="selected" class="response-name-label">http://localhost:5000/api/competences</span>
+                                                <span class="caret"></span>
+
+                                            </button>
+
+                                            <ul class="dropdown-menu" aria-labelledby="f678f251-1750-4e3a-b5d8-05b4c6b0fb37_dropdown">
+                                                <li class="truncate" data-request-info="18" data-response-info="response_18">http://localhost:5000/api/competences</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="formatted-requests " data-request-id="18"  data-id="response_18">
+                                    <div class="request code-snippet">
+                                        <div>
+                                            <pre class="click-to-expand-wrapper is-snippet-wrapper " data-title="http://localhost:5000/api/competences">
+                                                <code class="is-highlighted">
+GET http://localhost:5000/api/competences</code>
+                                            </pre>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <div class="row row-no-padding row-eq-height">
+                            <div class="col-md-6 col-xs-12 section">
+                                <div class="api-information" id="19">
+                                     <div class="heading">
+                                        <div class="name">
+                                            <span class="GET method" >GET</span>
+                                            http://localhost:5000/api/retardeleve <span class="lock-icon"></span>
+                                        </div>
+                                     </div>
+                                    <div class="url">http://localhost:5000/api/retardeleve</div>
+                                    
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-xs-12 examples">
+                                <div class="sample-request">
+                                    <div class="heading">
+                                        <span>Example Request</span>
+                                    </div>
+                                    <div class="responses-index">
+                                        <div class="dropdown response-name">
+                                            <button class="btn   responses-dropdown truncate" type="button" id="f678f251-1750-4e3a-b5d8-05b4c6b0fb37_dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                              <span id="selected" class="response-name-label">http://localhost:5000/api/retardeleve</span>
+                                                <span class="caret"></span>
+
+                                            </button>
+
+                                            <ul class="dropdown-menu" aria-labelledby="f678f251-1750-4e3a-b5d8-05b4c6b0fb37_dropdown">
+                                                <li class="truncate" data-request-info="19" data-response-info="response_19">http://localhost:5000/api/retardeleve</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="formatted-requests " data-request-id="19"  data-id="response_19">
+                                    <div class="request code-snippet">
+                                        <div>
+                                            <pre class="click-to-expand-wrapper is-snippet-wrapper " data-title="http://localhost:5000/api/retardeleve">
+                                                <code class="is-highlighted">
+GET http://localhost:5000/api/retardeleve</code>
+                                            </pre>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <div class="row row-no-padding row-eq-height">
+                            <div class="col-md-6 col-xs-12 section">
+                                <div class="api-information" id="20">
+                                     <div class="heading">
+                                        <div class="name">
+                                            <span class="GET method" >GET</span>
+                                            http://localhost:5000/api/retardtuteur <span class="lock-icon"></span>
+                                        </div>
+                                     </div>
+                                    <div class="url">http://localhost:5000/api/retardtuteur</div>
+                                    
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-xs-12 examples">
+                                <div class="sample-request">
+                                    <div class="heading">
+                                        <span>Example Request</span>
+                                    </div>
+                                    <div class="responses-index">
+                                        <div class="dropdown response-name">
+                                            <button class="btn   responses-dropdown truncate" type="button" id="f678f251-1750-4e3a-b5d8-05b4c6b0fb37_dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                              <span id="selected" class="response-name-label">http://localhost:5000/api/retardtuteur</span>
+                                                <span class="caret"></span>
+
+                                            </button>
+
+                                            <ul class="dropdown-menu" aria-labelledby="f678f251-1750-4e3a-b5d8-05b4c6b0fb37_dropdown">
+                                                <li class="truncate" data-request-info="20" data-response-info="response_20">http://localhost:5000/api/retardtuteur</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="formatted-requests " data-request-id="20"  data-id="response_20">
+                                    <div class="request code-snippet">
+                                        <div>
+                                            <pre class="click-to-expand-wrapper is-snippet-wrapper " data-title="http://localhost:5000/api/retardtuteur">
+                                                <code class="is-highlighted">
+GET http://localhost:5000/api/retardtuteur</code>
+                                            </pre>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <div class="row row-no-padding row-eq-height">
+                            <div class="col-md-6 col-xs-12 section">
+                                <div class="api-information" id="21">
+                                     <div class="heading">
+                                        <div class="name">
+                                            <span class="POST method" >POST</span>
+                                            http://localhost:5000/api/retardeleve <span class="lock-icon"></span>
+                                        </div>
+                                     </div>
+                                    <div class="url">http://localhost:5000/api/retardeleve</div>
+                                    
+                                    <div class="request-body">
+                                        <div class="body-heading">BODY <span class="body-type">raw</span></div>
+                                        <hr>
+                                            <div class="raw-body code-snippet">
+                                              <pre class="body-block click-to-expand-wrapper is-snippet-wrapper " data-title="http://localhost:5000/api/retardeleve">
+                                                  <code>
+                                                    
+{
+    "iduti": {{eleveId}},
+    "mailenvoye": "1",
+    "rapport": "1",
+    "presentation": "1",
+    "autoeval": "1"
+}
+                                                  </code>
+                                              </pre>
+                                            </div>
+                                        
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-xs-12 examples">
+                                <div class="sample-request">
+                                    <div class="heading">
+                                        <span>Example Request</span>
+                                    </div>
+                                    <div class="responses-index">
+                                        <div class="dropdown response-name">
+                                            <button class="btn   responses-dropdown truncate" type="button" id="f678f251-1750-4e3a-b5d8-05b4c6b0fb37_dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                              <span id="selected" class="response-name-label">http://localhost:5000/api/retardeleve</span>
+                                                <span class="caret"></span>
+
+                                            </button>
+
+                                            <ul class="dropdown-menu" aria-labelledby="f678f251-1750-4e3a-b5d8-05b4c6b0fb37_dropdown">
+                                                <li class="truncate" data-request-info="21" data-response-info="response_21">http://localhost:5000/api/retardeleve</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="formatted-requests " data-request-id="21"  data-id="response_21">
+                                    <div class="request code-snippet">
+                                        <div>
+                                            <pre class="click-to-expand-wrapper is-snippet-wrapper " data-title="http://localhost:5000/api/retardeleve">
+                                                <code class="is-highlighted">
+POST http://localhost:5000/api/retardeleve
+
+{
+    "iduti": {{eleveId}},
+    "mailenvoye": "1",
+    "rapport": "1",
+    "presentation": "1",
+    "autoeval": "1"
+}</code>
+                                            </pre>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <div class="row row-no-padding row-eq-height">
+                            <div class="col-md-6 col-xs-12 section">
+                                <div class="api-information" id="22">
+                                     <div class="heading">
+                                        <div class="name">
+                                            <span class="POST method" >POST</span>
+                                            http://localhost:5000/api/retardtuteur <span class="lock-icon"></span>
+                                        </div>
+                                     </div>
+                                    <div class="url">http://localhost:5000/api/retardtuteur</div>
+                                    
+                                    <div class="request-body">
+                                        <div class="body-heading">BODY <span class="body-type">raw</span></div>
+                                        <hr>
+                                            <div class="raw-body code-snippet">
+                                              <pre class="body-block click-to-expand-wrapper is-snippet-wrapper " data-title="http://localhost:5000/api/retardtuteur">
+                                                  <code>
+                                                    
+{
+    "iduti": {{tuteurId}},
+    "mailenvoye": "1"
+}
+                                                  </code>
+                                              </pre>
+                                            </div>
+                                        
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-xs-12 examples">
+                                <div class="sample-request">
+                                    <div class="heading">
+                                        <span>Example Request</span>
+                                    </div>
+                                    <div class="responses-index">
+                                        <div class="dropdown response-name">
+                                            <button class="btn   responses-dropdown truncate" type="button" id="f678f251-1750-4e3a-b5d8-05b4c6b0fb37_dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                              <span id="selected" class="response-name-label">http://localhost:5000/api/retardtuteur</span>
+                                                <span class="caret"></span>
+
+                                            </button>
+
+                                            <ul class="dropdown-menu" aria-labelledby="f678f251-1750-4e3a-b5d8-05b4c6b0fb37_dropdown">
+                                                <li class="truncate" data-request-info="22" data-response-info="response_22">http://localhost:5000/api/retardtuteur</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="formatted-requests " data-request-id="22"  data-id="response_22">
+                                    <div class="request code-snippet">
+                                        <div>
+                                            <pre class="click-to-expand-wrapper is-snippet-wrapper " data-title="http://localhost:5000/api/retardtuteur">
+                                                <code class="is-highlighted">
+POST http://localhost:5000/api/retardtuteur
+
+{
+    "iduti": {{tuteurId}},
+    "mailenvoye": "1"
+}</code>
+                                            </pre>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <div class="row row-no-padding row-eq-height">
+                            <div class="col-md-6 col-xs-12 section">
+                                <div class="api-information" id="23">
+                                     <div class="heading">
+                                        <div class="name">
+                                            <span class="PATCH method" >PATCH</span>
+                                            http://localhost:5000/api/retardtuteur/{{tuteurId}} <span class="lock-icon"></span>
+                                        </div>
+                                     </div>
+                                    <div class="url">http://localhost:5000/api/retardtuteur/5</div>
+                                    
+                                    <div class="request-body">
+                                        <div class="body-heading">BODY <span class="body-type">raw</span></div>
+                                        <hr>
+                                            <div class="raw-body code-snippet">
+                                              <pre class="body-block click-to-expand-wrapper is-snippet-wrapper " data-title="http://localhost:5000/api/retardtuteur/{{tuteurId}}">
+                                                  <code>
+                                                    
+{
+    "mailenvoye": "1"
+}
+                                                  </code>
+                                              </pre>
+                                            </div>
+                                        
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-xs-12 examples">
+                                <div class="sample-request">
+                                    <div class="heading">
+                                        <span>Example Request</span>
+                                    </div>
+                                    <div class="responses-index">
+                                        <div class="dropdown response-name">
+                                            <button class="btn   responses-dropdown truncate" type="button" id="f678f251-1750-4e3a-b5d8-05b4c6b0fb37_dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                              <span id="selected" class="response-name-label">http://localhost:5000/api/retardtuteur/{{tuteurId}}</span>
+                                                <span class="caret"></span>
+
+                                            </button>
+
+                                            <ul class="dropdown-menu" aria-labelledby="f678f251-1750-4e3a-b5d8-05b4c6b0fb37_dropdown">
+                                                <li class="truncate" data-request-info="23" data-response-info="response_23">http://localhost:5000/api/retardtuteur/{{tuteurId}}</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="formatted-requests " data-request-id="23"  data-id="response_23">
+                                    <div class="request code-snippet">
+                                        <div>
+                                            <pre class="click-to-expand-wrapper is-snippet-wrapper " data-title="http://localhost:5000/api/retardtuteur/{{tuteurId}}">
+                                                <code class="is-highlighted">
+PATCH http://localhost:5000/api/retardtuteur/5
+
+{
+    "mailenvoye": "1"
+}</code>
+                                            </pre>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <div class="row row-no-padding row-eq-height">
+                            <div class="col-md-6 col-xs-12 section">
+                                <div class="api-information" id="24">
+                                     <div class="heading">
+                                        <div class="name">
+                                            <span class="PATCH method" >PATCH</span>
+                                            http://localhost:5000/api/retardeleve/{{eleveId}} <span class="lock-icon"></span>
+                                        </div>
+                                     </div>
+                                    <div class="url">http://localhost:5000/api/retardeleve/{{eleveId}}</div>
+                                    
+                                    <div class="request-body">
+                                        <div class="body-heading">BODY <span class="body-type">raw</span></div>
+                                        <hr>
+                                            <div class="raw-body code-snippet">
+                                              <pre class="body-block click-to-expand-wrapper is-snippet-wrapper " data-title="http://localhost:5000/api/retardeleve/{{eleveId}}">
+                                                  <code>
+                                                    
+{
+    "mailenvoye": "0",
+    "rapport": "0",
+    "presentation": "1",
+    "autoeval": "0"
+}
+                                                  </code>
+                                              </pre>
+                                            </div>
+                                        
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-xs-12 examples">
+                                <div class="sample-request">
+                                    <div class="heading">
+                                        <span>Example Request</span>
+                                    </div>
+                                    <div class="responses-index">
+                                        <div class="dropdown response-name">
+                                            <button class="btn   responses-dropdown truncate" type="button" id="f678f251-1750-4e3a-b5d8-05b4c6b0fb37_dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                              <span id="selected" class="response-name-label">http://localhost:5000/api/retardeleve/{{eleveId}}</span>
+                                                <span class="caret"></span>
+
+                                            </button>
+
+                                            <ul class="dropdown-menu" aria-labelledby="f678f251-1750-4e3a-b5d8-05b4c6b0fb37_dropdown">
+                                                <li class="truncate" data-request-info="24" data-response-info="response_24">http://localhost:5000/api/retardeleve/{{eleveId}}</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="formatted-requests " data-request-id="24"  data-id="response_24">
+                                    <div class="request code-snippet">
+                                        <div>
+                                            <pre class="click-to-expand-wrapper is-snippet-wrapper " data-title="http://localhost:5000/api/retardeleve/{{eleveId}}">
+                                                <code class="is-highlighted">
+PATCH http://localhost:5000/api/retardeleve/{{eleveId}}
+
+{
+    "mailenvoye": "0",
+    "rapport": "0",
+    "presentation": "1",
+    "autoeval": "0"
+}</code>
+                                            </pre>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <div class="row row-no-padding row-eq-height">
+                            <div class="col-md-6 col-xs-12 section">
+                                <div class="api-information" id="25">
+                                     <div class="heading">
+                                        <div class="name">
+                                            <span class="DELETE method" >DELETE</span>
+                                            http://localhost:5000/api/retardtuteur/{{tuteurId}} <span class="lock-icon"></span>
+                                        </div>
+                                     </div>
+                                    <div class="url">http://localhost:5000/api/retardtuteur/5</div>
+                                    
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-xs-12 examples">
+                                <div class="sample-request">
+                                    <div class="heading">
+                                        <span>Example Request</span>
+                                    </div>
+                                    <div class="responses-index">
+                                        <div class="dropdown response-name">
+                                            <button class="btn   responses-dropdown truncate" type="button" id="f678f251-1750-4e3a-b5d8-05b4c6b0fb37_dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                              <span id="selected" class="response-name-label">http://localhost:5000/api/retardtuteur/{{tuteurId}}</span>
+                                                <span class="caret"></span>
+
+                                            </button>
+
+                                            <ul class="dropdown-menu" aria-labelledby="f678f251-1750-4e3a-b5d8-05b4c6b0fb37_dropdown">
+                                                <li class="truncate" data-request-info="25" data-response-info="response_25">http://localhost:5000/api/retardtuteur/{{tuteurId}}</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="formatted-requests " data-request-id="25"  data-id="response_25">
+                                    <div class="request code-snippet">
+                                        <div>
+                                            <pre class="click-to-expand-wrapper is-snippet-wrapper " data-title="http://localhost:5000/api/retardtuteur/{{tuteurId}}">
+                                                <code class="is-highlighted">
+DELETE http://localhost:5000/api/retardtuteur/5</code>
+                                            </pre>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <div class="row row-no-padding row-eq-height">
+                            <div class="col-md-6 col-xs-12 section">
+                                <div class="api-information" id="26">
+                                     <div class="heading">
+                                        <div class="name">
+                                            <span class="DELETE method" >DELETE</span>
+                                            http://localhost:5000/api/retardeleve/{{eleveId}} <span class="lock-icon"></span>
+                                        </div>
+                                     </div>
+                                    <div class="url">http://localhost:5000/api/retardeleve/{{eleveId}}</div>
+                                    
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-xs-12 examples">
+                                <div class="sample-request">
+                                    <div class="heading">
+                                        <span>Example Request</span>
+                                    </div>
+                                    <div class="responses-index">
+                                        <div class="dropdown response-name">
+                                            <button class="btn   responses-dropdown truncate" type="button" id="f678f251-1750-4e3a-b5d8-05b4c6b0fb37_dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                              <span id="selected" class="response-name-label">http://localhost:5000/api/retardeleve/{{eleveId}}</span>
+                                                <span class="caret"></span>
+
+                                            </button>
+
+                                            <ul class="dropdown-menu" aria-labelledby="f678f251-1750-4e3a-b5d8-05b4c6b0fb37_dropdown">
+                                                <li class="truncate" data-request-info="26" data-response-info="response_26">http://localhost:5000/api/retardeleve/{{eleveId}}</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="formatted-requests " data-request-id="26"  data-id="response_26">
+                                    <div class="request code-snippet">
+                                        <div>
+                                            <pre class="click-to-expand-wrapper is-snippet-wrapper " data-title="http://localhost:5000/api/retardeleve/{{eleveId}}">
+                                                <code class="is-highlighted">
+DELETE http://localhost:5000/api/retardeleve/{{eleveId}}</code>
+                                            </pre>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </main>
+        <!-- page-content" -->
+    </div>
+    <!-- page-wrapper -->
+    <!-- using online scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous">
+    </script>
+    <script src="https://malihu.github.io/custom-scrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="js/bootstrap-treeview.min.js"></script>
+    <script src="js/main.min.js"></script>
+    <script type="application/javascript">
+        var data = [{'text': 'Authentification', 'nodes': [{'text': 'http://localhost:5000/api/auth', 'href': '#1', 'method': 'POST'}, {'text': 'http://localhost:5000/api/register', 'href': '#2', 'method': 'POST'}], 'icon': 'fas fa-folder', 'selectable': 'false'}, {'text': 'Users', 'nodes': [{'text': 'http://localhost:5000/api/eleves', 'href': '#3', 'method': 'GET'}, {'text': 'http://localhost:5000/api/eleve/{{eleveId}}', 'href': '#4', 'method': 'GET'}, {'text': 'http://localhost:5000/api/enseignants', 'href': '#5', 'method': 'GET'}, {'text': 'http://localhost:5000/api/tuteurs', 'href': '#6', 'method': 'GET'}, {'text': 'http://localhost:5000/api/users', 'href': '#7', 'method': 'GET'}, {'text': 'http://localhost:5000/api/user/{{userId}}', 'href': '#8', 'method': 'GET'}, {'text': 'http://localhost:5000/api/user/{{newUserId}}', 'href': '#9', 'method': 'DELETE'}], 'icon': 'fas fa-folder', 'selectable': 'false'}, {'text': 'Stages', 'nodes': [{'text': 'http://localhost:5000/api/stages', 'href': '#10', 'method': 'GET'}, {'text': 'http://localhost:5000/api/stage/{{stageId}}', 'href': '#11', 'method': 'GET'}, {'text': 'http://localhost:5000/api/rapport/{{stageId}}', 'href': '#12', 'method': 'GET'}, {'text': 'http://localhost:5000/api/dlrapport/{{stageId}}', 'href': '#13', 'method': 'GET'}, {'text': 'http://localhost:5000/api/editstage', 'href': '#14', 'method': 'PUT'}, {'text': 'http://localhost:5000/api/newstage', 'href': '#15', 'method': 'POST'}, {'text': 'http://localhost:5000/api/stage/{{newStageId}}', 'href': '#16', 'method': 'DELETE'}], 'icon': 'fas fa-folder', 'selectable': 'false'}, {'text': 'Questions', 'nodes': [{'text': 'http://localhost:5000/api/questions', 'href': '#17', 'method': 'GET'}, {'text': 'http://localhost:5000/api/competences', 'href': '#18', 'method': 'GET'}], 'icon': 'fas fa-folder', 'selectable': 'false'}, {'text': 'Retard', 'nodes': [{'text': 'http://localhost:5000/api/retardeleve', 'href': '#19', 'method': 'GET'}, {'text': 'http://localhost:5000/api/retardtuteur', 'href': '#20', 'method': 'GET'}, {'text': 'http://localhost:5000/api/retardeleve', 'href': '#21', 'method': 'POST'}, {'text': 'http://localhost:5000/api/retardtuteur', 'href': '#22', 'method': 'POST'}, {'text': 'http://localhost:5000/api/retardtuteur/{{tuteurId}}', 'href': '#23', 'method': 'PATCH'}, {'text': 'http://localhost:5000/api/retardeleve/{{eleveId}}', 'href': '#24', 'method': 'PATCH'}, {'text': 'http://localhost:5000/api/retardtuteur/{{tuteurId}}', 'href': '#25', 'method': 'DELETE'}, {'text': 'http://localhost:5000/api/retardeleve/{{eleveId}}', 'href': '#26', 'method': 'DELETE'}], 'icon': 'fas fa-folder', 'selectable': 'false'}]
+        $('#tree').treeview({
+            data: data,
+            levels: 10,
+            expandIcon: 'fas fa-caret-right',
+            collapseIcon: 'fas fa-caret-down',
+            enableLinks: true,
+            showIcon: true,
+            showMethod: true
+        });
+    </script>
+
+</body>
+
+</html>
