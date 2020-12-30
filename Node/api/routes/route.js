@@ -3,7 +3,6 @@ const authentificationControllers = require("../controllers/authentificationCont
 const registerController = require("../controllers/registerController");
 const userControllers = require("../controllers/userController");
 const stageControllers = require("../controllers/stageController");
-const entrepriseControllers = require("../controllers/entrepriseController");
 const questionControllers = require("../controllers/questionController");
 const retardControllers = require("../controllers/retardController");
 
@@ -21,22 +20,23 @@ router.get("/eleve/:id", userControllers.getEleveById);
 
 router.get("/enseignants", userControllers.getEnseignants);
 router.get("/tuteurs", userControllers.getTuteurs);
+
 router.get("/users", userControllers.getUsers);
 router.get("/user/:id", userControllers.getUserById);
+router.delete("/user/:id", userControllers.deleteUser);
 
 //Stage Controller
 router.post("/newstage", stageControllers.createStage);
 router.put("/editstage", stageControllers.editStage);
+router.delete("/stage/:sid", stageControllers.deleteStage);
 router.get("/stages", stageControllers.getStage);
 router.get("/stage/:id", stageControllers.getStageById);
 router.get("/rapport/:id", stageControllers.getRapportStageById);
 router.get("/dlrapport/:id", stageControllers.dlRapportStageById);
 
-//Entreprise Controller
-router.get("/entreprise/:id", entrepriseControllers.getEntrepriseById);
-
 //Question Controller
 router.get("/questions", questionControllers.getQuestions);
+router.get("/competences", questionControllers.getCompetences);
 
 //Competence Controller
 

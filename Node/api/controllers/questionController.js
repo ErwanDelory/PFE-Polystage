@@ -23,4 +23,13 @@ function newQuestion(req, res, next) {
 		res.status(200).json({ message: "Ok .", data: result });
 	});
 }*/
+
+function getCompetences(req, res, next) {
+	let query = `SELECT * from competences`;
+	db.query(query, (err, result) => {
+		if (err) throw err;
+		res.status(200).json({ message: "Ok .", data: result });
+	});
+}
 exports.getQuestions = getQuestions;
+exports.getCompetences = getCompetences;

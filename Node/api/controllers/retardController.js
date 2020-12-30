@@ -79,7 +79,7 @@ function deleteRetardTuteur(req, res, next) {
 
 function updateRetardTuteur(req, res, next) {
 	let query = `UPDATE retardtuteur SET mailenvoye = ${req.body.mailenvoye} 
-    WHERE retardeleve.iduti = ${req.params.iduti};`;
+    WHERE retardtuteur.iduti = ${req.params.iduti};`;
 	db.query(query, (err, result) => {
 		if (err) throw err;
 

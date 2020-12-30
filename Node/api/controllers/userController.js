@@ -59,6 +59,18 @@ function getUserById(req, res, next) {
 	});
 }
 
+function deleteUser(req, res) {
+	let query = `DELETE FROM utilisateur WHERE utilisateur.id = ${req.params.id}`;
+
+	db.query(query, (err, result) => {
+		if (err) throw err;
+
+		return res.status(200).json({
+			message: "User Deleted.",
+		});
+	});
+}
+
 exports.getEleves = getEleves;
 exports.getEleveById = getEleveById;
 
@@ -67,3 +79,4 @@ exports.getTuteurs = getTuteurs;
 
 exports.getUsers = getUsers;
 exports.getUserById = getUserById;
+exports.deleteUser = deleteUser;
