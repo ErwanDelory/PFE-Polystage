@@ -10,6 +10,9 @@ import Edit from './pages/edit';
 import NavbarPolystage from './components/navbar';
 import { AuthContext } from './context/auth';
 import NewStage from './pages/newStage';
+import Admin from './pages/admin';
+import EvalStage from './pages/evalStage';
+import EvalCompetences from './pages/evalCompetences';
 
 const App = () => {
   //Ici il faut faire passer le sessionStorage token dans une fonction check token pour voir si il est encore valide (expiré et qu'il appartient au bon utilisateur)
@@ -30,6 +33,11 @@ const App = () => {
           <PrivateRoute exact path="/register" component={Register} />
           <PrivateRoute exact path="/edit" component={Edit} />
           <PrivateRoute exact path="/newstage" component={NewStage} />
+          {sessionStorage.getItem('role') === 'Admin' && (
+            <PrivateRoute exact path="/admin" component={Admin} />
+          )}
+          <PrivateRoute exact path="/evalstage" component={EvalStage} />
+          <PrivateRoute exact path="/evalcomp" component={EvalCompetences} />
           <Route exact path="/error" component={Error} />
         </Switch>
       </Router>

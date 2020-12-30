@@ -51,6 +51,7 @@ const Login = () => {
           sessionStorage.setItem('prenom', data.prenom);
           sessionStorage.setItem('isAuthenticated', isAuthenticated);
           sessionStorage.setItem('role', data.role);
+          sessionStorage.setItem('id', data.ideleve);
           setAuthTokens(data);
           history.push('/');
         });
