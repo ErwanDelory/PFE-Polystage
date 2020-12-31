@@ -8,8 +8,6 @@ const retardControllers = require("../controllers/retardController");
 
 const fileUpload = require("../controllers/file-upload");
 
-const test = require("../controllers/test");
-
 const router = express.Router();
 
 //Authentification Controller
@@ -41,6 +39,7 @@ router.get("/questions", questionControllers.getQuestions);
 router.get("/competences", questionControllers.getCompetences);
 
 //Retard Controller
+
 router.get("/retardeleve", retardControllers.getRetardEleve);
 router.get("/retardtuteur", retardControllers.getRetardTuteur);
 
@@ -61,5 +60,7 @@ router.post(
 		res.send({ msg: "Uploaded" });
 	}
 );
+
+router.get("/who", userControllers.whoAmI)
 
 module.exports = router;

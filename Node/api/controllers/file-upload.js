@@ -1,13 +1,27 @@
 const multer = require("multer");
 const fs = require("fs");
+const { whoAmI } = require("./userController");
+const db = require("../../mysqlConnect");
 
 const fileUpload = multer({
 	limits: 5000000,
 	storage: multer.diskStorage({
 		destination: (req, file, cb) => {
+			let id = whoAmI(req);
 			let dir =
 				"public/" + req.params.annee + "/" + req.params.niveau + "A/";
 			let anneedir = "public/" + req.params.annee + "/";
+			let nomFile = "./" + dir + req.params.annee + "_" + req.params.niveau + "A_" + req.params.nom + "_" + req.params.prenom + "_" + req.params.type + ".pdf"
+
+			if(req.params.type === "rapport"){
+				q = `UPDATE stage SET cheminrapport = '${nomFile}' WHERE ideleve = ${id}`
+			}else{
+				q = `UPDATE stage SET cheminpres = '${nomFile}' WHERE ideleve = ${id}`
+			}
+
+			db.query(q, (err, result) => {
+				if (err) throw err;
+			});
 
 			if (!fs.existsSync(anneedir)) {
 				fs.mkdirSync(anneedir);
@@ -44,11 +58,3 @@ const fileUpload = multer({
 });
 module.exports = fileUpload;
 
-try {
-	const formData = new FormData();
-	formData.append("file", file);
-	fetch("http://localhost:5000/api/:nom/:prenom/:annee/:niveau/:type", {
-		method: "POST",
-		body: formData,
-	});
-} catch (err) {}

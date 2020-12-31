@@ -71,6 +71,12 @@ function deleteUser(req, res) {
 	});
 }
 
+function whoAmI(req){
+	if(!req.user)
+		return false;
+	return req.user.id;
+}
+exports.whoAmI = whoAmI;
 exports.getEleves = getEleves;
 exports.getEleveById = getEleveById;
 
