@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { Button, Card, Col, Container, Row } from 'react-bootstrap';
+import { useHistory } from 'react-router';
 
 const HomeTuteur = () => {
   const [data, setData] = useState([]);
+  const history = useHistory();
 
   useEffect(() => {
     fetch('http://localhost:5000/api/stages', {
@@ -46,6 +48,17 @@ const HomeTuteur = () => {
       });
   }, []);
 
+  const redirectEvalEleve = (nom, prenom) => {
+    history.push({
+      pathname: '/evalstage',
+      state: { nom: nom, prenom: prenom },
+    });
+  };
+
+  const redirectEvalComp = () => {
+    history.push('/evalcomp');
+  };
+
   return (
     <div>
       <Container>
@@ -65,18 +78,21 @@ const HomeTuteur = () => {
                     <br />
                     {stage.description}
                   </Card.Text>
-                  <Button variant="warning">
+                  <Button
+                    variant="warning"
+                    onClick={() => redirectEvalEleve(stage.nom, stage.prenom)}
+                  >
                     Lancer l'évaluation de l'élève
                   </Button>{' '}
-                  <Button variant="info">
+                  <Button variant="info" onClick={redirectEvalComp}>
                     Lancer l'évalution des compétences
                   </Button>
                   <br />
                   <br />
-                  <Button variant="warning">
+                  <Button disabled variant="warning">
                     Visualiser l'évaluation de l'élève
                   </Button>{' '}
-                  <Button variant="info">
+                  <Button disabled variant="info">
                     Visualiser l'évaluation des compétences
                   </Button>
                 </Card.Body>
