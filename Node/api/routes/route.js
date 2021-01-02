@@ -6,7 +6,7 @@ const stageControllers = require("../controllers/stageController");
 const questionControllers = require("../controllers/questionController");
 const retardControllers = require("../controllers/retardController");
 
-const test = require("../controllers/test");
+const fileUpload = require("../controllers/file-upload");
 
 const router = express.Router();
 
@@ -34,13 +34,12 @@ router.get("/stage/:id", stageControllers.getStageById);
 router.get("/rapport/:id", stageControllers.getRapportStageById);
 router.get("/dlrapport/:id", stageControllers.dlRapportStageById);
 
-//Question Controller
+//Question / Competence Controller
 router.get("/questions", questionControllers.getQuestions);
 router.get("/competences", questionControllers.getCompetences);
 
-//Competence Controller
-
 //Retard Controller
+
 router.get("/retardeleve", retardControllers.getRetardEleve);
 router.get("/retardtuteur", retardControllers.getRetardTuteur);
 
@@ -53,7 +52,15 @@ router.delete("/retardtuteur/:iduti", retardControllers.deleteRetardTuteur);
 router.patch("/retardeleve/:iduti", retardControllers.updateRetardEleve);
 router.patch("/retardtuteur/:iduti", retardControllers.updateRetardTuteur);
 
-//Test
-router.get("/test", test.example2);
+//Upload
+router.post(
+	"/upload/:nom/:prenom/:annee/:niveau/:type",
+	fileUpload.single("file"),
+	(req, res) => {
+		res.send({ msg: "Uploaded" });
+	}
+);
+
+router.get("/who", userControllers.whoAmI)
 
 module.exports = router;

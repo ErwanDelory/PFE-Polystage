@@ -4,10 +4,10 @@ const config = {
 	},
 	mysql: {
 		// paramètres de connexion à la base de données
-		host: "localhost", //localhost en local, db en docker
+		host: "db", //localhost en local, db en docker
 		user: "root",
 		password: "root",
-		port: 3308, //enlever en docker
+		//port: 3308, //enlever en docker
 		database: "db",
 		charset: "utf8",
 	},
