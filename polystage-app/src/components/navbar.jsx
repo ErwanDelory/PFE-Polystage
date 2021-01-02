@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { useHistory } from 'react-router';
 import AuthenticationService from '../services/authentication-service';
 import { Nav, Navbar } from 'react-bootstrap';
 import img from './../img/polytech.png';
@@ -46,15 +47,18 @@ class NavbarLogin extends Component {
 }
 
 const NavbarNav = () => {
-  function clear() {}
+  const history = useHistory();
+
+  const nav = () => {
+    // Remplacer par un history.push avec les données nécéssaires.
+    history.goBack();
+  };
 
   return (
     <Nav className="mr-auto">
-      <Nav.Link href="/" onClick={clear}>
-        Accueil
-      </Nav.Link>
+      <Nav.Link onClick={nav}>Accueil</Nav.Link>
       {sessionStorage.getItem('role') === 'Admin' && (
-        <Nav.Link href="/admin" onClick={clear}>
+        <Nav.Link href="/admin" onClick={nav}>
           Administrateur
         </Nav.Link>
       )}
@@ -63,21 +67,16 @@ const NavbarNav = () => {
 };
 
 const NavbarPolystage = ({ isConnected }) => {
+  const history = useHistory();
+
   function clear() {
-    sessionStorage.removeItem('idstage');
-    sessionStorage.removeItem('titrestage');
-    sessionStorage.removeItem('description');
-    sessionStorage.removeItem('entreprise');
-    sessionStorage.removeItem('niveau');
-    sessionStorage.removeItem('annee');
-    sessionStorage.removeItem('datedebut');
-    sessionStorage.removeItem('datefin');
+    history.goBack();
   }
 
   return (
     <nav>
       <Navbar bg="light" variant="light">
-        <Navbar.Brand href="/" onClick={clear}>
+        <Navbar.Brand onClick={clear}>
           <img
             alt=""
             src={img}

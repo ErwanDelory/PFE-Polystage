@@ -1,23 +1,18 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router';
+import { useLocation } from 'react-router-dom';
 import { Alert, Button, Container, Form } from 'react-bootstrap';
 
 const Edit = () => {
-  const [stageTitle, setStageTitle] = useState(
-    sessionStorage.getItem('titrestage')
-  );
-  const [description, setDescription] = useState(
-    sessionStorage.getItem('description')
-  );
-  const [entreprise, setEntreprise] = useState(
-    sessionStorage.getItem('entreprise')
-  );
-  const [niveau, setNiveau] = useState(sessionStorage.getItem('niveau'));
-  const [annee, setAnnee] = useState(sessionStorage.getItem('annee'));
-  const [dateDebut, setDateDebut] = useState(
-    sessionStorage.getItem('datedebut')
-  );
-  const [dateFin, setDateFin] = useState(sessionStorage.getItem('datefin'));
+  const location = useLocation();
+
+  const [stageTitle, setStageTitle] = useState(location.state.titrestage);
+  const [description, setDescription] = useState(location.state.description);
+  const [entreprise, setEntreprise] = useState(location.state.entreprise);
+  const [niveau, setNiveau] = useState(location.state.niveau);
+  const [annee, setAnnee] = useState(location.state.annee);
+  const [dateDebut, setDateDebut] = useState(location.state.datedebut);
+  const [dateFin, setDateFin] = useState(location.state.datefin);
   const [message, setMessage] = useState('');
   const [stateError, setStateError] = useState(false);
   const [stateSuccess, setStateSucces] = useState(false);
@@ -59,15 +54,7 @@ const Edit = () => {
   };
 
   const redirect = () => {
-    sessionStorage.removeItem('idstage');
-    sessionStorage.removeItem('titrestage');
-    sessionStorage.removeItem('description');
-    sessionStorage.removeItem('entreprise');
-    sessionStorage.removeItem('niveau');
-    sessionStorage.removeItem('annee');
-    sessionStorage.removeItem('datedebut');
-    sessionStorage.removeItem('datefin');
-    history.push('/');
+    history.goBack();
   };
 
   const onSubmit = (event) => {
@@ -77,16 +64,15 @@ const Edit = () => {
     const debut = dateD[2] + '-' + dateD[1] + '-' + dateD[0];
     const fin = dateF[2] + '-' + dateF[1] + '-' + dateF[0];
 
-    const id = sessionStorage.getItem('idstage');
     fetch('http://localhost:5000/api/editstage', {
       method: 'PUT',
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
-        Authorization: 'Bearer ' + sessionStorage.getItem('token'),
+        Authorization: 'Bearer ' + location.state.token,
       },
       body: JSON.stringify({
-        idstage: id,
+        idstage: location.state.idstage,
         titrestage: stageTitle,
         description: description,
         niveau: niveau,

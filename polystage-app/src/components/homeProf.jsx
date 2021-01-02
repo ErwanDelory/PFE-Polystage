@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { Button, Card, Col, Container, Row } from 'react-bootstrap';
+import { useLocation } from 'react-router-dom';
 
 const HomeProf = () => {
   const [data, setData] = useState([]);
+  const location = useLocation();
 
   useEffect(() => {
     fetch('http://localhost:5000/api/stages', {
@@ -10,7 +12,7 @@ const HomeProf = () => {
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
-        Authorization: 'Bearer ' + sessionStorage.getItem('token'),
+        Authorization: 'Bearer ' + location.state.token,
       },
     })
       .then((res) => {
@@ -66,7 +68,7 @@ const HomeProf = () => {
                   </Card.Text>
                   {
                     // eslint-disable-next-line
-                    stage.idens == sessionStorage.getItem('id') ? (
+                    stage.idens == location.state.id ? (
                       <div>
                         <Button variant="warning" onClick={startEval}>
                           Lancer l'évaluation

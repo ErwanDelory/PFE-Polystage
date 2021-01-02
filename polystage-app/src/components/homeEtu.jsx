@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router';
+import { useLocation } from 'react-router-dom';
 import { Button, Card, Col, Container, Row } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit } from '@fortawesome/free-solid-svg-icons';
@@ -17,6 +18,7 @@ import img9 from './../img/stage-9.jpg';
 const HomeEtu = () => {
   const [data, setData] = useState([]);
   const history = useHistory();
+  const location = useLocation();
 
   useEffect(() => {
     fetch('http://localhost:5000/api/stages', {
@@ -24,7 +26,7 @@ const HomeEtu = () => {
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
-        Authorization: 'Bearer ' + sessionStorage.getItem('token'),
+        Authorization: 'Bearer ' + location.state.token,
       },
     })
       .then((res) => {
@@ -50,7 +52,6 @@ const HomeEtu = () => {
           stages[i].datedebut = a;
           stages[i].datefin = b;
         }
-        console.log(stages);
         return setData(stages);
       });
   }, []);
@@ -61,17 +62,11 @@ const HomeEtu = () => {
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
-        Authorization: 'Bearer ' + sessionStorage.getItem('token'),
+        Authorization: 'Bearer ' + location.state.token,
       },
     })
       .then((res) => res.json())
       .then((mes) => {
-        sessionStorage.setItem('idstage', id);
-        sessionStorage.setItem('titrestage', mes.data[0].titrestage);
-        sessionStorage.setItem('description', mes.data[0].description);
-        sessionStorage.setItem('entreprise', mes.data[0].nomentreprise);
-        sessionStorage.setItem('niveau', mes.data[0].niveau);
-        sessionStorage.setItem('annee', mes.data[0].annee);
         let datedebut =
           new Date(mes.data[0].datedebut).getDate() +
           '-' +
@@ -84,9 +79,20 @@ const HomeEtu = () => {
           (new Date(mes.data[0].datedebut).getMonth() + 1) +
           '-' +
           new Date(mes.data[0].datefin).getFullYear();
-        sessionStorage.setItem('datedebut', datedebut);
-        sessionStorage.setItem('datefin', datefin);
-        history.push('/edit');
+        history.push({
+          pathname: '/edit',
+          state: {
+            idstage: id,
+            titrestage: mes.data[0].titrestage,
+            description: mes.data[0].description,
+            entreprise: mes.data[0].nomentreprise,
+            niveau: mes.data[0].niveau,
+            annee: mes.data[0].annee,
+            datedebut: datedebut,
+            datefin: datefin,
+            token: location.state.token,
+          },
+        });
       });
   }
 
@@ -114,7 +120,7 @@ const HomeEtu = () => {
                     {stage.titrestage}{' '}
                     {
                       // eslint-disable-next-line
-                      stage.ideleve == sessionStorage.getItem('id') ? (
+                      stage.ideleve == location.state.id ? (
                         <Button
                           variant="danger"
                           onClick={() => modify(stage.idstage)}

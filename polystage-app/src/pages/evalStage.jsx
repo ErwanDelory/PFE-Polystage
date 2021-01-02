@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { Button, Col, Container, Form, Row } from 'react-bootstrap';
 import RadiosForm from '../components/radiosForm';
@@ -6,22 +6,20 @@ import RadiosFormBis from '../components/radiosForm2';
 
 const EvalStage = () => {
   const location = useLocation();
-  console.log(location.state);
 
+  // eslint-disable-next-line
   useEffect(() => {
     fetch('http://localhost:5000/api/questions', {
       method: 'GET',
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
-        Authorization: 'Bearer ' + sessionStorage.getItem('token'),
+        Authorization: 'Bearer ' + location.state.token,
       },
-    })
-      .then((res) => {
-        return res.json();
-      })
-      .then((mes) => {});
-  }, []);
+    }).then((res) => {
+      return res.json();
+    });
+  }, [location.state.token]);
 
   return (
     <div>

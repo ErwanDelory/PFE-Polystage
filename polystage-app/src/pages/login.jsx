@@ -49,11 +49,19 @@ const Login = () => {
           }
           sessionStorage.setItem('nom', data.nom);
           sessionStorage.setItem('prenom', data.prenom);
-          sessionStorage.setItem('isAuthenticated', isAuthenticated);
           sessionStorage.setItem('role', data.role);
           sessionStorage.setItem('id', data.ideleve);
           setAuthTokens(data);
-          history.push('/');
+          history.push({
+            pathname: '/',
+            state: {
+              token: data.token,
+              nom: data.nom,
+              prenom: data.prenom,
+              role: data.role,
+              id: data.id,
+            },
+          });
         });
       });
   };
