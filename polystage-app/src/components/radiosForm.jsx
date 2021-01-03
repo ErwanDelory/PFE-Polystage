@@ -28,13 +28,13 @@ const RadiosForm = ({ question }) => {
           type="radio"
           label="Insuffisant"
           name="formHorizontalRadios"
-          id="formHorizontalRadios3"
+          id="formHorizontalRadios4"
         />
         <Form.Check
           type="radio"
           label="Sans objet"
           name="formHorizontalRadios"
-          id="formHorizontalRadios3"
+          id="formHorizontalRadios5"
         />
       </Col>
     </Form.Group>

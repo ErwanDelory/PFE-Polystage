@@ -57,8 +57,11 @@ const HomeTuteur = () => {
     });
   };
 
-  const redirectEvalComp = () => {
-    history.push('/evalcomp');
+  const redirectEvalComp = (nom, prenom) => {
+    history.push({
+      pathname: '/evalcomp',
+      state: { nom: nom, prenom: prenom, token: location.state.token },
+    });
   };
 
   return (
@@ -86,7 +89,10 @@ const HomeTuteur = () => {
                   >
                     Lancer l'évaluation de l'élève
                   </Button>{' '}
-                  <Button variant="info" onClick={redirectEvalComp}>
+                  <Button
+                    variant="info"
+                    onClick={() => redirectEvalComp(stage.nom, stage.prenom)}
+                  >
                     Lancer l'évalution des compétences
                   </Button>
                   <br />

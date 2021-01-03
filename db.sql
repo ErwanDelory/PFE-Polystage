@@ -1,32 +1,39 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.3
+-- version 5.0.4
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:8889
--- Generation Time: Dec 25, 2020 at 09:10 PM
--- Server version: 5.7.26
--- PHP Version: 7.4.2
+-- Hôte : db
+-- Généré le : Dim 03 jan. 2021 à 11:23
+-- Version du serveur :  8.0.22
+-- Version de PHP : 7.4.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
 SET time_zone = "+00:00";
 
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
 --
--- Database: `db`
+-- Base de données : `db`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `categorie`
+-- Structure de la table `categorie`
 --
 
 CREATE TABLE `categorie` (
-  `idcat` tinyint(11) NOT NULL,
+  `idcat` tinyint NOT NULL,
   `name` mediumtext NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `categorie`
+-- Déchargement des données de la table `categorie`
 --
 
 INSERT INTO `categorie` (`idcat`, `name`) VALUES
@@ -39,17 +46,17 @@ INSERT INTO `categorie` (`idcat`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `competences`
+-- Structure de la table `competences`
 --
 
 CREATE TABLE `competences` (
-  `idcompetence` tinyint(4) NOT NULL,
+  `idcompetence` tinyint NOT NULL,
   `sigle` char(6) NOT NULL,
   `libelle` mediumtext NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `competences`
+-- Déchargement des données de la table `competences`
 --
 
 INSERT INTO `competences` (`idcompetence`, `sigle`, `libelle`) VALUES
@@ -74,18 +81,18 @@ INSERT INTO `competences` (`idcompetence`, `sigle`, `libelle`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `infoetu`
+-- Structure de la table `infoetu`
 --
 
 CREATE TABLE `infoetu` (
-  `idinfo` int(10) NOT NULL,
-  `numetudiant` int(20) DEFAULT NULL,
-  `annee` int(5) DEFAULT NULL,
+  `idinfo` int NOT NULL,
+  `numetudiant` int DEFAULT NULL,
+  `annee` int DEFAULT NULL,
   `niveau` enum('3','4','5') DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `infoetu`
+-- Déchargement des données de la table `infoetu`
 --
 
 INSERT INTO `infoetu` (`idinfo`, `numetudiant`, `annee`, `niveau`) VALUES
@@ -94,126 +101,62 @@ INSERT INTO `infoetu` (`idinfo`, `numetudiant`, `annee`, `niveau`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `niveauxcompetences`
+-- Structure de la table `niveauxcompetences`
 --
 
 CREATE TABLE `niveauxcompetences` (
-  `idniveauxcompetences` tinyint(4) NOT NULL,
-  `libelle` mediumtext NOT NULL,
-  `idcompetence` tinyint(4) NOT NULL
+  `idniveauxcompetences` tinyint NOT NULL,
+  `libelle1` mediumtext CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `libelle2` mediumtext,
+  `libelle3` mediumtext,
+  `libelle4` mediumtext,
+  `libelle5` mediumtext,
+  `idcompetence` tinyint NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `niveauxcompetences`
+-- Déchargement des données de la table `niveauxcompetences`
 --
 
-INSERT INTO `niveauxcompetences` (`idniveauxcompetences`, `libelle`, `idcompetence`) VALUES
-(1, 'Niveau débutant : Même avec de l\'aide, l\'apprenant n\'est pas encore capable de mettre en oeuvre des outils et méthodes.', 1),
-(2, 'Niveau intermédiaire : Avec de l\'aide, l\'apprenant met en oeuvre des outils et méthodes, sans s\'interroger sur leur pertinence.', 1),
-(3, 'Niveau de maitrise : L\'apprenant propose des outils et méthodes adaptés. En autonomie : il les met en oeuvre.', 1),
-(4, 'Niveau d\'expertise : L\'apprenant choisit, adapte et met en oeuvre des méthodes et outils en justifiant ses choix.', 1),
-(5, 'Niveau débutant : L\'apprenant n\'est pas encore capable d\'identifier les besoins et les contraintes.', 2),
-(6, 'Niveau intermédiaire : L\'apprenant identifie les besoins et les contraintes, mais avec des oublis majeurs.', 2),
-(7, 'Niveau de maitrise : L\'apprenant analyse les besoins et les contraintes sans oubli majeur.', 2),
-(8, 'Niveau d\'expertise : L\'apprenant formalise sans oubli majeur les besoins et contraintes dans un cahier des charges.', 2),
-(9, 'Niveau débutant : L\'apprenant n\'est pas encore capable de concevoir une solution.', 3),
-(10, 'Niveau intermédiaire : Avec de l\'aide, l\'apprenant conçoit une solution, sans formalisation.', 3),
-(11, 'Niveau de maitrise : Avec de l\'aide, l\'apprenant conçoit et formalise une solution.', 3),
-(12, 'Niveau d\'expertise : En autonomie, l\'apprenant conçoit et formalise une solution.', 3),
-(13, 'Niveau débutant : L\'apprenant n\'est pas encore capable de mettre en oeuvre une solution', 4),
-(14, 'Niveau intermédiaire : Avec de l\'aide, l\'apprenant met en oeuvre et évalue une solution.', 4),
-(15, 'Niveau de maitrise : En autonomie, l\'apprenant met en oeuvre une solution. Avec de l\'aide: il l\'évalue.', 4),
-(16, 'Niveau d\'expertise : En autonomie, l\'apprenant met en oeuvre une solution et l\'évalue.', 4),
-(17, 'Niveau débutant : Les documents ou présentations de l\'apprenant contiennent encore de nombreuses erreurs dans le contenu et/ou dans la forme et en conséquence ils ne sont pas exploitables.', 5),
-(18, 'Niveau intermédiaire : L’apprenant produit des documents et présentations exploitables en interne avec encore quelques erreurs dans le contenu et/ou dans la forme.', 5),
-(19, 'Niveau de maitrise : En autonomie, l\'apprenant produit des documents et présentation exploitables en interne.', 5),
-(20, 'Niveau d\'expertise : En autonomie, l\'apprenant produit des documents et présentations exploitables et diffusables.', 5),
-(21, 'Niveau débutant : L\'apprenant n\'est pas encore capable de mener des mesures et des expérimentations.', 6),
-(22, 'Niveau intermédiaire : Avec de l\'aide, l\'apprenant mène et analyse des mesures et des expérimentations.', 6),
-(23, 'Niveau de maitrise : Avec de l\'aide, l\'apprenant conçoit des mesures et des expérimentations. Il les mène et les analyse en autonomie.', 6),
-(24, 'Niveau d\'expertise : En autonomie, l\'apprenant conçoit et mène des mesures et des expérimentations.', 6),
-(25, 'Niveau débutant : L\'apprenant ne sait pas encore chercher des informations pertinantes.', 7),
-(26, 'Niveau intermédiaire : Avec de l\'aide, l\'apprenant trouve des informations pertinentes et les exploite.', 7),
-(27, 'Niveau de maitrise : En autonomie, l\'apprenant trouve des informations pertinentes. Avec de l\'aide, il les exploite.', 7),
-(28, 'Niveau d\'expertise : En autonomie, l\'apprenant trouve des informations pertinentes et les exploite.', 7),
-(29, 'Niveau débutant : L\'apprenant n\'a pas encore  conscience de ces enjeux.', 8),
-(30, 'Niveau intermédiaire : L\'apprenant a conscience de ces enjeux mais ne les prend pas en compte.', 8),
-(31, 'Niveau de maitrise : L\'apprenant prend en compte ces enjeux dans sa mission.', 8),
-(32, 'Niveau d\'expertise : L\'apprenant prend en compte ces enjeux au-delà de sa mission.', 8),
-(33, 'Niveau débutant : L\'apprenant n\'a pas encore conscience de ces enjeux.', 9),
-(34, 'Niveau intermédiaire : L\'apprenant a conscience de ces enjeux mais ne les prend pas en compte.', 9),
-(35, 'Niveau de maitrise : L\'apprenant prend en compte ces enjeux dans sa mission.', 9),
-(36, 'Niveau d\'expertise : L\'apprenant prend en compte ces enjeux au-delà de sa mission.', 9),
-(37, 'Niveau débutant : L\'apprenant n\'a pas encore  conscience de ces enjeux.', 10),
-(38, 'Niveau intermédiaire : L\'apprenant a conscience de ces enjeux mais ne les prend pas en compte.', 10),
-(39, 'Niveau de maitrise : L\'apprenant prend en compte ces enjeux dans sa mission.', 10),
-(40, 'Niveau d\'expertise : L\'apprenant prend en compte ces enjeux au-delà de sa mission.', 10),
-(41, 'Niveau débutant : L\'apprenant n\'est pas encore capable de mettre en oeuvre une démarche de gestion de projet.', 11),
-(42, 'Niveau intermédiaire : L\'apprenant met partiellement en oeuvre une démarche de gestion de projet.', 11),
-(43, 'Niveau de maitrise : Avec de l\'aide, l\'apprenant met en oeuvre une démarche de gestion de projet.', 11),
-(44, 'Niveau d\'expertise : En autonomie, l\'apprenant met en oeuvre une démarche de gestion de projet.', 11),
-(45, 'Niveau débutant : L\'apprenant n\'est pas encore capable de communiquer et interagir avec différents interlocuteurs de son service.', 12),
-(46, 'Niveau intermédiaire : L\'apprenant communique/interagit de manière adaptée dans son service uniquement.', 12),
-(47, 'Niveau de maitrise : L\'apprenant communique/ interagit de manière adaptée dans son entreprise uniquement.', 12),
-(48, 'Niveau d\'expertise : L\'apprenant communique/ interagit de manière adaptée dans son entreprise et à l\'extérieur de l\'entreprise.', 12),
-(49, 'Niveau débutant : L\'apprenant ne respecte pas encore les règles et les codes (horaires, présentation…).', 13),
-(50, 'Niveau intermédiaire : L\'apprenant se contente de respecter a minima des règles et codes (horaires, présentation…).', 13),
-(51, 'Niveau de maitrise : L\'apprenant  s\'implique dans la dynamique de son service.', 13),
-(52, 'Niveau d\'expertise : L\'apprenant participe par son action à la diffusion de la culture d\'entreprise.', 13),
-(53, 'Niveau débutant : L\'apprenant n\'est pas encore capable de participer à l\'animation d\'une équipe.', 14),
-(54, 'Niveau intermédiaire : Par son action l\'apprenant est capable de contribuer de façon constructive à l\'animation d\'une équipe.', 14),
-(55, 'Niveau de maitrise : L\'apprenant est capable d\'animer une équipe.', 14),
-(56, 'Niveau d\'expertise : L\'apprenant est capable d\'animer une équipe, de la dynamiser et de la faire progresser.', 14),
-(57, 'Niveau débutant : L\'apprenant n\'est pas encore capable de concevoir une solution innovante.', 15),
-(58, 'Niveau intermédiaire : Avec de l\'aide, l\'apprenant conçoit une solution innovante, sans formalisation.', 15),
-(59, 'Niveau de maitrise : En autonomie, l\'apprenant conçoit une solution innovante sans formalisation.', 15),
-(60, 'Niveau d\'expertise : En autonomie, l\'apprenant conçoit et formalise une solution innovante.', 15),
-(61, 'Niveau débutant : L\'apprenant n\'adapte pas son comportement aux différentes cultures et réglementations rencontrées', 16),
-(62, 'Niveau intermédiaire : L\'apprenant commence à adapter son comportement aux différentes cultures et réglementations rencontrées.', 16),
-(63, 'Niveau de maitrise : L\'apprenant adapte son comportement aux différentes cultures et réglementations rencontrées.', 16),
-(64, 'Niveau d\'expertise : L\'apprenant est capable de travailler en contexte international en intégrant des éléments de management interculturel.', 16),
-(65, 'Niveau débutant : L\'apprenant n\'analyse pas ses forces et faiblesses pour construire son projet professionel.', 17),
-(66, 'Niveau intermédiaire : L\'apprenant commence à identifier ses compétences  (\'soft skills\') sans les lier à un projet professionel.', 17),
-(67, 'Niveau de maitrise : L\'apprenant a un projet professionnel consolidé par une analyse type SWOT mais pas de plan d\'action pour le réaliser.', 17),
-(68, 'Niveau d\'expertise : L\'apprenant a un projet professionnel consolidé par une analyse type SWOT et un plan d\'action pour le réaliser.', 17),
-(69, 'Sans objet', 1),
-(70, 'Sans objet', 2),
-(71, 'Sans objet', 3),
-(72, 'Sans objet', 4),
-(73, 'Sans objet', 5),
-(74, 'Sans objet', 6),
-(75, 'Sans objet', 7),
-(76, 'Sans objet', 8),
-(77, 'Sans objet', 9),
-(78, 'Sans objet', 10),
-(79, 'Sans objet', 11),
-(80, 'Sans objet', 12),
-(81, 'Sans objet', 13),
-(82, 'Sans objet', 14),
-(83, 'Sans objet', 15),
-(84, 'Sans objet', 16),
-(85, 'Sans objet', 17);
+INSERT INTO `niveauxcompetences` (`idniveauxcompetences`, `libelle1`, `libelle2`, `libelle3`, `libelle4`, `libelle5`, `idcompetence`) VALUES
+(1, 'Niveau débutant : Même avec de l\'aide, l\'apprenant n\'est pas encore capable de mettre en oeuvre des outils et méthodes.', 'Niveau intermédiaire : Avec de l\'aide, l\'apprenant met en oeuvre des outils et méthodes, sans s\'interroger sur leur pertinence.', 'Niveau de maitrise : L\'apprenant propose des outils et méthodes adaptés. En autonomie : il les met en oeuvre.', 'Niveau d\'expertise : L\'apprenant choisit, adapte et met en oeuvre des méthodes et outils en justifiant ses choix.', 'Sans objet', 1),
+(5, 'Niveau débutant : L\'apprenant n\'est pas encore capable d\'identifier les besoins et les contraintes.', 'Niveau intermédiaire : L\'apprenant identifie les besoins et les contraintes, mais avec des oublis majeurs.', 'Niveau de maitrise : L\'apprenant analyse les besoins et les contraintes sans oubli majeur.', 'Niveau d\'expertise : L\'apprenant formalise sans oubli majeur les besoins et contraintes dans un cahier des charges.', 'Sans objet', 2),
+(9, 'Niveau débutant : L\'apprenant n\'est pas encore capable de concevoir une solution.', 'Niveau intermédiaire : Avec de l\'aide, l\'apprenant conçoit une solution, sans formalisation.', 'Niveau de maitrise : Avec de l\'aide, l\'apprenant conçoit et formalise une solution.', 'Niveau d\'expertise : En autonomie, l\'apprenant conçoit et formalise une solution.', 'Sans objet', 3),
+(13, 'Niveau débutant : L\'apprenant n\'est pas encore capable de mettre en oeuvre une solution', 'Niveau intermédiaire : Avec de l\'aide, l\'apprenant met en oeuvre et évalue une solution.', 'Niveau de maitrise : En autonomie, l\'apprenant met en oeuvre une solution. Avec de l\'aide: il l\'évalue.', 'Niveau d\'expertise : En autonomie, l\'apprenant met en oeuvre une solution et l\'évalue.', 'Sans objet', 4),
+(17, 'Niveau débutant : Les documents ou présentations de l\'apprenant contiennent encore de nombreuses erreurs dans le contenu et/ou dans la forme et en conséquence ils ne sont pas exploitables.', 'Niveau intermédiaire : L’apprenant produit des documents et présentations exploitables en interne avec encore quelques erreurs dans le contenu et/ou dans la forme.', 'Niveau de maitrise : En autonomie, l\'apprenant produit des documents et présentation exploitables en interne.', 'Niveau d\'expertise : En autonomie, l\'apprenant produit des documents et présentations exploitables et diffusables.', 'Sans objet', 5),
+(21, 'Niveau débutant : L\'apprenant n\'est pas encore capable de mener des mesures et des expérimentations.', 'Niveau intermédiaire : Avec de l\'aide, l\'apprenant mène et analyse des mesures et des expérimentations.', 'Niveau de maitrise : Avec de l\'aide, l\'apprenant conçoit des mesures et des expérimentations. Il les mène et les analyse en autonomie.', 'Niveau d\'expertise : En autonomie, l\'apprenant conçoit et mène des mesures et des expérimentations.', 'Sans objet', 6),
+(25, 'Niveau débutant : L\'apprenant ne sait pas encore chercher des informations pertinantes.', 'Niveau intermédiaire : Avec de l\'aide, l\'apprenant trouve des informations pertinentes et les exploite.', 'Niveau de maitrise : En autonomie, l\'apprenant trouve des informations pertinentes. Avec de l\'aide, il les exploite.', 'Niveau d\'expertise : En autonomie, l\'apprenant trouve des informations pertinentes et les exploite.', 'Sans objet', 7),
+(29, 'Niveau débutant : L\'apprenant n\'a pas encore  conscience de ces enjeux.', 'Niveau intermédiaire : L\'apprenant a conscience de ces enjeux mais ne les prend pas en compte.', 'Niveau de maitrise : L\'apprenant prend en compte ces enjeux dans sa mission.', 'Niveau d\'expertise : L\'apprenant prend en compte ces enjeux au-delà de sa mission.', 'Sans objet', 8),
+(33, 'Niveau débutant : L\'apprenant n\'a pas encore conscience de ces enjeux.', 'Niveau intermédiaire : L\'apprenant a conscience de ces enjeux mais ne les prend pas en compte.', 'Niveau de maitrise : L\'apprenant prend en compte ces enjeux dans sa mission.', 'Niveau d\'expertise : L\'apprenant prend en compte ces enjeux au-delà de sa mission.', 'Sans objet', 9),
+(37, 'Niveau débutant : L\'apprenant n\'a pas encore  conscience de ces enjeux.', 'Niveau intermédiaire : L\'apprenant a conscience de ces enjeux mais ne les prend pas en compte.', 'Niveau de maitrise : L\'apprenant prend en compte ces enjeux dans sa mission.', 'Niveau d\'expertise : L\'apprenant prend en compte ces enjeux au-delà de sa mission.', 'Sans objet', 10),
+(41, 'Niveau débutant : L\'apprenant n\'est pas encore capable de mettre en oeuvre une démarche de gestion de projet.', 'Niveau intermédiaire : L\'apprenant met partiellement en oeuvre une démarche de gestion de projet.', 'Niveau de maitrise : Avec de l\'aide, l\'apprenant met en oeuvre une démarche de gestion de projet.', 'Niveau d\'expertise : En autonomie, l\'apprenant met en oeuvre une démarche de gestion de projet.', 'Sans objet', 11),
+(45, 'Niveau débutant : L\'apprenant n\'est pas encore capable de communiquer et interagir avec différents interlocuteurs de son service.', 'Niveau intermédiaire : L\'apprenant communique/interagit de manière adaptée dans son service uniquement.', 'Niveau de maitrise : L\'apprenant communique/ interagit de manière adaptée dans son entreprise uniquement.', 'Niveau d\'expertise : L\'apprenant communique/ interagit de manière adaptée dans son entreprise et à l\'extérieur de l\'entreprise.', 'Sans objet', 12),
+(49, 'Niveau débutant : L\'apprenant ne respecte pas encore les règles et les codes (horaires, présentation…).', 'Niveau intermédiaire : L\'apprenant se contente de respecter a minima des règles et codes (horaires, présentation…).', 'Niveau de maitrise : L\'apprenant  s\'implique dans la dynamique de son service.', 'Niveau d\'expertise : L\'apprenant participe par son action à la diffusion de la culture d\'entreprise.', 'Sans objet', 13),
+(53, 'Niveau débutant : L\'apprenant n\'est pas encore capable de participer à l\'animation d\'une équipe.', 'Niveau intermédiaire : Par son action l\'apprenant est capable de contribuer de façon constructive à l\'animation d\'une équipe.', 'Niveau de maitrise : L\'apprenant est capable d\'animer une équipe.', 'Niveau d\'expertise : L\'apprenant est capable d\'animer une équipe, de la dynamiser et de la faire progresser.', 'Sans objet', 14),
+(57, 'Niveau débutant : L\'apprenant n\'est pas encore capable de concevoir une solution innovante.', 'Niveau intermédiaire : Avec de l\'aide, l\'apprenant conçoit une solution innovante, sans formalisation.', 'Niveau de maitrise : En autonomie, l\'apprenant conçoit une solution innovante sans formalisation.', 'Niveau d\'expertise : En autonomie, l\'apprenant conçoit et formalise une solution innovante.', 'Sans objet', 15),
+(61, 'Niveau débutant : L\'apprenant n\'adapte pas son comportement aux différentes cultures et réglementations rencontrées', 'Niveau intermédiaire : L\'apprenant commence à adapter son comportement aux différentes cultures et réglementations rencontrées.', 'Niveau de maitrise : L\'apprenant adapte son comportement aux différentes cultures et réglementations rencontrées.', 'Niveau d\'expertise : L\'apprenant est capable de travailler en contexte international en intégrant des éléments de management interculturel.', 'Sans objet', 16),
+(65, 'Niveau débutant : L\'apprenant n\'analyse pas ses forces et faiblesses pour construire son projet professionel.', 'Niveau intermédiaire : L\'apprenant commence à identifier ses compétences  (\'soft skills\') sans les lier à un projet professionel.', 'Niveau de maitrise : L\'apprenant a un projet professionnel consolidé par une analyse type SWOT mais pas de plan d\'action pour le réaliser.', 'Niveau d\'expertise : L\'apprenant a un projet professionnel consolidé par une analyse type SWOT et un plan d\'action pour le réaliser.', 'Sans objet', 17);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `questions`
+-- Structure de la table `questions`
 --
 
 CREATE TABLE `questions` (
-  `idquest` smallint(6) NOT NULL,
+  `idquest` smallint NOT NULL,
   `question` mediumtext NOT NULL,
-  `cat` tinyint(4) NOT NULL,
-  `souscat` tinyint(4) DEFAULT NULL,
+  `cat` tinyint NOT NULL,
+  `souscat` tinyint DEFAULT NULL,
   `type` varchar(50) NOT NULL,
   `is4a` tinyint(1) NOT NULL,
   `is5a` tinyint(1) NOT NULL,
   `choix` varchar(50) DEFAULT NULL,
-  `niveau` int(11) DEFAULT NULL
+  `niveau` int DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `questions`
+-- Déchargement des données de la table `questions`
 --
 
 INSERT INTO `questions` (`idquest`, `question`, `cat`, `souscat`, `type`, `is4a`, `is5a`, `choix`, `niveau`) VALUES
@@ -260,11 +203,11 @@ INSERT INTO `questions` (`idquest`, `question`, `cat`, `souscat`, `type`, `is4a`
 -- --------------------------------------------------------
 
 --
--- Table structure for table `retardeleve`
+-- Structure de la table `retardeleve`
 --
 
 CREATE TABLE `retardeleve` (
-  `iduti` int(9) NOT NULL,
+  `iduti` int NOT NULL,
   `mailenvoye` tinyint(1) NOT NULL,
   `rapport` tinyint(1) NOT NULL,
   `presentation` tinyint(1) NOT NULL,
@@ -272,7 +215,7 @@ CREATE TABLE `retardeleve` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `retardeleve`
+-- Déchargement des données de la table `retardeleve`
 --
 
 INSERT INTO `retardeleve` (`iduti`, `mailenvoye`, `rapport`, `presentation`, `autoeval`) VALUES
@@ -281,27 +224,27 @@ INSERT INTO `retardeleve` (`iduti`, `mailenvoye`, `rapport`, `presentation`, `au
 -- --------------------------------------------------------
 
 --
--- Table structure for table `retardtuteur`
+-- Structure de la table `retardtuteur`
 --
 
 CREATE TABLE `retardtuteur` (
-  `iduti` int(9) NOT NULL,
+  `iduti` int NOT NULL,
   `mailenvoye` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `souscategorie`
+-- Structure de la table `souscategorie`
 --
 
 CREATE TABLE `souscategorie` (
-  `idsouscat` tinyint(11) NOT NULL,
+  `idsouscat` tinyint NOT NULL,
   `name` mediumtext NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `souscategorie`
+-- Déchargement des données de la table `souscategorie`
 --
 
 INSERT INTO `souscategorie` (`idsouscat`, `name`) VALUES
@@ -314,16 +257,16 @@ INSERT INTO `souscategorie` (`idsouscat`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `stage`
+-- Structure de la table `stage`
 --
 
 CREATE TABLE `stage` (
-  `idstage` int(9) NOT NULL,
-  `ideleve` int(9) DEFAULT NULL,
+  `idstage` int NOT NULL,
+  `ideleve` int DEFAULT NULL,
   `niveau` enum('3','4','5') DEFAULT NULL,
-  `annee` year(4) DEFAULT NULL,
-  `idtuteur` int(9) DEFAULT NULL,
-  `idens` int(9) DEFAULT NULL,
+  `annee` year DEFAULT NULL,
+  `idtuteur` int DEFAULT NULL,
+  `idens` int DEFAULT NULL,
   `datedebut` date DEFAULT NULL,
   `datefin` date DEFAULT NULL,
   `titrestage` varchar(45) DEFAULT NULL,
@@ -347,23 +290,23 @@ CREATE TABLE `stage` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `stage`
+-- Déchargement des données de la table `stage`
 --
 
 INSERT INTO `stage` (`idstage`, `ideleve`, `niveau`, `annee`, `idtuteur`, `idens`, `datedebut`, `datefin`, `titrestage`, `description`, `nomentreprise`, `adressestage`, `adremailstage`, `cheminrapport`, `daterapport`, `cheminpres`, `datepres`, `chemineval`, `dateeval`, `evallancee`, `confidentiel`, `datelimiterendu`, `datelimiteeval`, `datesoutenance`, `datecomp`, `chemincomp`) VALUES
-(1, 3, '5', 2019, 5, 4, '2077-04-06', '2077-04-06', 'Super Stage 13', 'Un stage de Kalitey up', 'AIRBUS', NULL, NULL, './public/2020/5A/2020_5A_BECHARI_Bilal_rapport.pdf', '2019-04-06 20:00:00', './public/2020/5A/2020_5A_BECHARI_Bilal_presentation.pdf', NULL, NULL, NULL, NULL, 0, '2018-01-01', '2018-01-01', '2018-01-01', NULL, NULL),
+(1, 3, '5', 2019, 5, 2, '2077-04-06', '2077-04-06', 'Super Stage 13', 'Un stage de Kalitey up', 'AIRBUS', NULL, NULL, './public/2020/5A/2020_5A_BECHARI_Bilal_rapport.pdf', '2019-04-06 20:00:00', './public/2020/5A/2020_5A_BECHARI_Bilal_presentation.pdf', NULL, NULL, NULL, NULL, 0, '2018-01-01', '2018-01-01', '2018-01-01', NULL, NULL),
 (2, 14, '5', 2021, 5, 4, '2020-12-15', '2020-12-30', 'Super Stage Erwan', 'Un stage de defe', 'CGI', 'ededfede', 'dddd', 'chemin', '2020-12-08 22:00:00', 'chemin', '2020-12-08 22:00:00', 'fefe', '2020-12-08 22:00:00', '2020-11-30 23:00:00', 0, '2020-12-30', '2020-12-30', '2020-12-30', '2020-12-30 22:00:00', 'chemin'),
-(3, 15, '5', 2021, 5, 4, '2020-12-01', '2022-12-31', 'Ingénieur DevOps', 'Réalisation d\'un stage d\'ingénieur DevOps', 'Thalès', 'blablabla', 'fiorehuguif', 'hirueghi', '2020-12-02 20:37:37', 'vktuiehrg', '2020-12-10 20:37:37', 'serdtj', '2020-12-26 20:37:37', '2020-12-26 21:37:37', 0, '2020-12-31', '2020-12-31', '2020-12-31', '2020-12-31 20:37:37', 'ertdfyguhi'),
-(4, 15, '5', 2021, 5, 4, '2020-11-05', '2021-10-31', 'Ingénieur DevOps', 'En attente ....', 'Pytheas Navigation', '', '', '', '2020-10-09 22:00:00', '', '2020-10-09 22:00:00', '', '2020-10-09 22:00:00', '2020-10-10 00:00:00', 0, '2020-10-10', '2020-10-10', '2020-10-10', '2020-10-09 22:00:00', '');
+(3, 15, '4', 2021, 5, 4, '2020-12-03', '2022-12-31', 'Ingénieur DevOps', 'Réalisation d\'un stage d\'ingénieur DevOps', 'Thalès', 'blablabla', 'fiorehuguif', 'hirueghi', '2020-12-02 20:37:37', 'vktuiehrg', '2020-12-10 20:37:37', 'serdtj', '2020-12-26 20:37:37', '2020-12-26 21:37:37', 0, '2020-12-31', '2020-12-31', '2020-12-31', '2020-12-31 20:37:37', 'ertdfyguhi'),
+(4, 15, '4', 2021, 17, 4, '2020-11-05', '2021-11-30', 'Ingénieur DevOps', 'En attente ...', 'Pytheas Navigation', '', '', '', '2020-10-09 22:00:00', '', '2020-10-09 22:00:00', '', '2020-10-09 22:00:00', '2020-10-10 00:00:00', 0, '2020-10-10', '2020-10-10', '2020-10-10', '2020-10-09 22:00:00', '');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `utilisateur`
+-- Structure de la table `utilisateur`
 --
 
 CREATE TABLE `utilisateur` (
-  `id` int(10) NOT NULL,
+  `id` int NOT NULL,
   `nom` varchar(30) NOT NULL,
   `prenom` varchar(30) NOT NULL,
   `email` varchar(60) NOT NULL,
@@ -372,7 +315,7 @@ CREATE TABLE `utilisateur` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `utilisateur`
+-- Déchargement des données de la table `utilisateur`
 --
 
 INSERT INTO `utilisateur` (`id`, `nom`, `prenom`, `email`, `mdp`, `role`) VALUES
@@ -381,26 +324,28 @@ INSERT INTO `utilisateur` (`id`, `nom`, `prenom`, `email`, `mdp`, `role`) VALUES
 (4, 'ens', 'ens', 'ens@ens.fr', '4813494d137e1631bba301d5acab6e7bb7aa74ce1185d456565ef51d737677b2', 'Enseignant'),
 (5, 'tut', 'tut', 'tut@tut.fr', '4813494d137e1631bba301d5acab6e7bb7aa74ce1185d456565ef51d737677b2', 'Tuteur'),
 (14, 'etu2', 'etu2', 'etu2@etu2.fr', '4813494d137e1631bba301d5acab6e7bb7aa74ce1185d456565ef51d737677b2', 'Etudiant'),
-(15, 'Delory', 'Erwan', 'erwan.delory@gmail.com', '4813494d137e1631bba301d5acab6e7bb7aa74ce1185d456565ef51d737677b2', 'Etudiant');
+(15, 'Delory', 'Erwan', 'erwan.delory@gmail.com', '4813494d137e1631bba301d5acab6e7bb7aa74ce1185d456565ef51d737677b2', 'Etudiant'),
+(16, 'El Kourdi', 'Maha', 'maha@elkourdi.fr', '4813494d137e1631bba301d5acab6e7bb7aa74ce1185d456565ef51d737677b2', 'Tuteur'),
+(17, 'Delory', 'Erwan', 'erwan@tuteur.fr', '4813494d137e1631bba301d5acab6e7bb7aa74ce1185d456565ef51d737677b2', 'Tuteur');
 
 --
--- Indexes for dumped tables
+-- Index pour les tables déchargées
 --
 
 --
--- Indexes for table `categorie`
+-- Index pour la table `categorie`
 --
 ALTER TABLE `categorie`
   ADD PRIMARY KEY (`idcat`);
 
 --
--- Indexes for table `competences`
+-- Index pour la table `competences`
 --
 ALTER TABLE `competences`
   ADD PRIMARY KEY (`idcompetence`);
 
 --
--- Indexes for table `infoetu`
+-- Index pour la table `infoetu`
 --
 ALTER TABLE `infoetu`
   ADD PRIMARY KEY (`idinfo`),
@@ -409,14 +354,14 @@ ALTER TABLE `infoetu`
   ADD KEY `ide` (`idinfo`);
 
 --
--- Indexes for table `niveauxcompetences`
+-- Index pour la table `niveauxcompetences`
 --
 ALTER TABLE `niveauxcompetences`
   ADD PRIMARY KEY (`idniveauxcompetences`),
   ADD KEY `idcompetence` (`idcompetence`);
 
 --
--- Indexes for table `questions`
+-- Index pour la table `questions`
 --
 ALTER TABLE `questions`
   ADD PRIMARY KEY (`idquest`),
@@ -424,25 +369,25 @@ ALTER TABLE `questions`
   ADD KEY `souscat` (`souscat`);
 
 --
--- Indexes for table `retardeleve`
+-- Index pour la table `retardeleve`
 --
 ALTER TABLE `retardeleve`
   ADD PRIMARY KEY (`iduti`);
 
 --
--- Indexes for table `retardtuteur`
+-- Index pour la table `retardtuteur`
 --
 ALTER TABLE `retardtuteur`
   ADD PRIMARY KEY (`iduti`);
 
 --
--- Indexes for table `souscategorie`
+-- Index pour la table `souscategorie`
 --
 ALTER TABLE `souscategorie`
   ADD PRIMARY KEY (`idsouscat`);
 
 --
--- Indexes for table `stage`
+-- Index pour la table `stage`
 --
 ALTER TABLE `stage`
   ADD PRIMARY KEY (`idstage`),
@@ -452,7 +397,7 @@ ALTER TABLE `stage`
   ADD KEY `fk_stage_4_idx` (`idens`);
 
 --
--- Indexes for table `utilisateur`
+-- Index pour la table `utilisateur`
 --
 ALTER TABLE `utilisateur`
   ADD PRIMARY KEY (`id`),
@@ -460,90 +405,95 @@ ALTER TABLE `utilisateur`
   ADD UNIQUE KEY `email` (`email`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT pour les tables déchargées
 --
 
 --
--- AUTO_INCREMENT for table `categorie`
+-- AUTO_INCREMENT pour la table `categorie`
 --
 ALTER TABLE `categorie`
-  MODIFY `idcat` tinyint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `idcat` tinyint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT for table `competences`
+-- AUTO_INCREMENT pour la table `competences`
 --
 ALTER TABLE `competences`
-  MODIFY `idcompetence` tinyint(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `idcompetence` tinyint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
--- AUTO_INCREMENT for table `niveauxcompetences`
+-- AUTO_INCREMENT pour la table `niveauxcompetences`
 --
 ALTER TABLE `niveauxcompetences`
-  MODIFY `idniveauxcompetences` tinyint(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=86;
+  MODIFY `idniveauxcompetences` tinyint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=86;
 
 --
--- AUTO_INCREMENT for table `questions`
+-- AUTO_INCREMENT pour la table `questions`
 --
 ALTER TABLE `questions`
-  MODIFY `idquest` smallint(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `idquest` smallint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
--- AUTO_INCREMENT for table `souscategorie`
+-- AUTO_INCREMENT pour la table `souscategorie`
 --
 ALTER TABLE `souscategorie`
-  MODIFY `idsouscat` tinyint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `idsouscat` tinyint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT for table `stage`
+-- AUTO_INCREMENT pour la table `stage`
 --
 ALTER TABLE `stage`
-  MODIFY `idstage` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `idstage` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT for table `utilisateur`
+-- AUTO_INCREMENT pour la table `utilisateur`
 --
 ALTER TABLE `utilisateur`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
--- Constraints for dumped tables
+-- Contraintes pour les tables déchargées
 --
 
 --
--- Constraints for table `infoetu`
+-- Contraintes pour la table `infoetu`
 --
 ALTER TABLE `infoetu`
   ADD CONSTRAINT `Fkinfoetu` FOREIGN KEY (`idinfo`) REFERENCES `utilisateur` (`id`) ON DELETE CASCADE;
 
 --
--- Constraints for table `niveauxcompetences`
+-- Contraintes pour la table `niveauxcompetences`
 --
 ALTER TABLE `niveauxcompetences`
   ADD CONSTRAINT `niveauxcompetences_ibfk_1` FOREIGN KEY (`idcompetence`) REFERENCES `competences` (`idcompetence`);
 
 --
--- Constraints for table `questions`
+-- Contraintes pour la table `questions`
 --
 ALTER TABLE `questions`
   ADD CONSTRAINT `questions_ibfk_1` FOREIGN KEY (`cat`) REFERENCES `categorie` (`idcat`),
   ADD CONSTRAINT `questions_ibfk_2` FOREIGN KEY (`souscat`) REFERENCES `souscategorie` (`idsouscat`);
 
 --
--- Constraints for table `retardeleve`
+-- Contraintes pour la table `retardeleve`
 --
 ALTER TABLE `retardeleve`
   ADD CONSTRAINT `fk1re` FOREIGN KEY (`iduti`) REFERENCES `utilisateur` (`id`) ON DELETE CASCADE;
 
 --
--- Constraints for table `retardtuteur`
+-- Contraintes pour la table `retardtuteur`
 --
 ALTER TABLE `retardtuteur`
   ADD CONSTRAINT `fk1rt` FOREIGN KEY (`iduti`) REFERENCES `utilisateur` (`id`) ON DELETE CASCADE;
 
 --
--- Constraints for table `stage`
+-- Contraintes pour la table `stage`
 --
 ALTER TABLE `stage`
   ADD CONSTRAINT `fk_stage_1` FOREIGN KEY (`ideleve`) REFERENCES `utilisateur` (`id`),
   ADD CONSTRAINT `fk_stage_2` FOREIGN KEY (`idtuteur`) REFERENCES `utilisateur` (`id`),
   ADD CONSTRAINT `fk_stage_4` FOREIGN KEY (`idens`) REFERENCES `utilisateur` (`id`);
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

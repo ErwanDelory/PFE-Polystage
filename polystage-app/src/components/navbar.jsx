@@ -69,14 +69,21 @@ const NavbarNav = () => {
 const NavbarPolystage = ({ isConnected }) => {
   const history = useHistory();
 
-  function clear() {
+  function accueil() {
+    // Ajouter les données les plus importantes à garder
+    /*history.push({
+      pathname: '/',
+      state: {
+        token: location.state.token,
+      },
+    });*/
     history.goBack();
   }
 
   return (
     <nav>
       <Navbar bg="light" variant="light">
-        <Navbar.Brand onClick={clear}>
+        <Navbar.Brand onClick={accueil}>
           <img
             alt=""
             src={img}
