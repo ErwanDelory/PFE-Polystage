@@ -14,12 +14,12 @@ const EvalStage = () => {
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
-        Authorization: 'Bearer ' + location.state.token,
+        Authorization: 'Bearer ' + sessionStorage.getItem('token'),
       },
     }).then((res) => {
       return res.json();
     });
-  }, [location.state.token]);
+  }, []);
 
   return (
     <div>

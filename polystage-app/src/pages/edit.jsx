@@ -69,7 +69,7 @@ const Edit = () => {
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
-        Authorization: 'Bearer ' + location.state.token,
+        Authorization: 'Bearer ' + sessionStorage.getItem('token'),
       },
       body: JSON.stringify({
         idstage: location.state.idstage,

@@ -2,8 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { Button, Col, Container, Form, Row } from 'react-bootstrap';
 
-// SELECT * FROM competences LEFT JOIN niveauxcompetences ON competences.idcompetence = niveauxcompetences.idcompetence
-
 const EvalCompetences = () => {
   const location = useLocation();
   const [question, setQuestion] = useState([]);
@@ -14,7 +12,7 @@ const EvalCompetences = () => {
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
-        Authorization: 'Bearer ' + location.state.token,
+        Authorization: 'Bearer ' + sessionStorage.getItem('token'),
       },
     })
       .then((res) => {

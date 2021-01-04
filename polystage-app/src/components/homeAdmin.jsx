@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { Button, Card, Col, Container, Row } from 'react-bootstrap';
-import { useLocation } from 'react-router-dom';
+//import { useLocation } from 'react-router-dom';
 
 const HomeAdmin = () => {
   const [data, setData] = useState([]);
-  const location = useLocation();
+  //const location = useLocation();
 
   useEffect(() => {
     fetch('http://localhost:5000/api/stages', {
@@ -12,7 +12,8 @@ const HomeAdmin = () => {
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
-        Authorization: 'Bearer ' + location.state.token,
+        //Authorization: 'Bearer ' + location.state.token,
+        Authorization: 'Bearer ' + sessionStorage.getItem('token'),
       },
     })
       .then((res) => {
@@ -64,7 +65,9 @@ const HomeAdmin = () => {
                   </Card.Text>
                   {
                     // eslint-disable-next-line
-                    stage.idens == location.state.id ? (
+                    //stage.idens == location.state.id ? (
+                    // eslint-disable-next-line
+                    stage.idens == sessionStorage.getItem('id') ? (
                       <div>
                         <Button variant="warning">Lancer l'évaluation</Button>{' '}
                         <Button variant="info">Visualiser l'évaluation</Button>

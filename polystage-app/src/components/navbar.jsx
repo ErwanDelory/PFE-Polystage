@@ -50,17 +50,23 @@ const NavbarNav = () => {
   const history = useHistory();
 
   const nav = () => {
-    // Remplacer par un history.push avec les données nécéssaires.
-    history.goBack();
+    /*history.push({
+      pathname: '/',
+      state: {
+        token: location.state.token,
+        id: location.state.id,
+        role: location.state.role,
+      },
+    });*/
+    //history.goBack();
+    history.push('/');
   };
 
   return (
     <Nav className="mr-auto">
       <Nav.Link onClick={nav}>Accueil</Nav.Link>
       {sessionStorage.getItem('role') === 'Admin' && (
-        <Nav.Link href="/admin" onClick={nav}>
-          Administrateur
-        </Nav.Link>
+        <Nav.Link href="/admin">Administrateur</Nav.Link>
       )}
     </Nav>
   );
@@ -75,9 +81,12 @@ const NavbarPolystage = ({ isConnected }) => {
       pathname: '/',
       state: {
         token: location.state.token,
+        id: location.state.id,
+        role: location.state.role,
       },
     });*/
-    history.goBack();
+    //history.goBack();
+    history.push('/');
   }
 
   return (

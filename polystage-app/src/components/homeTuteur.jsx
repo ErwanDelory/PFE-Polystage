@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { Button, Card, Col, Container, Row } from 'react-bootstrap';
 import { useHistory } from 'react-router';
-import { useLocation } from 'react-router-dom';
+//import { useLocation } from 'react-router-dom';
 
 const HomeTuteur = () => {
   const [data, setData] = useState([]);
   const history = useHistory();
-  const location = useLocation();
+  //const location = useLocation();
 
   useEffect(() => {
     fetch('http://localhost:5000/api/stages', {
@@ -14,7 +14,8 @@ const HomeTuteur = () => {
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
-        Authorization: 'Bearer ' + location.state.token,
+        //Authorization: 'Bearer ' + location.state.token,
+        Authorization: 'Bearer ' + sessionStorage.getItem('token'),
       },
     })
       .then((res) => {
@@ -30,7 +31,7 @@ const HomeTuteur = () => {
         };
         for (let i = 0; i < mes.data.length; i++) {
           // eslint-disable-next-line
-          if (mes.data[i].idtuteur == location.state.id) {
+          if (mes.data[i].idtuteur == sessionStorage.getItem('id')) {
             var a = new Date(mes.data[i].datedebut).toLocaleDateString(
               undefined,
               options
@@ -53,14 +54,14 @@ const HomeTuteur = () => {
   const redirectEvalEleve = (nom, prenom) => {
     history.push({
       pathname: '/evalstage',
-      state: { nom: nom, prenom: prenom, token: location.state.token },
+      state: { nom: nom, prenom: prenom, token: sessionStorage.getItem('id') },
     });
   };
 
   const redirectEvalComp = (nom, prenom) => {
     history.push({
       pathname: '/evalcomp',
-      state: { nom: nom, prenom: prenom, token: location.state.token },
+      state: { nom: nom, prenom: prenom, token: sessionStorage.getItem('id') },
     });
   };
 
