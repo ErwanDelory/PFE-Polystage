@@ -1,10 +1,14 @@
 import React, { useEffect, useState } from 'react';
+import { useHistory } from 'react-router';
+import TimeAgo from 'timeago-react';
+import * as timeago from 'timeago.js';
+import fr from 'timeago.js/lib/lang/fr';
 import { Button, Card, Col, Container, Row } from 'react-bootstrap';
-//import { useLocation } from 'react-router-dom';
 
 const HomeProf = () => {
+  timeago.register('fr', fr);
   const [data, setData] = useState([]);
-  //const location = useLocation();
+  const history = useHistory();
 
   useEffect(() => {
     fetch('http://localhost:5000/api/stages', {
@@ -12,7 +16,6 @@ const HomeProf = () => {
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
-        //Authorization: 'Bearer ' + location.state.token,
         Authorization: 'Bearer ' + sessionStorage.getItem('token'),
       },
     })
@@ -44,7 +47,36 @@ const HomeProf = () => {
       });
   }, []);
 
-  const startEval = () => {};
+  const startEval = (id) => {
+    const value = new Date();
+    const month = value.getMonth() + 1;
+    const hours = value.getHours() - 1;
+    let date =
+      value.getFullYear() +
+      '-' +
+      month +
+      '-' +
+      value.getDate() +
+      ' ' +
+      hours +
+      ':' +
+      value.getMinutes() +
+      ':' +
+      value.getSeconds();
+    console.log(date);
+    fetch('http://localhost:5000/api/starteval', {
+      method: 'PUT',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + sessionStorage.getItem('token'),
+      },
+      body: JSON.stringify({ evallancee: date, idstage: id }),
+    }).then((res) => {
+      res.json();
+      history.push('/');
+    });
+  };
 
   const openEval = () => {};
 
@@ -71,9 +103,18 @@ const HomeProf = () => {
                     // eslint-disable-next-line
                     stage.idens == sessionStorage.getItem('id') ? (
                       <div>
-                        <Button variant="warning" onClick={startEval}>
-                          Lancer l'évaluation
-                        </Button>{' '}
+                        {stage.evallancee === null ? (
+                          <Button
+                            variant="warning"
+                            onClick={() => startEval(stage.idstage)}
+                          >
+                            Lancer l'évaluation
+                          </Button>
+                        ) : (
+                          <Button variant="warning" disabled>
+                            Lancer l'évaluation
+                          </Button>
+                        )}{' '}
                         <Button variant="info" onClick={openEval}>
                           Visualiser l'évaluation
                         </Button>
@@ -89,6 +130,13 @@ const HomeProf = () => {
                       </div>
                     )
                   }
+                  <br />
+                  {stage.evallancee !== null && (
+                    <div>
+                      L'évaluation a été lancée{' '}
+                      <TimeAgo datetime={stage.evallancee} locale="fr" />
+                    </div>
+                  )}
                 </Card.Body>
                 <Card.Footer className="text-center">
                   {stage.datedebut} - {stage.datefin}
