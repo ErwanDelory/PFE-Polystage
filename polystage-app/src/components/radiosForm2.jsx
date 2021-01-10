@@ -1,7 +1,7 @@
 import React from 'react';
 import { Col, Form } from 'react-bootstrap';
 
-const RadiosFormBis = ({ question }) => {
+const RadiosFormBis = ({ question, value }) => {
   return (
     <Form.Group>
       <Form.Label>{question}</Form.Label>
@@ -9,13 +9,13 @@ const RadiosFormBis = ({ question }) => {
         <Form.Check
           type="radio"
           label="Oui"
-          name="formHorizontalRadios"
+          name={value}
           id="formHorizontalRadios1"
         />
         <Form.Check
           type="radio"
           label="Non"
-          name="formHorizontalRadios"
+          name={value}
           id="formHorizontalRadios2"
         />
       </Col>

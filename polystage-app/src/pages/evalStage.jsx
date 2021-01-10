@@ -108,46 +108,61 @@ const EvalStage = () => {
           <Row xs={1} md={2}>
             <RadiosForm
               question={"Capacité d'analyse / compréhension des problèmes"}
+              value={'1'}
             />
-            <RadiosForm question={'Mise en oeuvre de ses connaissances'} />
+            <RadiosForm
+              question={'Mise en oeuvre de ses connaissances'}
+              value={'2'}
+            />
             <RadiosForm
               question={'Aptitudes à acquérir de nouvelles connaissances'}
+              value={'3'}
             />
             <RadiosForm
               question={
                 'Méthodologie / organisation du travail, gestion de projet'
               }
+              value={'4'}
             />
             <RadiosForm
               question={
                 'Synhtèse et communication des résultats, maîtrise des outils de communication'
               }
+              value={'5'}
             />
             <RadiosForm
               question={
                 'Réalisation des objectifs - Qualité du travail réalisé'
               }
+              value={'6'}
             />
             <RadiosForm
               question={
                 "Autonomie -initiative / créativité / ouverture d'esprit"
               }
+              value={'7'}
             />
             <RadiosForm question={"Capacité à s'intégrer dans une équipe"} />
             <RadiosForm
               question={
                 'Communication sur ses activités et capacité à rendre compte'
               }
+              value={'8'}
             />
             <RadiosForm
               question={'Prise en compte des enjeux métiers et économiques'}
+              value={'9'}
             />
             <RadiosForm
               question={
                 "Appropriation des valeurs, codes et de la culture de l'équipe et de l'organisation"
               }
+              value={'10'}
             />
-            <RadiosForm question={'Attitude / assiduité / ponctualité'} />
+            <RadiosForm
+              question={'Attitude / assiduité / ponctualité'}
+              value={'11'}
+            />
           </Row>
 
           <h4>Appréciation globale sur le stage</h4>
@@ -177,31 +192,31 @@ const EvalStage = () => {
                 <Form.Check
                   type="radio"
                   label="Parmi les meilleurs"
-                  name="formHorizontalRadios"
+                  name="13"
                   id="formHorizontalRadios1"
                 />
                 <Form.Check
                   type="radio"
                   label="Au dessus de la moyenne"
-                  name="formHorizontalRadios"
+                  name="13"
                   id="formHorizontalRadios2"
                 />
                 <Form.Check
                   type="radio"
                   label="À la moyenne"
-                  name="formHorizontalRadios"
+                  name="13"
                   id="formHorizontalRadios3"
                 />
                 <Form.Check
                   type="radio"
                   label="En dessous de la moyenne"
-                  name="formHorizontalRadios"
+                  name="13"
                   id="formHorizontalRadios3"
                 />
                 <Form.Check
                   type="radio"
                   label="Parmi les plus mauvais"
-                  name="formHorizontalRadios"
+                  name="13"
                   id="formHorizontalRadios3"
                 />
               </Col>
@@ -224,11 +239,13 @@ const EvalStage = () => {
             </Form.Group>
             <RadiosFormBis
               question={"Sur l'accueil d'un stagiaire pour l'année prochaine?"}
+              value={'14'}
             />
             <RadiosFormBis
               question={
                 "Sur l'accueil d'un élève en contrat de professionnalisation pour l'année prochaine?"
               }
+              value={'15'}
             />
           </Row>
           <h4>Après le stage</h4>
@@ -237,6 +254,7 @@ const EvalStage = () => {
               question={
                 "L'entreprise a-t-elle fait une proposition d'emploi au stagiaire?"
               }
+              value={'16'}
             />
             <Form.Group>
               <Form.Label>
@@ -246,31 +264,31 @@ const EvalStage = () => {
                 <Form.Check
                   type="radio"
                   label="CDI"
-                  name="formHorizontalRadios"
+                  name="17"
                   id="formHorizontalRadios1"
                 />
                 <Form.Check
                   type="radio"
                   label="CDD"
-                  name="formHorizontalRadios"
+                  name="17"
                   id="formHorizontalRadios2"
                 />
                 <Form.Check
                   type="radio"
                   label="Prolongation du stage"
-                  name="formHorizontalRadios"
+                  name="17"
                   id="formHorizontalRadios3"
                 />
                 <Form.Check
                   type="radio"
                   label="Contrat de thèse entreprise"
-                  name="formHorizontalRadios"
+                  name="17"
                   id="formHorizontalRadios3"
                 />
                 <Form.Check
                   type="radio"
                   label="VIE"
-                  name="formHorizontalRadios"
+                  name="17"
                   id="formHorizontalRadios3"
                 />
               </Col>
@@ -279,14 +297,17 @@ const EvalStage = () => {
               question={
                 "L'entreprise ne recrute pas sur le profil du stagiaire"
               }
+              value={'18'}
             />
             <RadiosFormBis
               question={
                 "La stagiaire aurait pu être recruté si l'entreprise avait eu un poste à pourvoir"
               }
+              value={'19'}
             />
             <RadiosFormBis
               question={"Le stagiaire n'a pas été retenu pour un recrutement"}
+              value={'20'}
             />
             <Form.Group controlId="autres">
               <Form.Label>Autres</Form.Label>
@@ -301,14 +322,17 @@ const EvalStage = () => {
           <Row xs={1} md={2}>
             <RadiosFormBis
               question={'Le rapport de stage est-il confidentiel?'}
+              value={'21'}
             />
             <RadiosFormBis
               question={'Souhaitez-vous participer à la soutenance?'}
+              value={'22'}
             />
             <RadiosFormBis
               question={
                 'Si oui, seriez-vous disponible pour participer au repas le jeudi 12 septembre à midi?'
               }
+              value={'23'}
             />
             <Form.Group controlId="autres">
               <Form.Label>
