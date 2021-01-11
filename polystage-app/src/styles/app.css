@@ -23,3 +23,11 @@ h3 {
   display: flex;
   justify-content: flex-end;
 }
+
+.green {
+  color: green;
+}
+
+.red {
+  color: red;
+}

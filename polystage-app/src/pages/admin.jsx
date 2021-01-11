@@ -1,7 +1,13 @@
 import React from 'react';
 import { Button, Card, Container } from 'react-bootstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCheck } from '@fortawesome/free-solid-svg-icons';
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
 const Admin = () => {
+  // TODO: Recherche des tuteurs en retard
+  // TODO: Recherche des élèves en retard
+
   return (
     <div>
       <Container>
@@ -12,15 +18,30 @@ const Admin = () => {
             <Card.Title>Tuteurs</Card.Title>
             <Card.Text>
               Nom et prénom du tuteur
-              <span className="warning">Mail d'avertissement déjà envoyé</span>
-              <span className="warning">Évaluation à faire</span>
+              <span className="warning green">
+                Mail d'avertissement déjà envoyé&nbsp;
+                <FontAwesomeIcon className="bckg-icon" icon={faCheck} />
+              </span>
+              <span className="warning red">
+                Évaluation à faire&nbsp;
+                <FontAwesomeIcon className="bckg-icon" icon={faTimes} />
+              </span>
             </Card.Text>
             <Card.Title>Élèves</Card.Title>
             <Card.Text>
               Nom et prénom de l'élève
-              <span className="warning">Mail d'avertissement déjà envoyé</span>
-              <span className="warning">Rapport à télécharger</span>
-              <span className="warning">Présentation à télécharger</span>
+              <span className="warning green">
+                Mail d'avertissement déjà envoyé&nbsp;
+                <FontAwesomeIcon className="bckg-icon" icon={faCheck} />
+              </span>
+              <span className="warning red">
+                Rapport à télécharger&nbsp;
+                <FontAwesomeIcon className="bckg-icon" icon={faTimes} />
+              </span>
+              <span className="warning red">
+                Présentation à télécharger&nbsp;
+                <FontAwesomeIcon className="bckg-icon" icon={faTimes} />
+              </span>
             </Card.Text>
           </Card.Body>
         </Card>
