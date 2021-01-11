@@ -18,3 +18,8 @@ h3 {
 .center {
   margin: 0 auto;
 }
+
+.warning {
+  display: flex;
+  justify-content: flex-end;
+}
