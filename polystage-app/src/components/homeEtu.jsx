@@ -171,7 +171,7 @@ const HomeEtu = () => {
             <Card
               style={{ width: '35rem' }}
               onClick={addStage}
-              className="addStage"
+              className="addStage pointer"
             >
               <Card.Img variant="top" src={img9} />
               <Card.Header className="text-center">Année ???? - ?A</Card.Header>

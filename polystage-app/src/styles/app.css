@@ -31,3 +31,7 @@ h3 {
 .red {
   color: red;
 }
+
+.pointer {
+  cursor: grab;
+}

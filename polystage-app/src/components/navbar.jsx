@@ -73,7 +73,7 @@ const NavbarPolystage = ({ isConnected }) => {
   return (
     <nav>
       <Navbar bg="light" variant="light">
-        <Navbar.Brand onClick={accueil}>
+        <Navbar.Brand onClick={accueil} className="pointer">
           <img
             alt=""
             src={img}
