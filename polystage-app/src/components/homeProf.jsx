@@ -6,6 +6,8 @@ import fr from 'timeago.js/lib/lang/fr';
 import { Button, Card, Col, Container, Row } from 'react-bootstrap';
 
 const HomeProf = () => {
+  // TODO: Visualiser l'évaluation
+
   timeago.register('fr', fr);
   const [data, setData] = useState([]);
   const history = useHistory();

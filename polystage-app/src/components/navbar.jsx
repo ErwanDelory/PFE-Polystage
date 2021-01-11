@@ -50,15 +50,6 @@ const NavbarNav = () => {
   const history = useHistory();
 
   const nav = () => {
-    /*history.push({
-      pathname: '/',
-      state: {
-        token: location.state.token,
-        id: location.state.id,
-        role: location.state.role,
-      },
-    });*/
-    //history.goBack();
     history.push('/');
   };
 
@@ -76,16 +67,6 @@ const NavbarPolystage = ({ isConnected }) => {
   const history = useHistory();
 
   function accueil() {
-    // Ajouter les données les plus importantes à garder
-    /*history.push({
-      pathname: '/',
-      state: {
-        token: location.state.token,
-        id: location.state.id,
-        role: location.state.role,
-      },
-    });*/
-    //history.goBack();
     history.push('/');
   }
 

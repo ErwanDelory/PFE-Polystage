@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { Button, Card, Col, Container, Row } from 'react-bootstrap';
 import { useHistory } from 'react-router';
-//import { useLocation } from 'react-router-dom';
 
 const HomeTuteur = () => {
+  // TODO: Lancer l'évaluation de l'élève
+  // TODO: Lancer l'évaluation des compétences
+
   const [data, setData] = useState([]);
   const history = useHistory();
-  //const location = useLocation();
 
   useEffect(() => {
     fetch('http://localhost:5000/api/stages', {
@@ -14,7 +15,6 @@ const HomeTuteur = () => {
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
-        //Authorization: 'Bearer ' + location.state.token,
         Authorization: 'Bearer ' + sessionStorage.getItem('token'),
       },
     })

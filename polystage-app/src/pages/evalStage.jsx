@@ -5,6 +5,9 @@ import RadiosForm from '../components/radiosForm';
 import RadiosFormBis from '../components/radiosForm2';
 
 const EvalStage = () => {
+  // TODO: Récupération des données
+  // TODO: Réalisation du fichier avec les réponses obtenues
+
   const location = useLocation();
 
   // eslint-disable-next-line

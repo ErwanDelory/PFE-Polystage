@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router';
-//import { useLocation } from 'react-router-dom';
 import { Button, Card, Col, Container, Row } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit } from '@fortawesome/free-solid-svg-icons';
@@ -18,7 +17,6 @@ import img9 from './../img/stage-9.jpg';
 const HomeEtu = () => {
   const [data, setData] = useState([]);
   const history = useHistory();
-  //const location = useLocation();
 
   useEffect(() => {
     fetch('http://localhost:5000/api/stages', {
@@ -26,7 +24,6 @@ const HomeEtu = () => {
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
-        //Authorization: 'Bearer ' + location.state.token,
         Authorization: 'Bearer ' + sessionStorage.getItem('token'),
       },
     })
@@ -63,7 +60,6 @@ const HomeEtu = () => {
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
-        //Authorization: 'Bearer ' + location.state.token,
         Authorization: 'Bearer ' + sessionStorage.getItem('token'),
       },
     })

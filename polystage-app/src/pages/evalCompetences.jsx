@@ -3,6 +3,8 @@ import { useLocation } from 'react-router-dom';
 import { Button, Col, Container, Form, Row } from 'react-bootstrap';
 
 const EvalCompetences = () => {
+  // TODO: Envoie des données pour récupérer un document
+
   const location = useLocation();
   const [question, setQuestion] = useState([]);
 
