@@ -3,8 +3,8 @@ import { Button, Card, Col, Container, Row } from 'react-bootstrap';
 import { useHistory } from 'react-router';
 
 const HomeTuteur = () => {
-  // TODO: Lancer l'évaluation de l'élève
-  // TODO: Lancer l'évaluation des compétences
+  // TODO: Passer les données évaluation élève
+  // TODO: Bloquer "lancer" si visualiser "ok"
 
   const [data, setData] = useState([]);
   const history = useHistory();
@@ -46,15 +46,19 @@ const HomeTuteur = () => {
             j++;
           }
         }
-        console.log(stages);
         return setData(stages);
       });
   }, []);
 
-  const redirectEvalEleve = (nom, prenom) => {
+  const redirectEvalEleve = (nom, prenom, entreprise) => {
     history.push({
       pathname: '/evalstage',
-      state: { nom: nom, prenom: prenom, token: sessionStorage.getItem('id') },
+      state: {
+        nom: nom,
+        prenom: prenom,
+        entreprise: entreprise,
+        token: sessionStorage.getItem('id'),
+      },
     });
   };
 
@@ -86,7 +90,13 @@ const HomeTuteur = () => {
                   </Card.Text>
                   <Button
                     variant="warning"
-                    onClick={() => redirectEvalEleve(stage.nom, stage.prenom)}
+                    onClick={() =>
+                      redirectEvalEleve(
+                        stage.nom,
+                        stage.prenom,
+                        stage.nomentreprise
+                      )
+                    }
                   >
                     Lancer l'évaluation de l'élève
                   </Button>{' '}

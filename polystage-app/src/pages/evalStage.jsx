@@ -19,9 +19,13 @@ const EvalStage = () => {
         'Content-Type': 'application/json',
         Authorization: 'Bearer ' + sessionStorage.getItem('token'),
       },
-    }).then((res) => {
-      return res.json();
-    });
+    })
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        console.log(data.data);
+      });
   }, []);
 
   return (
@@ -39,6 +43,8 @@ const EvalStage = () => {
                 style={{ width: '90%' }}
                 type="text"
                 placeholder="Saisir le nom de l'élève"
+                value={location.state.nom}
+                disabled
               />
             </Form.Group>
             <Form.Group controlId="prenom">
@@ -47,6 +53,8 @@ const EvalStage = () => {
                 style={{ width: '90%' }}
                 type="text"
                 placeholder="Saisir le prénom de l'élève"
+                value={location.state.prenom}
+                disabled
               />
             </Form.Group>
             <Form.Group controlId="entreprise">
@@ -55,6 +63,8 @@ const EvalStage = () => {
                 style={{ width: '90%' }}
                 type="text"
                 placeholder="Saisir le nom de l'entreprise"
+                value={location.state.entreprise}
+                disabled
               />
             </Form.Group>
             <Form.Group controlId="ville">
