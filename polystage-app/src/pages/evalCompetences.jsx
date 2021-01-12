@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
 import { Button, Col, Container, Form, Row } from 'react-bootstrap';
 
 const EvalCompetences = () => {
@@ -7,13 +8,7 @@ const EvalCompetences = () => {
 
   const location = useLocation();
   const [question, setQuestion] = useState([]);
-
-  const [reponse, setReponse] = useState([]);
-
-  const handleChange = (e) => {
-    const { value } = e.target;
-    setReponse(reponse.concat(value));
-  };
+  const { register, handleSubmit } = useForm();
 
   useEffect(() => {
     fetch('http://localhost:5000/api/competences', {
@@ -32,9 +27,8 @@ const EvalCompetences = () => {
       });
   }, []);
 
-  const onSubmit = (event) => {
-    event.preventDefault();
-    console.log(reponse);
+  const onSubmit = (data) => {
+    console.log(data);
   };
 
   return (
@@ -44,8 +38,7 @@ const EvalCompetences = () => {
           Évaluation des compétences de l'élève {location.state.prenom}{' '}
           {location.state.nom}
         </h3>
-        <Form onSubmit={onSubmit}>
-          <h4>Titre de la catégorie</h4>
+        <Form onSubmit={handleSubmit(onSubmit)}>
           <Row xs={1} md={2}>
             {question?.map((data) => (
               <Col key={data.idcompetence}>
@@ -60,7 +53,7 @@ const EvalCompetences = () => {
                       name={data.idcompetence}
                       id="formHorizontalRadios1"
                       value={data.libelle1}
-                      onChange={handleChange}
+                      ref={register}
                     />
                     <Form.Check
                       type="radio"
@@ -68,7 +61,7 @@ const EvalCompetences = () => {
                       name={data.idcompetence}
                       id="formHorizontalRadios2"
                       value={data.libelle2}
-                      onChange={handleChange}
+                      ref={register}
                     />
                     <Form.Check
                       type="radio"
@@ -76,7 +69,7 @@ const EvalCompetences = () => {
                       name={data.idcompetence}
                       id="formHorizontalRadios3"
                       value={data.libelle3}
-                      onChange={handleChange}
+                      ref={register}
                     />
                     <Form.Check
                       type="radio"
@@ -84,7 +77,7 @@ const EvalCompetences = () => {
                       name={data.idcompetence}
                       id="formHorizontalRadios4"
                       value={data.libelle4}
-                      onChange={handleChange}
+                      ref={register}
                     />
                     <Form.Check
                       type="radio"
@@ -92,7 +85,7 @@ const EvalCompetences = () => {
                       name={data.idcompetence}
                       id="formHorizontalRadios5"
                       value={data.libelle5}
-                      onChange={handleChange}
+                      ref={register}
                     />
                   </Col>
                 </Form.Group>
