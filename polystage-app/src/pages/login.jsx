@@ -98,11 +98,11 @@ const Login = () => {
               onChange={handleInputPasswordChange}
             />
           </Form.Group>
-          <Button variant="primary" type="submit">
+          <Button variant="info" type="submit">
             <FontAwesomeIcon className="bckg-icon" icon={faSignInAlt} /> Se
             connecter
           </Button>{' '}
-          <Button variant="primary" href="/register">
+          <Button variant="info" href="/register">
             <FontAwesomeIcon className="bckg-icon" icon={faClipboard} />{' '}
             S'inscire
           </Button>

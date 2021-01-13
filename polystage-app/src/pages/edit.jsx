@@ -105,7 +105,7 @@ const Edit = () => {
   };
 
   return (
-    <div>
+    <div className="editStage">
       <br />
       <Container>
         <Form onSubmit={onSubmit}>
@@ -181,7 +181,7 @@ const Edit = () => {
             />
           </Form.Group>
 
-          <Button variant="primary" type="submit">
+          <Button variant="info" type="submit">
             Mettre à jour
           </Button>
         </Form>

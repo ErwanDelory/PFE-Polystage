@@ -46,7 +46,9 @@ const Admin = () => {
           </Card.Body>
         </Card>
         <br />
-        <Button variant="warning">Envoyer les mails de rappel</Button>
+        <div className="text-center">
+          <Button variant="warning">Envoyer les mails de rappel</Button>
+        </div>
       </Container>
     </div>
   );

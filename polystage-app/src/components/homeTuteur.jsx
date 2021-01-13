@@ -3,7 +3,6 @@ import { Button, Card, Col, Container, Row } from 'react-bootstrap';
 import { useHistory } from 'react-router';
 
 const HomeTuteur = () => {
-  // TODO: Passer les données évaluation élève
   // TODO: Bloquer "lancer" si visualiser "ok"
 
   const [data, setData] = useState([]);

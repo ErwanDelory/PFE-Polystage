@@ -76,7 +76,7 @@ const HomeAdmin = () => {
       body: JSON.stringify({ evallancee: date, idstage: id }),
     }).then((res) => {
       res.json();
-      history.push('/');
+      history.go(0);
     });
   };
 

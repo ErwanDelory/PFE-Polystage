@@ -125,7 +125,7 @@ const Register = () => {
               <option>Tuteur</option>
             </Form.Control>
           </Form.Group>
-          <Button variant="primary" type="submit">
+          <Button variant="info" type="submit">
             S'inscire
           </Button>
         </Form>

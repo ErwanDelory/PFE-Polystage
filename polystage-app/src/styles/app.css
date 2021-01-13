@@ -1,11 +1,21 @@
 body:not(nav) {
-  background-color: #faf3dd;
+  background-color: #FFFFFF;
 }
   
 * {
   list-style: none;
 }
   
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.content {
+  flex: 1 0 auto;
+}
+
 h3 {
   font-variant: small-caps;
   text-align: center;
@@ -34,4 +44,8 @@ h3 {
 
 .pointer {
   cursor: grab;
+}
+
+.login, .register, .editStage, .newStage {
+  text-align: center;
 }

@@ -32,7 +32,7 @@ const EvalCompetences = () => {
   };
 
   return (
-    <div>
+    <div className="evalComp">
       <Container>
         <h3>
           Évaluation des compétences de l'élève {location.state.prenom}{' '}
@@ -92,9 +92,11 @@ const EvalCompetences = () => {
               </Col>
             ))}
           </Row>
-          <Button variant="primary" type="submit">
-            Envoyer
-          </Button>
+          <div className="text-center">
+            <Button variant="info" type="submit" text-center>
+              Envoyer
+            </Button>
+          </div>
         </Form>
       </Container>
     </div>

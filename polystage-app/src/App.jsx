@@ -13,6 +13,7 @@ import NewStage from './pages/newStage';
 import Admin from './pages/admin';
 import EvalStage from './pages/evalStage';
 import EvalCompetences from './pages/evalCompetences';
+import Footer from './components/footer';
 
 const App = () => {
   //Ici il faut faire passer le sessionStorage token dans une fonction check token pour voir si il est encore valide (expiré et qu'il appartient au bon utilisateur)
@@ -26,21 +27,24 @@ const App = () => {
   return (
     <AuthContext.Provider value={{ authTokens, setAuthTokens: setTokens }}>
       <Router>
-        <NavbarPolystage isConnected={!!authTokens} />
-        <Switch>
-          <PrivateRoute exact path="/" component={Home} />
-          <Route exact path="/login" component={Login} />
-          <Route exact path="/register" component={Register} />
-          <PrivateRoute exact path="/register" component={Register} />
-          <PrivateRoute exact path="/edit" component={Edit} />
-          <PrivateRoute exact path="/newstage" component={NewStage} />
-          {sessionStorage.getItem('role') === 'Admin' && (
-            <PrivateRoute exact path="/admin" component={Admin} />
-          )}
-          <PrivateRoute exact path="/evalstage" component={EvalStage} />
-          <PrivateRoute exact path="/evalcomp" component={EvalCompetences} />
-          <Route exact path="/error" component={Error} />
-        </Switch>
+        <div className="content">
+          <NavbarPolystage isConnected={!!authTokens} />
+          <Switch>
+            <PrivateRoute exact path="/" component={Home} />
+            <Route exact path="/login" component={Login} />
+            <Route exact path="/register" component={Register} />
+            <PrivateRoute exact path="/register" component={Register} />
+            <PrivateRoute exact path="/edit" component={Edit} />
+            <PrivateRoute exact path="/newstage" component={NewStage} />
+            {sessionStorage.getItem('role') === 'Admin' && (
+              <PrivateRoute exact path="/admin" component={Admin} />
+            )}
+            <PrivateRoute exact path="/evalstage" component={EvalStage} />
+            <PrivateRoute exact path="/evalcomp" component={EvalCompetences} />
+            <Route exact path="/error" component={Error} />
+          </Switch>
+        </div>
+        <Footer title={'Polystage'} />
       </Router>
     </AuthContext.Provider>
   );

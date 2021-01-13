@@ -149,16 +149,18 @@ const HomeEtu = () => {
                     <br />
                     {stage.description}
                   </Card.Text>
-                  <a
-                    href="http://localhost:5000/api/rapport/1"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <Button variant="warning">Voir le rapport</Button>
-                  </a>{' '}
-                  <a href="http://localhost:5000/api/dlrapport/1">
-                    <Button variant="info">Télécharger le rapport</Button>
-                  </a>
+                  <div className="text-center">
+                    <a
+                      href="http://localhost:5000/api/rapport/1"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <Button variant="warning">Voir le rapport</Button>
+                    </a>{' '}
+                    <a href="http://localhost:5000/api/dlrapport/1">
+                      <Button variant="info">Télécharger le rapport</Button>
+                    </a>
+                  </div>
                 </Card.Body>
                 <Card.Footer className="text-center">
                   {stage.datedebut} - {stage.datefin}
@@ -191,12 +193,14 @@ const HomeEtu = () => {
                   <br />
                   ...
                 </Card.Text>
-                <Button variant="warning" disabled>
-                  Voir le rapport
-                </Button>{' '}
-                <Button variant="info" disabled>
-                  Télécharger le rapport
-                </Button>
+                <div className="text-center">
+                  <Button variant="warning" disabled>
+                    Voir le rapport
+                  </Button>{' '}
+                  <Button variant="info" disabled>
+                    Télécharger le rapport
+                  </Button>
+                </div>
               </Card.Body>
               <Card.Footer className="text-center">
                 25/12/2020 - 25/12/2021

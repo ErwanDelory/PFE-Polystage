@@ -124,7 +124,7 @@ const NewStage = () => {
   };
 
   return (
-    <div>
+    <div className="newStage">
       <br />
       <Container>
         <Form onSubmit={onSubmit}>
@@ -210,7 +210,7 @@ const NewStage = () => {
             />
           </Form.Group>
 
-          <Button variant="primary" type="submit">
+          <Button variant="info" type="submit">
             Ajouter le stage
           </Button>
         </Form>
