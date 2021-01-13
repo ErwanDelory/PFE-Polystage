@@ -73,7 +73,7 @@ const NewStage = () => {
         Authorization: 'Bearer ' + sessionStorage.getItem('token'),
       },
       body: JSON.stringify({
-        ideleve: sessionStorage.getItem('ideleve'),
+        ideleve: sessionStorage.getItem('id'),
         niveau: niveau,
         annee: annee,
         idtuteur: 5,
@@ -116,7 +116,7 @@ const NewStage = () => {
         return;
       }
       res.json();
-      setMessage('Inscription réussie !');
+      setMessage('Ajout du stage réussi !');
       setStateSucces(true);
       setStateError(false);
       setTimeout(redirect, 3000);

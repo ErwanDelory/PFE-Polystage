@@ -104,6 +104,24 @@ const Edit = () => {
     });
   };
 
+  const deleteStage = () => {
+    const id = location.state.idstage;
+    fetch(`http://localhost:5000/api/stage/${id}`, {
+      method: 'DELETE',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + sessionStorage.getItem('token'),
+      },
+    }).then((res) => {
+      res.json();
+      setMessage('Suppression réussie !');
+      setStateSucces(true);
+      setStateError(false);
+      setTimeout(redirect, 3000);
+    });
+  };
+
   return (
     <div className="editStage">
       <br />
@@ -180,9 +198,11 @@ const Edit = () => {
               onChange={handleInputDateFinChange}
             />
           </Form.Group>
-
           <Button variant="info" type="submit">
             Mettre à jour
+          </Button>{' '}
+          <Button variant="danger" onClick={deleteStage}>
+            Supprimer
           </Button>
         </Form>
         <br />

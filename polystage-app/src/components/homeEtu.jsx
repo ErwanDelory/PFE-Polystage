@@ -15,6 +15,9 @@ import img8 from './../img/stage-8.jpg';
 import img9 from './../img/stage-9.jpg';
 
 const HomeEtu = () => {
+  // TODO: Supprimer un stage (dans la page de modif?)
+  // TODO: Importer le rapport
+
   const [data, setData] = useState([]);
   const history = useHistory();
 
