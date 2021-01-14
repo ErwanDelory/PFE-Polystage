@@ -44,7 +44,7 @@ const App = () => {
             <Route exact path="/error" component={Error} />
           </Switch>
         </div>
-        <Footer title={'Polystage'} />
+        <Footer title={'Copyright © 2021 - Polystage'} />
       </Router>
     </AuthContext.Provider>
   );
