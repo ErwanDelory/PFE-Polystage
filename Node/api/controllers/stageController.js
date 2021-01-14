@@ -106,7 +106,6 @@ exports.getStageById = getStageById;
 exports.createStage = createStage;
 exports.deleteStage = deleteStage;
 exports.editStage = editStage;
-exports.startEval = startEval;
 
 exports.getRapportStageById = getRapportStageById;
 exports.dlRapportStageById = dlRapportStageById;
