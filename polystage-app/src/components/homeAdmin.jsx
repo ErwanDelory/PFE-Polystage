@@ -91,8 +91,7 @@ const HomeAdmin = () => {
       }),
     }).then((res) => {
       res.json();
-      // Fetch add retard
-      console.log('idtuteur = ' + idtuteur);
+
       fetch('http://localhost:5000/api/retardtuteur', {
         method: 'POST',
         headers: {
@@ -120,10 +119,10 @@ const HomeAdmin = () => {
           presentation: 0,
           autoeval: 0,
         }),
-      }).then((res) => res.json());
-
-      //End
-      history.go(0);
+      }).then((res) => {
+        res.json();
+        history.go(0);
+      });
     });
   };
 
