@@ -70,7 +70,7 @@ async function editStage(req, res, next) {
 async function startEval(req, res, next) {
   if (req.body.evallancee) {
     try {
-      let q = `UPDATE stage SET evallancee = "${req.body.evallancee}"
+      let q = `UPDATE stage SET evallancee = "${req.body.evallancee}", datelimiteeval = "${req.body.datelimiteeval}"
 			WHERE idstage= ${req.body.idstage}`;
       conn.query(q, (err, result) => {
         console.log(result);
