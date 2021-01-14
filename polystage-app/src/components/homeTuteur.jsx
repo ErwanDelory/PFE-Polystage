@@ -75,51 +75,64 @@ const HomeTuteur = () => {
         <h3>Stage effectué</h3>
         <Row xs={1} md={1}>
           {data?.map((stage) => (
-            <Col key={stage.idstage}>
-              <Card style={{ width: '50vw' }} className="text-center center">
-                <Card.Header>
-                  {stage.nom} {stage.prenom}
-                </Card.Header>
-                <Card.Body>
-                  <Card.Title>{stage.titrestage}</Card.Title>
-                  <Card.Text>
-                    <small className="text-muted">{stage.nomentreprise}</small>
-                    <br />
-                    {stage.description}
-                  </Card.Text>
-                  <Button
-                    variant="warning"
-                    onClick={() =>
-                      redirectEvalEleve(
-                        stage.nom,
-                        stage.prenom,
-                        stage.nomentreprise
-                      )
-                    }
+            <div>
+              {stage.evallancee ? (
+                <Col key={stage.idstage}>
+                  <Card
+                    style={{ width: '50vw' }}
+                    className="text-center center"
                   >
-                    Lancer l'évaluation de l'élève
-                  </Button>{' '}
-                  <Button
-                    variant="info"
-                    onClick={() => redirectEvalComp(stage.nom, stage.prenom)}
-                  >
-                    Lancer l'évalution des compétences
-                  </Button>
+                    <Card.Header>
+                      {stage.nom} {stage.prenom}
+                    </Card.Header>
+                    <Card.Body>
+                      <Card.Title>{stage.titrestage}</Card.Title>
+                      <Card.Text>
+                        <small className="text-muted">
+                          {stage.nomentreprise}
+                        </small>
+                        <br />
+                        {stage.description}
+                      </Card.Text>
+                      <Button
+                        variant="warning"
+                        onClick={() =>
+                          redirectEvalEleve(
+                            stage.nom,
+                            stage.prenom,
+                            stage.nomentreprise
+                          )
+                        }
+                      >
+                        Lancer l'évaluation de l'élève
+                      </Button>{' '}
+                      <Button
+                        variant="info"
+                        onClick={() =>
+                          redirectEvalComp(stage.nom, stage.prenom)
+                        }
+                      >
+                        Lancer l'évalution des compétences
+                      </Button>
+                      <br />
+                      <br />
+                      <Button disabled variant="warning">
+                        Visualiser l'évaluation de l'élève
+                      </Button>{' '}
+                      <Button disabled variant="info">
+                        Visualiser l'évaluation des compétences
+                      </Button>
+                    </Card.Body>
+                    <Card.Footer className="text-center">
+                      {stage.datedebut} - {stage.datefin}
+                    </Card.Footer>
+                  </Card>
                   <br />
-                  <br />
-                  <Button disabled variant="warning">
-                    Visualiser l'évaluation de l'élève
-                  </Button>{' '}
-                  <Button disabled variant="info">
-                    Visualiser l'évaluation des compétences
-                  </Button>
-                </Card.Body>
-                <Card.Footer className="text-center">
-                  {stage.datedebut} - {stage.datefin}
-                </Card.Footer>
-              </Card>
-              <br />
-            </Col>
+                </Col>
+              ) : (
+                <p></p>
+              )}
+            </div>
           ))}
         </Row>
       </Container>

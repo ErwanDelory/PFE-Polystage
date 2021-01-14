@@ -3,6 +3,9 @@ import { useHistory } from 'react-router';
 import { Alert, Button, Container, Form } from 'react-bootstrap';
 
 const NewStage = () => {
+  // TODO: Mettre à jour le formulaire afin d'avoir l'adresse, le mail, l'upload etc...
+  // TODO: Bloquer voir/télécharger rapport si celui-ci non upload
+
   const [niveau, setNiveau] = useState('');
   const [annee, setAnnee] = useState('');
   const [dateDebut, setDateDebut] = useState('');
@@ -86,17 +89,9 @@ const NewStage = () => {
         adressestage: '',
         adremailstage: '',
         cheminrapport: '',
-        daterapport: '2020-10-10',
         cheminpres: '',
-        datepres: '2020-10-10',
         chemineval: '',
-        dateeval: '2020-10-10',
-        evallancee: '2020-10-10',
-        datelimiteeval: '2020-10-10',
-        datesoutenance: '2020-10-10',
-        datecomp: '2020-10-10',
         chemincomp: '',
-        datelimiterendu: '2020-10-10',
         confidentiel: confidentiel,
       }),
     }).then((res) => {

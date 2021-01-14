@@ -49,7 +49,7 @@ const HomeAdmin = () => {
       });
   }, []);
 
-  const startEval = (id) => {
+  const startEval = (id, idtuteur, ideleve) => {
     const value = new Date();
     const month = value.getMonth() + 1;
     const hours = value.getHours() - 1;
@@ -65,7 +65,18 @@ const HomeAdmin = () => {
       value.getMinutes() +
       ':' +
       value.getSeconds();
-    console.log(date);
+    let dateLimite =
+      value.getFullYear() +
+      '-' +
+      (month + 1) +
+      '-' +
+      value.getDate() +
+      ' ' +
+      hours +
+      ':' +
+      value.getMinutes() +
+      ':' +
+      value.getSeconds();
     fetch('http://localhost:5000/api/starteval', {
       method: 'PUT',
       headers: {
@@ -73,9 +84,45 @@ const HomeAdmin = () => {
         'Content-Type': 'application/json',
         Authorization: 'Bearer ' + sessionStorage.getItem('token'),
       },
-      body: JSON.stringify({ evallancee: date, idstage: id }),
+      body: JSON.stringify({
+        evallancee: date,
+        datelimiteeval: dateLimite,
+        idstage: id,
+      }),
     }).then((res) => {
       res.json();
+      // Fetch add retard
+      console.log('idtuteur = ' + idtuteur);
+      fetch('http://localhost:5000/api/retardtuteur', {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+          Authorization: 'Bearer ' + sessionStorage.getItem('token'),
+        },
+        body: JSON.stringify({
+          iduti: idtuteur,
+          mailenvoye: 1,
+        }),
+      }).then((res) => res.json());
+
+      fetch('http://localhost:5000/api/retardeleve', {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+          Authorization: 'Bearer ' + sessionStorage.getItem('token'),
+        },
+        body: JSON.stringify({
+          iduti: ideleve,
+          mailenvoye: 1,
+          rapport: 0,
+          presentation: 0,
+          autoeval: 0,
+        }),
+      }).then((res) => res.json());
+
+      //End
       history.go(0);
     });
   };
@@ -108,7 +155,13 @@ const HomeAdmin = () => {
                         {stage.evallancee === null ? (
                           <Button
                             variant="warning"
-                            onClick={() => startEval(stage.idstage)}
+                            onClick={() =>
+                              startEval(
+                                stage.idstage,
+                                stage.idtuteur,
+                                stage.ideleve
+                              )
+                            }
                           >
                             Lancer l'évaluation
                           </Button>

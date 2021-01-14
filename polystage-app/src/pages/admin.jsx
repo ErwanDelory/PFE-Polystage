@@ -27,6 +27,7 @@ const Admin = () => {
                 <FontAwesomeIcon className="bckg-icon" icon={faTimes} />
               </span>
             </Card.Text>
+            <Card.Text>Aucun tuteur n'est en retard !</Card.Text>
             <Card.Title>Élèves</Card.Title>
             <Card.Text>
               Nom et prénom de l'élève
