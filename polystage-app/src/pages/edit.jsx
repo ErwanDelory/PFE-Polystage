@@ -1,11 +1,14 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router';
 import { useLocation } from 'react-router-dom';
 import { Alert, Button, Container, Form } from 'react-bootstrap';
 
 const Edit = () => {
-  const location = useLocation();
+  // TODO: Importer le rapport (Dans edit) (DONE) => Passage à 1 la variable table retard
+  // TODO: Importer la présentation (Dans edit) (DONE) => Passage à 1 la variable table retard
 
+  const location = useLocation();
+  const [retard, setRetard] = useState([]);
   const [stageTitle, setStageTitle] = useState(location.state.titrestage);
   const [description, setDescription] = useState(location.state.description);
   const [entreprise, setEntreprise] = useState(location.state.entreprise);
@@ -16,7 +19,24 @@ const Edit = () => {
   const [message, setMessage] = useState('');
   const [stateError, setStateError] = useState(false);
   const [stateSuccess, setStateSucces] = useState(false);
+  const [fileRapport, setFileRapport] = useState();
+  const [filePresentation, setFilePresentation] = useState();
   const history = useHistory();
+
+  useEffect(() => {
+    fetch('http://localhost:5000/api/retardeleve', {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + sessionStorage.getItem('token'),
+      },
+    })
+      .then((res) => res.json())
+      .then((mes) => {
+        return setRetard(mes.data);
+      });
+  }, []);
 
   const handleInputStageTitleChange = (event) => {
     const { value } = event.target;
@@ -51,6 +71,14 @@ const Edit = () => {
   const handleInputDateFinChange = (event) => {
     const { value } = event.target;
     setDateFin(value);
+  };
+
+  const onChangeHandlerRapport = (event) => {
+    return setFileRapport(event.target.files[0]);
+  };
+
+  const onChangeHandlerPresentation = (event) => {
+    return setFilePresentation(event.target.files[0]);
   };
 
   const redirect = () => {
@@ -100,6 +128,12 @@ const Edit = () => {
       setMessage('Modification réussie !');
       setStateSucces(true);
       setStateError(false);
+      if (fileRapport) {
+        uploadRapport();
+      }
+      if (filePresentation) {
+        uploadPresentation();
+      }
       setTimeout(redirect, 3000);
     });
   };
@@ -120,6 +154,68 @@ const Edit = () => {
       setStateError(false);
       setTimeout(redirect, 3000);
     });
+  };
+
+  const uploadRapport = () => {
+    const formData = new FormData();
+    formData.append('file', fileRapport, 'Test.pdf');
+
+    var requestOptions = {
+      method: 'POST',
+      headers: {
+        Authorization: 'Bearer ' + sessionStorage.getItem('token'),
+      },
+      body: formData,
+      redirect: 'follow',
+    };
+
+    fetch(
+      `http://localhost:5000/api/upload/${sessionStorage.getItem(
+        'nom'
+      )}/${sessionStorage.getItem('prenom')}/${annee}/${niveau}/rapport`,
+      requestOptions
+    )
+      .then((response) => response.text())
+      .then((result) => {
+        console.log(result);
+        updateRetardRapport();
+      })
+      .catch((error) => console.log('error', error));
+  };
+
+  const uploadPresentation = () => {
+    const formData = new FormData();
+    formData.append('file', filePresentation, 'Test.pdf');
+
+    var requestOptions = {
+      method: 'POST',
+      headers: {
+        Authorization: 'Bearer ' + sessionStorage.getItem('token'),
+      },
+      body: formData,
+      redirect: 'follow',
+    };
+
+    fetch(
+      `http://localhost:5000/api/upload/${sessionStorage.getItem(
+        'nom'
+      )}/${sessionStorage.getItem('prenom')}/${annee}/${niveau}/presentation`,
+      requestOptions
+    )
+      .then((response) => response.text())
+      .then((result) => {
+        console.log(result);
+        updateRetardPresentation();
+      })
+      .catch((error) => console.log('error', error));
+  };
+
+  const updateRetardRapport = () => {
+    //
+  };
+
+  const updateRetardPresentation = () => {
+    //
   };
 
   return (
@@ -161,12 +257,15 @@ const Edit = () => {
           <Form.Group controlId="niveau">
             <Form.Label>Niveau</Form.Label>
             <Form.Control
-              type="text"
+              as="select"
               name="niveau"
-              placeholder="Saisir votre année"
               value={niveau}
               onChange={handleInputNiveauChange}
-            />
+            >
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+            </Form.Control>
           </Form.Group>
           <Form.Group controlId="annee">
             <Form.Label>Année</Form.Label>
@@ -198,6 +297,30 @@ const Edit = () => {
               onChange={handleInputDateFinChange}
             />
           </Form.Group>
+          {retard?.map((data) => (
+            <div key={data.iduti}>
+              {sessionStorage.getItem('id') === `${data.iduti}` ? (
+                <div>
+                  <Form.Group>
+                    <Form.File
+                      id="exampleFormControlFile1"
+                      label="Importer le rapport de stage"
+                      onChange={onChangeHandlerRapport}
+                    />
+                  </Form.Group>
+                  <Form.Group>
+                    <Form.File
+                      id="exampleFormControlFile2"
+                      label="Importer la présentation de stage"
+                      onChange={onChangeHandlerPresentation}
+                    />
+                  </Form.Group>
+                </div>
+              ) : (
+                <p></p>
+              )}
+            </div>
+          ))}
           <Button variant="info" type="submit">
             Mettre à jour
           </Button>{' '}
