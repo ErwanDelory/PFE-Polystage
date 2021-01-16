@@ -3,7 +3,7 @@ import { Button, Card, Col, Container, Row } from 'react-bootstrap';
 import { useHistory } from 'react-router';
 
 const HomeTuteur = () => {
-  // TODO: Réinitialisation du retard si "ok"
+  // TODO: Réinitialisation du retard si "ok" (if chemin eval ok & chemin comp ok)
   // TODO: Bloquer "lancer" si visualiser "ok"
 
   const [data, setData] = useState([]);
@@ -50,22 +50,28 @@ const HomeTuteur = () => {
       });
   }, []);
 
-  const redirectEvalEleve = (nom, prenom, entreprise) => {
+  const redirectEvalEleve = (nom, prenom, entreprise, id) => {
     history.push({
       pathname: '/evalstage',
       state: {
         nom: nom,
         prenom: prenom,
         entreprise: entreprise,
+        id: id,
         token: sessionStorage.getItem('id'),
       },
     });
   };
 
-  const redirectEvalComp = (nom, prenom) => {
+  const redirectEvalComp = (nom, prenom, id) => {
     history.push({
       pathname: '/evalcomp',
-      state: { nom: nom, prenom: prenom, token: sessionStorage.getItem('id') },
+      state: {
+        nom: nom,
+        prenom: prenom,
+        id: id,
+        token: sessionStorage.getItem('id'),
+      },
     });
   };
 
@@ -76,7 +82,7 @@ const HomeTuteur = () => {
         <h3>Stage effectué</h3>
         <Row xs={1} md={1}>
           {data?.map((stage) => (
-            <div>
+            <div key={stage.idstage}>
               {stage.evallancee ? (
                 <Col key={stage.idstage}>
                   <Card
@@ -101,7 +107,8 @@ const HomeTuteur = () => {
                           redirectEvalEleve(
                             stage.nom,
                             stage.prenom,
-                            stage.nomentreprise
+                            stage.nomentreprise,
+                            stage.ideleve
                           )
                         }
                       >
@@ -110,7 +117,11 @@ const HomeTuteur = () => {
                       <Button
                         variant="info"
                         onClick={() =>
-                          redirectEvalComp(stage.nom, stage.prenom)
+                          redirectEvalComp(
+                            stage.nom,
+                            stage.prenom,
+                            stage.ideleve
+                          )
                         }
                       >
                         Lancer l'évalution des compétences

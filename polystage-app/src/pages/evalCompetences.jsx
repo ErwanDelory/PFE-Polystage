@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
+import { useHistory } from 'react-router';
 import { useForm } from 'react-hook-form';
-import { Button, Col, Container, Form, Row } from 'react-bootstrap';
+import { Alert, Button, Col, Container, Form, Row } from 'react-bootstrap';
 
 const EvalCompetences = () => {
-  // TODO: Réalisation du fichier avec les réponses obtenues
-
   const location = useLocation();
+  const history = useHistory();
   const [question, setQuestion] = useState([]);
+  const [message, setMessage] = useState('');
+  const [stateError, setStateError] = useState(false);
+  const [stateSuccess, setStateSucces] = useState(false);
   const { register, handleSubmit } = useForm();
 
   useEffect(() => {
@@ -27,8 +30,27 @@ const EvalCompetences = () => {
       });
   }, []);
 
+  const redirect = () => {
+    history.goBack();
+  };
+
   const onSubmit = (data) => {
     console.log(data);
+    fetch(`http://localhost:5000/api/eval/competences`, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + sessionStorage.getItem('token'),
+      },
+      body: JSON.stringify({ data, id: location.state.id }),
+    }).then((res) => {
+      res.json();
+      setMessage('Évaluation des compétences réussie !');
+      setStateSucces(true);
+      setStateError(false);
+      setTimeout(redirect, 3000);
+    });
   };
 
   return (
@@ -98,6 +120,17 @@ const EvalCompetences = () => {
             </Button>
           </div>
         </Form>
+        <br />
+        {message && stateError ? (
+          <Alert variant="danger">{message}</Alert>
+        ) : (
+          <p></p>
+        )}
+        {message && stateSuccess ? (
+          <Alert variant="success">{message}</Alert>
+        ) : (
+          <p></p>
+        )}
       </Container>
     </div>
   );

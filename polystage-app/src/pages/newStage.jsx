@@ -4,7 +4,6 @@ import { Alert, Button, Container, Form } from 'react-bootstrap';
 
 const NewStage = () => {
   // TODO: Mettre à jour le formulaire afin d'avoir l'adresse, le mail, l'upload etc...
-  // TODO: Bloquer voir/télécharger rapport si celui-ci non upload
 
   const [niveau, setNiveau] = useState(3);
   const [annee, setAnnee] = useState('');
