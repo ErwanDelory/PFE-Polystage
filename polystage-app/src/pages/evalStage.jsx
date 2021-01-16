@@ -1,11 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
+import { useHistory } from 'react-router';
 import { useForm } from 'react-hook-form';
-import { Button, Col, Container, Form, Row } from 'react-bootstrap';
+import { Alert, Button, Col, Container, Form, Row } from 'react-bootstrap';
 
 const EvalStage = () => {
   const location = useLocation();
+  const history = useHistory();
   const [question, setQuestion] = useState([]);
+  const [message, setMessage] = useState('');
+  const [stateError, setStateError] = useState(false);
+  const [stateSuccess, setStateSucces] = useState(false);
   const { register, handleSubmit } = useForm();
 
   useEffect(() => {
@@ -25,6 +30,10 @@ const EvalStage = () => {
       });
   }, []);
 
+  const redirect = () => {
+    history.goBack();
+  };
+
   const onSubmit = (data) => {
     console.log(data);
     fetch(`http://localhost:5000/api/eval/questions`, {
@@ -36,7 +45,11 @@ const EvalStage = () => {
       },
       body: JSON.stringify({ data, id: location.state.id }),
     }).then((res) => {
-      return res.json();
+      res.json();
+      setMessage('Évaluation du stage réussie !');
+      setStateSucces(true);
+      setStateError(false);
+      setTimeout(redirect, 3000);
     });
   };
 
@@ -245,6 +258,17 @@ const EvalStage = () => {
             </Button>
           </div>
         </Form>
+        <br />
+        {message && stateError ? (
+          <Alert variant="danger">{message}</Alert>
+        ) : (
+          <p></p>
+        )}
+        {message && stateSuccess ? (
+          <Alert variant="success">{message}</Alert>
+        ) : (
+          <p></p>
+        )}
       </Container>
     </div>
   );
