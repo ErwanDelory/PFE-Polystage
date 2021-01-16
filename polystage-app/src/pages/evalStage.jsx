@@ -4,8 +4,6 @@ import { useForm } from 'react-hook-form';
 import { Button, Col, Container, Form, Row } from 'react-bootstrap';
 
 const EvalStage = () => {
-  // TODO: Réalisation du fichier avec les réponses obtenues
-
   const location = useLocation();
   const [question, setQuestion] = useState([]);
   const { register, handleSubmit } = useForm();
@@ -29,6 +27,17 @@ const EvalStage = () => {
 
   const onSubmit = (data) => {
     console.log(data);
+    fetch(`http://localhost:5000/api/eval/questions`, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + sessionStorage.getItem('token'),
+      },
+      body: JSON.stringify({ data, id: location.state.id }),
+    }).then((res) => {
+      return res.json();
+    });
   };
 
   return (
