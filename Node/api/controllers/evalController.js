@@ -25,7 +25,7 @@ function GenererPdf(req, res, next) {
 		return res.status(404).json({ message: "Invalid Args" });
 	}
 	let i = 1;
-	let q = `SELECT ideleve, niveau, annee, nom, prenom from stage LEFT JOIN utilisateur ON utilisateur.id = stage.ideleve WHERE ideleve = ${req.user.id}`;
+	let q = `SELECT ideleve, niveau, annee, nom, prenom from stage LEFT JOIN utilisateur ON utilisateur.id = stage.ideleve WHERE ideleve = ${req.body.id}`;
 	db.query(q, (err, resu) => {
 		let dir = "public/" + resu[0].annee + "/" + resu[0].niveau + "A/";
 		let anneedir = "public/" + resu[0].annee + "/";
