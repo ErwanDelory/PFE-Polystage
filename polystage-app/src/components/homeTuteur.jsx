@@ -3,6 +3,7 @@ import { Button, Card, Col, Container, Row } from 'react-bootstrap';
 import { useHistory } from 'react-router';
 
 const HomeTuteur = () => {
+  // TODO: Réinitialisation du retard si "ok"
   // TODO: Bloquer "lancer" si visualiser "ok"
 
   const [data, setData] = useState([]);

@@ -15,8 +15,7 @@ import img8 from './../img/stage-8.jpg';
 import img9 from './../img/stage-9.jpg';
 
 const HomeEtu = () => {
-  // TODO: Supprimer un stage (dans la page de modif?)
-  // TODO: Importer le rapport
+  // TODO: Bloquer les boutons ouvrir/télécharger si aucun rapport
 
   const [data, setData] = useState([]);
   const history = useHistory();
@@ -34,6 +33,7 @@ const HomeEtu = () => {
         return res.json();
       })
       .then((mes) => {
+        updateRetard();
         let stages = [];
         const options = {
           year: 'numeric',
@@ -56,6 +56,42 @@ const HomeEtu = () => {
         return setData(stages);
       });
   }, []);
+
+  const updateRetard = () => {
+    fetch('http://localhost:5000/api/retardeleve', {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + sessionStorage.getItem('token'),
+      },
+    })
+      .then((res) => res.json())
+      .then((mes) => {
+        const data = mes.data;
+        for (let i = 0; i < data.length; i++) {
+          if (
+            data[i].rapport === 1 &&
+            data[i].presentation === 1 &&
+            sessionStorage.getItem('id') === `${data[i].iduti}`
+          ) {
+            fetch(
+              `http://localhost:5000/api/retardeleve/${sessionStorage.getItem(
+                'id'
+              )}`,
+              {
+                method: 'DELETE',
+                headers: {
+                  Accept: 'application/json',
+                  'Content-Type': 'application/json',
+                  Authorization: 'Bearer ' + sessionStorage.getItem('token'),
+                },
+              }
+            ).then((res) => res.json());
+          }
+        }
+      });
+  };
 
   function modify(id) {
     fetch('http://localhost:5000/api/stage/' + id, {

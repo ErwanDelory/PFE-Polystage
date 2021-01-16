@@ -6,7 +6,7 @@ const NewStage = () => {
   // TODO: Mettre à jour le formulaire afin d'avoir l'adresse, le mail, l'upload etc...
   // TODO: Bloquer voir/télécharger rapport si celui-ci non upload
 
-  const [niveau, setNiveau] = useState('');
+  const [niveau, setNiveau] = useState(3);
   const [annee, setAnnee] = useState('');
   const [dateDebut, setDateDebut] = useState('');
   const [dateFin, setDateFin] = useState('');
@@ -157,12 +157,15 @@ const NewStage = () => {
           <Form.Group controlId="niveau">
             <Form.Label>Niveau</Form.Label>
             <Form.Control
-              type="text"
+              as="select"
               name="niveau"
-              placeholder="Saisir votre année"
               value={niveau}
               onChange={handleInputNiveauChange}
-            />
+            >
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+            </Form.Control>
           </Form.Group>
           <Form.Group controlId="annee">
             <Form.Label>Année</Form.Label>

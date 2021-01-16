@@ -102,7 +102,7 @@ const Login = () => {
             <FontAwesomeIcon className="bckg-icon" icon={faSignInAlt} /> Se
             connecter
           </Button>{' '}
-          <Button variant="info" href="/register">
+          <Button variant="warning" href="/register">
             <FontAwesomeIcon className="bckg-icon" icon={faClipboard} />{' '}
             S'inscire
           </Button>
