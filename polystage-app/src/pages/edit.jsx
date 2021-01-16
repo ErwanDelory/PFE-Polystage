@@ -4,9 +4,6 @@ import { useLocation } from 'react-router-dom';
 import { Alert, Button, Container, Form } from 'react-bootstrap';
 
 const Edit = () => {
-  // TODO: Importer le rapport (Dans edit) (DONE) => Passage à 1 la variable table retard
-  // TODO: Importer la présentation (Dans edit) (DONE) => Passage à 1 la variable table retard
-
   const location = useLocation();
   const [retard, setRetard] = useState([]);
   const [stageTitle, setStageTitle] = useState(location.state.titrestage);
@@ -211,11 +208,37 @@ const Edit = () => {
   };
 
   const updateRetardRapport = () => {
-    //
+    fetch(
+      `http://localhost:5000/api/retardeleve/rapport/${sessionStorage.getItem(
+        'id'
+      )}`,
+      {
+        method: 'PATCH',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+          Authorization: 'Bearer ' + sessionStorage.getItem('token'),
+        },
+        body: JSON.stringify({ rapport: 1 }),
+      }
+    ).then((res) => res.json());
   };
 
   const updateRetardPresentation = () => {
-    //
+    fetch(
+      `http://localhost:5000/api/retardeleve/presentation/${sessionStorage.getItem(
+        'id'
+      )}`,
+      {
+        method: 'PATCH',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+          Authorization: 'Bearer ' + sessionStorage.getItem('token'),
+        },
+        body: JSON.stringify({ presentation: 1 }),
+      }
+    ).then((res) => res.json());
   };
 
   return (

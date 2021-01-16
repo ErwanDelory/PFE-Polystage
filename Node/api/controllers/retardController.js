@@ -44,6 +44,24 @@ function updateRetardEleve(req, res, next) {
   });
 }
 
+function updateRetardRapportEleve(req, res, next) {
+  let query = `UPDATE retardeleve SET rapport = ${req.body.rapport} WHERE retardeleve.iduti = ${req.params.iduti};`;
+  db.query(query, (err, result) => {
+    if (err) throw err;
+
+    res.status(200).json({ message: 'Ok .', data: result });
+  });
+}
+
+function updateRetardPresentationEleve(req, res, next) {
+  let query = `UPDATE retardeleve SET presentation = ${req.body.presentation} WHERE retardeleve.iduti = ${req.params.iduti};`;
+  db.query(query, (err, result) => {
+    if (err) throw err;
+
+    res.status(200).json({ message: 'Ok .', data: result });
+  });
+}
+
 function getRetardTuteur(req, res, next) {
   let query = `SELECT *
     from ${config.table.retardtuteur.tablename} LEFT JOIN ${config.table.utilisateur.tablename} ON ${config.table.utilisateur.id} = ${config.table.retardtuteur.id}`;
@@ -91,6 +109,8 @@ exports.getRetardEleve = getRetardEleve;
 exports.newRetardEleve = newRetardEleve;
 exports.deleteRetardEleve = deleteRetardEleve;
 exports.updateRetardEleve = updateRetardEleve;
+exports.updateRetardRapportEleve = updateRetardRapportEleve;
+exports.updateRetardPresentationEleve = updateRetardPresentationEleve;
 
 exports.getRetardTuteur = getRetardTuteur;
 exports.newRetardTuteur = newRetardTuteur;
