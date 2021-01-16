@@ -15,8 +15,6 @@ import img8 from './../img/stage-8.jpg';
 import img9 from './../img/stage-9.jpg';
 
 const HomeEtu = () => {
-  // TODO: Bloquer les boutons ouvrir/télécharger si aucun rapport
-
   const [data, setData] = useState([]);
   const history = useHistory();
 
@@ -189,16 +187,20 @@ const HomeEtu = () => {
                     {stage.description}
                   </Card.Text>
                   <div className="text-center">
-                    <a
-                      href="http://localhost:5000/api/rapport/1"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
+                    {stage.cheminrapport ? (
                       <Button variant="warning">Voir le rapport</Button>
-                    </a>{' '}
-                    <a href="http://localhost:5000/api/dlrapport/1">
+                    ) : (
+                      <Button disabled variant="warning">
+                        Voir le rapport
+                      </Button>
+                    )}{' '}
+                    {stage.cheminpres ? (
                       <Button variant="info">Télécharger le rapport</Button>
-                    </a>
+                    ) : (
+                      <Button disabled variant="info">
+                        Télécharger le rapport
+                      </Button>
+                    )}
                   </div>
                 </Card.Body>
                 <Card.Footer className="text-center">

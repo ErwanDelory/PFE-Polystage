@@ -3,8 +3,7 @@ import { Button, Card, Col, Container, Row } from 'react-bootstrap';
 import { useHistory } from 'react-router';
 
 const HomeTuteur = () => {
-  // TODO: Réinitialisation du retard si "ok" (if chemin eval ok & chemin comp ok)
-  // TODO: Bloquer "lancer" si visualiser "ok"
+  // TODO: Afficher les documents
 
   const [data, setData] = useState([]);
   const history = useHistory();
@@ -44,11 +43,28 @@ const HomeTuteur = () => {
             stages[j].datedebut = a;
             stages[j].datefin = b;
             j++;
+            if (mes.data[i].chemincomp && mes.data[i].chemineval) {
+              removeRetard();
+            }
           }
         }
         return setData(stages);
       });
   }, []);
+
+  const removeRetard = () => {
+    fetch(
+      `http://localhost:5000/api/retardtuteur/${sessionStorage.getItem('id')}`,
+      {
+        method: 'DELETE',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+          Authorization: 'Bearer ' + sessionStorage.getItem('token'),
+        },
+      }
+    ).then((res) => res.json());
+  };
 
   const redirectEvalEleve = (nom, prenom, entreprise, id) => {
     history.push({
@@ -101,39 +117,84 @@ const HomeTuteur = () => {
                         <br />
                         {stage.description}
                       </Card.Text>
-                      <Button
-                        variant="warning"
-                        onClick={() =>
-                          redirectEvalEleve(
-                            stage.nom,
-                            stage.prenom,
-                            stage.nomentreprise,
-                            stage.ideleve
-                          )
-                        }
-                      >
-                        Lancer l'évaluation de l'élève
-                      </Button>{' '}
-                      <Button
-                        variant="info"
-                        onClick={() =>
-                          redirectEvalComp(
-                            stage.nom,
-                            stage.prenom,
-                            stage.ideleve
-                          )
-                        }
-                      >
-                        Lancer l'évalution des compétences
-                      </Button>
+                      {stage.chemineval ? (
+                        <Button
+                          disabled
+                          variant="warning"
+                          onClick={() =>
+                            redirectEvalEleve(
+                              stage.nom,
+                              stage.prenom,
+                              stage.nomentreprise,
+                              stage.ideleve
+                            )
+                          }
+                        >
+                          Lancer l'évaluation de l'élève
+                        </Button>
+                      ) : (
+                        <Button
+                          variant="warning"
+                          onClick={() =>
+                            redirectEvalEleve(
+                              stage.nom,
+                              stage.prenom,
+                              stage.nomentreprise,
+                              stage.ideleve
+                            )
+                          }
+                        >
+                          Lancer l'évaluation de l'élève
+                        </Button>
+                      )}{' '}
+                      {stage.chemincomp ? (
+                        <Button
+                          disabled
+                          variant="info"
+                          onClick={() =>
+                            redirectEvalComp(
+                              stage.nom,
+                              stage.prenom,
+                              stage.ideleve
+                            )
+                          }
+                        >
+                          Lancer l'évalution des compétences
+                        </Button>
+                      ) : (
+                        <Button
+                          variant="info"
+                          onClick={() =>
+                            redirectEvalComp(
+                              stage.nom,
+                              stage.prenom,
+                              stage.ideleve
+                            )
+                          }
+                        >
+                          Lancer l'évalution des compétences
+                        </Button>
+                      )}
                       <br />
                       <br />
-                      <Button disabled variant="warning">
-                        Visualiser l'évaluation de l'élève
-                      </Button>{' '}
-                      <Button disabled variant="info">
-                        Visualiser l'évaluation des compétences
-                      </Button>
+                      {stage.chemineval ? (
+                        <Button variant="warning">
+                          Visualiser l'évaluation de l'élève
+                        </Button>
+                      ) : (
+                        <Button disabled variant="warning">
+                          Visualiser l'évaluation de l'élève
+                        </Button>
+                      )}{' '}
+                      {stage.chemincomp ? (
+                        <Button variant="info">
+                          Visualiser l'évaluation des compétences
+                        </Button>
+                      ) : (
+                        <Button disabled variant="info">
+                          Visualiser l'évaluation des compétences
+                        </Button>
+                      )}
                     </Card.Body>
                     <Card.Footer className="text-center">
                       {stage.datedebut} - {stage.datefin}
