@@ -40,7 +40,6 @@ const EvalStage = () => {
   };
 
   const onSubmit = (data) => {
-    console.log(data);
     fetch(`http://localhost:5000/api/eval/questions`, {
       method: 'POST',
       headers: {

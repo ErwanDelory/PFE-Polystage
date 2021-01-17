@@ -4,10 +4,9 @@ import TimeAgo from 'timeago-react';
 import * as timeago from 'timeago.js';
 import fr from 'timeago.js/lib/lang/fr';
 import { Button, Card, Col, Container, Row } from 'react-bootstrap';
+import axios from 'axios';
 
 const HomeProf = () => {
-  // TODO: Visualiser l'évaluation
-
   timeago.register('fr', fr);
   const [data, setData] = useState([]);
   const history = useHistory();
@@ -127,7 +126,23 @@ const HomeProf = () => {
     });
   };
 
-  const openEval = () => {};
+  const openEval = (id) => {
+    axios(`http://localhost:5000/api/eval/rapport/${id}`, {
+      method: 'GET',
+      responseType: 'blob',
+      headers: {
+        Authorization: 'Bearer ' + sessionStorage.getItem('token'),
+      },
+    })
+      .then((response) => {
+        const file = new Blob([response.data], { type: 'application/pdf' });
+        const fileURL = URL.createObjectURL(file);
+        window.open(fileURL);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   return (
     <div>
@@ -150,41 +165,38 @@ const HomeProf = () => {
                   </Card.Text>
                   {
                     // eslint-disable-next-line
-                    stage.idens == sessionStorage.getItem('id') ? (
-                      <div>
-                        {stage.evallancee === null ? (
-                          <Button
-                            variant="warning"
-                            onClick={() =>
-                              startEval(
-                                stage.idstage,
-                                stage.idtuteur,
-                                stage.ideleve
-                              )
-                            }
-                          >
-                            Lancer l'évaluation
-                          </Button>
-                        ) : (
-                          <Button variant="warning" disabled>
-                            Lancer l'évaluation
-                          </Button>
-                        )}{' '}
-                        <Button variant="info" onClick={openEval}>
-                          Visualiser l'évaluation
-                        </Button>
-                      </div>
+                    stage.idens == sessionStorage.getItem('id') &&
+                    stage.evallancee === null ? (
+                      <Button
+                        variant="warning"
+                        onClick={() =>
+                          startEval(
+                            stage.idstage,
+                            stage.idtuteur,
+                            stage.ideleve
+                          )
+                        }
+                      >
+                        Lancer l'évaluation
+                      </Button>
                     ) : (
-                      <div>
-                        <Button disabled variant="warning">
-                          Lancer l'évaluation
-                        </Button>{' '}
-                        <Button disabled variant="info">
-                          Visualiser l'évaluation
-                        </Button>
-                      </div>
+                      <Button variant="warning" disabled>
+                        Lancer l'évaluation
+                      </Button>
                     )
-                  }
+                  }{' '}
+                  {stage.chemineval ? (
+                    <Button
+                      variant="info"
+                      onClick={() => openEval(stage.idstage)}
+                    >
+                      Visualiser l'évaluation
+                    </Button>
+                  ) : (
+                    <Button disabled variant="info">
+                      Visualiser l'évaluation
+                    </Button>
+                  )}
                   <br />
                   {stage.evallancee !== null && (
                     <div>

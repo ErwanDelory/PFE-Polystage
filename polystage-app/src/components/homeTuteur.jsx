@@ -91,7 +91,6 @@ const HomeTuteur = () => {
   };
 
   const openEval = (id) => {
-    console.log(id);
     axios(`http://localhost:5000/api/eval/rapport/${id}`, {
       method: 'GET',
       responseType: 'blob',
