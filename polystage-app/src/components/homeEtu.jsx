@@ -114,6 +114,8 @@ const HomeEtu = () => {
           (new Date(mes.data[0].datedebut).getMonth() + 1) +
           '-' +
           new Date(mes.data[0].datefin).getFullYear();
+        let datedebut2 = new Date(mes.data[0].datedebut);
+        let datefin2 = new Date(mes.data[0].datefin);
         history.push({
           pathname: '/edit',
           state: {
@@ -125,6 +127,8 @@ const HomeEtu = () => {
             annee: mes.data[0].annee,
             datedebut: datedebut,
             datefin: datefin,
+            datedebut2: datedebut2,
+            datefin2: datefin2,
             token: sessionStorage.getItem('id'),
           },
         });

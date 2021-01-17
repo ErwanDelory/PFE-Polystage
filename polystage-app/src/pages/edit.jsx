@@ -2,8 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router';
 import { useLocation } from 'react-router-dom';
 import { Alert, Button, Container, Form } from 'react-bootstrap';
+import DatePicker, { registerLocale } from 'react-datepicker';
+import fr from 'date-fns/locale/fr';
 
 const Edit = () => {
+  registerLocale('fr', fr);
   const location = useLocation();
   const [retard, setRetard] = useState([]);
   const [stageTitle, setStageTitle] = useState(location.state.titrestage);
@@ -13,6 +16,8 @@ const Edit = () => {
   const [annee, setAnnee] = useState(location.state.annee);
   const [dateDebut, setDateDebut] = useState(location.state.datedebut);
   const [dateFin, setDateFin] = useState(location.state.datefin);
+  const [startDate, setStartDate] = useState(location.state.datedebut2);
+  const [endDate, setEndDate] = useState(location.state.datefin2);
   const [message, setMessage] = useState('');
   const [stateError, setStateError] = useState(false);
   const [stateSuccess, setStateSucces] = useState(false);
@@ -60,14 +65,18 @@ const Edit = () => {
     setAnnee(value);
   };
 
-  const handleInputDateDebutChange = (event) => {
-    const { value } = event.target;
-    setDateDebut(value);
+  const handleInputDateDebutChange = (date) => {
+    const d =
+      date.getDate() + '-' + (date.getMonth() + 1) + '-' + date.getFullYear();
+    setStartDate(date);
+    setDateDebut(d);
   };
 
-  const handleInputDateFinChange = (event) => {
-    const { value } = event.target;
-    setDateFin(value);
+  const handleInputDateFinChange = (date) => {
+    const d =
+      date.getDate() + '-' + (date.getMonth() + 1) + '-' + date.getFullYear();
+    setEndDate(date);
+    setDateFin(d);
   };
 
   const onChangeHandlerRapport = (event) => {
@@ -302,22 +311,22 @@ const Edit = () => {
           </Form.Group>
           <Form.Group controlId="dateDebut">
             <Form.Label>Date de début</Form.Label>
-            <Form.Control
-              type="text"
-              name="dateDebut"
-              placeholder="Saisir la date de début du stage"
-              value={dateDebut}
+            <DatePicker
+              dateFormat="dd-MM-yyyy"
+              selected={startDate}
               onChange={handleInputDateDebutChange}
+              locale="fr"
+              closeOnScroll={true}
             />
           </Form.Group>
           <Form.Group controlId="dateFin">
             <Form.Label>Date de fin</Form.Label>
-            <Form.Control
-              type="text"
-              name="dateFin"
-              placeholder="Saisir la date de fin du stage"
-              value={dateFin}
+            <DatePicker
+              dateFormat="dd-MM-yyyy"
+              selected={endDate}
               onChange={handleInputDateFinChange}
+              locale="fr"
+              closeOnScroll={true}
             />
           </Form.Group>
           {retard?.map((data) => (

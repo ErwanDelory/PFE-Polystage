@@ -1,17 +1,24 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router';
 import { Alert, Button, Container, Form } from 'react-bootstrap';
+import DatePicker, { registerLocale } from 'react-datepicker';
+import fr from 'date-fns/locale/fr';
 
 const NewStage = () => {
-  // TODO: Mettre à jour le formulaire afin d'avoir l'adresse, le mail, l'upload etc...
+  // TODO: Réfléchir: Upload des documents => Gérer le cas lors du lancement de l'évaluation pour ne pas avoir un retard
 
+  registerLocale('fr', fr);
   const [niveau, setNiveau] = useState(3);
   const [annee, setAnnee] = useState('');
   const [dateDebut, setDateDebut] = useState('');
   const [dateFin, setDateFin] = useState('');
+  const [startDate, setStartDate] = useState(new Date());
+  const [endDate, setEndDate] = useState(new Date());
   const [titre, setTitre] = useState('');
   const [description, setDescription] = useState('');
   const [entreprise, setEntreprise] = useState('');
+  const [adresse, setAdresse] = useState('');
+  const [mail, setMail] = useState('');
   const [confidentiel, setConfidentiel] = useState('');
   const [message, setMessage] = useState('');
   const [stateError, setStateError] = useState(false);
@@ -28,14 +35,18 @@ const NewStage = () => {
     setAnnee(value);
   };
 
-  const handleInputDateDebutChange = (event) => {
-    const { value } = event.target;
-    setDateDebut(value);
+  const handleInputDateDebutChange = (date) => {
+    const d =
+      date.getDate() + '-' + (date.getMonth() + 1) + '-' + date.getFullYear();
+    setStartDate(date);
+    setDateDebut(d);
   };
 
-  const handleInputDateFinChange = (event) => {
-    const { value } = event.target;
-    setDateFin(value);
+  const handleInputDateFinChange = (date) => {
+    const d =
+      date.getDate() + '-' + (date.getMonth() + 1) + '-' + date.getFullYear();
+    setEndDate(date);
+    setDateFin(d);
   };
   const handleInputTitreChange = (event) => {
     const { value } = event.target;
@@ -50,6 +61,16 @@ const NewStage = () => {
   const handleInputEntrepriseChange = (event) => {
     const { value } = event.target;
     setEntreprise(value);
+  };
+
+  const handleInputAdresseChange = (event) => {
+    const { value } = event.target;
+    setAdresse(value);
+  };
+
+  const handleInputMailChange = (event) => {
+    const { value } = event.target;
+    setMail(value);
   };
 
   const handleInputConfidentielChange = (event) => {
@@ -85,8 +106,8 @@ const NewStage = () => {
         titrestage: titre,
         description: description,
         nomentreprise: entreprise,
-        adressestage: '',
-        adremailstage: '',
+        adressestage: adresse,
+        adremailstage: mail,
         cheminrapport: '',
         cheminpres: '',
         chemineval: '',
@@ -102,6 +123,8 @@ const NewStage = () => {
         !titre ||
         !description ||
         !entreprise ||
+        !adresse ||
+        !mail ||
         !confidentiel
       ) {
         setMessage('Information incorrecte.');
@@ -153,6 +176,26 @@ const NewStage = () => {
               onChange={handleInputEntrepriseChange}
             />
           </Form.Group>
+          <Form.Group controlId="adresse">
+            <Form.Label>Adresse de l'entreprise</Form.Label>
+            <Form.Control
+              type="text"
+              name="entreprise"
+              placeholder="Saisir l'adresse de l'entreprise'"
+              value={adresse}
+              onChange={handleInputAdresseChange}
+            />
+          </Form.Group>
+          <Form.Group controlId="mail">
+            <Form.Label>Saisir l'adresse mail durant le stage</Form.Label>
+            <Form.Control
+              type="email"
+              name="entreprise"
+              placeholder="Saisir l'adresse mail durant le stage"
+              value={mail}
+              onChange={handleInputMailChange}
+            />
+          </Form.Group>
           <Form.Group controlId="niveau">
             <Form.Label>Niveau</Form.Label>
             <Form.Control
@@ -178,24 +221,26 @@ const NewStage = () => {
           </Form.Group>
           <Form.Group controlId="dateDebut">
             <Form.Label>Date de début</Form.Label>
-            <Form.Control
-              type="text"
-              name="dateDebut"
-              placeholder="Saisir la date de début du stage (format: JJ-MM-AAAA)"
-              value={dateDebut}
+            <DatePicker
+              dateFormat="dd-MM-yyyy"
+              selected={startDate}
               onChange={handleInputDateDebutChange}
+              locale="fr"
+              closeOnScroll={true}
             />
           </Form.Group>
+
           <Form.Group controlId="dateFin">
             <Form.Label>Date de fin</Form.Label>
-            <Form.Control
-              type="text"
-              name="dateFin"
-              placeholder="Saisir la date de fin du stage (format: JJ-MM-AAAA)"
-              value={dateFin}
+            <DatePicker
+              dateFormat="dd-MM-yyyy"
+              selected={endDate}
               onChange={handleInputDateFinChange}
+              locale="fr"
+              closeOnScroll={true}
             />
           </Form.Group>
+
           <Form.Group controlId="dateFin">
             <Form.Label>Confidentiel</Form.Label>
             <Form.Control
