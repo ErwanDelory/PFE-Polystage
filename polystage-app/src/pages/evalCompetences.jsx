@@ -40,8 +40,8 @@ const EvalCompetences = () => {
   };
 
   const onSubmit = (data) => {
-    console.log(data);
-    fetch(`http://localhost:5000/api/eval/competences`, {
+    console.log(JSON.stringify({ data, id: location.state.id }));
+    /*fetch(`http://localhost:5000/api/eval/competences`, {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -53,7 +53,7 @@ const EvalCompetences = () => {
       res.json();
       notyf.success('Évaluation des compétences réussie !');
       setTimeout(redirect, 3000);
-    });
+    });*/
   };
 
   return (

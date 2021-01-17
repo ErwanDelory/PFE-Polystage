@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router';
+import axios from 'axios';
 import { Button, Card, Col, Container, Row } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit } from '@fortawesome/free-solid-svg-icons';
@@ -135,6 +136,42 @@ const HomeEtu = () => {
       });
   }
 
+  const openRapport = (id) => {
+    axios(`http://localhost:5000/api/rapport/${id}`, {
+      method: 'GET',
+      responseType: 'blob',
+      headers: {
+        Authorization: 'Bearer ' + sessionStorage.getItem('token'),
+      },
+    })
+      .then((response) => {
+        const file = new Blob([response.data], { type: 'application/pdf' });
+        const fileURL = URL.createObjectURL(file);
+        window.open(fileURL);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  const openPresentation = (id) => {
+    axios(`http://localhost:5000/api/presentation/${id}`, {
+      method: 'GET',
+      responseType: 'blob',
+      headers: {
+        Authorization: 'Bearer ' + sessionStorage.getItem('token'),
+      },
+    })
+      .then((response) => {
+        const file = new Blob([response.data], { type: 'application/pdf' });
+        const fileURL = URL.createObjectURL(file);
+        window.open(fileURL);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   function addStage() {
     history.push('/newstage');
   }
@@ -192,17 +229,27 @@ const HomeEtu = () => {
                   </Card.Text>
                   <div className="text-center">
                     {stage.cheminrapport ? (
-                      <Button variant="warning">Voir le rapport</Button>
+                      <Button
+                        variant="warning"
+                        onClick={() => openRapport(stage.idstage)}
+                      >
+                        Voir le rapport
+                      </Button>
                     ) : (
                       <Button disabled variant="warning">
                         Voir le rapport
                       </Button>
                     )}{' '}
                     {stage.cheminpres ? (
-                      <Button variant="info">Télécharger le rapport</Button>
+                      <Button
+                        variant="info"
+                        onClick={() => openPresentation(stage.idstage)}
+                      >
+                        Ouvrir la présentation
+                      </Button>
                     ) : (
                       <Button disabled variant="info">
-                        Télécharger le rapport
+                        Ouvrir la présentation
                       </Button>
                     )}
                   </div>
@@ -243,7 +290,7 @@ const HomeEtu = () => {
                     Voir le rapport
                   </Button>{' '}
                   <Button variant="info" disabled>
-                    Télécharger le rapport
+                    Ouvrir la présentation
                   </Button>
                 </div>
               </Card.Body>

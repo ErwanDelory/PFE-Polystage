@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Button, Card, Col, Container, Row } from 'react-bootstrap';
 import { useHistory } from 'react-router';
+import axios from 'axios';
 
 const HomeTuteur = () => {
-  // TODO: Afficher les documents
-
   const [data, setData] = useState([]);
   const history = useHistory();
 
@@ -89,6 +88,43 @@ const HomeTuteur = () => {
         token: sessionStorage.getItem('id'),
       },
     });
+  };
+
+  const openEval = (id) => {
+    console.log(id);
+    axios(`http://localhost:5000/api/eval/rapport/${id}`, {
+      method: 'GET',
+      responseType: 'blob',
+      headers: {
+        Authorization: 'Bearer ' + sessionStorage.getItem('token'),
+      },
+    })
+      .then((response) => {
+        const file = new Blob([response.data], { type: 'application/pdf' });
+        const fileURL = URL.createObjectURL(file);
+        window.open(fileURL);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  const openComp = (id) => {
+    axios(`http://localhost:5000/api/comp/rapport/${id}`, {
+      method: 'GET',
+      responseType: 'blob',
+      headers: {
+        Authorization: 'Bearer ' + sessionStorage.getItem('token'),
+      },
+    })
+      .then((response) => {
+        const file = new Blob([response.data], { type: 'application/pdf' });
+        const fileURL = URL.createObjectURL(file);
+        window.open(fileURL);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   return (
@@ -178,7 +214,10 @@ const HomeTuteur = () => {
                       <br />
                       <br />
                       {stage.chemineval ? (
-                        <Button variant="warning">
+                        <Button
+                          variant="warning"
+                          onClick={() => openEval(stage.idstage)}
+                        >
                           Visualiser l'évaluation de l'élève
                         </Button>
                       ) : (
@@ -187,7 +226,10 @@ const HomeTuteur = () => {
                         </Button>
                       )}{' '}
                       {stage.chemincomp ? (
-                        <Button variant="info">
+                        <Button
+                          variant="info"
+                          onClick={() => openComp(stage.idstage)}
+                        >
                           Visualiser l'évaluation des compétences
                         </Button>
                       ) : (

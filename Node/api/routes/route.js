@@ -33,6 +33,9 @@ router.delete('/stage/:sid', stageControllers.deleteStage);
 router.get('/stages', stageControllers.getStage);
 router.get('/stage/:id', stageControllers.getStageById);
 router.get('/rapport/:id', stageControllers.getRapportStageById);
+router.get('/presentation/:id', stageControllers.getPresentationStageById);
+router.get('/eval/rapport/:id', stageControllers.getEvalStageById);
+router.get('/comp/rapport/:id', stageControllers.getCompStageById);
 router.get('/dlrapport/:id', stageControllers.dlRapportStageById);
 
 //Eval

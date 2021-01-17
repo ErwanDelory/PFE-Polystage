@@ -81,6 +81,48 @@ async function getRapportStageById(req, res, next) {
   }
 }
 
+async function getPresentationStageById(req, res, next) {
+  try {
+    let q = `SELECT ${config.table.stage.cheminpres} from ${config.table.stage.tablename} WHERE ${config.table.stage.idstage}=${req.params.id}`;
+
+    conn.query(q, (err, result) => {
+      var data = fs.readFileSync(result[0].cheminpres);
+      res.contentType('application/pdf');
+      res.send(data);
+    });
+  } catch (err) {
+    console.log('une erreur', err);
+  }
+}
+
+async function getEvalStageById(req, res, next) {
+  try {
+    let q = `SELECT ${config.table.stage.chemineval} from ${config.table.stage.tablename} WHERE ${config.table.stage.idstage}=${req.params.id}`;
+
+    conn.query(q, (err, result) => {
+      var data = fs.readFileSync(result[0].chemineval);
+      res.contentType('application/pdf');
+      res.send(data);
+    });
+  } catch (err) {
+    console.log('une erreur', err);
+  }
+}
+
+async function getCompStageById(req, res, next) {
+  try {
+    let q = `SELECT ${config.table.stage.chemincomp} from ${config.table.stage.tablename} WHERE ${config.table.stage.idstage}=${req.params.id}`;
+
+    conn.query(q, (err, result) => {
+      var data = fs.readFileSync(result[0].chemincomp);
+      res.contentType('application/pdf');
+      res.send(data);
+    });
+  } catch (err) {
+    console.log('une erreur', err);
+  }
+}
+
 async function dlRapportStageById(req, res, next) {
   try {
     let q = `SELECT ${config.table.stage.cheminrapport} from ${config.table.stage.tablename} WHERE ${config.table.stage.idstage}=${req.params.id}`;
@@ -105,4 +147,7 @@ exports.deleteStage = deleteStage;
 exports.editStage = editStage;
 
 exports.getRapportStageById = getRapportStageById;
+exports.getPresentationStageById = getPresentationStageById;
+exports.getEvalStageById = getEvalStageById;
+exports.getCompStageById = getCompStageById;
 exports.dlRapportStageById = dlRapportStageById;
