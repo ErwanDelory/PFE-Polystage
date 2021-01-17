@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router';
-import { Alert, Button, Container, Form } from 'react-bootstrap';
+import { Button, Container, Form } from 'react-bootstrap';
 import DatePicker, { registerLocale } from 'react-datepicker';
 import fr from 'date-fns/locale/fr';
+import { Notyf } from 'notyf';
 
 const NewStage = () => {
   // TODO: Réfléchir: Upload des documents => Gérer le cas lors du lancement de l'évaluation pour ne pas avoir un retard
@@ -20,10 +21,14 @@ const NewStage = () => {
   const [adresse, setAdresse] = useState('');
   const [mail, setMail] = useState('');
   const [confidentiel, setConfidentiel] = useState('');
-  const [message, setMessage] = useState('');
-  const [stateError, setStateError] = useState(false);
-  const [stateSuccess, setStateSucces] = useState(false);
   const history = useHistory();
+  const notyf = new Notyf({
+    duration: 3000,
+    position: {
+      x: 'right',
+      y: 'top',
+    },
+  });
 
   const handleInputNiveauChange = (event) => {
     const { value } = event.target;
@@ -88,6 +93,21 @@ const NewStage = () => {
     const debut = dateD[2] + '-' + dateD[1] + '-' + dateD[0];
     const fin = dateF[2] + '-' + dateF[1] + '-' + dateF[0];
     event.preventDefault();
+    if (
+      !niveau ||
+      !annee ||
+      !dateDebut ||
+      !dateFin ||
+      !titre ||
+      !description ||
+      !entreprise ||
+      !adresse ||
+      !mail ||
+      !confidentiel
+    ) {
+      notyf.error('Information incorrecte !');
+      return;
+    }
     fetch('http://localhost:5000/api/newstage', {
       method: 'POST',
       headers: {
@@ -115,27 +135,8 @@ const NewStage = () => {
         confidentiel: confidentiel,
       }),
     }).then((res) => {
-      if (
-        !niveau ||
-        !annee ||
-        !dateDebut ||
-        !dateFin ||
-        !titre ||
-        !description ||
-        !entreprise ||
-        !adresse ||
-        !mail ||
-        !confidentiel
-      ) {
-        setMessage('Information incorrecte.');
-        setStateError(true);
-        setStateSucces(false);
-        return;
-      }
       res.json();
-      setMessage('Ajout du stage réussi !');
-      setStateSucces(true);
-      setStateError(false);
+      notyf.success('Ajout du stage réussi !');
       setTimeout(redirect, 3000);
     });
   };
@@ -256,17 +257,6 @@ const NewStage = () => {
             Ajouter le stage
           </Button>
         </Form>
-        <br />
-        {message && stateError ? (
-          <Alert variant="danger">{message}</Alert>
-        ) : (
-          <p></p>
-        )}
-        {message && stateSuccess ? (
-          <Alert variant="success">{message}</Alert>
-        ) : (
-          <p></p>
-        )}
       </Container>
     </div>
   );

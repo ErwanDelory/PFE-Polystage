@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router';
 import { useLocation } from 'react-router-dom';
-import { Alert, Button, Container, Form } from 'react-bootstrap';
+import { Button, Container, Form } from 'react-bootstrap';
 import DatePicker, { registerLocale } from 'react-datepicker';
 import fr from 'date-fns/locale/fr';
+import { Notyf } from 'notyf';
 
 const Edit = () => {
   registerLocale('fr', fr);
@@ -18,12 +19,16 @@ const Edit = () => {
   const [dateFin, setDateFin] = useState(location.state.datefin);
   const [startDate, setStartDate] = useState(location.state.datedebut2);
   const [endDate, setEndDate] = useState(location.state.datefin2);
-  const [message, setMessage] = useState('');
-  const [stateError, setStateError] = useState(false);
-  const [stateSuccess, setStateSucces] = useState(false);
   const [fileRapport, setFileRapport] = useState();
   const [filePresentation, setFilePresentation] = useState();
   const history = useHistory();
+  const notyf = new Notyf({
+    duration: 3000,
+    position: {
+      x: 'right',
+      y: 'top',
+    },
+  });
 
   useEffect(() => {
     fetch('http://localhost:5000/api/retardeleve', {
@@ -125,15 +130,11 @@ const Edit = () => {
         !dateFin ||
         !entreprise
       ) {
-        setMessage('Information incorrecte.');
-        setStateError(true);
-        setStateSucces(false);
+        notyf.error('Information incorrecte !');
         return;
       }
       res.json();
-      setMessage('Modification réussie !');
-      setStateSucces(true);
-      setStateError(false);
+      notyf.success('Modification réussie !');
       if (fileRapport) {
         uploadRapport();
       }
@@ -155,9 +156,7 @@ const Edit = () => {
       },
     }).then((res) => {
       res.json();
-      setMessage('Suppression réussie !');
-      setStateSucces(true);
-      setStateError(false);
+      notyf.success('Suppression réussie !');
       setTimeout(redirect, 3000);
     });
   };
@@ -360,17 +359,6 @@ const Edit = () => {
             Supprimer
           </Button>
         </Form>
-        <br />
-        {message && stateError ? (
-          <Alert variant="danger">{message}</Alert>
-        ) : (
-          <p></p>
-        )}
-        {message && stateSuccess ? (
-          <Alert variant="success">{message}</Alert>
-        ) : (
-          <p></p>
-        )}
       </Container>
     </div>
   );

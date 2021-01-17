@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router';
-import { Alert, Button, Container, Form } from 'react-bootstrap';
+import { Button, Container, Form } from 'react-bootstrap';
+import { Notyf } from 'notyf';
 
 const Register = () => {
   const [email, setEmail] = useState('');
@@ -8,10 +9,14 @@ const Register = () => {
   const [lastname, setLastName] = useState('');
   const [firstname, setFirstName] = useState('');
   const [role, setRole] = useState('Enseignant');
-  const [message, setMessage] = useState('');
-  const [stateError, setStateError] = useState(false);
-  const [stateSuccess, setStateSucces] = useState(false);
   const history = useHistory();
+  const notyf = new Notyf({
+    duration: 3000,
+    position: {
+      x: 'right',
+      y: 'top',
+    },
+  });
 
   const handleInputEmailChange = (event) => {
     const { value } = event.target;
@@ -53,15 +58,12 @@ const Register = () => {
       body: JSON.stringify({ email, password, lastname, firstname, role }),
     }).then((res) => {
       if (!email || !password || !lastname || !firstname) {
-        setMessage('Information incorrecte.');
-        setStateError(true);
-        setStateSucces(false);
+        notyf.error('Information incorrecte !');
+
         return;
       }
       res.json();
-      setMessage('Inscription réussie !');
-      setStateSucces(true);
-      setStateError(false);
+      notyf.success('Inscription réussie !');
       setTimeout(redirect, 3000);
     });
   };
@@ -129,17 +131,6 @@ const Register = () => {
             S'inscire
           </Button>
         </Form>
-        <br />
-        {message && stateError ? (
-          <Alert variant="danger">{message}</Alert>
-        ) : (
-          <p></p>
-        )}
-        {message && stateSuccess ? (
-          <Alert variant="success">{message}</Alert>
-        ) : (
-          <p></p>
-        )}
       </Container>
     </div>
   );

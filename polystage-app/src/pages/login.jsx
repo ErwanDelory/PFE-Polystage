@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import AuthenticationService from '../services/authentication-service';
-import { Alert, Button, Container, Form } from 'react-bootstrap';
+import { Button, Container, Form } from 'react-bootstrap';
 import { useAuth } from '../context/auth';
 import { useHistory } from 'react-router';
+import { Notyf } from 'notyf';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSignInAlt } from '@fortawesome/free-solid-svg-icons';
 import { faLock } from '@fortawesome/free-solid-svg-icons';
@@ -12,9 +13,15 @@ import { faClipboard } from '@fortawesome/free-solid-svg-icons';
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [message, setMessage] = useState('');
   const { setAuthTokens } = useAuth();
   const history = useHistory();
+  const notyf = new Notyf({
+    duration: 3000,
+    position: {
+      x: 'right',
+      y: 'top',
+    },
+  });
 
   const handleInputEmailChange = (event) => {
     const { value } = event.target;
@@ -41,7 +48,7 @@ const Login = () => {
         sessionStorage.setItem('token', data.token);
         AuthenticationService.login(data.token).then((isAuthenticated) => {
           if (!isAuthenticated) {
-            setMessage('Identifiant ou mot de passe incorrect.');
+            notyf.error('Identifiant ou mot de passe incorrect.');
             setEmail('');
             setPassword('');
             sessionStorage.clear();
@@ -107,8 +114,6 @@ const Login = () => {
             S'inscire
           </Button>
         </Form>
-        <br />
-        {!message ? <p></p> : <Alert variant="danger">{message}</Alert>}
       </Container>
     </div>
   );

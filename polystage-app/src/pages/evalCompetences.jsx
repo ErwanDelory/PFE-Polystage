@@ -2,16 +2,21 @@ import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useHistory } from 'react-router';
 import { useForm } from 'react-hook-form';
-import { Alert, Button, Col, Container, Form, Row } from 'react-bootstrap';
+import { Button, Col, Container, Form, Row } from 'react-bootstrap';
+import { Notyf } from 'notyf';
 
 const EvalCompetences = () => {
   const location = useLocation();
   const history = useHistory();
   const [question, setQuestion] = useState([]);
-  const [message, setMessage] = useState('');
-  const [stateError, setStateError] = useState(false);
-  const [stateSuccess, setStateSucces] = useState(false);
   const { register, handleSubmit } = useForm();
+  const notyf = new Notyf({
+    duration: 3000,
+    position: {
+      x: 'right',
+      y: 'top',
+    },
+  });
 
   useEffect(() => {
     fetch('http://localhost:5000/api/competences', {
@@ -46,9 +51,7 @@ const EvalCompetences = () => {
       body: JSON.stringify({ data, id: location.state.id }),
     }).then((res) => {
       res.json();
-      setMessage('Évaluation des compétences réussie !');
-      setStateSucces(true);
-      setStateError(false);
+      notyf.success('Évaluation des compétences réussie !');
       setTimeout(redirect, 3000);
     });
   };
@@ -121,16 +124,6 @@ const EvalCompetences = () => {
           </div>
         </Form>
         <br />
-        {message && stateError ? (
-          <Alert variant="danger">{message}</Alert>
-        ) : (
-          <p></p>
-        )}
-        {message && stateSuccess ? (
-          <Alert variant="success">{message}</Alert>
-        ) : (
-          <p></p>
-        )}
       </Container>
     </div>
   );
