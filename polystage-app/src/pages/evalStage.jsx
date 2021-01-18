@@ -4,7 +4,8 @@ import { useHistory } from 'react-router';
 import { useForm } from 'react-hook-form';
 import { Button, Card, Col, Container, Form, Row } from 'react-bootstrap';
 import { Notyf } from 'notyf';
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
 const EvalStage = () => {
   const location = useLocation();
   const history = useHistory();
@@ -58,6 +59,7 @@ const EvalStage = () => {
   return (
     <div>
       <Container>
+        <br />
         <h3>
           Évaluation de l'élève {location.state.prenom} {location.state.nom}
         </h3>
@@ -67,7 +69,7 @@ const EvalStage = () => {
               <Col key={data.idquest}>
                 {data.choix === null ? (
                   <Form.Group controlId={data.idquest}>
-                    <Card className="text-center">
+                    <Card>
                       <Card.Header>{data.question}</Card.Header>
                       <Card.Body>
                         <Card.Text>
@@ -276,6 +278,7 @@ const EvalStage = () => {
           </Row>
           <div className="text-center">
             <Button variant="info" type="submit" text-center>
+              <FontAwesomeIcon className="bckg-icon" icon={faPaperPlane} />{' '}
               Envoyer
             </Button>
           </div>

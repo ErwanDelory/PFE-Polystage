@@ -5,11 +5,13 @@ import { Nav, Navbar } from 'react-bootstrap';
 import img from './../img/polytech.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
+import { faHome } from '@fortawesome/free-solid-svg-icons';
+import { faTools } from '@fortawesome/free-solid-svg-icons';
 import { Badge } from 'react-bootstrap';
 
 class NavbarLogout extends Component {
   render() {
-    return <div></div>;
+    return null;
   }
 }
 
@@ -55,9 +57,14 @@ const NavbarNav = () => {
 
   return (
     <Nav className="mr-auto">
-      <Nav.Link onClick={nav}>Accueil</Nav.Link>
+      <Nav.Link onClick={nav}>
+        <FontAwesomeIcon className="bckg-icon" icon={faHome} /> Accueil
+      </Nav.Link>
       {sessionStorage.getItem('role') === 'Admin' && (
-        <Nav.Link href="/admin">Administrateur</Nav.Link>
+        <Nav.Link href="/admin">
+          <FontAwesomeIcon className="bckg-icon" icon={faTools} />{' '}
+          Administrateur
+        </Nav.Link>
       )}
     </Nav>
   );
@@ -83,7 +90,7 @@ const NavbarPolystage = ({ isConnected }) => {
           />{' '}
           Polystage
         </Navbar.Brand>
-        {!isConnected ? <p></p> : <NavbarNav />}
+        {!isConnected ? null : <NavbarNav />}
         {!isConnected ? <NavbarLogout /> : <NavbarLogin />}
       </Navbar>
     </nav>

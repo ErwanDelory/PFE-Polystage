@@ -2,6 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { Button, Card, Col, Container, Row } from 'react-bootstrap';
 import { useHistory } from 'react-router';
 import axios from 'axios';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faFolderOpen } from '@fortawesome/free-solid-svg-icons';
+import { faPlay } from '@fortawesome/free-solid-svg-icons';
 
 const HomeTuteur = () => {
   const [data, setData] = useState([]);
@@ -165,6 +168,10 @@ const HomeTuteur = () => {
                             )
                           }
                         >
+                          <FontAwesomeIcon
+                            className="bckg-icon"
+                            icon={faPlay}
+                          />{' '}
                           Lancer l'évaluation de l'élève
                         </Button>
                       ) : (
@@ -179,6 +186,10 @@ const HomeTuteur = () => {
                             )
                           }
                         >
+                          <FontAwesomeIcon
+                            className="bckg-icon"
+                            icon={faPlay}
+                          />{' '}
                           Lancer l'évaluation de l'élève
                         </Button>
                       )}{' '}
@@ -194,6 +205,10 @@ const HomeTuteur = () => {
                             )
                           }
                         >
+                          <FontAwesomeIcon
+                            className="bckg-icon"
+                            icon={faPlay}
+                          />{' '}
                           Lancer l'évalution des compétences
                         </Button>
                       ) : (
@@ -207,6 +222,10 @@ const HomeTuteur = () => {
                             )
                           }
                         >
+                          <FontAwesomeIcon
+                            className="bckg-icon"
+                            icon={faPlay}
+                          />{' '}
                           Lancer l'évalution des compétences
                         </Button>
                       )}
@@ -217,10 +236,18 @@ const HomeTuteur = () => {
                           variant="warning"
                           onClick={() => openEval(stage.idstage)}
                         >
+                          <FontAwesomeIcon
+                            className="bckg-icon"
+                            icon={faFolderOpen}
+                          />{' '}
                           Visualiser l'évaluation de l'élève
                         </Button>
                       ) : (
                         <Button disabled variant="warning">
+                          <FontAwesomeIcon
+                            className="bckg-icon"
+                            icon={faFolderOpen}
+                          />{' '}
                           Visualiser l'évaluation de l'élève
                         </Button>
                       )}{' '}
@@ -229,10 +256,18 @@ const HomeTuteur = () => {
                           variant="info"
                           onClick={() => openComp(stage.idstage)}
                         >
+                          <FontAwesomeIcon
+                            className="bckg-icon"
+                            icon={faFolderOpen}
+                          />{' '}
                           Visualiser l'évaluation des compétences
                         </Button>
                       ) : (
                         <Button disabled variant="info">
+                          <FontAwesomeIcon
+                            className="bckg-icon"
+                            icon={faFolderOpen}
+                          />{' '}
                           Visualiser l'évaluation des compétences
                         </Button>
                       )}
@@ -243,9 +278,7 @@ const HomeTuteur = () => {
                   </Card>
                   <br />
                 </Col>
-              ) : (
-                <p></p>
-              )}
+              ) : null}
             </div>
           ))}
         </Row>

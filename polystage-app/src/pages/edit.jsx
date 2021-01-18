@@ -347,9 +347,7 @@ const Edit = () => {
                     />
                   </Form.Group>
                 </div>
-              ) : (
-                <p></p>
-              )}
+              ) : null}
             </div>
           ))}
           <Button variant="info" type="submit">

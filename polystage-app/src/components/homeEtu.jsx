@@ -3,7 +3,7 @@ import { useHistory } from 'react-router';
 import axios from 'axios';
 import { Button, Card, Col, Container, Row } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEdit } from '@fortawesome/free-solid-svg-icons';
+import { faEdit, faFolderOpen } from '@fortawesome/free-solid-svg-icons';
 import img0 from './../img/stage-0.jpg';
 import img1 from './../img/stage-1.jpg';
 import img2 from './../img/stage-2.jpg';
@@ -233,11 +233,19 @@ const HomeEtu = () => {
                         variant="warning"
                         onClick={() => openRapport(stage.idstage)}
                       >
-                        Voir le rapport
+                        <FontAwesomeIcon
+                          className="bckg-icon"
+                          icon={faFolderOpen}
+                        />{' '}
+                        Ouvrir le rapport
                       </Button>
                     ) : (
                       <Button disabled variant="warning">
-                        Voir le rapport
+                        <FontAwesomeIcon
+                          className="bckg-icon"
+                          icon={faFolderOpen}
+                        />{' '}
+                        Ouvrir le rapport
                       </Button>
                     )}{' '}
                     {stage.cheminpres ? (
@@ -245,10 +253,18 @@ const HomeEtu = () => {
                         variant="info"
                         onClick={() => openPresentation(stage.idstage)}
                       >
+                        <FontAwesomeIcon
+                          className="bckg-icon"
+                          icon={faFolderOpen}
+                        />{' '}
                         Ouvrir la présentation
                       </Button>
                     ) : (
                       <Button disabled variant="info">
+                        <FontAwesomeIcon
+                          className="bckg-icon"
+                          icon={faFolderOpen}
+                        />{' '}
                         Ouvrir la présentation
                       </Button>
                     )}
@@ -287,9 +303,17 @@ const HomeEtu = () => {
                 </Card.Text>
                 <div className="text-center">
                   <Button variant="warning" disabled>
-                    Voir le rapport
+                    <FontAwesomeIcon
+                      className="bckg-icon"
+                      icon={faFolderOpen}
+                    />{' '}
+                    Ouvrir le rapport
                   </Button>{' '}
                   <Button variant="info" disabled>
+                    <FontAwesomeIcon
+                      className="bckg-icon"
+                      icon={faFolderOpen}
+                    />{' '}
                     Ouvrir la présentation
                   </Button>
                 </div>

@@ -3,6 +3,7 @@ import { Button, Card, Container } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck } from '@fortawesome/free-solid-svg-icons';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
+import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
 
 const Admin = () => {
   const [tuteur, setTuteur] = useState([]);
@@ -107,7 +108,10 @@ const Admin = () => {
         </Card>
         <br />
         <div className="text-center">
-          <Button variant="warning">Envoyer les mails de rappel</Button>
+          <Button variant="warning">
+            <FontAwesomeIcon className="bckg-icon" icon={faPaperPlane} />{' '}
+            Envoyer les mails de rappel
+          </Button>
         </div>
       </Container>
     </div>

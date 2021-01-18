@@ -5,6 +5,9 @@ import * as timeago from 'timeago.js';
 import fr from 'timeago.js/lib/lang/fr';
 import { Button, Card, Col, Container, Row } from 'react-bootstrap';
 import axios from 'axios';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faFolderOpen } from '@fortawesome/free-solid-svg-icons';
+import { faPlay } from '@fortawesome/free-solid-svg-icons';
 
 const HomeAdmin = () => {
   timeago.register('fr', fr);
@@ -177,10 +180,12 @@ const HomeAdmin = () => {
                           )
                         }
                       >
+                        <FontAwesomeIcon className="bckg-icon" icon={faPlay} />{' '}
                         Lancer l'évaluation
                       </Button>
                     ) : (
                       <Button variant="warning" disabled>
+                        <FontAwesomeIcon className="bckg-icon" icon={faPlay} />{' '}
                         Lancer l'évaluation
                       </Button>
                     )
@@ -190,10 +195,18 @@ const HomeAdmin = () => {
                       variant="info"
                       onClick={() => openEval(stage.idstage)}
                     >
+                      <FontAwesomeIcon
+                        className="bckg-icon"
+                        icon={faFolderOpen}
+                      />{' '}
                       Visualiser l'évaluation
                     </Button>
                   ) : (
                     <Button disabled variant="info">
+                      <FontAwesomeIcon
+                        className="bckg-icon"
+                        icon={faFolderOpen}
+                      />{' '}
                       Visualiser l'évaluation
                     </Button>
                   )}

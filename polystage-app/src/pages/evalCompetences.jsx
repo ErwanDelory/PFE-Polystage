@@ -4,6 +4,8 @@ import { useHistory } from 'react-router';
 import { useForm } from 'react-hook-form';
 import { Button, Card, Col, Container, Form, Row } from 'react-bootstrap';
 import { Notyf } from 'notyf';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
 
 const EvalCompetences = () => {
   const location = useLocation();
@@ -58,6 +60,7 @@ const EvalCompetences = () => {
   return (
     <div className="evalComp">
       <Container>
+        <br />
         <h3>
           Évaluation des compétences de l'élève {location.state.prenom}{' '}
           {location.state.nom}
@@ -125,6 +128,7 @@ const EvalCompetences = () => {
           </Row>
           <div className="text-center">
             <Button variant="info" type="submit" text-center>
+              <FontAwesomeIcon className="bckg-icon" icon={faPaperPlane} />{' '}
               Envoyer
             </Button>
           </div>
