@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useHistory } from 'react-router';
 import { useForm } from 'react-hook-form';
-import { Button, Col, Container, Form, Row } from 'react-bootstrap';
+import { Button, Card, Col, Container, Form, Row } from 'react-bootstrap';
 import { Notyf } from 'notyf';
 
 const EvalCompetences = () => {
@@ -66,53 +66,60 @@ const EvalCompetences = () => {
           <Row xs={1} md={2}>
             {question?.map((data) => (
               <Col key={data.idcompetence}>
-                <Form.Group>
-                  <Form.Label>
+                <Card>
+                  <Card.Header>
                     {data.sigle}: {data.libelle}
-                  </Form.Label>
-                  <Col sm={10}>
-                    <Form.Check
-                      type="radio"
-                      label={data.libelle1}
-                      name={data.idcompetence}
-                      id="formHorizontalRadios1"
-                      value={data.libelle1}
-                      ref={register}
-                    />
-                    <Form.Check
-                      type="radio"
-                      label={data.libelle2}
-                      name={data.idcompetence}
-                      id="formHorizontalRadios2"
-                      value={data.libelle2}
-                      ref={register}
-                    />
-                    <Form.Check
-                      type="radio"
-                      label={data.libelle3}
-                      name={data.idcompetence}
-                      id="formHorizontalRadios3"
-                      value={data.libelle3}
-                      ref={register}
-                    />
-                    <Form.Check
-                      type="radio"
-                      label={data.libelle4}
-                      name={data.idcompetence}
-                      id="formHorizontalRadios4"
-                      value={data.libelle4}
-                      ref={register}
-                    />
-                    <Form.Check
-                      type="radio"
-                      label={data.libelle5}
-                      name={data.idcompetence}
-                      id="formHorizontalRadios5"
-                      value={data.libelle5}
-                      ref={register}
-                    />
-                  </Col>
-                </Form.Group>
+                  </Card.Header>
+                  <Card.Body>
+                    <Card.Text>
+                      <Form.Group>
+                        <Col sm={10}>
+                          <Form.Check
+                            type="radio"
+                            label={data.libelle1}
+                            name={data.idcompetence}
+                            id="formHorizontalRadios1"
+                            value={data.libelle1}
+                            ref={register}
+                          />
+                          <Form.Check
+                            type="radio"
+                            label={data.libelle2}
+                            name={data.idcompetence}
+                            id="formHorizontalRadios2"
+                            value={data.libelle2}
+                            ref={register}
+                          />
+                          <Form.Check
+                            type="radio"
+                            label={data.libelle3}
+                            name={data.idcompetence}
+                            id="formHorizontalRadios3"
+                            value={data.libelle3}
+                            ref={register}
+                          />
+                          <Form.Check
+                            type="radio"
+                            label={data.libelle4}
+                            name={data.idcompetence}
+                            id="formHorizontalRadios4"
+                            value={data.libelle4}
+                            ref={register}
+                          />
+                          <Form.Check
+                            type="radio"
+                            label={data.libelle5}
+                            name={data.idcompetence}
+                            id="formHorizontalRadios5"
+                            value={data.libelle5}
+                            ref={register}
+                          />
+                        </Col>
+                      </Form.Group>
+                    </Card.Text>
+                  </Card.Body>
+                </Card>
+                <br />
               </Col>
             ))}
           </Row>

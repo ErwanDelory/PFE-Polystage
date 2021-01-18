@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useHistory } from 'react-router';
 import { useForm } from 'react-hook-form';
-import { Button, Col, Container, Form, Row } from 'react-bootstrap';
+import { Button, Card, Col, Container, Form, Row } from 'react-bootstrap';
 import { Notyf } from 'notyf';
 
 const EvalStage = () => {
@@ -67,190 +67,210 @@ const EvalStage = () => {
               <Col key={data.idquest}>
                 {data.choix === null ? (
                   <Form.Group controlId={data.idquest}>
-                    <Form.Label>{data.question}</Form.Label>
-                    <Form.Control
-                      name={data.idquest}
-                      style={{ width: '90%' }}
-                      type="text"
-                      placeholder={data.question}
-                      ref={register}
-                    />
+                    <Card className="text-center">
+                      <Card.Header>{data.question}</Card.Header>
+                      <Card.Body>
+                        <Card.Text>
+                          <Form.Control
+                            name={data.idquest}
+                            style={{ width: '90%' }}
+                            type="text"
+                            placeholder={data.question}
+                            ref={register}
+                          />
+                        </Card.Text>
+                      </Card.Body>
+                    </Card>
                   </Form.Group>
-                ) : (
-                  <p></p>
-                )}
+                ) : null}
                 {data.choix === 'notation' ? (
                   <Form.Group>
-                    <Form.Label>{data.question}</Form.Label>
-                    <Col sm={10}>
-                      <Form.Check
-                        type="radio"
-                        label="Très bien"
-                        name={data.idquest}
-                        id="formHorizontalRadios1"
-                        value="Très bien"
-                        ref={register}
-                      />
-                      <Form.Check
-                        type="radio"
-                        label="Bien"
-                        name={data.idquest}
-                        id="formHorizontalRadios2"
-                        value="Bien"
-                        ref={register}
-                      />
-                      <Form.Check
-                        type="radio"
-                        label="Moyen"
-                        name={data.idquest}
-                        id="formHorizontalRadios3"
-                        value="Moyen"
-                        ref={register}
-                      />
-                      <Form.Check
-                        type="radio"
-                        label="Insuffisant"
-                        name={data.idquest}
-                        id="formHorizontalRadios4"
-                        value="Insuffisant"
-                        ref={register}
-                      />
-                      <Form.Check
-                        type="radio"
-                        label="Sans objet"
-                        name={data.idquest}
-                        id="formHorizontalRadios5"
-                        value="Sans objet"
-                        ref={register}
-                      />
-                    </Col>
+                    <Card>
+                      <Card.Header>{data.question}</Card.Header>
+                      <Card.Body>
+                        <Card.Text>
+                          <Col sm={10}>
+                            <Form.Check
+                              type="radio"
+                              label="Très bien"
+                              name={data.idquest}
+                              id="formHorizontalRadios1"
+                              value="Très bien"
+                              ref={register}
+                            />
+                            <Form.Check
+                              type="radio"
+                              label="Bien"
+                              name={data.idquest}
+                              id="formHorizontalRadios2"
+                              value="Bien"
+                              ref={register}
+                            />
+                            <Form.Check
+                              type="radio"
+                              label="Moyen"
+                              name={data.idquest}
+                              id="formHorizontalRadios3"
+                              value="Moyen"
+                              ref={register}
+                            />
+                            <Form.Check
+                              type="radio"
+                              label="Insuffisant"
+                              name={data.idquest}
+                              id="formHorizontalRadios4"
+                              value="Insuffisant"
+                              ref={register}
+                            />
+                            <Form.Check
+                              type="radio"
+                              label="Sans objet"
+                              name={data.idquest}
+                              id="formHorizontalRadios5"
+                              value="Sans objet"
+                              ref={register}
+                            />
+                          </Col>
+                        </Card.Text>
+                      </Card.Body>
+                    </Card>
                   </Form.Group>
-                ) : (
-                  <p></p>
-                )}
+                ) : null}
                 {data.choix === 'classement' ? (
                   <Form.Group>
-                    <Form.Label>{data.question}</Form.Label>
-                    <Col sm={10}>
-                      <Form.Check
-                        type="radio"
-                        label="Parmi les meilleurs"
-                        name={data.idquest}
-                        id="formHorizontalRadios1"
-                        value="Parmi les meilleurs"
-                        ref={register}
-                      />
-                      <Form.Check
-                        type="radio"
-                        label="Au dessus de la moyenne"
-                        name={data.idquest}
-                        id="formHorizontalRadios2"
-                        value="Au dessus de la moyenne"
-                        ref={register}
-                      />
-                      <Form.Check
-                        type="radio"
-                        label="À la moyenne"
-                        name={data.idquest}
-                        id="formHorizontalRadios3"
-                        value="À la moyenne"
-                        ref={register}
-                      />
-                      <Form.Check
-                        type="radio"
-                        label="En dessous de la moyenne"
-                        name={data.idquest}
-                        id="formHorizontalRadios3"
-                        value="En dessous de la moyenne"
-                        ref={register}
-                      />
-                      <Form.Check
-                        type="radio"
-                        label="Parmi les plus mauvais"
-                        name={data.idquest}
-                        id="formHorizontalRadios3"
-                        value="Parmi les plus mauvais"
-                        ref={register}
-                      />
-                    </Col>
+                    <Card>
+                      <Card.Header>{data.question}</Card.Header>
+                      <Card.Body>
+                        <Card.Text>
+                          <Col sm={10}>
+                            <Form.Check
+                              type="radio"
+                              label="Parmi les meilleurs"
+                              name={data.idquest}
+                              id="formHorizontalRadios1"
+                              value="Parmi les meilleurs"
+                              ref={register}
+                            />
+                            <Form.Check
+                              type="radio"
+                              label="Au dessus de la moyenne"
+                              name={data.idquest}
+                              id="formHorizontalRadios2"
+                              value="Au dessus de la moyenne"
+                              ref={register}
+                            />
+                            <Form.Check
+                              type="radio"
+                              label="À la moyenne"
+                              name={data.idquest}
+                              id="formHorizontalRadios3"
+                              value="À la moyenne"
+                              ref={register}
+                            />
+                            <Form.Check
+                              type="radio"
+                              label="En dessous de la moyenne"
+                              name={data.idquest}
+                              id="formHorizontalRadios3"
+                              value="En dessous de la moyenne"
+                              ref={register}
+                            />
+                            <Form.Check
+                              type="radio"
+                              label="Parmi les plus mauvais"
+                              name={data.idquest}
+                              id="formHorizontalRadios3"
+                              value="Parmi les plus mauvais"
+                              ref={register}
+                            />
+                          </Col>
+                        </Card.Text>
+                      </Card.Body>
+                    </Card>
                   </Form.Group>
-                ) : (
-                  <p></p>
-                )}
+                ) : null}
                 {data.choix === 'ouinon' ? (
                   <Form.Group>
-                    <Form.Label>{data.question}</Form.Label>
-                    <Col sm={10}>
-                      <Form.Check
-                        type="radio"
-                        label="Oui"
-                        name={data.idquest}
-                        id="formHorizontalRadios1"
-                        value="Oui"
-                        ref={register}
-                      />
-                      <Form.Check
-                        type="radio"
-                        label="Non"
-                        name={data.idquest}
-                        id="formHorizontalRadios2"
-                        value="Non"
-                        ref={register}
-                      />
-                    </Col>
+                    <Card>
+                      <Card.Header>{data.question}</Card.Header>
+                      <Card.Body>
+                        <Card.Text>
+                          <Col sm={10}>
+                            <Form.Check
+                              type="radio"
+                              label="Oui"
+                              name={data.idquest}
+                              id="formHorizontalRadios1"
+                              value="Oui"
+                              ref={register}
+                            />
+                            <Form.Check
+                              type="radio"
+                              label="Non"
+                              name={data.idquest}
+                              id="formHorizontalRadios2"
+                              value="Non"
+                              ref={register}
+                            />
+                          </Col>
+                        </Card.Text>
+                      </Card.Body>
+                    </Card>
                   </Form.Group>
-                ) : (
-                  <p></p>
-                )}
+                ) : null}
                 {data.choix === 'contrat' ? (
                   <Form.Group>
-                    <Form.Label>{data.question}</Form.Label>
-                    <Col sm={10}>
-                      <Form.Check
-                        type="radio"
-                        label="CDI"
-                        name={data.idquest}
-                        id="formHorizontalRadios1"
-                        value="CDI"
-                        ref={register}
-                      />
-                      <Form.Check
-                        type="radio"
-                        label="CDD"
-                        name={data.idquest}
-                        id="formHorizontalRadios2"
-                        value="CDD"
-                        ref={register}
-                      />
-                      <Form.Check
-                        type="radio"
-                        label="Prolongation du stage"
-                        name={data.idquest}
-                        id="formHorizontalRadios3"
-                        value="Prologation du stage"
-                        ref={register}
-                      />
-                      <Form.Check
-                        type="radio"
-                        label="Contrat de thèse entreprise"
-                        name={data.idquest}
-                        id="formHorizontalRadios3"
-                        value="Contrat de thèse entreprise"
-                        ref={register}
-                      />
-                      <Form.Check
-                        type="radio"
-                        label="VIE"
-                        name={data.idquest}
-                        id="formHorizontalRadios3"
-                        value="VIE"
-                        ref={register}
-                      />
-                    </Col>
+                    <Card>
+                      <Card.Header>{data.question}</Card.Header>
+                      <Card.Body>
+                        <Card.Text>
+                          <Col sm={10}>
+                            <Form.Check
+                              type="radio"
+                              label="CDI"
+                              name={data.idquest}
+                              id="formHorizontalRadios1"
+                              value="CDI"
+                              ref={register}
+                            />
+                            <Form.Check
+                              type="radio"
+                              label="CDD"
+                              name={data.idquest}
+                              id="formHorizontalRadios2"
+                              value="CDD"
+                              ref={register}
+                            />
+                            <Form.Check
+                              type="radio"
+                              label="Prolongation du stage"
+                              name={data.idquest}
+                              id="formHorizontalRadios3"
+                              value="Prologation du stage"
+                              ref={register}
+                            />
+                            <Form.Check
+                              type="radio"
+                              label="Contrat de thèse entreprise"
+                              name={data.idquest}
+                              id="formHorizontalRadios3"
+                              value="Contrat de thèse entreprise"
+                              ref={register}
+                            />
+                            <Form.Check
+                              type="radio"
+                              label="VIE"
+                              name={data.idquest}
+                              id="formHorizontalRadios3"
+                              value="VIE"
+                              ref={register}
+                            />
+                          </Col>
+                        </Card.Text>
+                      </Card.Body>
+                    </Card>
                   </Form.Group>
-                ) : (
-                  <p></p>
-                )}
+                ) : null}
               </Col>
             ))}
           </Row>

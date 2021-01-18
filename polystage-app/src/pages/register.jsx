@@ -1,7 +1,14 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router';
-import { Button, Container, Form } from 'react-bootstrap';
+import { Button, Card, Container, Form } from 'react-bootstrap';
 import { Notyf } from 'notyf';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faLock } from '@fortawesome/free-solid-svg-icons';
+import { faPortrait } from '@fortawesome/free-solid-svg-icons';
+import { faUser } from '@fortawesome/free-solid-svg-icons';
+import { faUserTag } from '@fortawesome/free-solid-svg-icons';
+import { faClipboard } from '@fortawesome/free-solid-svg-icons';
+import { faHome } from '@fortawesome/free-solid-svg-icons';
 
 const Register = () => {
   const [email, setEmail] = useState('');
@@ -73,63 +80,93 @@ const Register = () => {
       <br />
       <Container>
         <Form onSubmit={onSubmit}>
-          <Form.Group controlId="email">
-            <Form.Label>Mail</Form.Label>
-            <Form.Control
-              type="email"
-              name="email"
-              placeholder="Saisir votre adresse mail"
-              autoFocus
-              value={email}
-              onChange={handleInputEmailChange}
-            />
-          </Form.Group>
-          <Form.Group controlId="password">
-            <Form.Label>Mot de passe</Form.Label>
-            <Form.Control
-              type="password"
-              name="password"
-              placeholder="Saisir votre mot de passe"
-              value={password}
-              onChange={handleInputPasswordChange}
-            />
-          </Form.Group>
-          <Form.Group controlId="lastname">
-            <Form.Label>Nom</Form.Label>
-            <Form.Control
-              type="text"
-              name="lastname"
-              placeholder="Saisir votre nom"
-              value={lastname}
-              onChange={handleInputLastNameChange}
-            />
-          </Form.Group>
-          <Form.Group controlId="firstname">
-            <Form.Label>Prénom</Form.Label>
-            <Form.Control
-              type="text"
-              name="firstname"
-              placeholder="Saisir votre prénom"
-              value={firstname}
-              onChange={handleInputFirstNameChange}
-            />
-          </Form.Group>
-          <Form.Group controlId="role">
-            <Form.Label>Rôle</Form.Label>
-            <Form.Control
-              as="select"
-              name="role"
-              value={role}
-              onChange={handleInputRoleChange}
-            >
-              <option>Enseignant</option>
-              <option>Etudiant</option>
-              <option>Tuteur</option>
-            </Form.Control>
-          </Form.Group>
-          <Button variant="info" type="submit">
-            S'inscire
-          </Button>
+          <Card className="text-center">
+            <Card.Header>Inscription</Card.Header>
+            <Card.Body>
+              <Form.Group controlId="email">
+                <Form.Label>
+                  <FontAwesomeIcon className="bckg-icon" icon={faPortrait} />{' '}
+                  Mail
+                </Form.Label>
+                <Form.Control
+                  type="email"
+                  name="email"
+                  placeholder="Saisir votre adresse mail"
+                  autoFocus
+                  value={email}
+                  onChange={handleInputEmailChange}
+                />
+                <Form.Text className="text-muted">
+                  Votre identifiant ne sera pas partagé !
+                </Form.Text>
+              </Form.Group>
+              <Form.Group controlId="password">
+                <Form.Label>
+                  <FontAwesomeIcon className="bckg-icon" icon={faLock} /> Mot de
+                  passe
+                </Form.Label>
+                <Form.Control
+                  type="password"
+                  name="password"
+                  placeholder="Saisir votre mot de passe"
+                  value={password}
+                  onChange={handleInputPasswordChange}
+                />
+                <Form.Text className="text-muted">
+                  Votre mot de passe est sécurisé !
+                </Form.Text>
+              </Form.Group>
+              <Form.Group controlId="lastname">
+                <Form.Label>
+                  <FontAwesomeIcon className="bckg-icon" icon={faUser} /> Nom
+                </Form.Label>
+                <Form.Control
+                  type="text"
+                  name="lastname"
+                  placeholder="Saisir votre nom"
+                  value={lastname}
+                  onChange={handleInputLastNameChange}
+                />
+              </Form.Group>
+              <Form.Group controlId="firstname">
+                <Form.Label>
+                  <FontAwesomeIcon className="bckg-icon" icon={faUser} /> Prénom
+                </Form.Label>
+                <Form.Control
+                  type="text"
+                  name="firstname"
+                  placeholder="Saisir votre prénom"
+                  value={firstname}
+                  onChange={handleInputFirstNameChange}
+                />
+              </Form.Group>
+              <Form.Group controlId="role">
+                <Form.Label>
+                  <FontAwesomeIcon className="bckg-icon" icon={faUserTag} />{' '}
+                  Rôle
+                </Form.Label>
+                <Form.Control
+                  as="select"
+                  name="role"
+                  value={role}
+                  onChange={handleInputRoleChange}
+                >
+                  <option>Enseignant</option>
+                  <option>Etudiant</option>
+                  <option>Tuteur</option>
+                </Form.Control>
+              </Form.Group>
+            </Card.Body>
+            <Card.Footer>
+              <Button variant="info" type="submit">
+                <FontAwesomeIcon className="bckg-icon" icon={faClipboard} />{' '}
+                S'inscire
+              </Button>{' '}
+              <Button variant="warning" href="/login">
+                <FontAwesomeIcon className="bckg-icon" icon={faHome} /> Accueil
+              </Button>
+            </Card.Footer>
+          </Card>
         </Form>
       </Container>
     </div>

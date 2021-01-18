@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import AuthenticationService from '../services/authentication-service';
-import { Button, Container, Form } from 'react-bootstrap';
+import { Button, Card, Container, Form } from 'react-bootstrap';
 import { useAuth } from '../context/auth';
 import { useHistory } from 'react-router';
 import { Notyf } from 'notyf';
@@ -78,41 +78,55 @@ const Login = () => {
       <br />
       <Container>
         <Form onSubmit={onSubmit}>
-          <Form.Group controlId="email">
-            <Form.Label>
-              <FontAwesomeIcon className="bckg-icon" icon={faPortrait} />{' '}
-              Identifiant
-            </Form.Label>
-            <Form.Control
-              type="email"
-              name="email"
-              placeholder="Saisir votre identifiant"
-              autoFocus
-              value={email}
-              onChange={handleInputEmailChange}
-            />
-          </Form.Group>
-          <Form.Group controlId="password">
-            <Form.Label>
-              <FontAwesomeIcon className="bckg-icon" icon={faLock} /> Mot de
-              passe
-            </Form.Label>
-            <Form.Control
-              type="password"
-              name="password"
-              placeholder="Saisir votre mot de passe"
-              value={password}
-              onChange={handleInputPasswordChange}
-            />
-          </Form.Group>
-          <Button variant="info" type="submit">
-            <FontAwesomeIcon className="bckg-icon" icon={faSignInAlt} /> Se
-            connecter
-          </Button>{' '}
-          <Button variant="warning" href="/register">
-            <FontAwesomeIcon className="bckg-icon" icon={faClipboard} />{' '}
-            S'inscire
-          </Button>
+          <Card className="text-center">
+            <Card.Header>Connexion</Card.Header>
+            <Card.Body>
+              <Form.Group controlId="email">
+                <Form.Label>
+                  <FontAwesomeIcon className="bckg-icon" icon={faPortrait} />{' '}
+                  Identifiant
+                </Form.Label>
+                <Form.Control
+                  type="email"
+                  name="email"
+                  placeholder="Saisir votre identifiant"
+                  autoFocus
+                  value={email}
+                  onChange={handleInputEmailChange}
+                />
+                <Form.Text className="text-muted">
+                  Votre identifiant ne sera pas partagé !
+                </Form.Text>
+              </Form.Group>
+
+              <Form.Group controlId="password">
+                <Form.Label>
+                  <FontAwesomeIcon className="bckg-icon" icon={faLock} /> Mot de
+                  passe
+                </Form.Label>
+                <Form.Control
+                  type="password"
+                  name="password"
+                  placeholder="Saisir votre mot de passe"
+                  value={password}
+                  onChange={handleInputPasswordChange}
+                />
+                <Form.Text className="text-muted">
+                  Votre mot de passe est sécurisé !
+                </Form.Text>
+              </Form.Group>
+            </Card.Body>
+            <Card.Footer>
+              <Button variant="info" type="submit">
+                <FontAwesomeIcon className="bckg-icon" icon={faSignInAlt} /> Se
+                connecter
+              </Button>{' '}
+              <Button variant="warning" href="/register">
+                <FontAwesomeIcon className="bckg-icon" icon={faClipboard} />{' '}
+                S'inscire
+              </Button>
+            </Card.Footer>
+          </Card>
         </Form>
       </Container>
     </div>
