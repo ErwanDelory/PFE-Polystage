@@ -1,68 +1,47 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Projet de fin d'études de Polytech Marseille.
 
-## Available Scripts
+## Guide d'utilisation du projet
 
-In the project directory, you can run:
+Pour lancer le projet, il est nécéssaire d'avoir plusieurs outils:\
+Il faut installer node.js et npm.\
+Il faut installer docker ou un gestionnaire pour MySQL comme MAMP sur MacOS ou encore WAMP sur Windows.\
+Il est nécéssaire aussi d'avoir la commande `docker-compose` pour exécuter l'application sur docker.\
 
-### `npm start`
+### `Utilisation de docker`
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Avec docker, l'utilisation de l'application est plus simple.
+Il suffit de se placer à la racine du projet, donc à la racine de PFE-Polystage.\
+Il faut exécuter la commande: `docker-compose up` pour réaliser la création des containers.\
+Une fois que les containeurs seront créés, il est nécéssaire d'ajouter la base de données SQL pour que le backend puisse se connecter.\
+Pour ce faire, il faut se rendre à l'adresse: [http://localhost:8080](http://localhost:8080).\
+Les identifiants sont `root`et `root`.\
+Puis il faut créer une base de données du nom de `db` pour ne pas avoir à modifier la connexion du backend.\
+Ensuite, il faut ouvrir la base de données, appuyer sur `importer` puis `choisir le fichier` afin de sélectionner le fichier `db.sql` puis sur `exécuter`.\
+Il est maintenant possible de relancer le container du backend depuis l'application docker ou encore en annulant et recommancant la commande: `docker-compose up`.\
+L'application est maintenant totalement utilisable à l'adresse: [http://localhost:3000](http://localhost:3000).\
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+### `Utilisation sans docker`
 
-### `npm test`
+Il suffit d'installer MAMP, WAMP ou un équivalent.\
+Une fois que c'est fait, il est nécéssaire d'ajouter la base de données SQL pour que le backend puisse se connecter.\
+Pour ce faire, il faut se rendre à l'adresse: [http://localhost:8888/phpMyAdmin/?lang=en](http://localhost:8888/phpMyAdmin/?lang=en) pour MAMP.\
+Puis il faut créer une base de données du nom de `db` pour ne pas avoir à modifier la connexion du backend.\
+Ensuite, il faut ouvrir la base de données, appuyer sur `importer` puis `choisir le fichier` afin de sélectionner le fichier `db.sql` puis sur `exécuter`.\
+Il faut ensuite adapter la configuration du backend. Il faut donc modifier le fichier `config.js` qui se trouve dans le dossier `PFE-Polystage/Node/`.\
+Il faut que l'host soit sur `localhost`, définir l'user et le mot de passe du logiciel (par défaut c'est root), et enfin définir le port (8889 sur MAMP).\
+Ensuite, il faut se placer dans le dossier `PFE-Polystage/Node/` afin de faire la commande `npm install` pour installer les dépendances puis `npm start` pour démarrer le backend. Celui-ci démarre sur le port 5000.\
+Ensuite, il faut se placer dans le dossier `PFE-Polystage/polystage-app/` afin de faire la commande `npm install` pour installer les dépendances puis `npm start` pour démarrer le frontend à l'adresse: [http://localhost:3000](http://localhost:3000).\
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### `Utilisation de l'application``
 
-### `npm run build`
+Une fois sur l'application, il est possible de se créer un compte afin de voir les différentes pages en fonction du type de compte.\
+Il y a 4 types de compte, élève, professeur, tuteur et administrateur.\
+Il n'est pas possible de choisir le rôle administrateur lors de la création d'un compte, il faut le modifier directement dans la base de données en changeant le rôle par `Admin`.\
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### `Compte déjà dans la base de données`
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+Il existe déjà des comptes dans la base de données:\
+Compte élève: `erwan.delory@gmail.com` et mot de passe `root`.\
+Compte professeur: `nicolas.baudru@univ-amu.fr` et mot de passe `root`.\
+Compte administrateur: `nicolas.durand@univ-amu.fr` et mot de passe `root`.\
+Compte tuteur: `tut@tut.fr` et mot de passe `root`.\
