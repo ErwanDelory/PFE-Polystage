@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router';
 import { useLocation } from 'react-router-dom';
-import { Button, Container, Form } from 'react-bootstrap';
+import { Button, Card, Container, Form } from 'react-bootstrap';
 import DatePicker, { registerLocale } from 'react-datepicker';
 import fr from 'date-fns/locale/fr';
 import { Notyf } from 'notyf';
@@ -255,96 +255,152 @@ const Edit = () => {
       <Container>
         <Form onSubmit={onSubmit}>
           <Form.Group controlId="stageTitle">
-            <Form.Label>Titre du stage</Form.Label>
-            <Form.Control
-              type="text"
-              name="stageTitle"
-              placeholder="Saisir le titre du stage"
-              autoFocus
-              value={stageTitle}
-              onChange={handleInputStageTitleChange}
-            />
+            <Card className="text-center">
+              <Card.Header>Titre du stage</Card.Header>
+              <Card.Body>
+                <Card.Text>
+                  <Form.Control
+                    type="text"
+                    name="stageTitle"
+                    placeholder="Saisir le titre du stage"
+                    autoFocus
+                    value={stageTitle}
+                    onChange={handleInputStageTitleChange}
+                  />
+                </Card.Text>
+              </Card.Body>
+            </Card>
           </Form.Group>
           <Form.Group controlId="description">
-            <Form.Label>Description du stage</Form.Label>
-            <Form.Control
-              type="text"
-              name="description"
-              placeholder="Saisir la description du stage"
-              value={description}
-              onChange={handleInputDescriptionChange}
-            />
+            <Card className="text-center">
+              <Card.Header>Description du stage</Card.Header>
+              <Card.Body>
+                <Card.Text>
+                  <Form.Control
+                    type="text"
+                    name="description"
+                    placeholder="Saisir la description du stage"
+                    value={description}
+                    onChange={handleInputDescriptionChange}
+                  />
+                </Card.Text>
+              </Card.Body>
+            </Card>
           </Form.Group>
           <Form.Group controlId="entreprise">
-            <Form.Label>Entreprise</Form.Label>
-            <Form.Control
-              type="text"
-              name="entreprise"
-              placeholder="Saisir le nom de l'entreprise"
-              value={entreprise}
-              onChange={handleInputEntrepriseChange}
-            />
+            <Card className="text-center">
+              <Card.Header>Entreprise</Card.Header>
+              <Card.Body>
+                <Card.Text>
+                  <Form.Control
+                    type="text"
+                    name="entreprise"
+                    placeholder="Saisir le nom de l'entreprise"
+                    value={entreprise}
+                    onChange={handleInputEntrepriseChange}
+                  />
+                </Card.Text>
+              </Card.Body>
+            </Card>
           </Form.Group>
           <Form.Group controlId="niveau">
-            <Form.Label>Niveau</Form.Label>
-            <Form.Control
-              as="select"
-              name="niveau"
-              value={niveau}
-              onChange={handleInputNiveauChange}
-            >
-              <option>3</option>
-              <option>4</option>
-              <option>5</option>
-            </Form.Control>
+            <Card className="text-center">
+              <Card.Header>Niveau</Card.Header>
+              <Card.Body>
+                <Card.Text>
+                  <Form.Control
+                    as="select"
+                    name="niveau"
+                    value={niveau}
+                    onChange={handleInputNiveauChange}
+                  >
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                  </Form.Control>
+                </Card.Text>
+              </Card.Body>
+            </Card>
           </Form.Group>
           <Form.Group controlId="annee">
-            <Form.Label>Année</Form.Label>
-            <Form.Control
-              type="text"
-              name="annee"
-              placeholder="Saisir l'année du stage"
-              value={annee}
-              onChange={handleInputAnneeChange}
-            />
+            <Card className="text-center">
+              <Card.Header>Année</Card.Header>
+              <Card.Body>
+                <Card.Text>
+                  <Form.Control
+                    type="text"
+                    name="annee"
+                    placeholder="Saisir l'année du stage"
+                    value={annee}
+                    onChange={handleInputAnneeChange}
+                  />
+                </Card.Text>
+              </Card.Body>
+            </Card>
           </Form.Group>
           <Form.Group controlId="dateDebut">
-            <Form.Label>Date de début</Form.Label>
-            <DatePicker
-              dateFormat="dd-MM-yyyy"
-              selected={startDate}
-              onChange={handleInputDateDebutChange}
-              locale="fr"
-              closeOnScroll={true}
-            />
+            <Card className="text-center">
+              <Card.Header>Date de début</Card.Header>
+              <Card.Body>
+                <Card.Text>
+                  <DatePicker
+                    dateFormat="dd-MM-yyyy"
+                    selected={startDate}
+                    onChange={handleInputDateDebutChange}
+                    locale="fr"
+                    closeOnScroll={true}
+                  />
+                </Card.Text>
+              </Card.Body>
+            </Card>
           </Form.Group>
           <Form.Group controlId="dateFin">
-            <Form.Label>Date de fin</Form.Label>
-            <DatePicker
-              dateFormat="dd-MM-yyyy"
-              selected={endDate}
-              onChange={handleInputDateFinChange}
-              locale="fr"
-              closeOnScroll={true}
-            />
+            <Card className="text-center">
+              <Card.Header>Date de fin</Card.Header>
+              <Card.Body>
+                <Card.Text>
+                  <DatePicker
+                    dateFormat="dd-MM-yyyy"
+                    selected={endDate}
+                    onChange={handleInputDateFinChange}
+                    locale="fr"
+                    closeOnScroll={true}
+                  />
+                </Card.Text>
+              </Card.Body>
+            </Card>
           </Form.Group>
           {retard?.map((data) => (
             <div key={data.iduti}>
               {sessionStorage.getItem('id') === `${data.iduti}` ? (
                 <div>
                   <Form.Group>
-                    <Form.File
-                      id="exampleFormControlFile1"
-                      label="Importer le rapport de stage"
-                      onChange={onChangeHandlerRapport}
-                    />
+                    <Card className="text-center">
+                      <Card.Header>Importer le rapport de stage</Card.Header>
+                      <Card.Body>
+                        <Card.Text>
+                          <Form.File
+                            id="exampleFormControlFile1"
+                            onChange={onChangeHandlerRapport}
+                          />
+                        </Card.Text>
+                      </Card.Body>
+                    </Card>
                   </Form.Group>
                   <Form.Group>
-                    <Form.File
-                      id="exampleFormControlFile2"
-                      label="Importer la présentation de stage"
-                      onChange={onChangeHandlerPresentation}
-                    />
+                    <Card className="text-center">
+                      <Card.Header>
+                        Importer la présentation de stage
+                      </Card.Header>
+                      <Card.Body>
+                        <Card.Text>
+                          <Form.File
+                            id="exampleFormControlFile2"
+                            onChange={onChangeHandlerPresentation}
+                          />
+                        </Card.Text>
+                      </Card.Body>
+                    </Card>
                   </Form.Group>
                 </div>
               ) : null}
