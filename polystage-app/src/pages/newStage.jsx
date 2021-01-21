@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router';
-import { Button, Container, Form } from 'react-bootstrap';
+import { Button, Card, Container, Form } from 'react-bootstrap';
 import DatePicker, { registerLocale } from 'react-datepicker';
 import fr from 'date-fns/locale/fr';
 import { Notyf } from 'notyf';
@@ -147,110 +147,170 @@ const NewStage = () => {
       <Container>
         <Form onSubmit={onSubmit}>
           <Form.Group controlId="stageTitle">
-            <Form.Label>Titre du stage</Form.Label>
-            <Form.Control
-              type="text"
-              name="stageTitle"
-              placeholder="Saisir le titre du stage"
-              autoFocus
-              value={titre}
-              onChange={handleInputTitreChange}
-            />
+            <Card className="text-center">
+              <Card.Header>Titre du stage</Card.Header>
+              <Card.Body>
+                <Card.Text>
+                  <Form.Control
+                    type="text"
+                    name="stageTitle"
+                    placeholder="Saisir le titre du stage"
+                    autoFocus
+                    value={titre}
+                    onChange={handleInputTitreChange}
+                  />
+                </Card.Text>
+              </Card.Body>
+            </Card>
           </Form.Group>
           <Form.Group controlId="description">
-            <Form.Label>Description du stage</Form.Label>
-            <Form.Control
-              type="text"
-              name="description"
-              placeholder="Saisir la description du stage"
-              value={description}
-              onChange={handleInputDescriptionChange}
-            />
+            <Card className="text-center">
+              <Card.Header>Description du stage</Card.Header>
+              <Card.Body>
+                <Card.Text>
+                  <Form.Control
+                    type="text"
+                    name="description"
+                    placeholder="Saisir la description du stage"
+                    value={description}
+                    onChange={handleInputDescriptionChange}
+                  />
+                </Card.Text>
+              </Card.Body>
+            </Card>
           </Form.Group>
           <Form.Group controlId="entreprise">
-            <Form.Label>Entreprise</Form.Label>
-            <Form.Control
-              type="text"
-              name="entreprise"
-              placeholder="Saisir le nom de l'entreprise"
-              value={entreprise}
-              onChange={handleInputEntrepriseChange}
-            />
+            <Card className="text-center">
+              <Card.Header>Entreprise</Card.Header>
+              <Card.Body>
+                <Card.Text>
+                  <Form.Control
+                    type="text"
+                    name="entreprise"
+                    placeholder="Saisir le nom de l'entreprise"
+                    value={entreprise}
+                    onChange={handleInputEntrepriseChange}
+                  />
+                </Card.Text>
+              </Card.Body>
+            </Card>
           </Form.Group>
           <Form.Group controlId="adresse">
-            <Form.Label>Adresse de l'entreprise</Form.Label>
-            <Form.Control
-              type="text"
-              name="entreprise"
-              placeholder="Saisir l'adresse de l'entreprise'"
-              value={adresse}
-              onChange={handleInputAdresseChange}
-            />
+            <Card className="text-center">
+              <Card.Header>Adresse de l'entreprise</Card.Header>
+              <Card.Body>
+                <Card.Text>
+                  <Form.Control
+                    type="text"
+                    name="entreprise"
+                    placeholder="Saisir l'adresse de l'entreprise'"
+                    value={adresse}
+                    onChange={handleInputAdresseChange}
+                  />
+                </Card.Text>
+              </Card.Body>
+            </Card>
           </Form.Group>
           <Form.Group controlId="mail">
-            <Form.Label>Saisir l'adresse mail durant le stage</Form.Label>
-            <Form.Control
-              type="email"
-              name="entreprise"
-              placeholder="Saisir l'adresse mail durant le stage"
-              value={mail}
-              onChange={handleInputMailChange}
-            />
+            <Card className="text-center">
+              <Card.Header>Adresse mail durant le stage</Card.Header>
+              <Card.Body>
+                <Card.Text>
+                  <Form.Control
+                    type="email"
+                    name="entreprise"
+                    placeholder="Saisir l'adresse mail durant le stage"
+                    value={mail}
+                    onChange={handleInputMailChange}
+                  />
+                </Card.Text>
+              </Card.Body>
+            </Card>
           </Form.Group>
           <Form.Group controlId="niveau">
-            <Form.Label>Niveau</Form.Label>
-            <Form.Control
-              as="select"
-              name="niveau"
-              value={niveau}
-              onChange={handleInputNiveauChange}
-            >
-              <option>3</option>
-              <option>4</option>
-              <option>5</option>
-            </Form.Control>
+            <Card className="text-center">
+              <Card.Header>Niveau</Card.Header>
+              <Card.Body>
+                <Card.Text>
+                  <Form.Control
+                    as="select"
+                    name="niveau"
+                    value={niveau}
+                    onChange={handleInputNiveauChange}
+                  >
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                  </Form.Control>
+                </Card.Text>
+              </Card.Body>
+            </Card>
           </Form.Group>
           <Form.Group controlId="annee">
-            <Form.Label>Année</Form.Label>
-            <Form.Control
-              type="text"
-              name="annee"
-              placeholder="Saisir l'année du stage"
-              value={annee}
-              onChange={handleInputAnneeChange}
-            />
+            <Card className="text-center">
+              <Card.Header>Année</Card.Header>
+              <Card.Body>
+                <Card.Text>
+                  <Form.Control
+                    type="text"
+                    name="annee"
+                    placeholder="Saisir l'année du stage"
+                    value={annee}
+                    onChange={handleInputAnneeChange}
+                  />
+                </Card.Text>
+              </Card.Body>
+            </Card>
           </Form.Group>
           <Form.Group controlId="dateDebut">
-            <Form.Label>Date de début</Form.Label>
-            <DatePicker
-              dateFormat="dd-MM-yyyy"
-              selected={startDate}
-              onChange={handleInputDateDebutChange}
-              locale="fr"
-              closeOnScroll={true}
-            />
+            <Card className="text-center">
+              <Card.Header>Date de début</Card.Header>
+              <Card.Body>
+                <Card.Text>
+                  <DatePicker
+                    dateFormat="dd-MM-yyyy"
+                    selected={startDate}
+                    onChange={handleInputDateDebutChange}
+                    locale="fr"
+                    closeOnScroll={true}
+                  />
+                </Card.Text>
+              </Card.Body>
+            </Card>
           </Form.Group>
 
           <Form.Group controlId="dateFin">
-            <Form.Label>Date de fin</Form.Label>
-            <DatePicker
-              dateFormat="dd-MM-yyyy"
-              selected={endDate}
-              onChange={handleInputDateFinChange}
-              locale="fr"
-              closeOnScroll={true}
-            />
+            <Card className="text-center">
+              <Card.Header>Date de fin</Card.Header>
+              <Card.Body>
+                <Card.Text>
+                  <DatePicker
+                    dateFormat="dd-MM-yyyy"
+                    selected={endDate}
+                    onChange={handleInputDateFinChange}
+                    locale="fr"
+                    closeOnScroll={true}
+                  />
+                </Card.Text>
+              </Card.Body>
+            </Card>
           </Form.Group>
 
-          <Form.Group controlId="dateFin">
-            <Form.Label>Confidentiel</Form.Label>
-            <Form.Control
-              type="text"
-              name="confidentiel"
-              placeholder="Saisir 1 si le projet est confidentiel, sinon 0"
-              value={confidentiel}
-              onChange={handleInputConfidentielChange}
-            />
+          <Form.Group controlId="confidentiel">
+            <Card className="text-center">
+              <Card.Header>Confidentiel</Card.Header>
+              <Card.Body>
+                <Card.Text>
+                  <Form.Control
+                    type="text"
+                    name="confidentiel"
+                    placeholder="Saisir 1 si le projet est confidentiel, sinon 0"
+                    value={confidentiel}
+                    onChange={handleInputConfidentielChange}
+                  />
+                </Card.Text>
+              </Card.Body>
+            </Card>
           </Form.Group>
 
           <Button variant="info" type="submit">
