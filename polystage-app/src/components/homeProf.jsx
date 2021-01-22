@@ -51,7 +51,7 @@ const HomeProf = () => {
       });
   }, []);
 
-  const startEval = (id, idtuteur, ideleve) => {
+  const startEval = (id, idtuteur, ideleve, rapport, pres) => {
     const value = new Date();
     const month = value.getMonth() + 1;
     const hours = value.getHours() - 1;
@@ -93,8 +93,6 @@ const HomeProf = () => {
       }),
     }).then((res) => {
       res.json();
-
-      console.log('idtuteur = ' + idtuteur);
       fetch('http://localhost:5000/api/retardtuteur', {
         method: 'POST',
         headers: {
@@ -108,24 +106,83 @@ const HomeProf = () => {
         }),
       }).then((res) => res.json());
 
-      fetch('http://localhost:5000/api/retardeleve', {
-        method: 'POST',
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-          Authorization: 'Bearer ' + sessionStorage.getItem('token'),
-        },
-        body: JSON.stringify({
-          iduti: ideleve,
-          mailenvoye: 1,
-          rapport: 0,
-          presentation: 0,
-          autoeval: 0,
-        }),
-      }).then((res) => {
-        res.json();
-        history.go(0);
-      });
+      if (rapport && !pres) {
+        fetch('http://localhost:5000/api/retardeleve', {
+          method: 'POST',
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+            Authorization: 'Bearer ' + sessionStorage.getItem('token'),
+          },
+          body: JSON.stringify({
+            iduti: ideleve,
+            mailenvoye: 1,
+            rapport: 1,
+            presentation: 0,
+            autoeval: 0,
+          }),
+        }).then((res) => {
+          res.json();
+          history.go(0);
+        });
+      } else if (!rapport && pres) {
+        fetch('http://localhost:5000/api/retardeleve', {
+          method: 'POST',
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+            Authorization: 'Bearer ' + sessionStorage.getItem('token'),
+          },
+          body: JSON.stringify({
+            iduti: ideleve,
+            mailenvoye: 1,
+            rapport: 0,
+            presentation: 1,
+            autoeval: 0,
+          }),
+        }).then((res) => {
+          res.json();
+          history.go(0);
+        });
+      } else if (rapport && pres) {
+        fetch('http://localhost:5000/api/retardeleve', {
+          method: 'POST',
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+            Authorization: 'Bearer ' + sessionStorage.getItem('token'),
+          },
+          body: JSON.stringify({
+            iduti: ideleve,
+            mailenvoye: 1,
+            rapport: 1,
+            presentation: 1,
+            autoeval: 0,
+          }),
+        }).then((res) => {
+          res.json();
+          history.go(0);
+        });
+      } else {
+        fetch('http://localhost:5000/api/retardeleve', {
+          method: 'POST',
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+            Authorization: 'Bearer ' + sessionStorage.getItem('token'),
+          },
+          body: JSON.stringify({
+            iduti: ideleve,
+            mailenvoye: 1,
+            rapport: 0,
+            presentation: 0,
+            autoeval: 0,
+          }),
+        }).then((res) => {
+          res.json();
+          history.go(0);
+        });
+      }
     });
   };
 
@@ -176,7 +233,9 @@ const HomeProf = () => {
                           startEval(
                             stage.idstage,
                             stage.idtuteur,
-                            stage.ideleve
+                            stage.ideleve,
+                            stage.cheminrapport,
+                            stage.cheminpres
                           )
                         }
                       >

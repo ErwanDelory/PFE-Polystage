@@ -6,8 +6,6 @@ import fr from 'date-fns/locale/fr';
 import { Notyf } from 'notyf';
 
 const NewStage = () => {
-  // TODO: Réfléchir: Upload des documents => Gérer le cas lors du lancement de l'évaluation pour ne pas avoir un retard
-
   registerLocale('fr', fr);
   const [niveau, setNiveau] = useState(3);
   const [annee, setAnnee] = useState('');
@@ -21,6 +19,8 @@ const NewStage = () => {
   const [adresse, setAdresse] = useState('');
   const [mail, setMail] = useState('');
   const [confidentiel, setConfidentiel] = useState('');
+  const [fileRapport, setFileRapport] = useState();
+  const [filePresentation, setFilePresentation] = useState();
   const history = useHistory();
   const notyf = new Notyf({
     duration: 3000,
@@ -83,6 +83,14 @@ const NewStage = () => {
     setConfidentiel(value);
   };
 
+  const onChangeHandlerRapport = (event) => {
+    return setFileRapport(event.target.files[0]);
+  };
+
+  const onChangeHandlerPresentation = (event) => {
+    return setFilePresentation(event.target.files[0]);
+  };
+
   const redirect = () => {
     history.push('/');
   };
@@ -137,8 +145,66 @@ const NewStage = () => {
     }).then((res) => {
       res.json();
       notyf.success('Ajout du stage réussi !');
+      if (fileRapport) {
+        uploadRapport();
+      }
+      if (filePresentation) {
+        uploadPresentation();
+      }
       setTimeout(redirect, 3000);
     });
+  };
+
+  const uploadRapport = () => {
+    const formData = new FormData();
+    formData.append('file', fileRapport, 'Test.pdf');
+
+    var requestOptions = {
+      method: 'POST',
+      headers: {
+        Authorization: 'Bearer ' + sessionStorage.getItem('token'),
+      },
+      body: formData,
+      redirect: 'follow',
+    };
+
+    fetch(
+      `http://localhost:5000/api/upload/${sessionStorage.getItem(
+        'nom'
+      )}/${sessionStorage.getItem('prenom')}/${annee}/${niveau}/rapport`,
+      requestOptions
+    )
+      .then((response) => response.text())
+      .then((result) => {
+        console.log(result);
+      })
+      .catch((error) => console.log('error', error));
+  };
+
+  const uploadPresentation = () => {
+    const formData = new FormData();
+    formData.append('file', filePresentation, 'Test.pdf');
+
+    var requestOptions = {
+      method: 'POST',
+      headers: {
+        Authorization: 'Bearer ' + sessionStorage.getItem('token'),
+      },
+      body: formData,
+      redirect: 'follow',
+    };
+
+    fetch(
+      `http://localhost:5000/api/upload/${sessionStorage.getItem(
+        'nom'
+      )}/${sessionStorage.getItem('prenom')}/${annee}/${niveau}/presentation`,
+      requestOptions
+    )
+      .then((response) => response.text())
+      .then((result) => {
+        console.log(result);
+      })
+      .catch((error) => console.log('error', error));
   };
 
   return (
@@ -307,6 +373,33 @@ const NewStage = () => {
                     placeholder="Saisir 1 si le projet est confidentiel, sinon 0"
                     value={confidentiel}
                     onChange={handleInputConfidentielChange}
+                  />
+                </Card.Text>
+              </Card.Body>
+            </Card>
+          </Form.Group>
+
+          <Form.Group>
+            <Card className="text-center">
+              <Card.Header>Importer le rapport de stage</Card.Header>
+              <Card.Body>
+                <Card.Text>
+                  <Form.File
+                    id="exampleFormControlFile1"
+                    onChange={onChangeHandlerRapport}
+                  />
+                </Card.Text>
+              </Card.Body>
+            </Card>
+          </Form.Group>
+          <Form.Group>
+            <Card className="text-center">
+              <Card.Header>Importer la présentation de stage</Card.Header>
+              <Card.Body>
+                <Card.Text>
+                  <Form.File
+                    id="exampleFormControlFile2"
+                    onChange={onChangeHandlerPresentation}
                   />
                 </Card.Text>
               </Card.Body>
