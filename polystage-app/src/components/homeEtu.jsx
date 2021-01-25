@@ -187,7 +187,7 @@ const HomeEtu = () => {
           {data?.map((stage) => (
             <Col key={stage.idstage}>
               <Card style={{ width: '35rem' }}>
-                <Card.Img variant="top" src={img[stage.idstage - 1]} />
+                <Card.Img variant="top" src={img[(stage.idstage - 1) % 10]} />
                 <Card.Header className="text-center">
                   Année {stage.annee} - {stage.niveau}A
                 </Card.Header>
