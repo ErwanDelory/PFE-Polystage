@@ -72,7 +72,7 @@ function GenererPdf(req, res, next) {
 					doc.fontSize(22).text(resu[0].nom + ' ' + resu[0].prenom, {
 						align: 'center',
 					});
-					doc.fontSize(20).text('Competences  ' + resu[0].annee, {
+					doc.fontSize(20).text('Competences ' + resu[0].annee, {
 						align: 'center',
 					});
 					doc.moveDown();
@@ -101,9 +101,11 @@ function GenererPdf(req, res, next) {
 					doc.fontSize(22).text(resu[0].nom + ' ' + resu[0].prenom, {
 						align: 'center',
 					});
-					doc.fontSize(20).text('Questions  ' + resu[0].annee, {
+					doc.fontSize(20).text('Questions ' + resu[0].annee, {
 						align: 'center',
 					});
+					doc.moveDown();
+
 					result.forEach((element) => {
 						doc.fontSize(12).text(element.question);
 						doc.fontSize(10).text(
