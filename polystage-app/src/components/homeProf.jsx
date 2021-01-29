@@ -10,6 +10,8 @@ import { faFolderOpen } from '@fortawesome/free-solid-svg-icons';
 import { faPlay } from '@fortawesome/free-solid-svg-icons';
 
 const HomeProf = () => {
+  // TODO: Ajouter notyf envoie des mails
+
   timeago.register('fr', fr);
   const [data, setData] = useState([]);
   const history = useHistory();
@@ -88,7 +90,7 @@ const HomeProf = () => {
       },
       body: JSON.stringify({
         evallancee: date,
-        datelimiteeval: dateLimite,
+        datelimiteeval: date,
         idstage: id,
       }),
     }).then((res) => {
@@ -104,7 +106,10 @@ const HomeProf = () => {
           iduti: idtuteur,
           mailenvoye: 1,
         }),
-      }).then((res) => res.json());
+      }).then((res) => {
+        res.json();
+        sendMailTuteur(idtuteur);
+      });
 
       if (rapport && !pres) {
         fetch('http://localhost:5000/api/retardeleve', {
@@ -123,7 +128,8 @@ const HomeProf = () => {
           }),
         }).then((res) => {
           res.json();
-          history.go(0);
+          sendMailEleve(ideleve);
+          //history.go(0);
         });
       } else if (!rapport && pres) {
         fetch('http://localhost:5000/api/retardeleve', {
@@ -142,7 +148,8 @@ const HomeProf = () => {
           }),
         }).then((res) => {
           res.json();
-          history.go(0);
+          sendMailEleve(ideleve);
+          //history.go(0);
         });
       } else if (rapport && pres) {
         fetch('http://localhost:5000/api/retardeleve', {
@@ -161,7 +168,7 @@ const HomeProf = () => {
           }),
         }).then((res) => {
           res.json();
-          history.go(0);
+          //history.go(0);
         });
       } else {
         fetch('http://localhost:5000/api/retardeleve', {
@@ -180,7 +187,8 @@ const HomeProf = () => {
           }),
         }).then((res) => {
           res.json();
-          history.go(0);
+          sendMailEleve(ideleve);
+          //history.go(0);
         });
       }
     });
@@ -201,6 +209,59 @@ const HomeProf = () => {
       })
       .catch((error) => {
         console.log(error);
+      });
+  };
+
+  const sendMailTuteur = (id) => {
+    fetch(`http://localhost:5000/api/user/${id}`, {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + sessionStorage.getItem('token'),
+      },
+    })
+      .then((res) => res.json())
+      .then((mes) => {
+        const name = mes.data[0].nom + ' ' + mes.data[0].prenom;
+        fetch('http://localhost:5000/api/sendMail/tuteur', {
+          method: 'POST',
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+            Authorization: 'Bearer ' + sessionStorage.getItem('token'),
+          },
+          body: JSON.stringify({ name: name }),
+        }).then((res) => {
+          res.json();
+        });
+      });
+  };
+
+  const sendMailEleve = (id) => {
+    fetch(`http://localhost:5000/api/user/${id}`, {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + sessionStorage.getItem('token'),
+      },
+    })
+      .then((res) => res.json())
+      .then((mes) => {
+        const name = mes.data[0].nom + ' ' + mes.data[0].prenom;
+        fetch('http://localhost:5000/api/sendMail/eleve', {
+          method: 'POST',
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+            Authorization: 'Bearer ' + sessionStorage.getItem('token'),
+          },
+          body: JSON.stringify({ name: name }),
+        }).then((res) => {
+          res.json();
+          history.go(0);
+        });
       });
   };
 
