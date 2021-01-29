@@ -8,6 +8,7 @@ const retardControllers = require('../controllers/retardController');
 const EvalControllers = require('../controllers/evalController');
 
 const fileUpload = require('../controllers/file-upload');
+const { sendEmail } = require('../controllers/mailController');
 
 const router = express.Router();
 
@@ -76,6 +77,16 @@ router.post(
     res.send({ msg: 'Uploaded' });
   }
 );
+
+router.post('/sendMail/eleve', (req, res) => {
+  sendEmail('pfepolystage@gmail.com', req.body.name, 'eleve');
+  res.status(200).json({ message: 'Mail envoyé' });
+});
+
+router.post('/sendMail/tuteur', (req, res) => {
+  sendEmail('pfepolystage@gmail.com', req.body.name, 'tuteur');
+  res.status(200).json({ message: 'Mail envoyé' });
+});
 
 router.get('/who', userControllers.whoAmI);
 
