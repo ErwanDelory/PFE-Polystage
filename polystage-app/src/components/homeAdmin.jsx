@@ -8,13 +8,19 @@ import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFolderOpen } from '@fortawesome/free-solid-svg-icons';
 import { faPlay } from '@fortawesome/free-solid-svg-icons';
+import { Notyf } from 'notyf';
 
 const HomeAdmin = () => {
-  // TODO: Ajouter notyf envoie des mails
-
   timeago.register('fr', fr);
   const [data, setData] = useState([]);
   const history = useHistory();
+  const notyf = new Notyf({
+    duration: 3000,
+    position: {
+      x: 'right',
+      y: 'top',
+    },
+  });
 
   useEffect(() => {
     fetch('http://localhost:5000/api/stages', {
@@ -260,9 +266,15 @@ const HomeAdmin = () => {
           body: JSON.stringify({ name: name }),
         }).then((res) => {
           res.json();
-          history.go(0);
+          notyf.success('Emails de notification envoyés !');
+          //history.go(0);
+          setTimeout(redirect, 2500);
         });
       });
+  };
+
+  const redirect = () => {
+    history.go(0);
   };
 
   return (
