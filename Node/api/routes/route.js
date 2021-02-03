@@ -27,7 +27,7 @@ router.get('/users', userControllers.getUsers);
 router.get('/user/:id', userControllers.getUserById);
 router.delete('/user/:id', userControllers.deleteUser);
 
-//Stage Controller
+//Stage Controller / upload
 router.post('/newstage', stageControllers.createStage);
 router.put('/editstage', stageControllers.editStage);
 router.delete('/stage/:sid', stageControllers.deleteStage);
@@ -38,6 +38,14 @@ router.get('/presentation/:id', stageControllers.getPresentationStageById);
 router.get('/eval/rapport/:id', stageControllers.getEvalStageById);
 router.get('/comp/rapport/:id', stageControllers.getCompStageById);
 router.get('/dlrapport/:id', stageControllers.dlRapportStageById);
+
+router.post(
+	'/upload/:nom/:prenom/:annee/:niveau/:type',
+	fileUpload.single('file'),
+	(req, res) => {
+		res.send({ msg: 'Uploaded' });
+	}
+);
 
 //Eval
 router.put('/starteval', EvalControllers.startEval);
@@ -60,34 +68,24 @@ router.delete('/retardtuteur/:iduti', retardControllers.deleteRetardTuteur);
 
 router.patch('/retardeleve/:iduti', retardControllers.updateRetardEleve);
 router.patch(
-  '/retardeleve/rapport/:iduti',
-  retardControllers.updateRetardRapportEleve
+	'/retardeleve/rapport/:iduti',
+	retardControllers.updateRetardRapportEleve
 );
 router.patch(
-  '/retardeleve/presentation/:iduti',
-  retardControllers.updateRetardPresentationEleve
+	'/retardeleve/presentation/:iduti',
+	retardControllers.updateRetardPresentationEleve
 );
 router.patch('/retardtuteur/:iduti', retardControllers.updateRetardTuteur);
 
-//Upload
-router.post(
-  '/upload/:nom/:prenom/:annee/:niveau/:type',
-  fileUpload.single('file'),
-  (req, res) => {
-    res.send({ msg: 'Uploaded' });
-  }
-);
-
+// Mail
 router.post('/sendMail/eleve', (req, res) => {
-  sendEmail('pfepolystage@gmail.com', req.body.name, 'eleve');
-  res.status(200).json({ message: 'Mail envoyé' });
+	sendEmail('pfepolystage@gmail.com', req.body.name, 'eleve');
+	res.status(200).json({ message: 'Mail envoyé' });
 });
 
 router.post('/sendMail/tuteur', (req, res) => {
-  sendEmail('pfepolystage@gmail.com', req.body.name, 'tuteur');
-  res.status(200).json({ message: 'Mail envoyé' });
+	sendEmail('pfepolystage@gmail.com', req.body.name, 'tuteur');
+	res.status(200).json({ message: 'Mail envoyé' });
 });
-
-router.get('/who', userControllers.whoAmI);
 
 module.exports = router;
