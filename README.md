@@ -45,5 +45,4 @@ Compte élève: `erwan.delory@gmail.com` et mot de passe `root`.\
 Compte professeur: `nicolas.baudru@univ-amu.fr` et mot de passe `root`.\
 Compte administrateur: `nicolas.durand@univ-amu.fr` et mot de passe `root`.\
 Compte tuteur: `tut@tut.fr` et mot de passe `root`.\
-
 L'adresse mail pour la gestion du retard: `pfepolystage@gmail.com` et mot de passe `polytech`.
