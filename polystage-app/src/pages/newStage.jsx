@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router';
 import { Button, Card, Container, Form } from 'react-bootstrap';
 import DatePicker, { registerLocale } from 'react-datepicker';
@@ -9,7 +9,7 @@ const NewStage = () => {
   registerLocale('fr', fr);
   const [niveau, setNiveau] = useState(3);
   const [annee, setAnnee] = useState('');
-  const [dateDebut, setDateDebut] = useState('');
+  const [dateDebut, setDateDebut] = useState(new Date());
   const [dateFin, setDateFin] = useState('');
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
@@ -21,6 +21,12 @@ const NewStage = () => {
   const [confidentiel, setConfidentiel] = useState('');
   const [fileRapport, setFileRapport] = useState();
   const [filePresentation, setFilePresentation] = useState();
+  const [tuteurs, setTuteurs] = useState([]);
+  const [ens, setEns] = useState([]);
+  const [tutSelect, setTutSelect] = useState('');
+  const [ensSelect, setEnsSelect] = useState('');
+  const [tutid, setTutid] = useState('');
+  const [ensid, setEnsid] = useState('');
   const history = useHistory();
   const notyf = new Notyf({
     duration: 3000,
@@ -29,6 +35,44 @@ const NewStage = () => {
       y: 'top',
     },
   });
+
+  useEffect(() => {
+    fetch('http://localhost:5000/api/tuteurs', {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + sessionStorage.getItem('token'),
+      },
+    })
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        return setTuteurs(data.data);
+      });
+
+    fetch('http://localhost:5000/api/enseignants', {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + sessionStorage.getItem('token'),
+      },
+    })
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        return setEns(data.data);
+      });
+
+    const date = new Date();
+    const d =
+      date.getDate() + '-' + (date.getMonth() + 1) + '-' + date.getFullYear();
+    setDateDebut(d);
+    setDateFin(d);
+  }, []);
 
   const handleInputNiveauChange = (event) => {
     const { value } = event.target;
@@ -78,6 +122,20 @@ const NewStage = () => {
     setMail(value);
   };
 
+  const handleInputTuteurChange = (event) => {
+    const { value } = event.target;
+    const id = value.split(':');
+    setTutSelect(value);
+    setTutid(id[0]);
+  };
+
+  const handleInputEnseignantChange = (event) => {
+    const { value } = event.target;
+    const id = value.split(':');
+    setEnsSelect(value);
+    setEnsid(id[0]);
+  };
+
   const handleInputConfidentielChange = (event) => {
     const { value } = event.target;
     setConfidentiel(value);
@@ -111,7 +169,9 @@ const NewStage = () => {
       !entreprise ||
       !adresse ||
       !mail ||
-      !confidentiel
+      !confidentiel ||
+      !tutid ||
+      !ensid
     ) {
       notyf.error('Information incorrecte !');
       return;
@@ -127,8 +187,8 @@ const NewStage = () => {
         ideleve: sessionStorage.getItem('id'),
         niveau: niveau,
         annee: annee,
-        idtuteur: 5,
-        idens: 4,
+        idtuteur: tutid,
+        idens: ensid,
         datedebut: debut,
         datefin: fin,
         titrestage: titre,
@@ -357,6 +417,52 @@ const NewStage = () => {
                     locale="fr"
                     closeOnScroll={true}
                   />
+                </Card.Text>
+              </Card.Body>
+            </Card>
+          </Form.Group>
+
+          <Form.Group controlId="tuteur">
+            <Card className="text-center">
+              <Card.Header>Tuteur</Card.Header>
+              <Card.Body>
+                <Card.Text>
+                  <Form.Control
+                    as="select"
+                    name="tuteur"
+                    value={tutSelect}
+                    onChange={handleInputTuteurChange}
+                  >
+                    <option></option>
+                    {tuteurs?.map((data) => (
+                      <option key={data.id}>
+                        {data.id}: {data.nom} {data.prenom}
+                      </option>
+                    ))}
+                  </Form.Control>
+                </Card.Text>
+              </Card.Body>
+            </Card>
+          </Form.Group>
+
+          <Form.Group controlId="enseignant">
+            <Card className="text-center">
+              <Card.Header>Enseignant</Card.Header>
+              <Card.Body>
+                <Card.Text>
+                  <Form.Control
+                    as="select"
+                    name="enseignant"
+                    value={ensSelect}
+                    onChange={handleInputEnseignantChange}
+                  >
+                    <option></option>
+                    {ens?.map((data) => (
+                      <option key={data.id}>
+                        {data.id}: {data.nom} {data.prenom}
+                      </option>
+                    ))}
+                  </Form.Control>
                 </Card.Text>
               </Card.Body>
             </Card>
