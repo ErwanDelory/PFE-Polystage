@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : db
--- Généré le : Dim 03 jan. 2021 à 11:23
+-- Généré le : sam. 06 fév. 2021 à 10:12
 -- Version du serveur :  8.0.22
 -- Version de PHP : 7.4.11
 
@@ -91,13 +91,6 @@ CREATE TABLE `infoetu` (
   `niveau` enum('3','4','5') DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Déchargement des données de la table `infoetu`
---
-
-INSERT INTO `infoetu` (`idinfo`, `numetudiant`, `annee`, `niveau`) VALUES
-(3, 18009015, 2021, '4');
-
 -- --------------------------------------------------------
 
 --
@@ -160,14 +153,15 @@ CREATE TABLE `questions` (
 --
 
 INSERT INTO `questions` (`idquest`, `question`, `cat`, `souscat`, `type`, `is4a`, `is5a`, `choix`, `niveau`) VALUES
-(2, 'Nom du stagiaire', 1, NULL, 'text', 1, 1, NULL, 4),
-(3, 'Prénom du stagiaire', 1, NULL, 'text', 1, 1, NULL, 4),
-(4, 'Nom de l\'entreprise', 1, NULL, 'text', 1, 1, NULL, 4),
-(5, 'Ville/Pays', 1, NULL, 'text', 1, 1, NULL, 4),
-(6, 'Nom du tuteur de stage', 1, NULL, 'text', 1, 1, NULL, 4),
-(7, 'Fonction du tuteur', 1, NULL, 'text', 1, 1, NULL, 4),
-(8, 'Courriel du tuteur', 1, NULL, 'text', 1, 1, NULL, 4),
-(9, 'Téléphone du tuteur', 1, NULL, 'text', 1, 1, NULL, 4),
+(1, 'Nom du stagiaire', 1, NULL, 'text', 1, 1, NULL, 4),
+(2, 'Prénom du stagiaire', 1, NULL, 'text', 1, 1, NULL, 4),
+(3, 'Nom de l\'entreprise', 1, NULL, 'text', 1, 1, NULL, 4),
+(4, 'Ville/Pays', 1, NULL, 'text', 1, 1, NULL, 4),
+(5, 'Nom du tuteur de stage', 1, NULL, 'text', 1, 1, NULL, 4),
+(6, 'Fonction du tuteur', 1, NULL, 'text', 1, 1, NULL, 4),
+(7, 'Courriel du tuteur', 1, NULL, 'text', 1, 1, NULL, 4),
+(8, 'Téléphone du tuteur', 1, NULL, 'text', 1, 1, NULL, 4),
+(9, 'Sujet du stage en quelques mots', 1, NULL, 'text', 1, 1, NULL, 4),
 (10, 'Capacité d\'analyse / compréhension des problèmes', 2, 1, 'enum', 1, 1, 'notation', 4),
 (11, 'Mise en oeuvre de ses connaissances', 2, 1, 'enum', 1, 1, 'notation', 4),
 (12, 'Aptitudes à acquérir de nouvelles connaissances', 2, 1, 'enum', 1, 1, 'notation', 4),
@@ -197,8 +191,7 @@ INSERT INTO `questions` (`idquest`, `question`, `cat`, `souscat`, `type`, `is4a`
 (36, 'Souhaitez-vous participer à la soutenance?', 5, NULL, 'enum', 1, 1, 'ouinon', 4),
 (37, 'Si oui, seriez-vous disponible pour participer au repas le jeudi 12 septembre à midi?', 5, NULL, 'enum', 0, 1, 'ouinon', 5),
 (38, 'Si oui, indiquez le nombre de personnes qui participeront ', 5, NULL, 'text', 0, 1, NULL, 5),
-(39, 'Avez-vous des impératifs horaires éventuels?', 5, NULL, 'text', 1, 1, NULL, 4),
-(40, 'Sujet du stage en quelques mots', 1, NULL, 'text', 1, 1, NULL, 4);
+(39, 'Avez-vous des impératifs horaires éventuels?', 5, NULL, 'text', 1, 1, NULL, 4);
 
 -- --------------------------------------------------------
 
@@ -213,13 +206,6 @@ CREATE TABLE `retardeleve` (
   `presentation` tinyint(1) NOT NULL,
   `autoeval` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Déchargement des données de la table `retardeleve`
---
-
-INSERT INTO `retardeleve` (`iduti`, `mailenvoye`, `rapport`, `presentation`, `autoeval`) VALUES
-(3, 1, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -294,10 +280,9 @@ CREATE TABLE `stage` (
 --
 
 INSERT INTO `stage` (`idstage`, `ideleve`, `niveau`, `annee`, `idtuteur`, `idens`, `datedebut`, `datefin`, `titrestage`, `description`, `nomentreprise`, `adressestage`, `adremailstage`, `cheminrapport`, `daterapport`, `cheminpres`, `datepres`, `chemineval`, `dateeval`, `evallancee`, `confidentiel`, `datelimiterendu`, `datelimiteeval`, `datesoutenance`, `datecomp`, `chemincomp`) VALUES
-(1, 3, '5', 2019, 5, 2, '2077-04-06', '2077-04-06', 'Super Stage 13', 'Un stage de Kalitey up', 'AIRBUS', NULL, NULL, './public/2020/5A/2020_5A_BECHARI_Bilal_rapport.pdf', '2019-04-06 20:00:00', './public/2020/5A/2020_5A_BECHARI_Bilal_presentation.pdf', NULL, NULL, NULL, NULL, 0, '2018-01-01', '2018-01-01', '2018-01-01', NULL, NULL),
-(2, 14, '5', 2021, 5, 4, '2020-12-15', '2020-12-30', 'Super Stage Erwan', 'Un stage de defe', 'CGI', 'ededfede', 'dddd', 'chemin', '2020-12-08 22:00:00', 'chemin', '2020-12-08 22:00:00', 'fefe', '2020-12-08 22:00:00', '2020-11-30 23:00:00', 0, '2020-12-30', '2020-12-30', '2020-12-30', '2020-12-30 22:00:00', 'chemin'),
-(3, 15, '4', 2021, 5, 4, '2020-12-03', '2022-12-31', 'Ingénieur DevOps', 'Réalisation d\'un stage d\'ingénieur DevOps', 'Thalès', 'blablabla', 'fiorehuguif', 'hirueghi', '2020-12-02 20:37:37', 'vktuiehrg', '2020-12-10 20:37:37', 'serdtj', '2020-12-26 20:37:37', '2020-12-26 21:37:37', 0, '2020-12-31', '2020-12-31', '2020-12-31', '2020-12-31 20:37:37', 'ertdfyguhi'),
-(4, 15, '4', 2021, 17, 4, '2020-11-05', '2021-11-30', 'Ingénieur DevOps', 'En attente ...', 'Pytheas Navigation', '', '', '', '2020-10-09 22:00:00', '', '2020-10-09 22:00:00', '', '2020-10-09 22:00:00', '2020-10-10 00:00:00', 0, '2020-10-10', '2020-10-10', '2020-10-10', '2020-10-09 22:00:00', '');
+(1, 19, '5', 2021, 5, 28, '2021-01-30', '2021-06-30', 'Développement d\'application web', 'Création d\'une application en React.js', 'Airbus', 'Aéroport International Marseille Provence, 13700 ', 'dorian.bonhomme@airbus.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+(2, 20, '5', 2021, 41, 32, '2021-02-02', '2021-07-03', 'Création d\'une application cloud', 'Création et déploiement d\'une application', 'CGI', ' 125 Avenue Galilée Immeuble Le Quartz, 13100 Aix-en-Provence', 'aymen.damak@cgi.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+(3, 15, '5', 2021, 37, 33, '2020-11-05', '2021-11-29', 'Ingénieur DevOps', 'Réalisation d\'un contrat d\'ingénieur DevOps', 'Pytheas Navigation', '52 rue Emmanuel Eydoux 13016 Marseille', 'erwan.delory@pytheasnavigation.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -320,13 +305,36 @@ CREATE TABLE `utilisateur` (
 
 INSERT INTO `utilisateur` (`id`, `nom`, `prenom`, `email`, `mdp`, `role`) VALUES
 (2, 'root', 'root', 'root@root.fr', '4813494d137e1631bba301d5acab6e7bb7aa74ce1185d456565ef51d737677b2', 'Admin'),
-(3, 'etu', 'etu', 'etu@etu.fr', '4813494d137e1631bba301d5acab6e7bb7aa74ce1185d456565ef51d737677b2', 'Etudiant'),
 (4, 'ens', 'ens', 'ens@ens.fr', '4813494d137e1631bba301d5acab6e7bb7aa74ce1185d456565ef51d737677b2', 'Enseignant'),
 (5, 'tut', 'tut', 'tut@tut.fr', '4813494d137e1631bba301d5acab6e7bb7aa74ce1185d456565ef51d737677b2', 'Tuteur'),
-(14, 'etu2', 'etu2', 'etu2@etu2.fr', '4813494d137e1631bba301d5acab6e7bb7aa74ce1185d456565ef51d737677b2', 'Etudiant'),
-(15, 'Delory', 'Erwan', 'erwan.delory@gmail.com', '4813494d137e1631bba301d5acab6e7bb7aa74ce1185d456565ef51d737677b2', 'Etudiant'),
-(16, 'El Kourdi', 'Maha', 'maha@elkourdi.fr', '4813494d137e1631bba301d5acab6e7bb7aa74ce1185d456565ef51d737677b2', 'Tuteur'),
-(17, 'Delory', 'Erwan', 'erwan@tuteur.fr', '4813494d137e1631bba301d5acab6e7bb7aa74ce1185d456565ef51d737677b2', 'Tuteur');
+(15, 'Delory', 'Erwan', 'erwan.delory@etu.univ-amu.fr', '4813494d137e1631bba301d5acab6e7bb7aa74ce1185d456565ef51d737677b2', 'Etudiant'),
+(19, 'Bonhomme', 'Dorian', 'dorian.bonhomme@etu.univ-amu.fr', '4813494d137e1631bba301d5acab6e7bb7aa74ce1185d456565ef51d737677b2', 'Etudiant'),
+(20, 'Damak', 'Aymen', 'aymen.damak@etu.univ-amu.fr', '4813494d137e1631bba301d5acab6e7bb7aa74ce1185d456565ef51d737677b2', 'Etudiant'),
+(21, 'Durand', 'Nicolas', 'nicolas.durand@univ-amu.fr', '4813494d137e1631bba301d5acab6e7bb7aa74ce1185d456565ef51d737677b2', 'Admin'),
+(22, 'Ayache', 'Stephane', 'stephane.ayache@univ-amu.fr', '4813494d137e1631bba301d5acab6e7bb7aa74ce1185d456565ef51d737677b2', 'Enseignant'),
+(23, 'Bac', 'Alexandra', 'alexandra.bac@univ-amu.fr', '4813494d137e1631bba301d5acab6e7bb7aa74ce1185d456565ef51d737677b2', 'Enseignant'),
+(24, 'Banton', 'Peter', 'peter.banton@univ-amu.fr', '4813494d137e1631bba301d5acab6e7bb7aa74ce1185d456565ef51d737677b2', 'Enseignant'),
+(25, 'Bonnecaze', 'Alexis', 'alexis.bonnecaze@univ-amu.fr', '4813494d137e1631bba301d5acab6e7bb7aa74ce1185d456565ef51d737677b2', 'Enseignant'),
+(26, 'Baudru', 'Nicolas', 'nicolas.baudru@univ-amu.fr', '4813494d137e1631bba301d5acab6e7bb7aa74ce1185d456565ef51d737677b2', 'Enseignant'),
+(27, 'Daniel', 'Marc', 'marc.daniel@univ-amu.fr', '4813494d137e1631bba301d5acab6e7bb7aa74ce1185d456565ef51d737677b2', 'Enseignant'),
+(28, 'Gonzales', 'Christophe', 'christophe.gonzales@univ-amu.fr', '4813494d137e1631bba301d5acab6e7bb7aa74ce1185d456565ef51d737677b2', 'Enseignant'),
+(29, 'Mavromatis', 'Sébastien', 'sebastien.mavromatis@univ-amu.fr', '4813494d137e1631bba301d5acab6e7bb7aa74ce1185d456565ef51d737677b2', 'Enseignant'),
+(30, 'Mugwaneza', 'Léon', 'leon.mugwaneza@univ-amu.fr', '4813494d137e1631bba301d5acab6e7bb7aa74ce1185d456565ef51d737677b2', 'Enseignant'),
+(31, 'Papini', 'Odile', 'odile.papini@univ-amu.fr', '4813494d137e1631bba301d5acab6e7bb7aa74ce1185d456565ef51d737677b2', 'Enseignant'),
+(32, 'Prosperi', 'Serge', 'serge.prosperi@univ-amu.fr', '4813494d137e1631bba301d5acab6e7bb7aa74ce1185d456565ef51d737677b2', 'Enseignant'),
+(33, 'Quafafou', 'Mohamed', 'mohamed.quafafou@univ-amu.fr', '4813494d137e1631bba301d5acab6e7bb7aa74ce1185d456565ef51d737677b2', 'Enseignant'),
+(34, 'Tisserant', 'Sylvain', 'sylvain.tisserant@univ-amu.fr', '4813494d137e1631bba301d5acab6e7bb7aa74ce1185d456565ef51d737677b2', 'Enseignant'),
+(35, 'Valiente', 'Julien', 'julien.valiente@univ-amu.fr', '4813494d137e1631bba301d5acab6e7bb7aa74ce1185d456565ef51d737677b2', 'Enseignant'),
+(36, 'Darrin', 'Olivier', 'darrin.olivier@gmail.com', '4813494d137e1631bba301d5acab6e7bb7aa74ce1185d456565ef51d737677b2', 'Tuteur'),
+(37, 'La Greca', 'Raphael', 'raphael.legreca@pytheasnavigation.com', '4813494d137e1631bba301d5acab6e7bb7aa74ce1185d456565ef51d737677b2', 'Tuteur'),
+(38, 'Barbier', 'Julien', 'julien.barbier@gmail.com', '4813494d137e1631bba301d5acab6e7bb7aa74ce1185d456565ef51d737677b2', 'Tuteur'),
+(39, 'Leroy', 'Vincent', 'vincent.leroy@gmail.com', '4813494d137e1631bba301d5acab6e7bb7aa74ce1185d456565ef51d737677b2', 'Tuteur'),
+(40, 'Dumont', 'Tristan', 'tristan.dumont@gmail.com', '4813494d137e1631bba301d5acab6e7bb7aa74ce1185d456565ef51d737677b2', 'Tuteur'),
+(41, 'Claude', 'Jean', 'jean.claude@gmail.com', '4813494d137e1631bba301d5acab6e7bb7aa74ce1185d456565ef51d737677b2', 'Tuteur'),
+(42, 'Blanc', 'Guillaume', 'guillaume.blanc@gmail.com', '4813494d137e1631bba301d5acab6e7bb7aa74ce1185d456565ef51d737677b2', 'Tuteur'),
+(43, 'Quessandier', 'Théo', 'theo.quessandier@etu.univ-amu.fr', '4813494d137e1631bba301d5acab6e7bb7aa74ce1185d456565ef51d737677b2', 'Etudiant'),
+(44, 'Feltin', 'Benjamin', 'benjamin.feltin@etu.univ-amu.fr', '4813494d137e1631bba301d5acab6e7bb7aa74ce1185d456565ef51d737677b2', 'Etudiant'),
+(45, 'Grauso', 'Maxime', 'maxime.grauso@etu.univ-amu.fr', '4813494d137e1631bba301d5acab6e7bb7aa74ce1185d456565ef51d737677b2', 'Etudiant');
 
 --
 -- Index pour les tables déchargées
@@ -442,13 +450,13 @@ ALTER TABLE `souscategorie`
 -- AUTO_INCREMENT pour la table `stage`
 --
 ALTER TABLE `stage`
-  MODIFY `idstage` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `idstage` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=246;
 
 --
 -- AUTO_INCREMENT pour la table `utilisateur`
 --
 ALTER TABLE `utilisateur`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 
 --
 -- Contraintes pour les tables déchargées
