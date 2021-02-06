@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : db
--- Généré le : sam. 06 fév. 2021 à 10:12
+-- Généré le : sam. 06 fév. 2021 à 17:11
 -- Version du serveur :  8.0.22
 -- Version de PHP : 7.4.11
 
@@ -280,7 +280,7 @@ CREATE TABLE `stage` (
 --
 
 INSERT INTO `stage` (`idstage`, `ideleve`, `niveau`, `annee`, `idtuteur`, `idens`, `datedebut`, `datefin`, `titrestage`, `description`, `nomentreprise`, `adressestage`, `adremailstage`, `cheminrapport`, `daterapport`, `cheminpres`, `datepres`, `chemineval`, `dateeval`, `evallancee`, `confidentiel`, `datelimiterendu`, `datelimiteeval`, `datesoutenance`, `datecomp`, `chemincomp`) VALUES
-(1, 19, '5', 2021, 5, 28, '2021-01-30', '2021-06-30', 'Développement d\'application web', 'Création d\'une application en React.js', 'Airbus', 'Aéroport International Marseille Provence, 13700 ', 'dorian.bonhomme@airbus.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+(1, 19, '5', 2021, 38, 28, '2021-01-30', '2021-06-30', 'Développement d\'application web', 'Création d\'une application en React.js', 'Airbus', 'Aéroport International Marseille Provence, 13700 ', 'dorian.bonhomme@airbus.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
 (2, 20, '5', 2021, 41, 32, '2021-02-02', '2021-07-03', 'Création d\'une application cloud', 'Création et déploiement d\'une application', 'CGI', ' 125 Avenue Galilée Immeuble Le Quartz, 13100 Aix-en-Provence', 'aymen.damak@cgi.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
 (3, 15, '5', 2021, 37, 33, '2020-11-05', '2021-11-29', 'Ingénieur DevOps', 'Réalisation d\'un contrat d\'ingénieur DevOps', 'Pytheas Navigation', '52 rue Emmanuel Eydoux 13016 Marseille', 'erwan.delory@pytheasnavigation.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL);
 
@@ -304,9 +304,6 @@ CREATE TABLE `utilisateur` (
 --
 
 INSERT INTO `utilisateur` (`id`, `nom`, `prenom`, `email`, `mdp`, `role`) VALUES
-(2, 'root', 'root', 'root@root.fr', '4813494d137e1631bba301d5acab6e7bb7aa74ce1185d456565ef51d737677b2', 'Admin'),
-(4, 'ens', 'ens', 'ens@ens.fr', '4813494d137e1631bba301d5acab6e7bb7aa74ce1185d456565ef51d737677b2', 'Enseignant'),
-(5, 'tut', 'tut', 'tut@tut.fr', '4813494d137e1631bba301d5acab6e7bb7aa74ce1185d456565ef51d737677b2', 'Tuteur'),
 (15, 'Delory', 'Erwan', 'erwan.delory@etu.univ-amu.fr', '4813494d137e1631bba301d5acab6e7bb7aa74ce1185d456565ef51d737677b2', 'Etudiant'),
 (19, 'Bonhomme', 'Dorian', 'dorian.bonhomme@etu.univ-amu.fr', '4813494d137e1631bba301d5acab6e7bb7aa74ce1185d456565ef51d737677b2', 'Etudiant'),
 (20, 'Damak', 'Aymen', 'aymen.damak@etu.univ-amu.fr', '4813494d137e1631bba301d5acab6e7bb7aa74ce1185d456565ef51d737677b2', 'Etudiant'),
@@ -450,7 +447,7 @@ ALTER TABLE `souscategorie`
 -- AUTO_INCREMENT pour la table `stage`
 --
 ALTER TABLE `stage`
-  MODIFY `idstage` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=246;
+  MODIFY `idstage` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=249;
 
 --
 -- AUTO_INCREMENT pour la table `utilisateur`
