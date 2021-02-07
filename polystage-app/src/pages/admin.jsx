@@ -94,7 +94,7 @@ const Admin = () => {
               <div>
                 {tuteur?.map((data) => (
                   <Card.Text key={data.id}>
-                    {data.prenom} {data.prenom}
+                    {data.prenom} {data.nom}
                     <span className="warning green">
                       Mail d'avertissement déjà envoyé&nbsp;
                       <FontAwesomeIcon className="bckg-icon" icon={faCheck} />
