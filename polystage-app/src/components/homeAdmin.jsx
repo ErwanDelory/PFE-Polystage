@@ -80,7 +80,7 @@ const HomeAdmin = () => {
       '-' +
       (month + 1) +
       '-' +
-      value.getDate() +
+      (value.getDate() % 28) +
       ' ' +
       hours +
       ':' +
@@ -96,7 +96,7 @@ const HomeAdmin = () => {
       },
       body: JSON.stringify({
         evallancee: date,
-        datelimiteeval: date,
+        datelimiteeval: dateLimite,
         idstage: id,
       }),
     }).then((res) => {
