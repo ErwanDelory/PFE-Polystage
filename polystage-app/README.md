@@ -14,7 +14,7 @@ Il suffit de se placer à la racine du projet, donc à la racine de PFE-Polystag
 Il faut exécuter la commande: `docker-compose up` pour réaliser la création des containers.\
 Une fois que les containeurs seront créés, il est nécéssaire d'ajouter la base de données SQL pour que le backend puisse se connecter.\
 Pour ce faire, il faut se rendre à l'adresse: [http://localhost:8080](http://localhost:8080).\
-Les identifiants sont `root`et `root`.\
+Les identifiants sont `root` et `root`.\
 Puis il faut créer une base de données du nom de `db` pour ne pas avoir à modifier la connexion du backend.\
 Ensuite, il faut ouvrir la base de données, appuyer sur `importer` puis `choisir le fichier` afin de sélectionner le fichier `db.sql` puis sur `exécuter`.\
 Il est maintenant possible de relancer le container du backend depuis l'application docker ou encore en annulant et recommancant la commande: `docker-compose up`.\
@@ -41,8 +41,8 @@ Il n'est pas possible de choisir le rôle administrateur lors de la création d'
 ### `Comptes utilisateurs`
 
 Il existe déjà des comptes dans la base de données:\
-Compte élève: `erwan.delory@gmail.com` et mot de passe `root`.\
-Compte professeur: `nicolas.baudru@univ-amu.fr` et mot de passe `root`.\
+Compte élève: `erwan.delory@etu.univ-amu.fr` et mot de passe `root`.\
+Compte professeur: `mohamed.quafafou@univ-amu.fr` et mot de passe `root`.\
 Compte administrateur: `nicolas.durand@univ-amu.fr` et mot de passe `root`.\
-Compte tuteur: `tut@tut.fr` et mot de passe `root`.\
+Compte tuteur: `julien.barbier@gmail.com` et mot de passe `root`.\
 L'adresse mail pour la gestion du retard: `pfepolystage@gmail.com` et mot de passe `polytech`.
