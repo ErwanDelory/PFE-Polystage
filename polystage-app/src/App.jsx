@@ -16,7 +16,6 @@ import EvalCompetences from './pages/evalCompetences';
 import Footer from './components/footer';
 
 const App = () => {
-  //Ici il faut faire passer le sessionStorage token dans une fonction check token pour voir si il est encore valide (expiré et qu'il appartient au bon utilisateur)
   const existingToken = sessionStorage.getItem('token');
   const [authTokens, setAuthTokens] = useState(existingToken);
 
